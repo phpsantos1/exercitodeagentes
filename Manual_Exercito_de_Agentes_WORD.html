@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Completo - Exército de Agentes</title>
+    <style>
+        @page {
+            margin: 2.5cm;
+            size: A4;
+        }
+        
+        body {
+            font-family: 'Calibri', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 21cm;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px solid #0ea5e9;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0ea5e9;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: #64748b;
+            font-style: italic;
+        }
+        
+        h1 {
+            color: #0ea5e9;
+            font-size: 24px;
+            border-bottom: 2px solid #0ea5e9;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            page-break-before: auto;
+        }
+        
+        h2 {
+            color: #1e40af;
+            font-size: 20px;
+            margin-top: 25px;
+            border-left: 4px solid #0ea5e9;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #374151;
+            font-size: 16px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .toc {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            color: #0ea5e9;
+            border: none;
+            padding: 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .toc li:before {
+            content: "▶";
+            color: #0ea5e9;
+            position: absolute;
+            left: 0;
+        }
+        
+        .warning {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .info {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .success {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #22c55e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        th, td {
+            border: 1px solid #d1d5db;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #f3f4f6;
+            font-weight: bold;
+            color: #374151;
+        }
+        
+        .code {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        .step {
+            background: #f8fafc;
+            border-left: 4px solid #0ea5e9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .step-number {
+            background: #0ea5e9;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        ul, ol {
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 5px 0;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 12px;
+        }
+        
+        @media print {
+            body {
+                font-size: 12px;
+            }
+            
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">🤖 EXÉRCITO DE AGENTES</div>
+        <div class="subtitle">Manual Completo de Uso, Manutenção e Automação</div>
+        <div class="subtitle">Powered by EssencialBot</div>
+        <div style="margin-top: 20px; font-size: 14px; color: #64748b;">
+            Versão 1.0 | Janeiro 2024<br>
+            www.exercitodeagentes.com.br
+        </div>
+    </div>
+
+    <div class="toc">
+        <h2>📋 Índice</h2>
+        <ul>
+            <li>1. Visão Geral do Sistema</li>
+            <li>2. Arquitetura Técnica Completa</li>
+            <li>3. Configuração Inicial</li>
+            <li>4. GitHub - Controle de Versão</li>
+            <li>5. Netlify - Deploy e Hospedagem</li>
+            <li>6. Domínio GoDaddy</li>
+            <li>7. EssencialBot (GPT-4)</li>
+            <li>8. Google Sheets - Base de Dados</li>
+            <li>9. Make.com - Automações</li>
+            <li>10. Zapier - Integrações</li>
+            <li>11. Z-API - WhatsApp Business</li>
+            <li>12. Tally - Formulários</li>
+            <li>13. Carrd - Landing Pages</li>
+            <li>14. WordPress - Blog</li>
+            <li>15. Fluxos de Automação</li>
+            <li>16. Monitoramento e Manutenção</li>
+            <li>17. Segurança e LGPD</li>
+            <li>18. Troubleshooting</li>
+            <li>19. Escalabilidade</li>
+            <li>20. Anexos e Templates</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>1. 🎯 Visão Geral do Sistema</h1>
+
+    <h2>1.1 Introdução</h2>
+    <p>O <strong>Exército de Agentes</strong> é uma plataforma completa de automação empresarial que combina inteligência artificial avançada, automação de processos e serviços especializados. Este manual abrange todos os aspectos técnicos e operacionais do sistema.</p>
+
+    <div class="info">
+        <strong>🎯 Objetivo:</strong> Fornecer um guia completo para implementação, manutenção e otimização da plataforma Exército de Agentes.
+    </div>
+
+    <h2>1.2 Componentes Principais</h2>
+    <table>
+        <tr>
+            <th>Componente</th>
+            <th>Função</th>
+            <th>Tecnologia</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Site Principal</td>
+            <td>Interface principal e apresentação</td>
+            <td>React + TypeScript + Tailwind</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>EssencialBot</td>
+            <td>IA conversacional personalizada</td>
+            <td>GPT-4 + Custom Training</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>Base de Dados</td>
+            <td>Armazenamento de leads e clientes</td>
+            <td>Google Sheets + Drive</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>Automações</td>
+            <td>Fluxos automatizados</td>
+            <td>Make.com + Zapier</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>WhatsApp</td>
+            <td>Comunicação direta</td>
+            <td>Z-API</td>
+            <td>✅ Ativo</td>
+        </tr>
+    </table>
+
+    <h2>1.3 Fluxo de Dados</h2>
+    <div class="code">
+Usuário → Site → EssencialBot → Formulário → Google Sheets → Make/Zapier → WhatsApp → CRM
+    ↓
+Análise → Segmentação → Automação → Follow-up → Conversão
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>2. 🏗️ Arquitetura Técnica Completa</h1>
+
+    <h2>2.1 Stack Tecnológica</h2>
+
+    <h3>Frontend</h3>
+    <ul>
+        <li><strong>React 18.3.1</strong> - Framework principal</li>
+        <li><strong>TypeScript</strong> - Tipagem estática</li>
+        <li><strong>Tailwind CSS</strong> - Estilização</li>
+        <li><strong>Lucide React</strong> - Ícones</li>
+        <li><strong>Vite</strong> - Build tool</li>
+    </ul>
+
+    <h3>Backend & Integrações</h3>
+    <ul>
+        <li><strong>GitHub</strong> - Controle de versão</li>
+        <li><strong>Netlify</strong> - Deploy e hospedagem</li>
+        <li><strong>GoDaddy</strong> - Domínio e DNS</li>
+        <li><strong>Google Workspace</strong> - Sheets, Drive, Gmail</li>
+        <li><strong>OpenAI GPT-4</strong> - Inteligência artificial</li>
+    </ul>
+
+    <h3>Automação & Integrações</h3>
+    <ul>
+        <li><strong>Make.com</strong> - Automações complexas</li>
+        <li><strong>Zapier</strong> - Integrações simples</li>
+        <li><strong>Z-API</strong> - WhatsApp Business</li>
+        <li><strong>Tally</strong> - Formulários avançados</li>
+        <li><strong>Carrd</strong> - Landing pages específicas</li>
+        <li><strong>WordPress</strong> - Blog e conteúdo</li>
+    </ul>
+
+    <h2>2.2 Diagrama de Arquitetura</h2>
+    <div class="code">
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   USUÁRIO       │    │   FRONTEND      │    │   BACKEND       │
+│                 │    │                 │    │                 │
+│ • Navegador     │───▶│ • React App     │───▶│ • GitHub        │
+│ • Mobile        │    │ • EssencialBot  │    │ • Netlify       │
+│ • WhatsApp      │    │ • Formulários   │    │ • Google APIs   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                       │                       │
+         │                       ▼                       ▼
+         │              ┌─────────────────┐    ┌─────────────────┐
+         │              │   AUTOMAÇÃO     │    │   DADOS         │
+         │              │                 │    │                 │
+         └─────────────▶│ • Make.com      │───▶│ • Google Sheets │
+                        │ • Zapier        │    │ • Google Drive  │
+                        │ • Z-API         │    │ • CRM           │
+                        └─────────────────┘    └─────────────────┘
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>3. ⚙️ Configuração Inicial</h1>
+
+    <h2>3.1 Pré-requisitos</h2>
+    <div class="warning">
+        <strong>⚠️ Importante:</strong> Certifique-se de ter acesso administrativo a todas as contas mencionadas antes de iniciar.
+    </div>
+
+    <h3>Contas Necessárias</h3>
+    <table>
+        <tr>
+            <th>Serviço</th>
+            <th>Tipo de Conta</th>
+            <th>Custo Mensal</th>
+            <th>Observações</th>
+        </tr>
+        <tr>
+            <td>GitHub</td>
+            <td>Pro</td>
+            <td>$4/mês</td>
+            <td>Repositórios privados</td>
+        </tr>
+        <tr>
+            <td>Netlify</td>
+            <td>Pro</td>
+            <td>$19/mês</td>
+            <td>Deploy automático</td>
+        </tr>
+        <tr>
+            <td>GoDaddy</td>
+            <td>Domínio + SSL</td>
+            <td>$15/mês</td>
+            <td>exercitodeagentes.com.br</td>
+        </tr>
+        <tr>
+            <td>Google Workspace</td>
+            <td>Business</td>
+            <td>$12/mês</td>
+            <td>Sheets, Drive, Gmail</td>
+        </tr>
+        <tr>
+            <td>OpenAI</td>
+            <td>API</td>
+            <td>$20-100/mês</td>
+            <td>Baseado no uso</td>
+        </tr>
+        <tr>
+            <td>Make.com</td>
+            <td>Pro</td>
+            <td>$16/mês</td>
+            <td>10.000 operações</td>
+        </tr>
+        <tr>
+            <td>Zapier</td>
+            <td>Professional</td>
+            <td>$49/mês</td>
+            <td>Backup para Make</td>
+        </tr>
+        <tr>
+            <td>Z-API</td>
+            <td>Premium</td>
+            <td>$25/mês</td>
+            <td>WhatsApp Business</td>
+        </tr>
+    </table>
+
+    <h2>3.2 Checklist de Configuração</h2>
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Configurar GitHub Repository</strong>
+        <ul>
+            <li>Criar repositório privado</li>
+            <li>Configurar branch protection</li>
+            <li>Adicionar colaboradores</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Configurar Netlify</strong>
+        <ul>
+            <li>Conectar com GitHub</li>
+            <li>Configurar build settings</li>
+            <li>Configurar domínio personalizado</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Configurar Domínio GoDaddy</strong>
+        <ul>
+            <li>Apontar DNS para Netlify</li>
+            <li>Configurar SSL</li>
+            <li>Configurar subdomínios</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">4</span>
+        <strong>Configurar Google Workspace</strong>
+        <ul>
+            <li>Criar planilhas base</li>
+            <li>Configurar APIs</li>
+            <li>Configurar permissões</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>4. 🐙 GitHub - Controle de Versão</h1>
+
+    <h2>4.1 Configuração do Repositório</h2>
+
+    <h3>Estrutura do Repositório</h3>
+    <div class="code">
+exercito-de-agentes/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml
+├── public/
+│   ├── index.html
+│   └── assets/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── utils/
+│   └── App.tsx
+├── docs/
+│   └── manual.md
+├── package.json
+├── README.md
+└── .gitignore
+    </div>
+
+    <h3>Configuração de Branches</h3>
+    <table>
+        <tr>
+            <th>Branch</th>
+            <th>Propósito</th>
+            <th>Proteção</th>
+        </tr>
+        <tr>
+            <td>main</td>
+            <td>Produção</td>
+            <td>✅ Protegida</td>
+        </tr>
+        <tr>
+            <td>develop</td>
+            <td>Desenvolvimento</td>
+            <td>✅ Protegida</td>
+        </tr>
+        <tr>
+            <td>feature/*</td>
+            <td>Novas funcionalidades</td>
+            <td>❌ Livre</td>
+        </tr>
+        <tr>
+            <td>hotfix/*</td>
+            <td>Correções urgentes</td>
+            <td>❌ Livre</td>
+        </tr>
+    </table>
+
+    <h2>4.2 Workflow de Deploy Automático</h2>
+    <div class="code">
+# .github/workflows/deploy.yml
+name: Deploy to Netlify
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build
+      run: npm run build
+    
+    - name: Deploy to Netlify
+      uses: netlify/actions/cli@master
+      with:
+        args: deploy --prod --dir=dist
+      env:
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    </div>
+
+    <h2>4.3 Comandos Essenciais</h2>
+    <div class="code">
+# Clonar repositório
+git clone https://github.com/exercitodeagentes/site-principal.git
+
+# Criar nova feature
+git checkout -b feature/nova-funcionalidade
+
+# Commit e push
+git add .
+git commit -m "feat: adicionar nova funcionalidade"
+git push origin feature/nova-funcionalidade
+
+# Merge para develop
+git checkout develop
+git merge feature/nova-funcionalidade
+
+# Deploy para produção
+git checkout main
+git merge develop
+git push origin main
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>5. 🚀 Netlify - Deploy e Hospedagem</h1>
+
+    <h2>5.1 Configuração Inicial</h2>
+
+    <h3>Build Settings</h3>
+    <table>
+        <tr>
+            <th>Configuração</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Build Command</td>
+            <td>npm run build</td>
+        </tr>
+        <tr>
+            <td>Publish Directory</td>
+            <td>dist</td>
+        </tr>
+        <tr>
+            <td>Node Version</td>
+            <td>18</td>
+        </tr>
+    </table>
+
+    <h3>Variáveis de Ambiente</h3>
+    <div class="code">
+# Netlify Environment Variables
+VITE_OPENAI_API_KEY=sk-...
+VITE_GOOGLE_SHEETS_API_KEY=AIza...
+VITE_MAKE_WEBHOOK_URL=https://hook.make.com/...
+VITE_ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/...
+VITE_ZAPI_TOKEN=...
+VITE_SITE_URL=https://exercitodeagentes.com.br
+    </div>
+
+    <h2>5.2 Configuração de Domínio</h2>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Adicionar Domínio Personalizado</strong>
+        <ul>
+            <li>Acessar Site Settings → Domain Management</li>
+            <li>Adicionar exercitodeagentes.com.br</li>
+            <li>Configurar www.exercitodeagentes.com.br</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Configurar SSL</strong>
+        <ul>
+            <li>Ativar HTTPS automático</li>
+            <li>Forçar HTTPS</li>
+            <li>Verificar certificado</li>
+        </ul>
+    </div>
+
+    <h2>5.3 Redirects e Headers</h2>
+    <div class="code">
+# netlify.toml
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.openai.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.openai.com https://sheets.googleapis.com https://hook.make.com https://hooks.zapier.com;"
+    </div>
+
+    <h2>5.4 Monitoramento</h2>
+    <div class="info">
+        <strong>📊 Analytics Integrados:</strong>
+        <ul>
+            <li>Netlify Analytics - Tráfego e performance</li>
+            <li>Deploy notifications - Slack/Discord</li>
+            <li>Error tracking - Sentry integration</li>
+            <li>Uptime monitoring - StatusPage</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>6. 🌐 Domínio GoDaddy</h1>
+
+    <h2>6.1 Configuração DNS</h2>
+
+    <h3>Registros DNS Necessários</h3>
+    <table>
+        <tr>
+            <th>Tipo</th>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>TTL</th>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>@</td>
+            <td>75.2.60.5</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>CNAME</td>
+            <td>www</td>
+            <td>exercitodeagentes.netlify.app</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>CNAME</td>
+            <td>blog</td>
+            <td>exercitodeagentes.wordpress.com</td>
+            <td>600</td>
+        </tr>
+        <tr>
+            <td>MX</td>
+            <td>@</td>
+            <td>aspmx.l.google.com</td>
+            <td>3600</td>
+        </tr>
+        <tr>
+            <td>TXT</td>
+            <td>@</td>
+            <td>v=spf1 include:_spf.google.com ~all</td>
+            <td>3600</td>
+        </tr>
+    </table>
+
+    <h2>6.2 Subdomínios</h2>
+    <ul>
+        <li><strong>www.exercitodeagentes.com.br</strong> - Site principal</li>
+        <li><strong>blog.exercitodeagentes.com.br</strong> - WordPress blog</li>
+        <li><strong>app.exercitodeagentes.com.br</strong> - Aplicação web</li>
+        <li><strong>api.exercitodeagentes.com.br</strong> - API endpoints</li>
+        <li><strong>docs.exercitodeagentes.com.br</strong> - Documentação</li>
+    </ul>
+
+    <h2>6.3 Configuração de Email</h2>
+    <div class="code">
+# Configuração Google Workspace
+MX Records:
+1  aspmx.l.google.com
+5  alt1.aspmx.l.google.com
+5  alt2.aspmx.l.google.com
+10 alt3.aspmx.l.google.com
+10 alt4.aspmx.l.google.com
+
+# SPF Record
+v=spf1 include:_spf.google.com ~all
+
+# DKIM Record
+google._domainkey IN TXT "v=DKIM1; k=rsa; p=..."
+
+# DMARC Record
+_dmarc IN TXT "v=DMARC1; p=quarantine; rua=mailto:dmarc@exercitodeagentes.com.br"
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>7. 🤖 EssencialBot (GPT-4)</h1>
+
+    <h2>7.1 Configuração da IA</h2>
+
+    <h3>Prompt Base do EssencialBot</h3>
+    <div class="code">
+Você é o EssencialBot, assistente de IA do Exército de Agentes.
+
+PERSONALIDADE:
+- Profissional, mas acessível
+- Especialista em automação e IA
+- Focado em resultados empresariais
+- Linguagem clara e objetiva
+
+CONHECIMENTO:
+- Automação empresarial
+- Inteligência artificial
+- Contabilidade e consultoria
+- Tecnologias de integração
+
+OBJETIVOS:
+1. Qualificar leads
+2. Apresentar soluções
+3. Agendar demonstrações
+4. Coletar informações de contato
+
+RESTRIÇÕES:
+- Não fazer promessas irreais
+- Sempre direcionar para especialistas humanos
+- Manter foco nos serviços da empresa
+- Respeitar LGPD
+    </div>
+
+    <h2>7.2 Integração com o Site</h2>
+    <div class="code">
+// src/components/EssencialBotChat.tsx
+import { useState, useEffect } from 'react';
+import OpenAI from 'openai';
+
+const openai = new OpenAI({
+  apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+  dangerouslyAllowBrowser: true
+});
+
+export const EssencialBotChat = () => {
+  const [messages, setMessages] = useState([]);
+  const [isTyping, setIsTyping] = useState(false);
+
+  const sendMessage = async (userMessage) => {
+    setIsTyping(true);
+    
+    try {
+      const response = await openai.chat.completions.create({
+        model: "gpt-4",
+        messages: [
+          {
+            role: "system",
+            content: ESSENCIAL_BOT_PROMPT
+          },
+          ...messages,
+          {
+            role: "user",
+            content: userMessage
+          }
+        ],
+        max_tokens: 500,
+        temperature: 0.7
+      });
+
+      const botResponse = response.choices[0].message.content;
+      setMessages(prev => [...prev, 
+        { role: 'user', content: userMessage },
+        { role: 'assistant', content: botResponse }
+      ]);
+    } catch (error) {
+      console.error('Erro na API:', error);
+    } finally {
+      setIsTyping(false);
+    }
+  };
+
+  return (
+    // Interface do chat...
+  );
+};
+    </div>
+
+    <h2>7.3 Fluxos de Conversação</h2>
+
+    <h3>Fluxo 1: Qualificação de Lead</h3>
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Saudação Inicial</strong>
+        <p>"Olá! Sou o EssencialBot. Como posso ajudar você hoje?"</p>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Identificação de Interesse</strong>
+        <p>Apresentar opções: Automação IA, Contabilidade, Consultoria, Educação</p>
+    </div>
+
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Coleta de Informações</strong>
+        <p>Nome, empresa, telefone, email, necessidade específica</p>
+    </div>
+
+    <div class="step">
+        <span class="step-number">4</span>
+        <strong>Agendamento</strong>
+        <p>Propor demonstração ou consulta com especialista</p>
+    </div>
+
+    <h2>7.4 Métricas e Otimização</h2>
+    <table>
+        <tr>
+            <th>Métrica</th>
+            <th>Meta</th>
+            <th>Atual</th>
+            <th>Ação</th>
+        </tr>
+        <tr>
+            <td>Taxa de Engajamento</td>
+            <td>>70%</td>
+            <td>65%</td>
+            <td>Otimizar saudação</td>
+        </tr>
+        <tr>
+            <td>Conversão para Lead</td>
+            <td>>25%</td>
+            <td>22%</td>
+            <td>Melhorar qualificação</td>
+        </tr>
+        <tr>
+            <td>Satisfação</td>
+            <td>>4.5/5</td>
+            <td>4.3/5</td>
+            <td>Treinar respostas</td>
+        </tr>
+        <tr>
+            <td>Tempo de Resposta</td>
+            <td><3s</td>
+            <td>2.1s</td>
+            <td>✅ OK</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>8. 📊 Google Sheets - Base de Dados</h1>
+
+    <h2>8.1 Estrutura das Planilhas</h2>
+
+    <h3>Planilha Principal: "Leads_ExercitoAgentes"</h3>
+    <table>
+        <tr>
+            <th>Coluna</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Validação</th>
+        </tr>
+        <tr>
+            <td>A - Timestamp</td>
+            <td>DateTime</td>
+            <td>Data/hora do contato</td>
+            <td>Automático</td>
+        </tr>
+        <tr>
+            <td>B - Nome</td>
+            <td>Text</td>
+            <td>Nome completo</td>
+            <td>Obrigatório</td>
+        </tr>
+        <tr>
+            <td>C - Email</td>
+            <td>Email</td>
+            <td>Email válido</td>
+            <td>Formato email</td>
+        </tr>
+        <tr>
+            <td>D - Telefone</td>
+            <td>Text</td>
+            <td>WhatsApp preferencial</td>
+            <td>Formato brasileiro</td>
+        </tr>
+        <tr>
+            <td>E - Empresa</td>
+            <td>Text</td>
+            <td>Nome da empresa</td>
+            <td>Opcional</td>
+        </tr>
+        <tr>
+            <td>F - Interesse</td>
+            <td>List</td>
+            <td>Área de interesse</td>
+            <td>Lista predefinida</td>
+        </tr>
+        <tr>
+            <td>G - Origem</td>
+            <td>Text</td>
+            <td>Fonte do lead</td>
+            <td>Site, WhatsApp, etc.</td>
+        </tr>
+        <tr>
+            <td>H - Status</td>
+            <td>List</td>
+            <td>Status do lead</td>
+            <td>Novo, Contatado, Qualificado</td>
+        </tr>
+        <tr>
+            <td>I - Score</td>
+            <td>Number</td>
+            <td>Pontuação do lead</td>
+            <td>0-100</td>
+        </tr>
+        <tr>
+            <td>J - Observações</td>
+            <td>Text</td>
+            <td>Notas adicionais</td>
+            <td>Livre</td>
+        </tr>
+    </table>
+
+    <h3>Fórmulas Automáticas</h3>
+    <div class="code">
+# Coluna Score (I2)
+=IF(F2="Automação IA",30,0)+IF(E2<>"",20,0)+IF(G2="Site",15,10)+IF(LEN(J2)>50,15,0)
+
+# Coluna Status Automático (H2)
+=IF(I2>=70,"Qualificado",IF(I2>=40,"Contatado","Novo"))
+
+# Validação de Email (C2)
+=IF(ISEMAIL(C2),"✅","❌")
+
+# Formatação de Telefone (D2)
+=REGEX(D2,"^\(\d{2}\)\s\d{4,5}-\d{4}$")
+    </div>
+
+    <h2>8.2 Configuração da API</h2>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Ativar Google Sheets API</strong>
+        <ul>
+            <li>Acessar Google Cloud Console</li>
+            <li>Criar projeto "ExercitoAgentes"</li>
+            <li>Ativar Sheets API e Drive API</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Criar Credenciais</strong>
+        <ul>
+            <li>Criar Service Account</li>
+            <li>Baixar arquivo JSON</li>
+            <li>Compartilhar planilha com service account</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Configurar Permissões</strong>
+        <ul>
+            <li>Editor para automações</li>
+            <li>Visualizador para relatórios</li>
+            <li>Proprietário para administradores</li>
+        </ul>
+    </div>
+
+    <h2>8.3 Backup e Segurança</h2>
+    <div class="warning">
+        <strong>⚠️ Backup Diário:</strong> Configurar backup automático para Google Drive com versionamento.
+    </div>
+
+    <div class="code">
+# Script de Backup (Google Apps Script)
+function backupSheets() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const backupFolder = DriveApp.getFolderById('FOLDER_ID');
+  
+  const today = new Date().toISOString().split('T')[0];
+  const backupName = `Backup_Leads_${today}`;
+  
+  const backup = ss.copy(backupName);
+  const file = DriveApp.getFileById(backup.getId());
+  
+  backupFolder.addFile(file);
+  DriveApp.getRootFolder().removeFile(file);
+  
+  console.log(`Backup criado: ${backupName}`);
+}
+
+// Executar diariamente às 2h
+ScriptApp.newTrigger('backupSheets')
+  .timeBased()
+  .everyDays(1)
+  .atHour(2)
+  .create();
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>9. ⚡ Make.com - Automações</h1>
+
+    <h2>9.1 Cenários Principais</h2>
+
+    <h3>Cenário 1: Novo Lead do Site</h3>
+    <div class="code">
+Trigger: Webhook do formulário
+↓
+Filtro: Validar dados obrigatórios
+↓
+Google Sheets: Adicionar nova linha
+↓
+Score: Calcular pontuação do lead
+↓
+Condição: Score >= 70?
+├─ SIM → WhatsApp: Notificar vendedor
+└─ NÃO → Email: Adicionar à sequência de nutrição
+↓
+CRM: Criar/atualizar contato
+↓
+Slack: Notificar equipe
+    </div>
+
+    <h3>Cenário 2: Follow-up Automático</h3>
+    <div class="code">
+Trigger: Schedule (diário às 9h)
+↓
+Google Sheets: Buscar leads sem contato há 3 dias
+↓
+Loop: Para cada lead
+├─ WhatsApp: Enviar mensagem personalizada
+├─ Email: Enviar follow-up
+└─ Sheets: Atualizar última interação
+↓
+Relatório: Enviar resumo para gestores
+    </div>
+
+    <h2>9.2 Configuração de Webhooks</h2>
+    <table>
+        <tr>
+            <th>Webhook</th>
+            <th>URL</th>
+            <th>Método</th>
+            <th>Uso</th>
+        </tr>
+        <tr>
+            <td>Novo Lead</td>
+            <td>https://hook.make.com/abc123</td>
+            <td>POST</td>
+            <td>Formulário do site</td>
+        </tr>
+        <tr>
+            <td>Chat Bot</td>
+            <td>https://hook.make.com/def456</td>
+            <td>POST</td>
+            <td>EssencialBot</td>
+        </tr>
+        <tr>
+            <td>WhatsApp</td>
+            <td>https://hook.make.com/ghi789</td>
+            <td>POST</td>
+            <td>Mensagens recebidas</td>
+        </tr>
+        <tr>
+            <td>Pagamento</td>
+            <td>https://hook.make.com/jkl012</td>
+            <td>POST</td>
+            <td>Confirmação de compra</td>
+        </tr>
+    </table>
+
+    <h2>9.3 Templates de Mensagens</h2>
+
+    <h3>WhatsApp - Novo Lead Qualificado</h3>
+    <div class="code">
+🚀 *NOVO LEAD QUALIFICADO*
+
+👤 *Nome:* {{nome}}
+📧 *Email:* {{email}}
+📱 *Telefone:* {{telefone}}
+🏢 *Empresa:* {{empresa}}
+🎯 *Interesse:* {{interesse}}
+⭐ *Score:* {{score}}/100
+
+💬 *Última mensagem:*
+"{{ultima_mensagem}}"
+
+🔗 *Ações:*
+• Responder WhatsApp: wa.me/{{telefone}}
+• Ver perfil completo: [Link CRM]
+• Agendar reunião: [Link Calendly]
+
+#NovoLead #ExercitoAgentes
+    </div>
+
+    <h3>Email - Follow-up Automático</h3>
+    <div class="code">
+Assunto: {{nome}}, sua automação IA está esperando! 🤖
+
+Olá {{nome}},
+
+Vi que você demonstrou interesse em nossas soluções de automação IA.
+
+Como especialista em {{interesse}}, posso ajudar sua empresa a:
+✅ Automatizar processos repetitivos
+✅ Reduzir custos operacionais em até 60%
+✅ Aumentar a produtividade da equipe
+✅ Melhorar a experiência do cliente
+
+Que tal agendar uma demonstração gratuita de 15 minutos?
+
+[AGENDAR DEMONSTRAÇÃO]
+
+Atenciosamente,
+Equipe Exército de Agentes
+    </div>
+
+    <h2>9.4 Monitoramento e Logs</h2>
+    <div class="info">
+        <strong>📊 Métricas Importantes:</strong>
+        <ul>
+            <li>Taxa de sucesso dos cenários (>95%)</li>
+            <li>Tempo médio de execução (<30s)</li>
+            <li>Operações utilizadas vs. limite</li>
+            <li>Erros por tipo e frequência</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>10. 🔗 Zapier - Integrações</h1>
+
+    <h2>10.1 Zaps Principais</h2>
+
+    <h3>Zap 1: Google Sheets → Mailchimp</h3>
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Trigger:</strong> Nova linha no Google Sheets
+    </div>
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Filter:</strong> Email não vazio
+    </div>
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Action:</strong> Adicionar/atualizar contato no Mailchimp
+    </div>
+
+    <h3>Zap 2: Calendly → Google Sheets</h3>
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Trigger:</strong> Novo agendamento no Calendly
+    </div>
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Action:</strong> Atualizar status no Google Sheets
+    </div>
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Action:</strong> Enviar confirmação por WhatsApp
+    </div>
+
+    <h2>10.2 Configuração de Backup</h2>
+    <div class="warning">
+        <strong>⚠️ Redundância:</strong> Zapier serve como backup para Make.com em caso de falha.
+    </div>
+
+    <table>
+        <tr>
+            <th>Cenário Make</th>
+            <th>Zap Backup</th>
+            <th>Prioridade</th>
+        </tr>
+        <tr>
+            <td>Novo Lead</td>
+            <td>Sheets → Email</td>
+            <td>Alta</td>
+        </tr>
+        <tr>
+            <td>Follow-up</td>
+            <td>Schedule → WhatsApp</td>
+            <td>Média</td>
+        </tr>
+        <tr>
+            <td>Relatórios</td>
+            <td>Sheets → Slack</td>
+            <td>Baixa</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>11. 📱 Z-API - WhatsApp Business</h1>
+
+    <h2>11.1 Configuração da API</h2>
+
+    <h3>Credenciais</h3>
+    <div class="code">
+# Configuração Z-API
+BASE_URL: https://api.z-api.io/instances/SUA_INSTANCIA
+TOKEN: SEU_TOKEN_AQUI
+CLIENT_TOKEN: SEU_CLIENT_TOKEN
+
+# Headers obrigatórios
+{
+  "Client-Token": "SEU_CLIENT_TOKEN",
+  "Content-Type": "application/json"
+}
+    </div>
+
+    <h2>11.2 Endpoints Principais</h2>
+
+    <h3>Enviar Mensagem de Texto</h3>
+    <div class="code">
+POST /send-text
+{
+  "phone": "5511999999999",
+  "message": "Olá! Como posso ajudar você hoje?"
+}
+    </div>
+
+    <h3>Enviar Mensagem com Template</h3>
+    <div class="code">
+POST /send-text
+{
+  "phone": "5511999999999",
+  "message": "🤖 *EssencialBot* aqui!\n\nVi que você tem interesse em *{{interesse}}*.\n\nQue tal agendar uma demonstração gratuita?\n\n👉 {{link_agendamento}}"
+}
+    </div>
+
+    <h3>Enviar Arquivo/Imagem</h3>
+    <div class="code">
+POST /send-image
+{
+  "phone": "5511999999999",
+  "image": "https://exercitodeagentes.com.br/assets/proposta.pdf",
+  "caption": "Aqui está sua proposta personalizada! 📄"
+}
+    </div>
+
+    <h2>11.3 Webhook para Receber Mensagens</h2>
+    <div class="code">
+# Configurar webhook no Z-API
+POST /webhook
+{
+  "url": "https://hook.make.com/webhook-whatsapp",
+  "enabled": true,
+  "webhookByEvents": false
+}
+
+# Estrutura da mensagem recebida
+{
+  "instanceId": "SUA_INSTANCIA",
+  "body": {
+    "senderPhoto": "https://...",
+    "senderName": "João Silva",
+    "senderNumber": "5511999999999",
+    "messageId": "msg_123",
+    "body": "Quero saber mais sobre automação",
+    "dateTime": "2024-01-15T10:30:00Z",
+    "chatName": "João Silva",
+    "messageType": "text"
+  }
+}
+    </div>
+
+    <h2>11.4 Templates de Mensagens</h2>
+
+    <h3>Boas-vindas</h3>
+    <div class="code">
+🤖 *Olá! Sou o EssencialBot!*
+
+Bem-vindo ao *Exército de Agentes*! 
+
+Estou aqui para ajudar você com:
+🔹 Automação IA
+🔹 Contabilidade
+🔹 Consultoria Empresarial
+🔹 Treinamentos
+
+Como posso ajudar você hoje?
+
+_Digite *MENU* para ver todas as opções_
+    </div>
+
+    <h3>Qualificação de Lead</h3>
+    <div class="code">
+👋 Oi {{nome}}!
+
+Para personalizar melhor nosso atendimento, me conta:
+
+1️⃣ Qual o nome da sua empresa?
+2️⃣ Quantos funcionários vocês têm?
+3️⃣ Qual sua principal necessidade hoje?
+
+Essas informações me ajudam a indicar a melhor solução para você! 🎯
+    </div>
+
+    <h2>11.5 Automações Inteligentes</h2>
+
+    <h3>Resposta Automática por Palavra-chave</h3>
+    <table>
+        <tr>
+            <th>Palavra-chave</th>
+            <th>Resposta</th>
+            <th>Ação</th>
+        </tr>
+        <tr>
+            <td>preço, valor, custo</td>
+            <td>Template de preços</td>
+            <td>Enviar tabela de preços</td>
+        </tr>
+        <tr>
+            <td>demo, demonstração</td>
+            <td>Link de agendamento</td>
+            <td>Calendly + notificar vendedor</td>
+        </tr>
+        <tr>
+            <td>contato, falar, atendimento</td>
+            <td>Transferir para humano</td>
+            <td>Notificar equipe</td>
+        </tr>
+        <tr>
+            <td>parar, sair, cancelar</td>
+            <td>Confirmação de saída</td>
+            <td>Remover da lista ativa</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h1>12. 📝 Tally - Formulários</h1>
+
+    <h2>12.1 Formulários Principais</h2>
+
+    <h3>Formulário 1: Pré-cadastro Rápido</h3>
+    <div class="code">
+URL: https://tally.so/r/pre-cadastro-exercito
+Campos:
+- Nome (obrigatório)
+- Email (obrigatório)
+- WhatsApp (obrigatório)
+- Empresa (opcional)
+- Interesse (seleção múltipla)
+- Como nos conheceu? (opcional)
+
+Webhook: https://hook.make.com/novo-lead-tally
+    </div>
+
+    <h3>Formulário 2: Solicitação de Proposta</h3>
+    <div class="code">
+URL: https://tally.so/r/proposta-exercito
+Campos:
+- Dados pessoais (nome, email, telefone)
+- Dados da empresa (nome, CNPJ, setor)
+- Necessidades específicas (texto longo)
+- Orçamento disponível (faixas)
+- Prazo desejado (seleção)
+- Anexos (upload de arquivos)
+
+Webhook: https://hook.make.com/proposta-tally
+    </div>
+
+    <h2>12.2 Configuração de Webhooks</h2>
+    <div class="code">
+# Payload do Tally
+{
+  "eventId": "evt_123",
+  "eventType": "FORM_RESPONSE",
+  "createdAt": "2024-01-15T10:30:00Z",
+  "data": {
+    "responseId": "resp_456",
+    "submissionId": "sub_789",
+    "respondentId": "user_012",
+    "formId": "form_345",
+    "formName": "Pré-cadastro Exército",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "fields": [
+      {
+        "key": "question_1",
+        "label": "Nome",
+        "type": "INPUT_TEXT",
+        "value": "João Silva"
+      },
+      {
+        "key": "question_2",
+        "label": "Email",
+        "type": "INPUT_EMAIL",
+        "value": "joao@empresa.com"
+      }
+    ]
+  }
+}
+    </div>
+
+    <h2>12.3 Personalização Visual</h2>
+    <div class="info">
+        <strong>🎨 Branding:</strong>
+        <ul>
+            <li>Logo do Exército de Agentes</li>
+            <li>Cores: Azul (#0ea5e9) e Ciano (#06b6d4)</li>
+            <li>Fonte: Calibri ou similar</li>
+            <li>Favicon personalizado</li>
+        </ul>
+    </div>
+
+    <h3>CSS Personalizado</h3>
+    <div class="code">
+/* Tally Custom CSS */
+.tally-form {
+  font-family: 'Calibri', sans-serif;
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+}
+
+.tally-question {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.tally-button {
+  background: linear-gradient(45deg, #0ea5e9, #06b6d4);
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.tally-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(14, 165, 233, 0.3);
+}
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>13. 🎨 Carrd - Landing Pages</h1>
+
+    <h2>13.1 Landing Pages Específicas</h2>
+
+    <h3>LP 1: Automação IA</h3>
+    <div class="code">
+URL: https://automacao.exercitodeagentes.com.br
+Objetivo: Conversão para demo de automação
+Elementos:
+- Headline impactante
+- Vídeo explicativo (2 min)
+- Benefícios em bullets
+- Depoimentos de clientes
+- Formulário de contato
+- Chat do EssencialBot
+    </div>
+
+    <h3>LP 2: Contabilidade</h3>
+    <div class="code">
+URL: https://contabilidade.exercitodeagentes.com.br
+Objetivo: Captação de leads para serviços contábeis
+Elementos:
+- Calculadora de economia fiscal
+- Checklist de obrigações
+- Cases de sucesso
+- Tabela de preços
+- Agendamento de consultoria
+    </div>
+
+    <h3>LP 3: Consultoria</h3>
+    <div class="code">
+URL: https://consultoria.exercitodeagentes.com.br
+Objetivo: Agendamento de consultorias
+Elementos:
+- Perfil dos consultores
+- Áreas de atuação
+- Metodologia própria
+- Resultados alcançados
+- Calendário de agendamento
+    </div>
+
+    <h2>13.2 Configuração de Domínios</h2>
+    <table>
+        <tr>
+            <th>Subdomínio</th>
+            <th>Carrd Site</th>
+            <th>Objetivo</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>automacao.exercitodeagentes.com.br</td>
+            <td>carrd.co/automacao-ia</td>
+            <td>Leads IA</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>contabilidade.exercitodeagentes.com.br</td>
+            <td>carrd.co/contabil-pro</td>
+            <td>Leads Contábeis</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>consultoria.exercitodeagentes.com.br</td>
+            <td>carrd.co/consult-expert</td>
+            <td>Agendamentos</td>
+            <td>✅ Ativo</td>
+        </tr>
+        <tr>
+            <td>educacao.exercitodeagentes.com.br</td>
+            <td>carrd.co/cursos-pro</td>
+            <td>Inscrições</td>
+            <td>🔄 Em desenvolvimento</td>
+        </tr>
+    </table>
+
+    <h2>13.3 Integração com Analytics</h2>
+    <div class="code">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+<!-- Facebook Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', 'XXXXXXXXXX');
+  fbq('track', 'PageView');
+</script>
+
+<!-- Hotjar -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:XXXXXXX,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>14. 📰 WordPress - Blog</h1>
+
+    <h2>14.1 Configuração do Blog</h2>
+
+    <h3>Informações Básicas</h3>
+    <div class="code">
+URL: https://blog.exercitodeagentes.com.br
+Tema: Astra Pro
+Plugins Essenciais:
+- Elementor Pro
+- Yoast SEO
+- WP Rocket (Cache)
+- Wordfence (Segurança)
+- UpdraftPlus (Backup)
+- WP Forms
+    </div>
+
+    <h2>14.2 Estratégia de Conteúdo</h2>
+
+    <h3>Categorias Principais</h3>
+    <table>
+        <tr>
+            <th>Categoria</th>
+            <th>Frequência</th>
+            <th>Objetivo</th>
+            <th>Palavras-chave</th>
+        </tr>
+        <tr>
+            <td>Automação IA</td>
+            <td>2x/semana</td>
+            <td>Educação + Leads</td>
+            <td>automação, IA, chatbot</td>
+        </tr>
+        <tr>
+            <td>Contabilidade</td>
+            <td>2x/semana</td>
+            <td>SEO + Autoridade</td>
+            <td>contabilidade, fiscal, SPED</td>
+        </tr>
+        <tr>
+            <td>Consultoria</td>
+            <td>1x/semana</td>
+            <td>Cases + Credibilidade</td>
+            <td>consultoria, gestão, estratégia</td>
+        </tr>
+        <tr>
+            <td>Tecnologia</td>
+            <td>1x/semana</td>
+            <td>Inovação + Trends</td>
+            <td>tecnologia, inovação, futuro</td>
+        </tr>
+    </table>
+
+    <h3>Calendário Editorial</h3>
+    <div class="code">
+SEGUNDA: Automação IA
+- Dicas práticas
+- Tutoriais
+- Cases de sucesso
+
+TERÇA: Contabilidade
+- Mudanças na legislação
+- Dicas fiscais
+- Obrigações mensais
+
+QUARTA: Consultoria
+- Estratégias empresariais
+- Gestão financeira
+- Recuperação judicial
+
+QUINTA: Tecnologia
+- Tendências
+- Ferramentas
+- Inovações
+
+SEXTA: Conteúdo misto
+- Entrevistas
+- Webinars
+- Eventos
+    </div>
+
+    <h2>14.3 Integração com o Site Principal</h2>
+    <div class="code">
+<!-- Widget de últimos posts no site principal -->
+<div class="blog-widget">
+  <h3>📰 Últimas do Blog</h3>
+  <div id="latest-posts"></div>
+</div>
+
+<script>
+fetch('https://blog.exercitodeagentes.com.br/wp-json/wp/v2/posts?per_page=3')
+  .then(response => response.json())
+  .then(posts => {
+    const container = document.getElementById('latest-posts');
+    posts.forEach(post => {
+      const article = document.createElement('article');
+      article.innerHTML = `
+        <h4><a href="${post.link}">${post.title.rendered}</a></h4>
+        <p>${post.excerpt.rendered}</p>
+        <small>${new Date(post.date).toLocaleDateString('pt-BR')}</small>
+      `;
+      container.appendChild(article);
+    });
+  });
+</script>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>15. 🔄 Fluxos de Automação</h1>
+
+    <h2>15.1 Jornada do Cliente</h2>
+
+    <h3>Estágio 1: Descoberta</h3>
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Visitante acessa o site</strong>
+        <ul>
+            <li>Google Analytics registra visita</li>
+            <li>Hotjar grava sessão</li>
+            <li>EssencialBot oferece ajuda após 30s</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Interação inicial</strong>
+        <ul>
+            <li>Chat com EssencialBot</li>
+            <li>Navegação pelo site</li>
+            <li>Download de material (lead magnet)</li>
+        </ul>
+    </div>
+
+    <h3>Estágio 2: Interesse</h3>
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Captura de lead</strong>
+        <ul>
+            <li>Preenchimento de formulário</li>
+            <li>Dados enviados para Google Sheets</li>
+            <li>Score automático calculado</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">4</span>
+        <strong>Qualificação automática</strong>
+        <ul>
+            <li>Score >= 70: Lead qualificado</li>
+            <li>Notificação imediata para vendedor</li>
+            <li>Email de boas-vindas enviado</li>
+        </ul>
+    </div>
+
+    <h3>Estágio 3: Consideração</h3>
+    <div class="step">
+        <span class="step-number">5</span>
+        <strong>Nutrição de leads</strong>
+        <ul>
+            <li>Sequência de emails educativos</li>
+            <li>WhatsApp com conteúdo relevante</li>
+            <li>Convite para webinars/demos</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">6</span>
+        <strong>Agendamento de reunião</strong>
+        <ul>
+            <li>Link do Calendly enviado</li>
+            <li>Confirmação automática</li>
+            <li>Lembrete 24h antes</li>
+        </ul>
+    </div>
+
+    <h3>Estágio 4: Decisão</h3>
+    <div class="step">
+        <span class="step-number">7</span>
+        <strong>Proposta personalizada</strong>
+        <ul>
+            <li>Reunião com especialista</li>
+            <li>Proposta gerada automaticamente</li>
+            <li>Envio por email e WhatsApp</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">8</span>
+        <strong>Follow-up de proposta</strong>
+        <ul>
+            <li>Lembrete após 3 dias</li>
+            <li>Oferta de esclarecimentos</li>
+            <li>Desconto por tempo limitado</li>
+        </ul>
+    </div>
+
+    <h3>Estágio 5: Conversão</h3>
+    <div class="step">
+        <span class="step-number">9</span>
+        <strong>Fechamento da venda</strong>
+        <ul>
+            <li>Contrato digital assinado</li>
+            <li>Pagamento processado</li>
+            <li>Cliente adicionado ao CRM</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">10</span>
+        <strong>Onboarding</strong>
+        <ul>
+            <li>Email de boas-vindas</li>
+            <li>Acesso ao portal do cliente</li>
+            <li>Agendamento de kickoff</li>
+        </ul>
+    </div>
+
+    <h2>15.2 Automações por Trigger</h2>
+
+    <h3>Trigger: Novo Lead (Score >= 70)</h3>
+    <div class="code">
+1. Adicionar ao Google Sheets
+2. Enviar notificação WhatsApp para vendedor
+3. Enviar email de boas-vindas
+4. Adicionar ao Mailchimp (lista VIP)
+5. Criar tarefa no CRM
+6. Agendar follow-up em 24h
+7. Notificar no Slack
+    </div>
+
+    <h3>Trigger: Lead Frio (Sem interação há 7 dias)</h3>
+    <div class="code">
+1. Enviar WhatsApp de reativação
+2. Oferecer conteúdo exclusivo
+3. Convidar para webinar
+4. Se não responder em 3 dias:
+   - Mover para lista de nutrição
+   - Reduzir frequência de contato
+    </div>
+
+    <h3>Trigger: Reunião Agendada</h3>
+    <div class="code">
+1. Confirmar agendamento por email
+2. Enviar WhatsApp com detalhes
+3. Adicionar ao Google Calendar
+4. Preparar material personalizado
+5. Lembrete 24h antes
+6. Lembrete 1h antes
+7. Follow-up pós-reunião
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>16. 📊 Monitoramento e Manutenção</h1>
+
+    <h2>16.1 KPIs Principais</h2>
+
+    <h3>Métricas de Tráfego</h3>
+    <table>
+        <tr>
+            <th>Métrica</th>
+            <th>Meta</th>
+            <th>Ferramenta</th>
+            <th>Frequência</th>
+        </tr>
+        <tr>
+            <td>Visitantes únicos/mês</td>
+            <td>10.000+</td>
+            <td>Google Analytics</td>
+            <td>Diária</td>
+        </tr>
+        <tr>
+            <td>Taxa de conversão</td>
+            <td>3%+</td>
+            <td>Google Analytics</td>
+            <td>Semanal</td>
+        </tr>
+        <tr>
+            <td>Tempo na página</td>
+            <td>2min+</td>
+            <td>Google Analytics</td>
+            <td>Semanal</td>
+        </tr>
+        <tr>
+            <td>Taxa de rejeição</td>
+            <td><60%</td>
+            <td>Google Analytics</td>
+            <td>Semanal</td>
+        </tr>
+    </table>
+
+    <h3>Métricas de Conversão</h3>
+    <table>
+        <tr>
+            <th>Métrica</th>
+            <th>Meta</th>
+            <th>Ferramenta</th>
+            <th>Frequência</th>
+        </tr>
+        <tr>
+            <td>Leads gerados/mês</td>
+            <td>300+</td>
+            <td>Google Sheets</td>
+            <td>Diária</td>
+        </tr>
+        <tr>
+            <td>Taxa de qualificação</td>
+            <td>25%+</td>
+            <td>Make.com</td>
+            <td>Semanal</td>
+        </tr>
+        <tr>
+            <td>Reuniões agendadas</td>
+            <td>50+/mês</td>
+            <td>Calendly</td>
+            <td>Semanal</td>
+        </tr>
+        <tr>
+            <td>Taxa de fechamento</td>
+            <td>20%+</td>
+            <td>CRM</td>
+            <td>Mensal</td>
+        </tr>
+    </table>
+
+    <h2>16.2 Dashboard de Monitoramento</h2>
+
+    <h3>Google Data Studio - Dashboard Principal</h3>
+    <div class="code">
+URL: https://datastudio.google.com/exercito-agentes-dashboard
+
+Fontes de Dados:
+- Google Analytics (tráfego)
+- Google Sheets (leads)
+- Make.com (automações)
+- Calendly (agendamentos)
+- WhatsApp Business (conversas)
+
+Seções:
+1. Visão Geral (KPIs principais)
+2. Tráfego (origem, comportamento)
+3. Conversões (funil, taxa)
+4. Automações (status, erros)
+5. ROI (receita, custos)
+    </div>
+
+    <h2>16.3 Alertas Automáticos</h2>
+
+    <h3>Alertas Críticos (Slack)</h3>
+    <div class="code">
+🚨 ALERTA CRÍTICO:
+- Site fora do ar (>5min)
+- Erro nas automações (>10 falhas/hora)
+- Queda na conversão (>50% vs. média)
+- Problema no WhatsApp (sem resposta >30min)
+- Falha no backup (não executado)
+    </div>
+
+    <h3>Alertas de Atenção (Email)</h3>
+    <div class="code">
+⚠️ ATENÇÃO:
+- Tráfego abaixo da meta (diário)
+- Leads abaixo da meta (semanal)
+- Taxa de conversão baixa (semanal)
+- Automação com muitos erros (>5/dia)
+- Espaço em disco baixo (<20%)
+    </div>
+
+    <h2>16.4 Rotina de Manutenção</h2>
+
+    <h3>Diária</h3>
+    <ul>
+        <li>✅ Verificar status das automações</li>
+        <li>✅ Revisar leads do dia</li>
+        <li>✅ Monitorar chat do EssencialBot</li>
+        <li>✅ Verificar uptime do site</li>
+        <li>✅ Responder mensagens urgentes</li>
+    </ul>
+
+    <h3>Semanal</h3>
+    <ul>
+        <li>📊 Analisar métricas de conversão</li>
+        <li>🔧 Otimizar automações com baixa performance</li>
+        <li>📝 Atualizar templates de mensagens</li>
+        <li>🧹 Limpar dados duplicados</li>
+        <li>📈 Relatório semanal para gestores</li>
+    </ul>
+
+    <h3>Mensal</h3>
+    <ul>
+        <li>🔍 Auditoria completa do sistema</li>
+        <li>💾 Backup completo dos dados</li>
+        <li>🔐 Revisão de segurança</li>
+        <li>📊 Relatório mensal detalhado</li>
+        <li>🎯 Planejamento do próximo mês</li>
+    </ul>
+
+    <div class="page-break"></div>
+
+    <h1>17. 🔐 Segurança e LGPD</h1>
+
+    <h2>17.1 Medidas de Segurança</h2>
+
+    <h3>Autenticação e Acesso</h3>
+    <table>
+        <tr>
+            <th>Sistema</th>
+            <th>Autenticação</th>
+            <th>Nível de Acesso</th>
+            <th>Backup</th>
+        </tr>
+        <tr>
+            <td>GitHub</td>
+            <td>2FA obrigatório</td>
+            <td>Admin, Developer, Viewer</td>
+            <td>Repositório espelho</td>
+        </tr>
+        <tr>
+            <td>Google Workspace</td>
+            <td>2FA + SSO</td>
+            <td>Super Admin, Admin, User</td>
+            <td>Google Vault</td>
+        </tr>
+        <tr>
+            <td>Netlify</td>
+            <td>2FA</td>
+            <td>Owner, Collaborator</td>
+            <td>Deploy history</td>
+        </tr>
+        <tr>
+            <td>Make.com</td>
+            <td>2FA</td>
+            <td>Admin, Editor, Viewer</td>
+            <td>Scenario export</td>
+        </tr>
+    </table>
+
+    <h3>Criptografia e Proteção</h3>
+    <div class="code">
+# SSL/TLS
+- Certificado SSL automático (Let's Encrypt)
+- HTTPS forçado em todas as páginas
+- HSTS habilitado
+- Cipher suites seguros
+
+# API Keys
+- Variáveis de ambiente (não no código)
+- Rotação trimestral
+- Acesso restrito por IP
+- Rate limiting ativo
+
+# Dados Sensíveis
+- Criptografia AES-256 para dados em repouso
+- TLS 1.3 para dados em trânsito
+- Hashing bcrypt para senhas
+- Tokenização de dados de pagamento
+    </code>
+
+    <h2>17.2 Conformidade LGPD</h2>
+
+    <h3>Bases Legais</h3>
+    <table>
+        <tr>
+            <th>Tipo de Dado</th>
+            <th>Base Legal</th>
+            <th>Finalidade</th>
+            <th>Retenção</th>
+        </tr>
+        <tr>
+            <td>Nome, Email, Telefone</td>
+            <td>Consentimento</td>
+            <td>Marketing e vendas</td>
+            <td>2 anos</td>
+        </tr>
+        <tr>
+            <td>Dados de navegação</td>
+            <td>Legítimo interesse</td>
+            <td>Melhoria do site</td>
+            <td>1 ano</td>
+        </tr>
+        <tr>
+            <td>Dados contratuais</td>
+            <td>Execução de contrato</td>
+            <td>Prestação de serviços</td>
+            <td>5 anos</td>
+        </tr>
+        <tr>
+            <td>Dados fiscais</td>
+            <td>Obrigação legal</td>
+            <td>Cumprimento legal</td>
+            <td>5 anos</td>
+        </tr>
+    </table>
+
+    <h3>Direitos dos Titulares</h3>
+    <div class="info">
+        <strong>📋 Procedimentos Implementados:</strong>
+        <ul>
+            <li><strong>Acesso:</strong> Portal do cliente com dados pessoais</li>
+            <li><strong>Retificação:</strong> Formulário de atualização online</li>
+            <li><strong>Exclusão:</strong> Processo automatizado via email</li>
+            <li><strong>Portabilidade:</strong> Export em CSV/JSON</li>
+            <li><strong>Oposição:</strong> Opt-out automático</li>
+        </ul>
+    </div>
+
+    <h3>Política de Privacidade</h3>
+    <div class="code">
+# Seções obrigatórias
+1. Identificação do controlador
+2. Dados coletados e finalidades
+3. Bases legais
+4. Compartilhamento de dados
+5. Transferência internacional
+6. Período de retenção
+7. Direitos dos titulares
+8. Medidas de segurança
+9. Contato do DPO
+10. Alterações na política
+    </div>
+
+    <h2>17.3 Auditoria e Compliance</h2>
+
+    <h3>Log de Atividades</h3>
+    <div class="code">
+# Eventos registrados
+- Acesso aos dados pessoais
+- Modificações em registros
+- Exclusões de dados
+- Tentativas de acesso não autorizado
+- Alterações em permissões
+- Backups e restaurações
+
+# Formato do log
+{
+  "timestamp": "2024-01-15T10:30:00Z",
+  "user": "admin@exercitodeagentes.com.br",
+  "action": "data_access",
+  "resource": "leads_sheet",
+  "ip": "192.168.1.100",
+  "user_agent": "Mozilla/5.0...",
+  "result": "success"
+}
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>18. 🔧 Troubleshooting</h1>
+
+    <h2>18.1 Problemas Comuns</h2>
+
+    <h3>Site Fora do Ar</h3>
+    <div class="warning">
+        <strong>🚨 Sintomas:</strong> Site não carrega, erro 500/502/503
+    </div>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Verificar Status do Netlify</strong>
+        <ul>
+            <li>Acessar dashboard do Netlify</li>
+            <li>Verificar último deploy</li>
+            <li>Checar logs de build</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Verificar DNS</strong>
+        <ul>
+            <li>Usar ferramenta: dig exercitodeagentes.com.br</li>
+            <li>Verificar propagação DNS</li>
+            <li>Checar configuração no GoDaddy</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Rollback se necessário</strong>
+        <ul>
+            <li>Voltar para deploy anterior</li>
+            <li>Investigar problema no código</li>
+            <li>Corrigir e fazer novo deploy</li>
+        </ul>
+    </div>
+
+    <h3>EssencialBot Não Responde</h3>
+    <div class="warning">
+        <strong>🚨 Sintomas:</strong> Chat não carrega, respostas lentas/incorretas
+    </div>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Verificar API OpenAI</strong>
+        <ul>
+            <li>Checar status da API</li>
+            <li>Verificar cota disponível</li>
+            <li>Testar endpoint diretamente</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Verificar Configuração</strong>
+        <ul>
+            <li>API key válida</li>
+            <li>Prompt atualizado</li>
+            <li>Rate limits configurados</li>
+        </ul>
+    </div>
+
+    <h3>Automações Falhando</h3>
+    <div class="warning">
+        <strong>🚨 Sintomas:</strong> Leads não chegam, emails não enviados
+    </div>
+
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Verificar Make.com</strong>
+        <ul>
+            <li>Acessar dashboard</li>
+            <li>Verificar execuções recentes</li>
+            <li>Analisar logs de erro</li>
+        </ul>
+    </div>
+
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Testar Webhooks</strong>
+        <ul>
+            <li>Usar Postman/Insomnia</li>
+            <li>Verificar payload</li>
+            <li>Confirmar URLs</li>
+        </ul>
+    </div>
+
+    <h2>18.2 Comandos de Diagnóstico</h2>
+
+    <h3>Verificar Status do Site</h3>
+    <div class="code">
+# Teste de conectividade
+curl -I https://exercitodeagentes.com.br
+
+# Verificar SSL
+openssl s_client -connect exercitodeagentes.com.br:443
+
+# Teste de velocidade
+curl -w "@curl-format.txt" -o /dev/null -s https://exercitodeagentes.com.br
+
+# DNS lookup
+nslookup exercitodeagentes.com.br
+dig exercitodeagentes.com.br
+    </div>
+
+    <h3>Verificar APIs</h3>
+    <div class="code">
+# Teste OpenAI API
+curl https://api.openai.com/v1/models \
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+
+# Teste Google Sheets API
+curl "https://sheets.googleapis.com/v4/spreadsheets/SHEET_ID/values/A1:Z1000?key=API_KEY"
+
+# Teste Z-API
+curl -X GET "https://api.z-api.io/instances/INSTANCE/token/TOKEN/status" \
+  -H "Client-Token: CLIENT_TOKEN"
+    </div>
+
+    <h2>18.3 Plano de Contingência</h2>
+
+    <h3>Cenário: Site Principal Fora do Ar</h3>
+    <div class="code">
+1. Ativar página de manutenção
+2. Redirecionar tráfego para landing page no Carrd
+3. Notificar equipe via Slack
+4. Investigar e corrigir problema
+5. Comunicar resolução aos clientes
+    </div>
+
+    <h3>Cenário: Perda de Dados</h3>
+    <div class="code">
+1. Parar todas as automações
+2. Restaurar backup mais recente
+3. Verificar integridade dos dados
+4. Reativar automações gradualmente
+5. Auditoria completa do sistema
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>19. 📈 Escalabilidade</h1>
+
+    <h2>19.1 Planejamento de Crescimento</h2>
+
+    <h3>Métricas de Capacidade</h3>
+    <table>
+        <tr>
+            <th>Recurso</th>
+            <th>Atual</th>
+            <th>Limite</th>
+            <th>Próximo Nível</th>
+            <th>Custo</th>
+        </tr>
+        <tr>
+            <td>Netlify Bandwidth</td>
+            <td>50GB/mês</td>
+            <td>100GB/mês</td>
+            <td>1TB/mês</td>
+            <td>+$20/mês</td>
+        </tr>
+        <tr>
+            <td>Make.com Operations</td>
+            <td>5.000/mês</td>
+            <td>10.000/mês</td>
+            <td>40.000/mês</td>
+            <td>+$29/mês</td>
+        </tr>
+        <tr>
+            <td>OpenAI Tokens</td>
+            <td>100K/mês</td>
+            <td>1M/mês</td>
+            <td>10M/mês</td>
+            <td>+$100/mês</td>
+        </tr>
+        <tr>
+            <td>Google Sheets Rows</td>
+            <td>10.000</td>
+            <td>5M</td>
+            <td>Migrar para BD</td>
+            <td>+$50/mês</td>
+        </tr>
+    </table>
+
+    <h2>19.2 Otimizações de Performance</h2>
+
+    <h3>Frontend</h3>
+    <div class="code">
+# Otimizações implementadas
+- Code splitting por rota
+- Lazy loading de componentes
+- Compressão de imagens (WebP)
+- CDN para assets estáticos
+- Service Worker para cache
+- Bundle analysis e tree shaking
+
+# Próximas otimizações
+- Server-side rendering (Next.js)
+- Edge computing (Cloudflare Workers)
+- Image optimization automática
+- Critical CSS inline
+    </div>
+
+    <h3>Backend</h3>
+    <div class="code">
+# Otimizações atuais
+- Cache de API responses
+- Rate limiting
+- Connection pooling
+- Batch processing
+
+# Próximas otimizações
+- Database indexing
+- Query optimization
+- Horizontal scaling
+- Load balancing
+    </div>
+
+    <h2>19.3 Migração para Arquitetura Avançada</h2>
+
+    <h3>Fase 1: Microserviços (6 meses)</h3>
+    <div class="step">
+        <span class="step-number">1</span>
+        <strong>Separar Serviços</strong>
+        <ul>
+            <li>API Gateway (Kong/AWS API Gateway)</li>
+            <li>Serviço de Autenticação (Auth0)</li>
+            <li>Serviço de Leads (Node.js + PostgreSQL)</li>
+            <li>Serviço de Automação (Python + Redis)</li>
+        </ul>
+    </div>
+
+    <h3>Fase 2: Cloud Native (12 meses)</h3>
+    <div class="step">
+        <span class="step-number">2</span>
+        <strong>Containerização</strong>
+        <ul>
+            <li>Docker containers</li>
+            <li>Kubernetes orchestration</li>
+            <li>CI/CD com GitHub Actions</li>
+            <li>Monitoring com Prometheus</li>
+        </ul>
+    </div>
+
+    <h3>Fase 3: IA Avançada (18 meses)</h3>
+    <div class="step">
+        <span class="step-number">3</span>
+        <strong>Machine Learning</strong>
+        <ul>
+            <li>Modelo próprio de classificação de leads</li>
+            <li>Predição de conversão</li>
+            <li>Personalização automática</li>
+            <li>Análise de sentimento</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h1>20. 📎 Anexos e Templates</h1>
+
+    <h2>20.1 Templates de Email</h2>
+
+    <h3>Boas-vindas</h3>
+    <div class="code">
+Assunto: 🤖 Bem-vindo ao Exército de Agentes, {{nome}}!
+
+Olá {{nome}},
+
+Que alegria ter você conosco! 🎉
+
+Você acabou de dar o primeiro passo para revolucionar seu negócio com inteligência artificial e automação.
+
+🎯 **O que vem agora:**
+1. Nossa equipe analisará seu perfil
+2. Você receberá conteúdos exclusivos
+3. Agendaremos uma demonstração personalizada
+
+📚 **Enquanto isso, confira:**
+• [Guia: Como a IA pode transformar seu negócio]
+• [Case: Empresa reduziu custos em 60% com automação]
+• [Webinar: Tendências de IA para 2024]
+
+Tem alguma dúvida? Responda este email ou chame no WhatsApp: (11) 91175-7113
+
+Vamos juntos construir o futuro! 🚀
+
+Equipe Exército de Agentes
+www.exercitodeagentes.com.br
+    </div>
+
+    <h3>Follow-up Pós-Reunião</h3>
+    <div class="code">
+Assunto: {{nome}}, obrigado pela reunião! Próximos passos 📋
+
+Olá {{nome}},
+
+Foi um prazer conversar com você hoje sobre {{assunto_reuniao}}.
+
+📝 **Resumo da nossa conversa:**
+• Necessidade: {{necessidade_identificada}}
+• Solução proposta: {{solucao_proposta}}
+• Investimento: {{valor_proposta}}
+• Prazo de implementação: {{prazo}}
+
+📎 **Anexos:**
+• Proposta comercial detalhada
+• Cronograma de implementação
+• Cases similares ao seu negócio
+
+🎯 **Próximos passos:**
+1. Análise da proposta (até {{data_limite}})
+2. Esclarecimento de dúvidas (se necessário)
+3. Assinatura do contrato
+4. Início da implementação
+
+❓ **Dúvidas?**
+Estou à disposição para esclarecer qualquer ponto.
+
+WhatsApp: (11) 91175-7113
+Email: {{email_vendedor}}
+
+Aguardo seu retorno! 😊
+
+{{nome_vendedor}}
+Consultor Especialista
+Exército de Agentes
+    </div>
+
+    <h2>20.2 Scripts de WhatsApp</h2>
+
+    <h3>Primeiro Contato</h3>
+    <div class="code">
+👋 Olá {{nome}}!
+
+Sou {{nome_vendedor}} do *Exército de Agentes*.
+
+Vi que você demonstrou interesse em {{interesse}} através do nosso site.
+
+🤖 Somos especialistas em automação com IA e já ajudamos mais de 200 empresas a:
+✅ Reduzir custos operacionais
+✅ Aumentar produtividade
+✅ Melhorar atendimento ao cliente
+
+Que tal conversarmos por 15 minutos sobre como podemos ajudar sua empresa?
+
+Quando seria um bom horário para você?
+
+📅 Ou se preferir, pode agendar direto aqui: {{link_calendly}}
+    </div>
+
+    <h3>Reativação de Lead Frio</h3>
+    <div class="code">
+🔥 {{nome}}, uma oportunidade especial para você!
+
+Lembra que conversamos sobre automação IA para sua empresa?
+
+🎁 **Oferta exclusiva até {{data_limite}}:**
+• 50% de desconto no setup
+• Consultoria gratuita incluída
+• Implementação em 15 dias
+
+Esta oferta é válida apenas para os primeiros 10 clientes.
+
+Interessado? Responda *SIM* e vamos conversar! 
+
+Ou se preferir, agende uma call: {{link_calendly}}
+
+⏰ Restam apenas {{vagas_restantes}} vagas!
+    </div>
+
+    <h2>20.3 Checklist de Deploy</h2>
+
+    <div class="code">
+# Checklist Pré-Deploy
+□ Código revisado e aprovado
+□ Testes automatizados passando
+□ Build local funcionando
+□ Variáveis de ambiente configuradas
+□ Backup do estado atual
+□ Comunicação para stakeholders
+
+# Checklist Deploy
+□ Deploy executado com sucesso
+□ Site carregando corretamente
+□ Formulários funcionando
+□ EssencialBot respondendo
+□ Automações ativas
+□ Analytics funcionando
+
+# Checklist Pós-Deploy
+□ Monitoramento ativo
+□ Métricas normais
+□ Sem erros nos logs
+□ Feedback da equipe
+□ Documentação atualizada
+□ Comunicação de sucesso
+    </div>
+
+    <h2>20.4 Contatos de Emergência</h2>
+
+    <table>
+        <tr>
+            <th>Função</th>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Email</th>
+            <th>Disponibilidade</th>
+        </tr>
+        <tr>
+            <td>Desenvolvedor Principal</td>
+            <td>-</td>
+            <td>-</td>
+            <td>dev@exercitodeagentes.com.br</td>
+            <td>24/7</td>
+        </tr>
+        <tr>
+            <td>Administrador de Sistema</td>
+            <td>-</td>
+            <td>-</td>
+            <td>admin@exercitodeagentes.com.br</td>
+            <td>8h-18h</td>
+        </tr>
+        <tr>
+            <td>Gestor de Marketing</td>
+            <td>-</td>
+            <td>-</td>
+            <td>marketing@exercitodeagentes.com.br</td>
+            <td>8h-18h</td>
+        </tr>
+        <tr>
+            <td>Suporte Técnico</td>
+            <td>-</td>
+            <td>(11) 91175-7113</td>
+            <td>suporte@exercitodeagentes.com.br</td>
+            <td>8h-22h</td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p><strong>Manual Completo - Exército de Agentes</strong></p>
+        <p>Versão 1.0 | Janeiro 2024 | www.exercitodeagentes.com.br</p>
+        <p>Este documento é confidencial e propriedade do Exército de Agentes</p>
+    </div>
+</body>
+</html>
