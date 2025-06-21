@@ -67,11 +67,6 @@ function App() {
     setIsMenuOpen(false);
   };
 
-  const openGPT = (gptUrl: string, gptName: string) => {
-    window.open(gptUrl, '_blank');
-    trackEvent('gpt_click', { gpt: gptName, source: 'icon' });
-  };
-
   return (
     <HelmetProvider>
       <div className="min-h-screen bg-gray-900 text-white relative overflow-x-hidden">
@@ -134,16 +129,18 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center space-x-3">
-                <button
-                  onClick={() => openGPT('https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge', 'EssencialBot Concierge')}
-                  className="relative p-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 cursor-pointer transform hover:scale-105 group"
-                  title="Clique para acessar o EssencialBot Concierge"
+                <a 
+                  href="https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('concierge_click', { location: 'header' })}
+                  className="relative p-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl shadow-lg hover:shadow-cyan-400/30 transition-all duration-300 group"
                 >
                   {/* Scanning effect around bot icon */}
                   <div className="absolute inset-0 rounded-xl border-2 border-cyan-300/50 animate-pulse"></div>
                   <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-cyan-400/20 to-blue-400/20 blur-sm"></div>
-                  <Bot className="relative h-7 w-7 text-white animate-pulse group-hover:animate-bounce" />
-                </button>
+                  <Bot className="relative h-7 w-7 text-white animate-pulse group-hover:scale-110 transition-transform" />
+                </a>
                 <div className="flex flex-col">
                   <span className="text-lg font-bold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
                     EXÉRCITO DE AGENTES
@@ -267,54 +264,51 @@ function App() {
                   title: 'IA AVANÇADA', 
                   desc: 'EssencialBot com inteligência personalizada', 
                   color: 'from-purple-500 to-pink-500',
-                  gptUrl: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3',
-                  gptName: 'Triagem IA Planos 2 e 3'
+                  link: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
                 },
                 { 
                   icon: Calculator, 
                   title: 'CONTABILIDADE INTELIGENTE', 
                   desc: 'Escritório contábil completo', 
                   color: 'from-green-500 to-emerald-500',
-                  gptUrl: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil',
-                  gptName: 'Triagem Contábil'
+                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
                 },
                 { 
                   icon: Users, 
                   title: 'CONSULTORIA EXPERT', 
                   desc: 'Estratégias empresariais eficazes', 
                   color: 'from-blue-500 to-cyan-500',
-                  gptUrl: 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial',
-                  gptName: 'Triagem Consultoria Empresarial'
+                  link: 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial'
                 },
                 { 
                   icon: GraduationCap, 
                   title: 'EDUCAÇÃO PRÓ', 
                   desc: 'Treinamentos e capacitações', 
                   color: 'from-orange-500 to-red-500',
-                  gptUrl: 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro',
-                  gptName: 'Triagem Educação Pro'
+                  link: 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro'
                 },
                 { 
                   icon: Bot, 
                   title: 'PERSONALIZE SEU AGENTE', 
                   desc: 'Temos diversos modelos', 
                   color: 'from-indigo-500 to-purple-500',
-                  gptUrl: 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal',
-                  gptName: 'Triagem IA Personal'
+                  link: 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal'
                 }
               ].map((item, index) => (
-                <button
+                <a
                   key={index}
-                  onClick={() => openGPT(item.gptUrl, item.gptName)}
-                  className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 cursor-pointer"
-                  title={`Clique para acessar ${item.gptName}`}
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('hero_card_click', { card: item.title })}
+                  className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20"
                 >
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <item.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2 text-cyan-200">{item.title}</h3>
                   <p className="text-gray-400 text-sm">{item.desc}</p>
-                </button>
+                </a>
               ))}
             </div>
 
@@ -355,20 +349,23 @@ function App() {
                 O <span className="text-cyan-300 font-semibold">EssencialBot</span> trabalha 24/7 para otimizar sua empresa com inteligência artificial avançada
               </p>
               <div className="mt-6">
-                <button
-                  onClick={() => openGPT('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', 'Triagem IA Planos 2 e 3')}
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-400/30"
+                <a
+                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('section_gpt_click', { section: 'automation' })}
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 shadow-lg hover:shadow-purple-400/30"
                 >
                   <Brain className="h-5 w-5 mr-2" />
                   CONSULTAR IA AVANÇADA
-                </button>
+                </a>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               {[
                 {
-                  level: 'Nível 2 - Integrado',
+                  level: 'NÍVEL 2 - INTEGRADO',
                   price: 'Setup: R$ 397 + R$ 397/mês',
                   features: [
                     'EssencialBot personalizado',
@@ -381,7 +378,7 @@ function App() {
                   popular: false
                 },
                 {
-                  level: 'Nível 3 - Avançado',
+                  level: 'NÍVEL 3 - AVANÇADO',
                   price: 'Setup: R$ 497 + R$ 497/mês',
                   features: [
                     'Tudo do Integrado',
@@ -415,10 +412,7 @@ function App() {
                     ))}
                   </ul>
                   <button 
-                    onClick={() => {
-                      openGPT('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', 'Triagem IA Planos 2 e 3');
-                      trackEvent('plan_click', { plan: plan.level });
-                    }}
+                    onClick={() => trackEvent('plan_click', { plan: plan.level })}
                     className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg hover:shadow-cyan-400/30' 
@@ -446,13 +440,16 @@ function App() {
                 Somos um escritório de contabilidade especializado em empresas de comércio e serviços, oferecendo serviços completos com automação do <span className="text-cyan-300 font-semibold">EssencialBot</span>
               </p>
               <div className="mt-6">
-                <button
-                  onClick={() => openGPT('https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil', 'Triagem Contábil')}
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-400/30"
+                <a
+                  href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('section_gpt_click', { section: 'accounting' })}
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 shadow-lg hover:shadow-green-400/30"
                 >
                   <Calculator className="h-5 w-5 mr-2" />
                   CONSULTAR CONTABILIDADE INTELIGENTE
-                </button>
+                </a>
               </div>
             </div>
 
@@ -460,53 +457,48 @@ function App() {
               {[
                 {
                   icon: Calculator,
-                  title: 'Abertura de Empresas',
+                  title: 'ABERTURA DE EMPRESAS',
                   description: 'Constituição completa de empresas com toda documentação necessária',
                   color: 'from-green-500 to-emerald-500'
                 },
                 {
                   icon: Brain,
-                  title: 'Contabilidade Mensal',
+                  title: 'CONTABILIDADE MENSAL',
                   description: 'Escrituração contábil, balancetes e demonstrações financeiras',
                   color: 'from-blue-500 to-cyan-500'
                 },
                 {
                   icon: Shield,
-                  title: 'Obrigações Fiscais',
+                  title: 'OBRIGAÇÕES FISCAIS',
                   description: 'SPED, ECF, DEFIS e todas as obrigações acessórias',
                   color: 'from-purple-500 to-pink-500'
                 },
                 {
                   icon: Users,
-                  title: 'Departamento Pessoal',
+                  title: 'DEPARTAMENTO PESSOAL',
                   description: 'Folha de pagamento, admissões, demissões e eSocial',
                   color: 'from-orange-500 to-red-500'
                 },
                 {
                   icon: Network,
-                  title: 'Planejamento Tributário',
+                  title: 'PLANEJAMENTO TRIBUTÁRIO',
                   description: 'Otimização fiscal e escolha do melhor regime tributário',
                   color: 'from-indigo-500 to-purple-500'
                 },
                 {
                   icon: Cpu,
-                  title: 'Relatórios Gerenciais',
+                  title: 'RELATÓRIOS GERENCIAIS',
                   description: 'Análises financeiras e relatórios para tomada de decisão',
                   color: 'from-teal-500 to-cyan-500'
                 }
               ].map((feature, index) => (
-                <button
-                  key={index}
-                  onClick={() => openGPT('https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil', 'Triagem Contábil')}
-                  className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 cursor-pointer"
-                  title="Clique para consultar sobre serviços contábeis"
-                >
+                <div key={index} className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${feature.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-cyan-200">{feature.title}</h3>
                   <p className="text-gray-400">{feature.description}</p>
-                </button>
+                </div>
               ))}
             </div>
           </div>
@@ -525,7 +517,7 @@ function App() {
                 <p className="text-xl text-gray-300 mb-8">
                   Consultoria completa que vai além da IA, oferecendo soluções estratégicas para todos os aspectos do seu negócio
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-4 mb-8">
                   {[
                     'Gestão empresarial e planejamento estratégico',
                     'Fluxo de caixa e controle financeiro',
@@ -540,7 +532,7 @@ function App() {
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <div className="flex flex-col sm:flex-row gap-4">
                   <button 
                     onClick={() => {
                       scrollToSection('contact');
@@ -550,13 +542,16 @@ function App() {
                   >
                     AGENDAR CONSULTORIA
                   </button>
-                  <button
-                    onClick={() => openGPT('https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial', 'Triagem Consultoria Empresarial')}
-                    className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 flex items-center justify-center"
+                  <a
+                    href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('section_gpt_click', { section: 'consulting' })}
+                    className="inline-flex items-center px-6 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300"
                   >
                     <Users className="h-5 w-5 mr-2" />
                     CONSULTAR EXPERT
-                  </button>
+                  </a>
                 </div>
               </div>
               <div className="relative">
@@ -629,35 +624,30 @@ function App() {
                 <div className="space-y-6 mb-8">
                   {[
                     {
-                      category: '🤖 IA Empresarial',
+                      category: '🤖 IA EMPRESARIAL',
                       courses: ['Fundamentos de IA', 'Implementação de Chatbots', 'Machine Learning para Negócios', 'Automação Inteligente']
                     },
                     {
-                      category: '📊 Contabilidade Digital',
+                      category: '📊 CONTABILIDADE DIGITAL',
                       courses: ['Contabilidade 4.0', 'SPED e Obrigações Digitais', 'Análise de Balanços', 'Contabilidade Gerencial']
                     },
                     {
-                      category: '🎯 Controladoria',
+                      category: '🎯 CONTROLADORIA',
                       courses: ['Controles Internos', 'Auditoria Interna', 'Compliance Empresarial', 'Gestão de Riscos']
                     },
                     {
-                      category: '💰 Gestão Financeira',
+                      category: '💰 GESTÃO FINANCEIRA',
                       courses: ['Fluxo de Caixa Avançado', 'Análise Financeira', 'Orçamento Empresarial', 'Planejamento Estratégico']
                     }
                   ].map((area, index) => (
-                    <button
-                      key={index}
-                      onClick={() => openGPT('https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro', 'Triagem Educação Pro')}
-                      className="w-full p-4 bg-gray-800/30 rounded-lg border border-gray-700 hover:border-cyan-400/40 transition-all duration-300 cursor-pointer text-left"
-                      title="Clique para consultar sobre cursos e treinamentos"
-                    >
+                    <div key={index} className="p-4 bg-gray-800/30 rounded-lg border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
                       <h4 className="text-cyan-300 font-semibold mb-2">{area.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {area.courses.map((course, cIndex) => (
                           <span key={cIndex} className="text-sm text-white">• {course}</span>
                         ))}
                       </div>
-                    </button>
+                    </div>
                   ))}
                 </div>
                 
@@ -671,13 +661,16 @@ function App() {
                   >
                     VER TODOS OS CURSOS
                   </button>
-                  <button
-                    onClick={() => openGPT('https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro', 'Triagem Educação Pro')}
-                    className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 flex items-center justify-center"
+                  <a
+                    href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackEvent('section_gpt_click', { section: 'education' })}
+                    className="inline-flex items-center px-6 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300"
                   >
                     <GraduationCap className="h-5 w-5 mr-2" />
                     CONSULTAR EDUCAÇÃO PRÓ
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -697,44 +690,44 @@ function App() {
                 Escolha o nível de inteligência artificial perfeito para suas necessidades empresariais
               </p>
               <div className="mt-6">
-                <button
-                  onClick={() => openGPT('https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal', 'Triagem IA Personal')}
-                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg font-semibold hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-400/30"
+                <a
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent('section_gpt_click', { section: 'agents' })}
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg font-semibold hover:from-indigo-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-indigo-400/30"
                 >
                   <Bot className="h-5 w-5 mr-2" />
-                  PERSONALIZAR SEU AGENTE
-                </button>
+                  PERSONALIZAR AGENTE
+                </a>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {[
                 {
-                  level: 'Nível 1',
-                  title: 'Personalizado',
+                  level: 'NÍVEL 1',
+                  title: 'PERSONALIZADO',
                   description: 'Agente customizado sob demanda com respostas de alta performance',
                   features: ['Agente customizado sob demanda', 'Respostas de alta performance', 'Sem suporte técnico', 'Entrega via link GPT privado'],
                   price: 'Setup: R$ 120 + R$ 50 manutenção',
-                  color: 'from-green-500 to-emerald-400',
-                  gptUrl: 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal'
+                  color: 'from-green-500 to-emerald-400'
                 },
                 {
-                  level: 'Nível 2',
-                  title: 'Integrado',
+                  level: 'NÍVEL 2',
+                  title: 'INTEGRADO',
                   description: 'EssencialBot inteligente com aprendizado e integração avançada',
                   features: ['Agente customizado sob demanda', 'Múltiplas integrações', 'Machine Learning', 'Análise de dados', 'Suporte básico', '1 atualização por semana'],
                   price: 'Setup: R$ 397 + R$ 397/mês',
-                  color: 'from-blue-500 to-cyan-400',
-                  gptUrl: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
+                  color: 'from-blue-500 to-cyan-400'
                 },
                 {
-                  level: 'Nível 3',
-                  title: 'Avançado',
+                  level: 'NÍVEL 3',
+                  title: 'AVANÇADO',
                   description: 'EssencialBot de última geração com capacidades cognitivas avançadas',
                   features: ['Tudo do Integrado', 'Landing page personalizada', 'Deep Learning', 'Processamento de linguagem neural', 'Consultoria incluída', '3 atualizações por semana'],
                   price: 'Setup: R$ 497 + R$ 497/mês',
-                  color: 'from-purple-500 to-pink-400',
-                  gptUrl: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
+                  color: 'from-purple-500 to-pink-400'
                 }
               ].map((agent, index) => (
                 <div key={index} className="relative p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
@@ -753,10 +746,7 @@ function App() {
                     ))}
                   </ul>
                   <button 
-                    onClick={() => {
-                      openGPT(agent.gptUrl, `Triagem ${agent.title}`);
-                      trackEvent('agent_demo_click', { agent: agent.level });
-                    }}
+                    onClick={() => trackEvent('agent_demo_click', { agent: agent.level })}
                     className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg`}
                   >
                     SOLICITAR DEMO
@@ -779,21 +769,16 @@ function App() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    { title: 'EssencialBot Professor Universitário', desc: 'Interage como professor de ensino superior com didática formal e linguagem acessível. Ideal para estudantes e mentoria acadêmica.' },
-                    { title: 'EssencialBot Nutricionista', desc: 'Atende com linguagem acolhedora e técnica, explicando dietas e orientações nutricionais personalizadas.' },
-                    { title: 'EssencialBot Costureiro', desc: 'Atua como profissional experiente em moda sob medida. Usa linguagem prática de ateliê com referências de moda.' },
-                    { title: 'EssencialBot Desenvolvedor Mobile', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
-                    { title: 'EssencialBot Consultor Jurídico', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
+                    { title: 'ESSENCIALBOT PROFESSOR UNIVERSITÁRIO', desc: 'Interage como professor de ensino superior com didática formal e linguagem acessível. Ideal para estudantes e mentoria acadêmica.' },
+                    { title: 'ESSENCIALBOT NUTRICIONISTA', desc: 'Atende com linguagem acolhedora e técnica, explicando dietas e orientações nutricionais personalizadas.' },
+                    { title: 'ESSENCIALBOT COSTUREIRO', desc: 'Atua como profissional experiente em moda sob medida. Usa linguagem prática de ateliê com referências de moda.' },
+                    { title: 'ESSENCIALBOT DESENVOLVEDOR MOBILE', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
+                    { title: 'ESSENCIALBOT CONSULTOR JURÍDICO', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
                   ].map((bot, index) => (
-                    <button
-                      key={index}
-                      onClick={() => openGPT('https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal', 'Triagem IA Personal')}
-                      className="p-6 bg-gray-800/30 rounded-xl border border-green-400/20 hover:border-green-400/40 transition-all duration-300 cursor-pointer text-left"
-                      title="Clique para personalizar seu agente"
-                    >
+                    <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-green-300 mb-3">{bot.title}</h4>
                       <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -810,19 +795,14 @@ function App() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    { title: 'EssencialBot Atendimento Comercial', desc: 'Recebe solicitações de orçamento e envia para o responsável via WhatsApp. Ideal para lojas e comércios locais.' },
-                    { title: 'EssencialBot Coleta de Documentos', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
-                    { title: 'EssencialBot Controle de Pedidos', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
+                    { title: 'ESSENCIALBOT ATENDIMENTO COMERCIAL', desc: 'Recebe solicitações de orçamento e envia para o responsável via WhatsApp. Ideal para lojas e comércios locais.' },
+                    { title: 'ESSENCIALBOT COLETA DE DOCUMENTOS', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
+                    { title: 'ESSENCIALBOT CONTROLE DE PEDIDOS', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
                   ].map((bot, index) => (
-                    <button
-                      key={index}
-                      onClick={() => openGPT('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', 'Triagem IA Planos 2 e 3')}
-                      className="p-6 bg-gray-800/30 rounded-xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300 cursor-pointer text-left"
-                      title="Clique para consultar sobre automação integrada"
-                    >
+                    <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-blue-300 mb-3">{bot.title}</h4>
                       <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -839,18 +819,13 @@ function App() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
-                    { title: 'EssencialBot Central de Agendamentos', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
-                    { title: 'EssencialBot Recepção Inteligente', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
+                    { title: 'ESSENCIALBOT CENTRAL DE AGENDAMENTOS', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
+                    { title: 'ESSENCIALBOT RECEPÇÃO INTELIGENTE', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
                   ].map((bot, index) => (
-                    <button
-                      key={index}
-                      onClick={() => openGPT('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', 'Triagem IA Planos 2 e 3')}
-                      className="p-6 bg-gray-800/30 rounded-xl border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300 cursor-pointer text-left"
-                      title="Clique para consultar sobre automação avançada"
-                    >
+                    <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-purple-300 mb-3">{bot.title}</h4>
                       <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
