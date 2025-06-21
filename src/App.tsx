@@ -68,81 +68,46 @@ function App() {
     setIsMenuOpen(false);
   };
 
-  const handleFinancialEmail = () => {
-    const subject = encodeURIComponent('Consulta Financeira - Exército de Agentes');
-    const body = encodeURIComponent(`Olá equipe financeira,
-
-Gostaria de obter informações sobre:
-- Planos e preços
-- Formas de pagamento
-- Condições especiais
-- Orçamento personalizado
-
-Dados para contato:
-Nome: [Seu nome]
-Empresa: [Nome da empresa]
-WhatsApp: [Seu WhatsApp]
-Email: [Seu email]
-
-Aguardo retorno.
-
-Atenciosamente,
-[Seu nome]
-
----
-Enviado via: www.exercitodeagentes.com.br
-Data: ${new Date().toLocaleDateString('pt-BR')}
-Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
-
-    window.location.href = `mailto:financeiro@exercitodeagentes.com.br?subject=${subject}&body=${body}`;
-    trackEvent('financial_email_click', { source: 'contact_section' });
-  };
-
   return (
     <HelmetProvider>
-      <div className="min-h-screen text-white relative overflow-x-hidden">
+      <div className="min-h-screen bg-gray-900 text-white relative overflow-x-hidden">
         <SEOHead />
         
-        {/* Enhanced Gradient Background with Wave Direction */}
+        {/* Enhanced Gradient Background */}
         <div className="fixed inset-0 pointer-events-none">
-          {/* Main gradient following wave direction - from dark blue-gray on left to light purple on right */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 via-blue-900/50 to-purple-400/30"></div>
+          {/* Base gradient - seguindo o sentido da onda */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-slate-800 to-purple-800"></div>
           
-          {/* Secondary overlay gradient for depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-transparent to-purple-300/20"></div>
+          {/* Secondary gradient layer */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950/80 via-slate-900/60 to-purple-700/40"></div>
           
-          {/* Animated wave-like gradient overlay */}
+          {/* Tertiary gradient for depth */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-indigo-900/30 to-purple-600/30"></div>
+          
+          {/* Animated circuit lines */}
           <div className="absolute inset-0 opacity-40">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-950/60 via-indigo-900/40 via-purple-800/30 to-purple-400/40 animate-pulse"></div>
-          </div>
-        </div>
-
-        {/* Advanced Electronic Circuit Background */}
-        <div className="fixed inset-0 opacity-15 pointer-events-none">
-          {/* Animated circuit lines following the gradient direction */}
-          <div className="absolute inset-0">
-            {/* Diagonal scanning lines following wave direction */}
-            <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 via-purple-400 to-purple-300 animate-pulse"></div>
-            <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 via-indigo-400 to-purple-300 animate-pulse" style={{ animationDelay: '1s' }}></div>
+            {/* Horizontal scanning lines */}
+            <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
+            <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-pulse" style={{ animationDelay: '1s' }}></div>
             
             {/* Vertical scanning lines */}
-            <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-300 via-purple-300 to-purple-200 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-            <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-300 via-indigo-300 to-purple-200 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+            <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-300 to-transparent animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-300 to-transparent animate-pulse" style={{ animationDelay: '1.5s' }}></div>
           </div>
 
-          {/* Circuit nodes with purple tint on the right */}
-          <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse"></div>
-          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-purple-400 rounded-full shadow-lg shadow-purple-400/50 animate-pulse" style={{ animationDelay: '0.7s' }}></div>
-          <div className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-indigo-400 rounded-full shadow-lg shadow-indigo-400/50 animate-pulse" style={{ animationDelay: '1.2s' }}></div>
-          <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-purple-300 rounded-full shadow-lg shadow-purple-300/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+          {/* Circuit nodes */}
+          <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse opacity-60"></div>
+          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50 animate-pulse opacity-60" style={{ animationDelay: '0.7s' }}></div>
+          <div className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-indigo-400 rounded-full shadow-lg shadow-indigo-400/50 animate-pulse opacity-60" style={{ animationDelay: '1.2s' }}></div>
+          <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-cyan-300 rounded-full shadow-lg shadow-cyan-300/50 animate-pulse opacity-60" style={{ animationDelay: '0.3s' }}></div>
 
-          {/* Floating particles with gradient colors */}
-          <div className="absolute top-1/5 left-1/5 w-1 h-1 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-          <div className="absolute bottom-1/4 right-1/5 w-1 h-1 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
+          {/* Floating particles */}
+          <div className="absolute top-1/5 left-1/5 w-1 h-1 bg-cyan-400 rounded-full animate-bounce opacity-50" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute bottom-1/4 right-1/5 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-indigo-400 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1.5s' }}></div>
 
-          {/* Complex circuit paths with gradient colors */}
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+          {/* Complex circuit paths */}
+          <svg className="absolute inset-0 w-full h-full opacity-30" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -151,26 +116,16 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   <feMergeNode in="SourceGraphic"/>
                 </feMerge>
               </filter>
-              <linearGradient id="circuitGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(34, 211, 238, 0.3)" />
-                <stop offset="50%" stopColor="rgba(99, 102, 241, 0.3)" />
-                <stop offset="100%" stopColor="rgba(168, 85, 247, 0.3)" />
-              </linearGradient>
-              <linearGradient id="circuitGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="rgba(59, 130, 246, 0.3)" />
-                <stop offset="50%" stopColor="rgba(139, 92, 246, 0.3)" />
-                <stop offset="100%" stopColor="rgba(196, 181, 253, 0.3)" />
-              </linearGradient>
             </defs>
             
-            {/* Organic circuit paths with gradient colors */}
-            <path d="M100,200 Q300,100 500,200 T900,150" stroke="url(#circuitGradient1)" strokeWidth="1" fill="none" filter="url(#glow)">
+            {/* Organic circuit paths */}
+            <path d="M100,200 Q300,100 500,200 T900,150" stroke="rgba(34, 211, 238, 0.4)" strokeWidth="1" fill="none" filter="url(#glow)">
               <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="8s" repeatCount="indefinite"/>
             </path>
-            <path d="M200,400 Q400,300 600,400 T1000,350" stroke="url(#circuitGradient2)" strokeWidth="1" fill="none" filter="url(#glow)">
+            <path d="M200,400 Q400,300 600,400 T1000,350" stroke="rgba(59, 130, 246, 0.4)" strokeWidth="1" fill="none" filter="url(#glow)">
               <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="10s" repeatCount="indefinite"/>
             </path>
-            <path d="M50,600 Q250,500 450,600 T750,550" stroke="url(#circuitGradient1)" strokeWidth="1" fill="none" filter="url(#glow)">
+            <path d="M50,600 Q250,500 450,600 T750,550" stroke="rgba(99, 102, 241, 0.4)" strokeWidth="1" fill="none" filter="url(#glow)">
               <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="12s" repeatCount="indefinite"/>
             </path>
           </svg>
@@ -270,15 +225,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                 {/* Pulsing aura around bot */}
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/10 to-blue-400/10 animate-ping"></div>
                 <div className="absolute inset-0 rounded-full border-2 border-cyan-300/30 animate-pulse"></div>
-                <a 
-                  href="https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('concierge_click', { location: 'hero_icon' })}
-                  className="relative block"
-                >
-                  <Bot className="relative h-20 w-20 text-cyan-300 animate-pulse hover:text-cyan-200 transition-colors" />
-                </a>
+                <Bot className="relative h-20 w-20 text-cyan-300 animate-pulse" />
               </div>
               
               {/* Enhanced title with neon cyan effect */}
@@ -313,56 +260,19 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
               {[
-                { 
-                  icon: Brain, 
-                  title: 'IA Avançada', 
-                  desc: 'EssencialBot com inteligência personalizada', 
-                  color: 'from-purple-500 to-pink-500',
-                  link: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
-                },
-                { 
-                  icon: Calculator, 
-                  title: 'Contabilidade Inteligente', 
-                  desc: 'Escritório contábil completo', 
-                  color: 'from-green-500 to-emerald-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
-                },
-                { 
-                  icon: Users, 
-                  title: 'Consultoria Expert', 
-                  desc: 'Estratégias empresariais eficazes', 
-                  color: 'from-blue-500 to-cyan-500',
-                  link: 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial'
-                },
-                { 
-                  icon: GraduationCap, 
-                  title: 'Educação Pro', 
-                  desc: 'Treinamentos e capacitações', 
-                  color: 'from-orange-500 to-red-500',
-                  link: 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro'
-                },
-                { 
-                  icon: Bot, 
-                  title: 'Personalize seu Agente', 
-                  desc: 'Temos diversos modelos', 
-                  color: 'from-indigo-500 to-purple-500',
-                  link: 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal'
-                }
+                { icon: Brain, title: 'IA Avançada', desc: 'EssencialBot com inteligência personalizada', color: 'from-purple-500 to-pink-500' },
+                { icon: Calculator, title: 'Contabilidade', desc: 'Escritório contábil completo', color: 'from-green-500 to-emerald-500' },
+                { icon: Users, title: 'Consultoria Expert', desc: 'Estratégias empresariais eficazes', color: 'from-blue-500 to-cyan-500' },
+                { icon: GraduationCap, title: 'Educação Pro', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500' },
+                { icon: Bot, title: 'Personalize seu Agente', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500' }
               ].map((item, index) => (
-                <a
-                  key={index}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('service_icon_click', { service: item.title })}
-                  className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 cursor-pointer"
-                >
+                <div key={index} className="group p-6 bg-gray-800/70 backdrop-blur-sm rounded-xl border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <item.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2 text-cyan-200">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
-                </a>
+                  <p className="text-gray-300 text-sm">{item.desc}</p>
+                </div>
               ))}
             </div>
 
@@ -391,7 +301,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
         </section>
 
         {/* Automation Section */}
-        <section id="automation" className="py-20 bg-gray-800/30">
+        <section id="automation" className="py-20 bg-gray-800/40 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -417,8 +327,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     'Suporte básico',
                     '1 atualização por semana'
                   ],
-                  popular: false,
-                  link: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
+                  popular: false
                 },
                 {
                   level: 'Nível 3 - Avançado',
@@ -431,11 +340,10 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     'Consultoria incluída',
                     '3 atualizações por semana'
                   ],
-                  popular: true,
-                  link: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
+                  popular: true
                 }
               ].map((plan, index) => (
-                <div key={index} className={`relative p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border ${plan.popular ? 'border-cyan-400' : 'border-gray-700'} hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20`}>
+                <div key={index} className={`relative p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border ${plan.popular ? 'border-cyan-400' : 'border-gray-700'} hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20`}>
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
@@ -455,19 +363,16 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={plan.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button 
                     onClick={() => trackEvent('plan_click', { plan: plan.level })}
-                    className={`block w-full py-3 rounded-lg font-semibold transition-all duration-300 text-center ${
+                    className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg hover:shadow-cyan-400/30' 
                         : 'border border-cyan-400 hover:bg-cyan-400/10'
                     }`}
                   >
                     Escolher Plano
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>
@@ -480,7 +385,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Escritório de Contabilidade Inteligente
+                  Escritório de Contabilidade
                 </span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -494,66 +399,53 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   icon: Calculator,
                   title: 'Abertura de Empresas',
                   description: 'Constituição completa de empresas com toda documentação necessária',
-                  color: 'from-green-500 to-emerald-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
+                  color: 'from-green-500 to-emerald-500'
                 },
                 {
                   icon: Brain,
                   title: 'Contabilidade Mensal',
                   description: 'Escrituração contábil, balancetes e demonstrações financeiras',
-                  color: 'from-blue-500 to-cyan-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
+                  color: 'from-blue-500 to-cyan-500'
                 },
                 {
                   icon: Shield,
                   title: 'Obrigações Fiscais',
                   description: 'SPED, ECF, DEFIS e todas as obrigações acessórias',
-                  color: 'from-purple-500 to-pink-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
+                  color: 'from-purple-500 to-pink-500'
                 },
                 {
                   icon: Users,
                   title: 'Departamento Pessoal',
                   description: 'Folha de pagamento, admissões, demissões e eSocial',
-                  color: 'from-orange-500 to-red-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
+                  color: 'from-orange-500 to-red-500'
                 },
                 {
                   icon: Network,
                   title: 'Planejamento Tributário',
                   description: 'Otimização fiscal e escolha do melhor regime tributário',
-                  color: 'from-indigo-500 to-purple-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
+                  color: 'from-indigo-500 to-purple-500'
                 },
                 {
                   icon: Cpu,
                   title: 'Relatórios Gerenciais',
                   description: 'Análises financeiras e relatórios para tomada de decisão',
-                  color: 'from-teal-500 to-cyan-500',
-                  link: 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil'
+                  color: 'from-teal-500 to-cyan-500'
                 }
               ].map((feature, index) => (
-                <a
-                  key={index}
-                  href={feature.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('accounting_service_click', { service: feature.title })}
-                  className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 cursor-pointer"
-                >
+                <div key={index} className="group p-6 bg-gray-800/70 backdrop-blur-sm rounded-xl border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${feature.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3 text-cyan-200">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.description}</p>
-                </a>
+                  <p className="text-gray-300">{feature.description}</p>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
         {/* Consulting Section */}
-        <section id="consulting" className="py-20 bg-gray-800/30">
+        <section id="consulting" className="py-20 bg-gray-800/40 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -580,18 +472,18 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     </div>
                   ))}
                 </div>
-                <a
-                  href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('cta_click', { button: 'agendar_consultoria' })}
-                  className="inline-block mt-8 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+                <button 
+                  onClick={() => {
+                    scrollToSection('contact');
+                    trackEvent('cta_click', { button: 'agendar_consultoria' });
+                  }}
+                  className="mt-8 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
                 >
                   Agendar Consultoria
-                </a>
+                </button>
               </div>
               <div className="relative">
-                <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
+                <div className="p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-blue-400/30 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
                     <Users className="h-16 w-16 text-white" />
                   </div>
@@ -622,7 +514,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative">
-                <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
+                <div className="p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-blue-400/30 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg mb-6">
                     <GraduationCap className="h-16 w-16 text-white" />
                   </div>
@@ -676,7 +568,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                       courses: ['Fluxo de Caixa Avançado', 'Análise Financeira', 'Orçamento Empresarial', 'Planejamento Estratégico']
                     }
                   ].map((area, index) => (
-                    <div key={index} className="p-4 bg-gray-800/30 rounded-lg border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
+                    <div key={index} className="p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
                       <h4 className="text-cyan-300 font-semibold mb-2">{area.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {area.courses.map((course, cIndex) => (
@@ -687,22 +579,22 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   ))}
                 </div>
                 
-                <a
-                  href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('cta_click', { button: 'ver_cursos' })}
-                  className="inline-block px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+                <button 
+                  onClick={() => {
+                    scrollToSection('contact');
+                    trackEvent('cta_click', { button: 'ver_cursos' });
+                  }}
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
                 >
                   Ver Todos os Cursos
-                </a>
+                </button>
               </div>
             </div>
           </div>
         </section>
 
         {/* Agents Models Section */}
-        <section id="agents" className="py-20 bg-gray-800/30">
+        <section id="agents" className="py-20 bg-gray-800/40 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -723,8 +615,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   description: 'Agente customizado sob demanda com respostas de alta performance',
                   features: ['Agente customizado sob demanda', 'Respostas de alta performance', 'Sem suporte técnico', 'Entrega via link GPT privado'],
                   price: 'Setup: R$ 120 + R$ 50 manutenção',
-                  color: 'from-green-500 to-emerald-400',
-                  link: 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal'
+                  color: 'from-green-500 to-emerald-400'
                 },
                 {
                   level: 'Nível 2',
@@ -732,8 +623,7 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   description: 'EssencialBot inteligente com aprendizado e integração avançada',
                   features: ['Agente customizado sob demanda', 'Múltiplas integrações', 'Machine Learning', 'Análise de dados', 'Suporte básico', '1 atualização por semana'],
                   price: 'Setup: R$ 397 + R$ 397/mês',
-                  color: 'from-blue-500 to-cyan-400',
-                  link: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
+                  color: 'from-blue-500 to-cyan-400'
                 },
                 {
                   level: 'Nível 3',
@@ -741,11 +631,10 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   description: 'EssencialBot de última geração com capacidades cognitivas avançadas',
                   features: ['Tudo do Integrado', 'Landing page personalizada', 'Deep Learning', 'Processamento de linguagem neural', 'Consultoria incluída', '3 atualizações por semana'],
                   price: 'Setup: R$ 497 + R$ 497/mês',
-                  color: 'from-purple-500 to-pink-400',
-                  link: 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3'
+                  color: 'from-purple-500 to-pink-400'
                 }
               ].map((agent, index) => (
-                <div key={index} className="relative p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div key={index} className="relative p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r ${agent.color} text-white text-sm font-semibold mb-4`}>
                     {agent.level}
                   </div>
@@ -760,15 +649,12 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                       </li>
                     ))}
                   </ul>
-                  <a
-                    href={agent.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button 
                     onClick={() => trackEvent('agent_demo_click', { agent: agent.level })}
-                    className={`block w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg text-center`}
+                    className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg`}
                   >
                     Solicitar Demo
-                  </a>
+                  </button>
                 </div>
               ))}
             </div>
@@ -793,17 +679,10 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     { title: 'EssencialBot Desenvolvedor Mobile', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
                     { title: 'EssencialBot Consultor Jurídico', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
                   ].map((bot, index) => (
-                    <a
-                      key={index}
-                      href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackEvent('agent_example_click', { agent: bot.title })}
-                      className="p-6 bg-gray-800/30 rounded-xl border border-green-400/20 hover:border-green-400/40 transition-all duration-300 cursor-pointer"
-                    >
+                    <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-green-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </a>
+                      <p className="text-gray-300 text-sm">{bot.desc}</p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -824,17 +703,10 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     { title: 'EssencialBot Coleta de Documentos', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
                     { title: 'EssencialBot Controle de Pedidos', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
                   ].map((bot, index) => (
-                    <a
-                      key={index}
-                      href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackEvent('agent_example_click', { agent: bot.title })}
-                      className="p-6 bg-gray-800/30 rounded-xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300 cursor-pointer"
-                    >
+                    <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-blue-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </a>
+                      <p className="text-gray-300 text-sm">{bot.desc}</p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -854,17 +726,10 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     { title: 'EssencialBot Central de Agendamentos', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
                     { title: 'EssencialBot Recepção Inteligente', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
                   ].map((bot, index) => (
-                    <a
-                      key={index}
-                      href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => trackEvent('agent_example_click', { agent: bot.title })}
-                      className="p-6 bg-gray-800/30 rounded-xl border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300 cursor-pointer"
-                    >
+                    <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-purple-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </a>
+                      <p className="text-gray-300 text-sm">{bot.desc}</p>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -887,22 +752,19 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
               
               {/* Contact Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Phone className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">(11) 91175-7113</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Mail className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">sac@exercitodeagentes.com.br</span>
                 </div>
-                <button
-                  onClick={handleFinancialEmail}
-                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-green-400/20 hover:border-green-400/40 transition-all duration-300 cursor-pointer group"
-                >
-                  <CreditCard className="h-5 w-5 text-green-400 group-hover:text-green-300" />
-                  <span className="text-green-200 text-sm group-hover:text-green-100">financeiro@exercitodeagentes.com.br</span>
-                </button>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
+                  <CreditCard className="h-5 w-5 text-green-400" />
+                  <span className="text-green-200 text-sm">financeiro@exercitodeagentes.com.br</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Globe className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">exercitodeagentes.com.br</span>
                 </div>
@@ -940,47 +802,19 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 p-8 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
+            <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-blue-400/30 p-8 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
               <form className="space-y-6" onSubmit={(e) => {
                 e.preventDefault();
-                
-                const formData = new FormData(e.target as HTMLFormElement);
-                const data = {
-                  nome: formData.get('nome'),
-                  whatsapp: formData.get('whatsapp'),
-                  email: formData.get('email'),
-                  interesse: formData.get('interesse'),
-                  mensagem: formData.get('mensagem')
-                };
-
-                const subject = encodeURIComponent(`Contato do site - ${data.interesse}`);
-                const body = encodeURIComponent(`Olá equipe SAC,
-
-Dados do contato:
-Nome: ${data.nome}
-WhatsApp: ${data.whatsapp}
-Email: ${data.email}
-Interesse: ${data.interesse}
-
-Mensagem:
-${data.mensagem}
-
----
-Enviado via: www.exercitodeagentes.com.br
-Data: ${new Date().toLocaleDateString('pt-BR')}
-Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
-
-                window.location.href = `mailto:sac@exercitodeagentes.com.br?subject=${subject}&body=${body}`;
                 trackEvent('form_submit', { form: 'contact' });
+                // Aqui você adicionaria a lógica de envio do formulário
               }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
                     <input
                       type="text"
-                      name="nome"
                       required
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                       placeholder="Seu nome completo"
                     />
                   </div>
@@ -988,9 +822,8 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                     <label className="block text-sm font-medium text-gray-300 mb-2">WhatsApp</label>
                     <input
                       type="tel"
-                      name="whatsapp"
                       required
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                       placeholder="(11) 99999-9999"
                     />
                   </div>
@@ -999,18 +832,16 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                   <label className="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
                   <input
                     type="email"
-                    name="email"
                     required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                     placeholder="seu@email.com"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Interesse</label>
                   <select 
-                    name="interesse"
                     required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                   >
                     <option value="">Selecione seu interesse</option>
                     <option value="automation">Automação IA</option>
@@ -1023,19 +854,30 @@ Hora: ${new Date().toLocaleTimeString('pt-BR')}`);
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
                   <textarea
-                    name="mensagem"
                     rows={4}
                     required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                     placeholder="Conte-nos sobre seu projeto..."
                   ></textarea>
                 </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/30"
-                >
-                  ENVIAR MENSAGEM
-                </button>
+                
+                {/* Botões de ação */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <button
+                    type="submit"
+                    className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/30"
+                  >
+                    Enviar Mensagem
+                  </button>
+                  <a
+                    href={`mailto:financeiro@exercitodeagentes.com.br?subject=Consulta Financeira - Exército de Agentes&body=Olá,%0D%0A%0D%0AEstou interessado(a) em conhecer mais sobre os serviços do Exército de Agentes.%0D%0A%0D%0AMeus dados:%0D%0ANome: %0D%0AEmpresa: %0D%0ATelefone: %0D%0AEmail: %0D%0A%0D%0AÁrea de interesse:%0D%0A[ ] Automação IA%0D%0A[ ] Contabilidade%0D%0A[ ] Consultoria%0D%0A[ ] Educação%0D%0A%0D%0AObservações:%0D%0A%0D%0A%0D%0AAtenciosamente,%0D%0A%0D%0A----%0D%0AEnviado em: ${new Date().toLocaleString('pt-BR')}`}
+                    onClick={() => trackEvent('email_click', { type: 'financeiro' })}
+                    className="w-full py-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-400/30 flex items-center justify-center space-x-2"
+                  >
+                    <CreditCard className="h-5 w-5" />
+                    <span>Contato Financeiro</span>
+                  </a>
+                </div>
               </form>
             </div>
           </div>
