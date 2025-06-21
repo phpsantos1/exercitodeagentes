@@ -163,7 +163,7 @@ function App() {
                       className={`px-3 py-2 text-sm font-medium transition-colors ${
                         activeSection === item.id
                           ? 'text-cyan-300 border-b-2 border-cyan-300'
-                          : 'text-gray-300 hover:text-cyan-300'
+                          : 'text-white hover:text-cyan-300'
                       }`}
                     >
                       {item.label}
@@ -200,7 +200,7 @@ function App() {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-300"
+                    className="block w-full text-left px-3 py-2 text-base font-medium text-white hover:text-cyan-300"
                   >
                     {item.label}
                   </button>
@@ -246,7 +246,7 @@ function App() {
                   EssencialBot
                 </span>
               </div>
-              <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
                 Revolução digital para sua empresa com IA avançada, automação inteligente e consultoria especializada
               </p>
             </div>
@@ -263,8 +263,8 @@ function App() {
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <item.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-lg font-semibold mb-2 text-cyan-200">{item.title}</h3>
-                  <p className="text-gray-300 text-sm">{item.desc}</p>
+                  <h3 className="text-lg font-semibold mb-2 text-white">{item.title}</h3>
+                  <p className="text-white text-sm">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -275,7 +275,7 @@ function App() {
                   scrollToSection('automation');
                   trackEvent('cta_click', { button: 'começar_agora' });
                 }}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group shadow-lg hover:shadow-cyan-400/30"
+                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group shadow-lg hover:shadow-cyan-400/30 text-white"
               >
                 COMEÇAR AGORA
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -285,7 +285,7 @@ function App() {
                   scrollToSection('agents');
                   trackEvent('cta_click', { button: 'ver_agentes' });
                 }}
-                className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105"
+                className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105 text-white"
               >
                 VER AGENTES
               </button>
@@ -302,7 +302,7 @@ function App() {
                   AUTOMAÇÃO INTELIGENTE
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-white max-w-3xl mx-auto">
                 O <span className="text-cyan-300 font-semibold">EssencialBot</span> trabalha 24/7 para otimizar sua empresa com inteligência artificial avançada
               </p>
             </div>
@@ -345,7 +345,7 @@ function App() {
                     </div>
                   )}
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold mb-2 text-cyan-200">{plan.level}</h3>
+                    <h3 className="text-2xl font-bold mb-2 text-white">{plan.level}</h3>
                     <div className="text-4xl font-bold text-cyan-300 mb-4">{plan.price}</div>
                   </div>
                   <ul className="space-y-4 mb-8">
@@ -358,7 +358,7 @@ function App() {
                   </ul>
                   <button 
                     onClick={() => trackEvent('plan_click', { plan: plan.level })}
-                    className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
+                    className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 text-white ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg hover:shadow-cyan-400/30' 
                         : 'border border-cyan-400 hover:bg-cyan-400/10'
@@ -381,7 +381,7 @@ function App() {
                   ESCRITÓRIO DE CONTABILIDADE
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-white max-w-3xl mx-auto">
                 Somos um escritório de contabilidade especializado em empresas de comércio e serviços, oferecendo serviços completos com automação do <span className="text-cyan-300 font-semibold">EssencialBot</span>
               </p>
             </div>
@@ -429,8 +429,8 @@ function App() {
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${feature.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold mb-3 text-cyan-200">{feature.title}</h3>
-                  <p className="text-gray-300">{feature.description}</p>
+                  <h3 className="text-xl font-semibold mb-3 text-white">{feature.title}</h3>
+                  <p className="text-white">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -447,7 +447,7 @@ function App() {
                     CONSULTORIA EMPRESARIAL
                   </span>
                 </h2>
-                <p className="text-xl text-gray-300 mb-8">
+                <p className="text-xl text-white mb-8">
                   Consultoria completa que vai além da IA, oferecendo soluções estratégicas para todos os aspectos do seu negócio
                 </p>
                 <div className="space-y-4 mb-8">
@@ -471,13 +471,13 @@ function App() {
                       scrollToSection('contact');
                       trackEvent('cta_click', { button: 'agendar_consultoria' });
                     }}
-                    className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+                    className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30 text-white"
                   >
                     AGENDAR CONSULTORIA
                   </button>
                   <a 
                     href={`mailto:financeiro@exercitodeagentes.com.br?subject=Consulta sobre Consultoria Empresarial&body=Olá, gostaria de saber mais sobre os serviços de consultoria empresarial do Exército de Agentes.%0D%0A%0D%0ANome:%0D%0AEmpresa:%0D%0ATelefone:%0D%0AÁrea de interesse:`}
-                    className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 text-center"
+                    className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 text-center text-white"
                   >
                     CONTATO FINANCEIRO
                   </a>
@@ -488,7 +488,7 @@ function App() {
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
                     <Users className="h-16 w-16 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">CONSULTORIA ESPECIALIZADA</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">CONSULTORIA ESPECIALIZADA</h3>
                   <p className="text-white mb-6">
                     Nossa equipe de especialistas combina décadas de experiência empresarial com soluções inovadoras para entregar resultados excepcionais em todas as áreas do seu negócio.
                   </p>
@@ -519,7 +519,7 @@ function App() {
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg mb-6">
                     <GraduationCap className="h-16 w-16 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">CAPACITAÇÃO AVANÇADA</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">CAPACITAÇÃO AVANÇADA</h3>
                   <p className="text-white mb-6">
                     Prepare sua equipe para a era digital com nossos cursos especializados em contabilidade, controladoria, finanças e tecnologia.
                   </p>
@@ -546,7 +546,7 @@ function App() {
                     EDUCAÇÃO & TREINAMENTOS
                   </span>
                 </h2>
-                <p className="text-xl text-gray-300 mb-8">
+                <p className="text-xl text-white mb-8">
                   Cursos, palestras e workshops especializados em áreas contábeis, financeiras e tecnológicas para empresas
                 </p>
                 
@@ -585,7 +585,7 @@ function App() {
                     scrollToSection('contact');
                     trackEvent('cta_click', { button: 'ver_cursos' });
                   }}
-                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30 text-white"
                 >
                   VER TODOS OS CURSOS
                 </button>
@@ -603,7 +603,7 @@ function App() {
                   MODELOS DO ESSENCIALBOT
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-white max-w-3xl mx-auto">
                 Escolha o nível de inteligência artificial perfeito para suas necessidades empresariais
               </p>
             </div>
@@ -639,8 +639,8 @@ function App() {
                   <div className={`inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r ${agent.color} text-white text-sm font-semibold mb-4`}>
                     {agent.level}
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-cyan-200">{agent.title}</h3>
-                  <p className="text-gray-300 mb-4">{agent.description}</p>
+                  <h3 className="text-2xl font-bold mb-3 text-white">{agent.title}</h3>
+                  <p className="text-white mb-4">{agent.description}</p>
                   <div className="text-lg font-bold text-cyan-300 mb-6">{agent.price}</div>
                   <ul className="space-y-3 mb-8">
                     {agent.features.map((feature, fIndex) => (
@@ -652,7 +652,7 @@ function App() {
                   </ul>
                   <button 
                     onClick={() => trackEvent('agent_demo_click', { agent: agent.level })}
-                    className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg`}
+                    className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg text-white`}
                   >
                     SOLICITAR DEMO
                   </button>
@@ -669,7 +669,7 @@ function App() {
                     NÍVEL 1 — ESSENCIALBOT PERSONALIZADO
                   </span>
                 </h3>
-                <p className="text-center text-gray-400 mb-8">
+                <p className="text-center text-white mb-8">
                   Sem automação. Personalidade e função ajustadas para o perfil desejado. Entrega via link GPT privado.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -682,7 +682,7 @@ function App() {
                   ].map((bot, index) => (
                     <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-green-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-300 text-sm">{bot.desc}</p>
+                      <p className="text-white text-sm">{bot.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -695,7 +695,7 @@ function App() {
                     NÍVEL 2 — ESSENCIALBOT INTEGRADO
                   </span>
                 </h3>
-                <p className="text-center text-gray-400 mb-8">
+                <p className="text-center text-white mb-8">
                   Com automação leve. GPT + formulário + integração via webhook com WhatsApp e Google Sheets.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -706,7 +706,7 @@ function App() {
                   ].map((bot, index) => (
                     <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-blue-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-300 text-sm">{bot.desc}</p>
+                      <p className="text-white text-sm">{bot.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -719,7 +719,7 @@ function App() {
                     NÍVEL 3 — ESSENCIALBOT AVANÇADO
                   </span>
                 </h3>
-                <p className="text-center text-gray-400 mb-8">
+                <p className="text-center text-white mb-8">
                   Com landing page personalizada, identidade visual e fluxos automatizados integrados.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -729,7 +729,7 @@ function App() {
                   ].map((bot, index) => (
                     <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-purple-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-300 text-sm">{bot.desc}</p>
+                      <p className="text-white text-sm">{bot.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -747,7 +747,7 @@ function App() {
                   ENTRE EM CONTATO
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
+              <p className="text-xl text-white mb-8">
                 Pronto para transformar seu negócio com o <span className="text-cyan-300 font-semibold">EssencialBot</span>? Vamos conversar sobre suas necessidades
               </p>
               
@@ -755,19 +755,19 @@ function App() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Phone className="h-5 w-5 text-cyan-300" />
-                  <span className="text-cyan-200 text-sm">(11) 91175-7113</span>
+                  <span className="text-white text-sm">(11) 91175-7113</span>
                 </div>
                 <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Mail className="h-5 w-5 text-cyan-300" />
-                  <span className="text-cyan-200 text-sm">sac@exercitodeagentes.com.br</span>
+                  <span className="text-white text-sm">sac@exercitodeagentes.com.br</span>
                 </div>
                 <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Mail className="h-5 w-5 text-green-400" />
-                  <span className="text-green-200 text-sm">financeiro@exercitodeagentes.com.br</span>
+                  <span className="text-white text-sm">financeiro@exercitodeagentes.com.br</span>
                 </div>
                 <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Globe className="h-5 w-5 text-cyan-300" />
-                  <span className="text-cyan-200 text-sm">exercitodeagentes.com.br</span>
+                  <span className="text-white text-sm">exercitodeagentes.com.br</span>
                 </div>
               </div>
 
@@ -811,38 +811,38 @@ function App() {
               }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">NOME</label>
+                    <label className="block text-sm font-medium text-white mb-2">NOME</label>
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 text-white"
                       placeholder="Seu nome completo"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">WHATSAPP</label>
+                    <label className="block text-sm font-medium text-white mb-2">WHATSAPP</label>
                     <input
                       type="tel"
                       required
-                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 text-white"
                       placeholder="(11) 99999-9999"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">E-MAIL</label>
+                  <label className="block text-sm font-medium text-white mb-2">E-MAIL</label>
                   <input
                     type="email"
                     required
-                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 text-white"
                     placeholder="seu@email.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">INTERESSE</label>
+                  <label className="block text-sm font-medium text-white mb-2">INTERESSE</label>
                   <select 
                     required
-                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 text-white"
                   >
                     <option value="">Selecione seu interesse</option>
                     <option value="automation">Automação IA</option>
@@ -853,17 +853,17 @@ function App() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">MENSAGEM</label>
+                  <label className="block text-sm font-medium text-white mb-2">MENSAGEM</label>
                   <textarea
                     rows={4}
                     required
-                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 text-white"
                     placeholder="Conte-nos sobre seu projeto..."
                   ></textarea>
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/30"
+                  className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/30 text-white"
                 >
                   ENVIAR MENSAGEM
                 </button>
@@ -890,7 +890,7 @@ function App() {
                   </span>
                 </div>
               </div>
-              <div className="text-gray-400 text-sm text-center md:text-right">
+              <div className="text-white text-sm text-center md:text-right">
                 <div>© 2024 Exército de Agentes. Todos os direitos reservados.</div>
                 <div className="mt-1">www.exercitodeagentes.com.br</div>
               </div>
