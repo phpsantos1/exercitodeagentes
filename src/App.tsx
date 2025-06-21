@@ -78,7 +78,7 @@ function App() {
           <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-purple-800"></div>
           
           {/* Animated circuit lines */}
-          <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 opacity-20">
             {/* Horizontal scanning lines */}
             <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
             <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -89,18 +89,18 @@ function App() {
           </div>
 
           {/* Circuit nodes */}
-          <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse opacity-40"></div>
-          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50 animate-pulse opacity-40" style={{ animationDelay: '0.7s' }}></div>
-          <div className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-indigo-400 rounded-full shadow-lg shadow-indigo-400/50 animate-pulse opacity-40" style={{ animationDelay: '1.2s' }}></div>
-          <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-cyan-300 rounded-full shadow-lg shadow-cyan-300/50 animate-pulse opacity-40" style={{ animationDelay: '0.3s' }}></div>
+          <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse opacity-30"></div>
+          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50 animate-pulse opacity-30" style={{ animationDelay: '0.7s' }}></div>
+          <div className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-indigo-400 rounded-full shadow-lg shadow-indigo-400/50 animate-pulse opacity-30" style={{ animationDelay: '1.2s' }}></div>
+          <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-cyan-300 rounded-full shadow-lg shadow-cyan-300/50 animate-pulse opacity-30" style={{ animationDelay: '0.3s' }}></div>
 
           {/* Floating particles */}
-          <div className="absolute top-1/5 left-1/5 w-1 h-1 bg-cyan-400 rounded-full animate-bounce opacity-50" style={{ animationDelay: '0.5s' }}></div>
-          <div className="absolute bottom-1/4 right-1/5 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-indigo-400 rounded-full animate-bounce opacity-50" style={{ animationDelay: '1.5s' }}></div>
+          <div className="absolute top-1/5 left-1/5 w-1 h-1 bg-cyan-400 rounded-full animate-bounce opacity-40" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute bottom-1/4 right-1/5 w-1 h-1 bg-blue-400 rounded-full animate-bounce opacity-40" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-indigo-400 rounded-full animate-bounce opacity-40" style={{ animationDelay: '1.5s' }}></div>
 
           {/* Complex circuit paths */}
-          <svg className="absolute inset-0 w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+          <svg className="absolute inset-0 w-full h-full opacity-15" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -259,7 +259,7 @@ function App() {
                 { icon: GraduationCap, title: 'EDUCAÇÃO PRO', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500' },
                 { icon: Bot, title: 'PERSONALIZE SEU AGENTE', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500' }
               ].map((item, index) => (
-                <div key={index} className="group p-6 bg-gray-800/80 backdrop-blur-sm rounded-xl border border-blue-400/40 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div key={index} className="group p-6 bg-gray-800/70 backdrop-blur-sm rounded-xl border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <item.icon className="h-8 w-8 text-white" />
                   </div>
@@ -294,7 +294,7 @@ function App() {
         </section>
 
         {/* Automation Section */}
-        <section id="automation" className="py-20 bg-gray-800/50">
+        <section id="automation" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -336,7 +336,7 @@ function App() {
                   popular: true
                 }
               ].map((plan, index) => (
-                <div key={index} className={`relative p-8 bg-gray-800/80 backdrop-blur-sm rounded-2xl border ${plan.popular ? 'border-cyan-400' : 'border-gray-600'} hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20`}>
+                <div key={index} className={`relative p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border ${plan.popular ? 'border-cyan-400' : 'border-gray-600'} hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20`}>
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
@@ -425,7 +425,7 @@ function App() {
                   color: 'from-teal-500 to-cyan-500'
                 }
               ].map((feature, index) => (
-                <div key={index} className="group p-6 bg-gray-800/80 backdrop-blur-sm rounded-xl border border-blue-400/40 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div key={index} className="group p-6 bg-gray-800/70 backdrop-blur-sm rounded-xl border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${feature.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <feature.icon className="h-8 w-8 text-white" />
                   </div>
@@ -438,7 +438,7 @@ function App() {
         </section>
 
         {/* Consulting Section */}
-        <section id="consulting" className="py-20 bg-gray-800/50">
+        <section id="consulting" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -484,7 +484,7 @@ function App() {
                 </div>
               </div>
               <div className="relative">
-                <div className="p-8 bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-blue-400/40 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
+                <div className="p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-blue-400/30 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
                     <Users className="h-16 w-16 text-white" />
                   </div>
@@ -495,7 +495,7 @@ function App() {
                   
                   {/* Alert Badge for Critical Services */}
                   <div className="relative inline-block">
-                    <div className="bg-red-500/30 border border-red-400/60 rounded-lg p-3 backdrop-blur-sm">
+                    <div className="bg-red-500/20 border border-red-400/50 rounded-lg p-3 backdrop-blur-sm">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
                         <span className="text-red-200 font-semibold text-sm uppercase tracking-wide">
@@ -515,7 +515,7 @@ function App() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative">
-                <div className="p-8 bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-blue-400/40 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
+                <div className="p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-blue-400/30 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg mb-6">
                     <GraduationCap className="h-16 w-16 text-white" />
                   </div>
@@ -569,7 +569,7 @@ function App() {
                       courses: ['Fluxo de Caixa Avançado', 'Análise Financeira', 'Orçamento Empresarial', 'Planejamento Estratégico']
                     }
                   ].map((area, index) => (
-                    <div key={index} className="p-4 bg-gray-800/60 rounded-lg border border-gray-600 hover:border-cyan-400/50 transition-all duration-300">
+                    <div key={index} className="p-4 bg-gray-800/50 rounded-lg border border-gray-600 hover:border-cyan-400/40 transition-all duration-300">
                       <h4 className="text-cyan-300 font-semibold mb-2">{area.category}</h4>
                       <div className="grid grid-cols-2 gap-2">
                         {area.courses.map((course, cIndex) => (
@@ -595,7 +595,7 @@ function App() {
         </section>
 
         {/* Agents Models Section */}
-        <section id="agents" className="py-20 bg-gray-800/50">
+        <section id="agents" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -635,7 +635,7 @@ function App() {
                   color: 'from-purple-500 to-pink-400'
                 }
               ].map((agent, index) => (
-                <div key={index} className="relative p-8 bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-gray-600 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div key={index} className="relative p-8 bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-gray-600 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r ${agent.color} text-white text-sm font-semibold mb-4`}>
                     {agent.level}
                   </div>
@@ -680,7 +680,7 @@ function App() {
                     { title: 'EssencialBot Desenvolvedor Mobile', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
                     { title: 'EssencialBot Consultor Jurídico', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
                   ].map((bot, index) => (
-                    <div key={index} className="p-6 bg-gray-800/60 rounded-xl border border-green-400/40 hover:border-green-400/60 transition-all duration-300">
+                    <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-green-300 mb-3">{bot.title}</h4>
                       <p className="text-gray-300 text-sm">{bot.desc}</p>
                     </div>
@@ -704,7 +704,7 @@ function App() {
                     { title: 'EssencialBot Coleta de Documentos', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
                     { title: 'EssencialBot Controle de Pedidos', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
                   ].map((bot, index) => (
-                    <div key={index} className="p-6 bg-gray-800/60 rounded-xl border border-blue-400/40 hover:border-blue-400/60 transition-all duration-300">
+                    <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-blue-300 mb-3">{bot.title}</h4>
                       <p className="text-gray-300 text-sm">{bot.desc}</p>
                     </div>
@@ -727,7 +727,7 @@ function App() {
                     { title: 'EssencialBot Central de Agendamentos', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
                     { title: 'EssencialBot Recepção Inteligente', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
                   ].map((bot, index) => (
-                    <div key={index} className="p-6 bg-gray-800/60 rounded-xl border border-purple-400/40 hover:border-purple-400/60 transition-all duration-300">
+                    <div key={index} className="p-6 bg-gray-800/50 rounded-xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-purple-300 mb-3">{bot.title}</h4>
                       <p className="text-gray-300 text-sm">{bot.desc}</p>
                     </div>
@@ -753,19 +753,19 @@ function App() {
               
               {/* Contact Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/60 rounded-lg border border-blue-400/40 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Phone className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">(11) 91175-7113</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/60 rounded-lg border border-blue-400/40 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Mail className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">sac@exercitodeagentes.com.br</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/60 rounded-lg border border-blue-400/40 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Mail className="h-5 w-5 text-green-400" />
                   <span className="text-green-200 text-sm">financeiro@exercitodeagentes.com.br</span>
                 </div>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/60 rounded-lg border border-blue-400/40 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/50 rounded-lg border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-300">
                   <Globe className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">exercitodeagentes.com.br</span>
                 </div>
@@ -803,7 +803,7 @@ function App() {
               </div>
             </div>
 
-            <div className="bg-gray-800/80 backdrop-blur-sm rounded-2xl border border-blue-400/40 p-8 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
+            <div className="bg-gray-800/70 backdrop-blur-sm rounded-2xl border border-blue-400/30 p-8 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
               <form className="space-y-6" onSubmit={(e) => {
                 e.preventDefault();
                 trackEvent('form_submit', { form: 'contact' });
@@ -815,7 +815,7 @@ function App() {
                     <input
                       type="text"
                       required
-                      className="w-full px-4 py-3 bg-gray-700/80 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                       placeholder="Seu nome completo"
                     />
                   </div>
@@ -824,7 +824,7 @@ function App() {
                     <input
                       type="tel"
                       required
-                      className="w-full px-4 py-3 bg-gray-700/80 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                       placeholder="(11) 99999-9999"
                     />
                   </div>
@@ -834,7 +834,7 @@ function App() {
                   <input
                     type="email"
                     required
-                    className="w-full px-4 py-3 bg-gray-700/80 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                     placeholder="seu@email.com"
                   />
                 </div>
@@ -842,7 +842,7 @@ function App() {
                   <label className="block text-sm font-medium text-gray-300 mb-2">INTERESSE</label>
                   <select 
                     required
-                    className="w-full px-4 py-3 bg-gray-700/80 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                   >
                     <option value="">Selecione seu interesse</option>
                     <option value="automation">Automação IA</option>
@@ -857,7 +857,7 @@ function App() {
                   <textarea
                     rows={4}
                     required
-                    className="w-full px-4 py-3 bg-gray-700/80 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 bg-gray-700/70 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
                     placeholder="Conte-nos sobre seu projeto..."
                   ></textarea>
                 </div>
