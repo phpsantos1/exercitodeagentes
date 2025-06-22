@@ -21,12 +21,7 @@ import {
   Globe,
   MessageCircle,
   Linkedin,
-  Instagram,
-  Target,
-  Eye,
-  Heart,
-  Lightbulb,
-  Award
+  Instagram
 } from 'lucide-react';
 import EssencialBotChat from './components/EssencialBotChat';
 import SEOHead from './components/SEOHead';
@@ -41,7 +36,7 @@ function App() {
     initializeAnalytics();
     
     const handleScroll = () => {
-      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'culture', 'contact'];
+      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -154,14 +149,13 @@ function App() {
               <div className="hidden md:block">
                 <div className="flex items-center space-x-8">
                   {[
-                    { id: 'home', label: 'Início' },
-                    { id: 'automation', label: 'Automação IA' },
-                    { id: 'accounting', label: 'Contabilidade' },
-                    { id: 'consulting', label: 'Consultoria' },
-                    { id: 'education', label: 'Educação' },
-                    { id: 'agents', label: 'Agentes' },
-                    { id: 'culture', label: 'Cultura' },
-                    { id: 'contact', label: 'Contato' }
+                    { id: 'home', label: 'INÍCIO' },
+                    { id: 'automation', label: 'AUTOMAÇÃO IA' },
+                    { id: 'accounting', label: 'CONTABILIDADE' },
+                    { id: 'consulting', label: 'CONSULTORIA' },
+                    { id: 'education', label: 'EDUCAÇÃO' },
+                    { id: 'agents', label: 'AGENTES' },
+                    { id: 'contact', label: 'CONTATO' }
                   ].map((item) => (
                     <button
                       key={item.id}
@@ -195,14 +189,13 @@ function App() {
             <div className="md:hidden bg-gray-800/95 backdrop-blur-sm">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {[
-                  { id: 'home', label: 'Início' },
-                  { id: 'automation', label: 'Automação IA' },
-                  { id: 'accounting', label: 'Contabilidade' },
-                  { id: 'consulting', label: 'Consultoria' },
-                  { id: 'education', label: 'Educação' },
-                  { id: 'agents', label: 'Agentes' },
-                  { id: 'culture', label: 'Cultura' },
-                  { id: 'contact', label: 'Contato' }
+                  { id: 'home', label: 'INÍCIO' },
+                  { id: 'automation', label: 'AUTOMAÇÃO IA' },
+                  { id: 'accounting', label: 'CONTABILIDADE' },
+                  { id: 'consulting', label: 'CONSULTORIA' },
+                  { id: 'education', label: 'EDUCAÇÃO' },
+                  { id: 'agents', label: 'AGENTES' },
+                  { id: 'contact', label: 'CONTATO' }
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -239,7 +232,7 @@ function App() {
                   
                   {/* Main text with neon cyan */}
                   <span className="relative bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 bg-clip-text text-transparent animate-pulse">
-                    Exército de Agentes
+                    EXÉRCITO DE AGENTES
                   </span>
                 </h1>
                 
@@ -254,17 +247,17 @@ function App() {
                 </span>
               </div>
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Democratizando o acesso à solução e inteligência artificial para todos os negócios com automação inteligente e consultoria especializada
+                Democratizando o acesso à solução e inteligência artificial para todos os negócios
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
               {[
-                { icon: Brain, title: 'IA Avançada', desc: 'EssencialBot com inteligência personalizada', color: 'from-purple-500 to-pink-500' },
-                { icon: Calculator, title: 'Contabilidade', desc: 'Escritório contábil completo', color: 'from-green-500 to-emerald-500' },
-                { icon: Users, title: 'Consultoria Expert', desc: 'Estratégias empresariais eficazes', color: 'from-blue-500 to-cyan-500' },
-                { icon: GraduationCap, title: 'Educação Pro', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500' },
-                { icon: Bot, title: 'Personalize seu Agente', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500' }
+                { icon: Brain, title: 'IA AVANÇADA', desc: 'EssencialBot com inteligência personalizada', color: 'from-purple-500 to-pink-500' },
+                { icon: Calculator, title: 'CONTABILIDADE', desc: 'Escritório contábil completo', color: 'from-green-500 to-emerald-500' },
+                { icon: Users, title: 'CONSULTORIA EXPERT', desc: 'Estratégias empresariais eficazes', color: 'from-blue-500 to-cyan-500' },
+                { icon: GraduationCap, title: 'EDUCAÇÃO PRO', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500' },
+                { icon: Bot, title: 'PERSONALIZE SEU AGENTE', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500' }
               ].map((item, index) => (
                 <div key={index} className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
@@ -284,7 +277,7 @@ function App() {
                 }}
                 className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group shadow-lg hover:shadow-cyan-400/30"
               >
-                Começar Agora
+                COMEÇAR AGORA
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button 
@@ -294,16 +287,7 @@ function App() {
                 }}
                 className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105"
               >
-                Ver Agentes
-              </button>
-              <button 
-                onClick={() => {
-                  scrollToSection('culture');
-                  trackEvent('cta_click', { button: 'nossa_cultura' });
-                }}
-                className="px-8 py-4 border border-purple-400 rounded-lg font-semibold hover:bg-purple-400/10 transition-all duration-300 transform hover:scale-105"
-              >
-                Nossa Cultura
+                VER AGENTES
               </button>
             </div>
           </div>
@@ -315,7 +299,7 @@ function App() {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Automação Inteligente
+                  AUTOMAÇÃO INTELIGENTE
                 </span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -326,7 +310,7 @@ function App() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
               {[
                 {
-                  level: 'Nível 2 - Integrado',
+                  level: 'NÍVEL 2 - INTEGRADO',
                   price: 'Setup: R$ 397 + R$ 397/mês',
                   features: [
                     'EssencialBot personalizado',
@@ -339,7 +323,7 @@ function App() {
                   popular: false
                 },
                 {
-                  level: 'Nível 3 - Avançado',
+                  level: 'NÍVEL 3 - AVANÇADO',
                   price: 'Setup: R$ 497 + R$ 497/mês',
                   features: [
                     'Tudo do Integrado',
@@ -356,7 +340,7 @@ function App() {
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                       <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                        Mais Popular
+                        MAIS POPULAR
                       </span>
                     </div>
                   )}
@@ -380,7 +364,7 @@ function App() {
                         : 'border border-cyan-400 hover:bg-cyan-400/10'
                     }`}
                   >
-                    Escolher Plano
+                    ESCOLHER PLANO
                   </button>
                 </div>
               ))}
@@ -394,7 +378,7 @@ function App() {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Escritório de Contabilidade
+                  ESCRITÓRIO DE CONTABILIDADE
                 </span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -406,37 +390,37 @@ function App() {
               {[
                 {
                   icon: Calculator,
-                  title: 'Abertura de Empresas',
+                  title: 'ABERTURA DE EMPRESAS',
                   description: 'Constituição completa de empresas com toda documentação necessária',
                   color: 'from-green-500 to-emerald-500'
                 },
                 {
                   icon: Brain,
-                  title: 'Contabilidade Mensal',
+                  title: 'CONTABILIDADE MENSAL',
                   description: 'Escrituração contábil, balancetes e demonstrações financeiras',
                   color: 'from-blue-500 to-cyan-500'
                 },
                 {
                   icon: Shield,
-                  title: 'Obrigações Fiscais',
+                  title: 'OBRIGAÇÕES FISCAIS',
                   description: 'SPED, ECF, DEFIS e todas as obrigações acessórias',
                   color: 'from-purple-500 to-pink-500'
                 },
                 {
                   icon: Users,
-                  title: 'Departamento Pessoal',
+                  title: 'DEPARTAMENTO PESSOAL',
                   description: 'Folha de pagamento, admissões, demissões e eSocial',
                   color: 'from-orange-500 to-red-500'
                 },
                 {
                   icon: Network,
-                  title: 'Planejamento Tributário',
+                  title: 'PLANEJAMENTO TRIBUTÁRIO',
                   description: 'Otimização fiscal e escolha do melhor regime tributário',
                   color: 'from-indigo-500 to-purple-500'
                 },
                 {
                   icon: Cpu,
-                  title: 'Relatórios Gerenciais',
+                  title: 'RELATÓRIOS GERENCIAIS',
                   description: 'Análises financeiras e relatórios para tomada de decisão',
                   color: 'from-teal-500 to-cyan-500'
                 }
@@ -460,7 +444,7 @@ function App() {
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">
                   <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    Consultoria Empresarial
+                    CONSULTORIA EMPRESARIAL
                   </span>
                 </h2>
                 <p className="text-xl text-gray-300 mb-8">
@@ -488,7 +472,7 @@ function App() {
                   }}
                   className="mt-8 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
                 >
-                  Agendar Consultoria
+                  AGENDAR CONSULTORIA
                 </button>
               </div>
               <div className="relative">
@@ -496,7 +480,7 @@ function App() {
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
                     <Users className="h-16 w-16 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">Consultoria Especializada</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">CONSULTORIA ESPECIALIZADA</h3>
                   <p className="text-white mb-6">
                     Nossa equipe de especialistas combina décadas de experiência empresarial com soluções inovadoras para entregar resultados excepcionais em todas as áreas do seu negócio.
                   </p>
@@ -507,7 +491,7 @@ function App() {
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
                         <span className="text-red-300 font-semibold text-sm uppercase tracking-wide">
-                          Recuperação judicial, captura de crédito, reestruturação
+                          RECUPERAÇÃO JUDICIAL, CAPTURA DE CRÉDITO, REESTRUTURAÇÃO
                         </span>
                       </div>
                     </div>
@@ -527,7 +511,7 @@ function App() {
                   <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg mb-6">
                     <GraduationCap className="h-16 w-16 text-white" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">Capacitação Avançada</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">CAPACITAÇÃO AVANÇADA</h3>
                   <p className="text-white mb-6">
                     Prepare sua equipe para a era digital com nossos cursos especializados em contabilidade, controladoria, finanças e tecnologia.
                   </p>
@@ -551,7 +535,7 @@ function App() {
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold mb-6">
                   <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    Educação & Treinamentos
+                    EDUCAÇÃO & TREINAMENTOS
                   </span>
                 </h2>
                 <p className="text-xl text-gray-300 mb-8">
@@ -561,19 +545,19 @@ function App() {
                 <div className="space-y-6 mb-8">
                   {[
                     {
-                      category: '🤖 IA Empresarial',
+                      category: '🤖 IA EMPRESARIAL',
                       courses: ['Fundamentos de IA', 'Implementação de Chatbots', 'Machine Learning para Negócios', 'Automação Inteligente']
                     },
                     {
-                      category: '📊 Contabilidade Digital',
+                      category: '📊 CONTABILIDADE DIGITAL',
                       courses: ['Contabilidade 4.0', 'SPED e Obrigações Digitais', 'Análise de Balanços', 'Contabilidade Gerencial']
                     },
                     {
-                      category: '🎯 Controladoria',
+                      category: '🎯 CONTROLADORIA',
                       courses: ['Controles Internos', 'Auditoria Interna', 'Compliance Empresarial', 'Gestão de Riscos']
                     },
                     {
-                      category: '💰 Gestão Financeira',
+                      category: '💰 GESTÃO FINANCEIRA',
                       courses: ['Fluxo de Caixa Avançado', 'Análise Financeira', 'Orçamento Empresarial', 'Planejamento Estratégico']
                     }
                   ].map((area, index) => (
@@ -595,7 +579,7 @@ function App() {
                   }}
                   className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
                 >
-                  Ver Todos os Cursos
+                  VER TODOS OS CURSOS
                 </button>
               </div>
             </div>
@@ -608,7 +592,7 @@ function App() {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Modelos do EssencialBot
+                  MODELOS DO ESSENCIALBOT
                 </span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -619,24 +603,24 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {[
                 {
-                  level: 'Nível 1',
-                  title: 'Personalizado',
+                  level: 'NÍVEL 1',
+                  title: 'PERSONALIZADO',
                   description: 'Agente customizado sob demanda com respostas de alta performance',
                   features: ['Agente customizado sob demanda', 'Respostas de alta performance', 'Sem suporte técnico', 'Entrega via link GPT privado'],
                   price: 'Setup: R$ 120 + R$ 50 manutenção',
                   color: 'from-green-500 to-emerald-400'
                 },
                 {
-                  level: 'Nível 2',
-                  title: 'Integrado',
+                  level: 'NÍVEL 2',
+                  title: 'INTEGRADO',
                   description: 'EssencialBot inteligente com aprendizado e integração avançada',
                   features: ['Agente customizado sob demanda', 'Múltiplas integrações', 'Machine Learning', 'Análise de dados', 'Suporte básico', '1 atualização por semana'],
                   price: 'Setup: R$ 397 + R$ 397/mês',
                   color: 'from-blue-500 to-cyan-400'
                 },
                 {
-                  level: 'Nível 3',
-                  title: 'Avançado',
+                  level: 'NÍVEL 3',
+                  title: 'AVANÇADO',
                   description: 'EssencialBot de última geração com capacidades cognitivas avançadas',
                   features: ['Tudo do Integrado', 'Landing page personalizada', 'Deep Learning', 'Processamento de linguagem neural', 'Consultoria incluída', '3 atualizações por semana'],
                   price: 'Setup: R$ 497 + R$ 497/mês',
@@ -662,7 +646,7 @@ function App() {
                     onClick={() => trackEvent('agent_demo_click', { agent: agent.level })}
                     className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg`}
                   >
-                    Solicitar Demo
+                    SOLICITAR DEMO
                   </button>
                 </div>
               ))}
@@ -674,7 +658,7 @@ function App() {
               <div>
                 <h3 className="text-3xl font-bold mb-8 text-center">
                   <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                    Nível 1 — EssencialBot Personalizado
+                    NÍVEL 1 — ESSENCIALBOT PERSONALIZADO
                   </span>
                 </h3>
                 <p className="text-center text-gray-400 mb-8">
@@ -682,11 +666,11 @@ function App() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    { title: 'EssencialBot Professor Universitário', desc: 'Interage como professor de ensino superior com didática formal e linguagem acessível. Ideal para estudantes e mentoria acadêmica.' },
-                    { title: 'EssencialBot Nutricionista', desc: 'Atende com linguagem acolhedora e técnica, explicando dietas e orientações nutricionais personalizadas.' },
-                    { title: 'EssencialBot Costureiro', desc: 'Atua como profissional experiente em moda sob medida. Usa linguagem prática de ateliê com referências de moda.' },
-                    { title: 'EssencialBot Desenvolvedor Mobile', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
-                    { title: 'EssencialBot Consultor Jurídico', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
+                    { title: 'ESSENCIALBOT PROFESSOR UNIVERSITÁRIO', desc: 'Interage como professor de ensino superior com didática formal e linguagem acessível. Ideal para estudantes e mentoria acadêmica.' },
+                    { title: 'ESSENCIALBOT NUTRICIONISTA', desc: 'Atende com linguagem acolhedora e técnica, explicando dietas e orientações nutricionais personalizadas.' },
+                    { title: 'ESSENCIALBOT COSTUREIRO', desc: 'Atua como profissional experiente em moda sob medida. Usa linguagem prática de ateliê com referências de moda.' },
+                    { title: 'ESSENCIALBOT DESENVOLVEDOR MOBILE', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
+                    { title: 'ESSENCIALBOT CONSULTOR JURÍDICO', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
                   ].map((bot, index) => (
                     <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-green-300 mb-3">{bot.title}</h4>
@@ -700,7 +684,7 @@ function App() {
               <div>
                 <h3 className="text-3xl font-bold mb-8 text-center">
                   <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                    Nível 2 — EssencialBot Integrado
+                    NÍVEL 2 — ESSENCIALBOT INTEGRADO
                   </span>
                 </h3>
                 <p className="text-center text-gray-400 mb-8">
@@ -708,9 +692,9 @@ function App() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
-                    { title: 'EssencialBot Atendimento Comercial', desc: 'Recebe solicitações de orçamento e envia para o responsável via WhatsApp. Ideal para lojas e comércios locais.' },
-                    { title: 'EssencialBot Coleta de Documentos', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
-                    { title: 'EssencialBot Controle de Pedidos', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
+                    { title: 'ESSENCIALBOT ATENDIMENTO COMERCIAL', desc: 'Recebe solicitações de orçamento e envia para o responsável via WhatsApp. Ideal para lojas e comércios locais.' },
+                    { title: 'ESSENCIALBOT COLETA DE DOCUMENTOS', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
+                    { title: 'ESSENCIALBOT CONTROLE DE PEDIDOS', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
                   ].map((bot, index) => (
                     <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-blue-300 mb-3">{bot.title}</h4>
@@ -724,7 +708,7 @@ function App() {
               <div>
                 <h3 className="text-3xl font-bold mb-8 text-center">
                   <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    Nível 3 — EssencialBot Avançado
+                    NÍVEL 3 — ESSENCIALBOT AVANÇADO
                   </span>
                 </h3>
                 <p className="text-center text-gray-400 mb-8">
@@ -732,8 +716,8 @@ function App() {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
-                    { title: 'EssencialBot Central de Agendamentos', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
-                    { title: 'EssencialBot Recepção Inteligente', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
+                    { title: 'ESSENCIALBOT CENTRAL DE AGENDAMENTOS', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
+                    { title: 'ESSENCIALBOT RECEPÇÃO INTELIGENTE', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
                   ].map((bot, index) => (
                     <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300">
                       <h4 className="text-lg font-semibold text-purple-300 mb-3">{bot.title}</h4>
@@ -746,153 +730,13 @@ function App() {
           </div>
         </section>
 
-        {/* Culture Section */}
-        <section id="culture" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Nossa Cultura
-                </span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Conheça a essência estratégica que move o Exército de Agentes
-              </p>
-            </div>
-
-            {/* Missão, Visão e Valores */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-              {/* Missão */}
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
-                  <Target className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔹 Missão</h3>
-                <p className="text-white leading-relaxed">
-                  Democratizar o acesso à solução e inteligência artificial para todos os negócios, oferecendo soluções contábeis, consultivas e tecnológicas que aliviem a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade.
-                </p>
-              </div>
-
-              {/* Visão */}
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-6">
-                  <Eye className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔭 Visão</h3>
-                <p className="text-white leading-relaxed">
-                  Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática, confiável e presente no cotidiano dos que mais precisam — e menos têm acesso.
-                </p>
-              </div>
-
-              {/* Valores */}
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg mb-6">
-                  <Heart className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">💎 Valores</h3>
-                <p className="text-white leading-relaxed">
-                  Nossos valores inegociáveis guiam cada decisão e ação, garantindo que mantenhamos nossa essência enquanto crescemos e evoluímos.
-                </p>
-              </div>
-            </div>
-
-            {/* Valores Inegociáveis */}
-            <div className="mb-16">
-              <h3 className="text-3xl font-bold mb-8 text-center">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  💎 Valores Inegociáveis
-                </span>
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Shield,
-                    title: 'Respeito acima de tudo',
-                    description: 'Não toleramos desrespeito em nenhuma forma — seja entre colegas, clientes ou parceiros.',
-                    color: 'from-red-500 to-pink-500'
-                  },
-                  {
-                    icon: Heart,
-                    title: 'Disciplina com empatia',
-                    description: 'Agimos com firmeza e método, mas sempre com humanidade.',
-                    color: 'from-purple-500 to-indigo-500'
-                  },
-                  {
-                    icon: Users,
-                    title: 'Tecnologia para todos',
-                    description: 'Acreditamos que inovação só faz sentido se for acessível.',
-                    color: 'from-blue-500 to-cyan-500'
-                  },
-                  {
-                    icon: Target,
-                    title: 'Compromisso com o resultado',
-                    description: 'Não paramos até conseguir — e entregamos com excelência.',
-                    color: 'from-green-500 to-emerald-500'
-                  },
-                  {
-                    icon: Lightbulb,
-                    title: 'Clareza e estrutura',
-                    description: 'Preferimos processos bem definidos a improvisos recorrentes.',
-                    color: 'from-orange-500 to-yellow-500'
-                  }
-                ].map((valor, index) => (
-                  <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
-                    <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${valor.color} rounded-lg mb-4`}>
-                      <valor.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <h4 className="text-lg font-semibold text-cyan-200 mb-3">{valor.title}</h4>
-                    <p className="text-gray-400 text-sm">{valor.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Frases-Símbolo */}
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-8">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  🧠 Frases-Símbolo da Cultura
-                </span>
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  {
-                    frase: "Não paramos até conseguir!",
-                    icon: Award,
-                    color: 'from-yellow-500 to-orange-500'
-                  },
-                  {
-                    frase: "A tecnologia está acessível a todos. Aqui temos a solução que você procura!",
-                    icon: Bot,
-                    color: 'from-blue-500 to-cyan-500'
-                  },
-                  {
-                    frase: "Respeito, estrutura, planejamento e entrega — esse é o nosso jeito.",
-                    icon: CheckCircle,
-                    color: 'from-green-500 to-emerald-500'
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                    <div className={`inline-flex items-center justify-center p-4 bg-gradient-to-r ${item.color} rounded-lg mb-4 mx-auto`}>
-                      <item.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <p className="text-white font-semibold text-lg leading-relaxed">
-                      "{item.frase}"
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Contact Section */}
-        <section id="contact" className="py-20 bg-gray-800/30">
+        <section id="contact" className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  Entre em Contato
+                  ENTRE EM CONTATO
                 </span>
               </h2>
               <p className="text-xl text-gray-300 mb-8">
@@ -959,7 +803,7 @@ function App() {
               }}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">NOME</label>
                     <input
                       type="text"
                       required
@@ -968,7 +812,7 @@ function App() {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">WhatsApp</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">WHATSAPP</label>
                     <input
                       type="tel"
                       required
@@ -978,7 +822,7 @@ function App() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">E-MAIL</label>
                   <input
                     type="email"
                     required
@@ -987,7 +831,7 @@ function App() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Interesse</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">INTERESSE</label>
                   <select 
                     required
                     className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
@@ -1001,7 +845,7 @@ function App() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">MENSAGEM</label>
                   <textarea
                     rows={4}
                     required
@@ -1013,7 +857,7 @@ function App() {
                   type="submit"
                   className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/30"
                 >
-                  Enviar Mensagem
+                  ENVIAR MENSAGEM
                 </button>
               </form>
             </div>
@@ -1031,7 +875,7 @@ function App() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    Exército de Agentes
+                    EXÉRCITO DE AGENTES
                   </span>
                   <span className="text-xs text-cyan-300 -mt-1">
                     Powered by EssencialBot
