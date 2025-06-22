@@ -1,973 +1,1049 @@
-import React, { useState, useEffect } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
+import React, { useEffect } from 'react';
 import { 
   Bot, 
-  Brain, 
+  Zap, 
   Calculator, 
   Users, 
   GraduationCap, 
-  Zap, 
-  ChevronRight,
-  Menu,
-  X,
-  Star,
+  Settings,
+  Phone, 
+  Mail, 
+  MapPin, 
+  Clock,
   CheckCircle,
   ArrowRight,
-  Shield,
-  Cpu,
-  Network,
-  Phone,
-  Mail,
-  Globe,
-  MessageCircle,
+  Star,
+  Target,
+  Eye,
+  Heart,
+  Compass,
+  MessageSquare,
   Linkedin,
   Instagram
 } from 'lucide-react';
-import EssencialBotChat from './components/EssencialBotChat';
+import { HelmetProvider } from 'react-helmet-async';
 import SEOHead from './components/SEOHead';
+import EssencialBotChat from './components/EssencialBotChat';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
+import { config } from './config/environment';
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-
   useEffect(() => {
-    // Inicializar analytics
     initializeAnalytics();
-    
-    const handleScroll = () => {
-      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const height = element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      // Track navigation
-      trackEvent('navigation_click', { section: sectionId });
-    }
-    setIsMenuOpen(false);
+  const handleCardClick = (service: string, url: string) => {
+    trackEvent('service_card_click', { service });
+    window.open(url, '_blank');
   };
 
-  const openAgentLink = (agentType: string) => {
-    const links = {
-      'automation': 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3',
-      'accounting': 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil',
-      'consulting': 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial',
-      'education': 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro',
-      'agents': 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal',
-      'concierge': 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge'
-    };
-    
-    const url = links[agentType as keyof typeof links];
-    if (url) {
-      window.open(url, '_blank');
-      trackEvent('agent_link_click', { agent: agentType });
+  const handleButtonClick = (action: string, url: string) => {
+    trackEvent('button_click', { action });
+    window.open(url, '_blank');
+  };
+
+  const handleContactClick = (type: string, value: string) => {
+    trackEvent('contact_click', { type, value });
+    if (type === 'whatsapp') {
+      window.open(`https://wa.me/${config.WHATSAPP_NUMBER}`, '_blank');
+    } else if (type === 'email') {
+      window.open(`mailto:${value}`, '_blank');
     }
   };
 
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-x-hidden">
+      <div className="min-h-screen bg-gradient-to-r from-blue-900 via-purple-900 to-purple-800">
         <SEOHead />
         
-        {/* Advanced Electronic Circuit Background */}
-        <div className="fixed inset-0 opacity-20 pointer-events-none">
-          {/* Base gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950"></div>
-          
-          {/* Animated circuit lines */}
-          <div className="absolute inset-0">
-            {/* Horizontal scanning lines */}
-            <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
-            <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400 to-transparent animate-pulse" style={{ animationDelay: '1s' }}></div>
-            
-            {/* Vertical scanning lines */}
-            <div className="absolute top-0 left-1/3 w-px h-full bg-gradient-to-b from-transparent via-cyan-300 to-transparent animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-            <div className="absolute top-0 right-1/4 w-px h-full bg-gradient-to-b from-transparent via-blue-300 to-transparent animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-          </div>
-
-          {/* Circuit nodes */}
-          <div className="absolute top-1/4 left-1/3 w-3 h-3 bg-cyan-400 rounded-full shadow-lg shadow-cyan-400/50 animate-pulse"></div>
-          <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50 animate-pulse" style={{ animationDelay: '0.7s' }}></div>
-          <div className="absolute bottom-1/3 left-1/4 w-4 h-4 bg-indigo-400 rounded-full shadow-lg shadow-indigo-400/50 animate-pulse" style={{ animationDelay: '1.2s' }}></div>
-          <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-cyan-300 rounded-full shadow-lg shadow-cyan-300/50 animate-pulse" style={{ animationDelay: '0.3s' }}></div>
-
-          {/* Floating particles */}
-          <div className="absolute top-1/5 left-1/5 w-1 h-1 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.5s' }}></div>
-          <div className="absolute bottom-1/4 right-1/5 w-1 h-1 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-3/4 left-2/3 w-1 h-1 bg-indigo-400 rounded-full animate-bounce" style={{ animationDelay: '1.5s' }}></div>
-
-          {/* Complex circuit paths */}
-          <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            
-            {/* Organic circuit paths */}
-            <path d="M100,200 Q300,100 500,200 T900,150" stroke="rgba(34, 211, 238, 0.3)" strokeWidth="1" fill="none" filter="url(#glow)">
-              <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="8s" repeatCount="indefinite"/>
-            </path>
-            <path d="M200,400 Q400,300 600,400 T1000,350" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="1" fill="none" filter="url(#glow)">
-              <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="10s" repeatCount="indefinite"/>
-            </path>
-            <path d="M50,600 Q250,500 450,600 T750,550" stroke="rgba(99, 102, 241, 0.3)" strokeWidth="1" fill="none" filter="url(#glow)">
-              <animate attributeName="stroke-dasharray" values="0,1000;1000,0" dur="12s" repeatCount="indefinite"/>
-            </path>
-          </svg>
-        </div>
-
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-blue-400/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
+        {/* Header */}
+        <header className="bg-gray-900/95 backdrop-blur-sm border-b border-blue-400/30 sticky top-0 z-40">
+          <div className="container mx-auto px-6 py-4">
+            <nav className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="relative p-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl shadow-lg hover:shadow-cyan-400/30 transition-all duration-300">
-                  {/* Scanning effect around bot icon */}
-                  <div className="absolute inset-0 rounded-xl border-2 border-cyan-300/50 animate-pulse"></div>
-                  <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-cyan-400/20 to-blue-400/20 blur-sm"></div>
-                  <Bot className="relative h-7 w-7 text-white animate-pulse" />
-                </div>
+                <Bot className="h-8 w-8 text-cyan-400" />
                 <div className="flex flex-col">
-                  <span className="text-lg font-bold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">
-                    EXÉRCITO DE AGENTES
-                  </span>
-                  <span className="text-xs text-blue-300 -mt-1">
-                    Powered by EssencialBot
-                  </span>
+                  <span className="text-xl font-bold text-white">EXÉRCITO DE AGENTES</span>
+                  <span className="text-xs text-cyan-300">NOSSA CULTURA</span>
                 </div>
               </div>
-
-              {/* Desktop Navigation */}
-              <div className="hidden md:block">
-                <div className="flex items-center space-x-8">
-                  {[
-                    { id: 'home', label: 'INÍCIO' },
-                    { id: 'automation', label: 'AUTOMAÇÃO IA' },
-                    { id: 'accounting', label: 'CONTABILIDADE' },
-                    { id: 'consulting', label: 'CONSULTORIA' },
-                    { id: 'education', label: 'EDUCAÇÃO' },
-                    { id: 'agents', label: 'AGENTES' },
-                    { id: 'contact', label: 'CONTATO' }
-                  ].map((item) => (
-                    <button
-                      key={item.id}
-                      onClick={() => scrollToSection(item.id)}
-                      className={`px-3 py-2 text-sm font-medium transition-colors ${
-                        activeSection === item.id
-                          ? 'text-cyan-300 border-b-2 border-cyan-300'
-                          : 'text-gray-300 hover:text-cyan-300'
-                      }`}
-                    >
-                      {item.label}
-                    </button>
-                  ))}
-                </div>
+              <div className="hidden md:flex items-center space-x-8">
+                <a href="#automation" className="text-gray-300 hover:text-cyan-400 transition-colors font-medium">AUTOMAÇÃO</a>
+                <a href="#accounting" className="text-gray-300 hover:text-cyan-400 transition-colors font-medium">CONTABILIDADE</a>
+                <a href="#consulting" className="text-gray-300 hover:text-cyan-400 transition-colors font-medium">CONSULTORIA</a>
+                <a href="#education" className="text-gray-300 hover:text-cyan-400 transition-colors font-medium">EDUCAÇÃO</a>
+                <a href="#agents" className="text-gray-300 hover:text-cyan-400 transition-colors font-medium">AGENTES</a>
+                <a href="#contact" className="text-gray-300 hover:text-cyan-400 transition-colors font-medium">CONTATO</a>
               </div>
+            </nav>
+          </div>
+        </header>
 
-              {/* Mobile menu button */}
-              <div className="md:hidden">
-                <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="p-2 rounded-md text-gray-400 hover:text-cyan-300"
+        {/* Hero Section */}
+        <section className="relative py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-cyan-900/20"></div>
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 bg-clip-text text-transparent drop-shadow-[0_0_6px_rgba(34,211,238,0.6)]">
+                EXÉRCITO DE AGENTES
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+                Transforme seu negócio com <span className="text-cyan-400 font-semibold">EssencialBot</span> - 
+                IA avançada, automação inteligente, contabilidade smart e consultoria especializada
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => handleButtonClick('start_automation', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/50 text-white"
                 >
-                  {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  COMEÇAR AUTOMAÇÃO
+                </button>
+                <button 
+                  onClick={() => handleContactClick('whatsapp', config.WHATSAPP_NUMBER)}
+                  className="px-8 py-4 bg-transparent border-2 border-cyan-400 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-400 hover:text-gray-900 transition-all duration-300"
+                >
+                  FALAR COM ESPECIALISTA
+                </button>
+              </div>
+            </div>
+
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div 
+                onClick={() => handleCardClick('automation', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                className="bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/20 cursor-pointer group"
+              >
+                <div className="p-4 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl mb-6 w-fit group-hover:from-cyan-400/30 group-hover:to-blue-400/30 transition-all duration-300">
+                  <Zap className="h-8 w-8 text-cyan-400 group-hover:text-cyan-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors">AUTOMAÇÃO IA</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  EssencialBot personalizado para seu negócio. Automatize processos, integre sistemas e aumente produtividade com IA avançada.
+                </p>
+                <div className="flex items-center text-cyan-400 font-semibold group-hover:text-cyan-300">
+                  <span>Explorar Agente</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('accounting', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                className="bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/20 cursor-pointer group"
+              >
+                <div className="p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl mb-6 w-fit group-hover:from-green-400/30 group-hover:to-emerald-400/30 transition-all duration-300">
+                  <Calculator className="h-8 w-8 text-green-400 group-hover:text-green-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-green-300 transition-colors">CONTABILIDADE INTELIGENTE</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Escritório contábil completo com IA. Abertura de empresas, obrigações fiscais, planejamento tributário e muito mais.
+                </p>
+                <div className="flex items-center text-green-400 font-semibold group-hover:text-green-300">
+                  <span>Consultar Contabilidade Inteligente</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('consulting', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
+                className="bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/20 cursor-pointer group"
+              >
+                <div className="p-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl mb-6 w-fit group-hover:from-purple-400/30 group-hover:to-pink-400/30 transition-all duration-300">
+                  <Users className="h-8 w-8 text-purple-400 group-hover:text-purple-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-300 transition-colors">CONSULTORIA EXPERT</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Gestão empresarial, recuperação judicial, busca de crédito e consultoria com IA. Soluções completas para seu crescimento.
+                </p>
+                <div className="flex items-center text-purple-400 font-semibold group-hover:text-purple-300">
+                  <span>Consultar Expert</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('education', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
+                className="bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/20 cursor-pointer group"
+              >
+                <div className="p-4 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-xl mb-6 w-fit group-hover:from-orange-400/30 group-hover:to-red-400/30 transition-all duration-300">
+                  <GraduationCap className="h-8 w-8 text-orange-400 group-hover:text-orange-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-orange-300 transition-colors">EDUCAÇÃO PRO</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Treinamentos em IA empresarial, contabilidade digital, controladoria e gestão financeira. Capacite sua equipe.
+                </p>
+                <div className="flex items-center text-orange-400 font-semibold group-hover:text-orange-300">
+                  <span>Consultar Educação Pro</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('agents', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                className="bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/20 cursor-pointer group"
+              >
+                <div className="p-4 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-xl mb-6 w-fit group-hover:from-indigo-400/30 group-hover:to-blue-400/30 transition-all duration-300">
+                  <Settings className="h-8 w-8 text-indigo-400 group-hover:text-indigo-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-indigo-300 transition-colors">PERSONALIZE SEU AGENTE</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Crie agentes IA personalizados para suas necessidades específicas. Automação sob medida para seu negócio único.
+                </p>
+                <div className="flex items-center text-indigo-400 font-semibold group-hover:text-indigo-300">
+                  <span>Personalize seu Agente</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div className="bg-gray-900/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-cyan-400/20 group">
+                <div className="p-4 bg-gradient-to-br from-cyan-500/20 to-teal-500/20 rounded-xl mb-6 w-fit group-hover:from-cyan-400/30 group-hover:to-teal-400/30 transition-all duration-300">
+                  <Bot className="h-8 w-8 text-cyan-400 group-hover:text-cyan-300" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors">ESSENCIALBOT CONCIERGE</h3>
+                <p className="text-gray-300 mb-6 leading-relaxed">
+                  Seu assistente pessoal especializado. Acesse informações detalhadas sobre todos os nossos serviços em um só lugar.
+                </p>
+                <button 
+                  onClick={() => handleButtonClick('concierge', 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge')}
+                  className="flex items-center text-cyan-400 font-semibold group-hover:text-cyan-300"
+                >
+                  <span>Acessar Concierge</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden bg-gray-800/95 backdrop-blur-sm">
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {[
-                  { id: 'home', label: 'INÍCIO' },
-                  { id: 'automation', label: 'AUTOMAÇÃO IA' },
-                  { id: 'accounting', label: 'CONTABILIDADE' },
-                  { id: 'consulting', label: 'CONSULTORIA' },
-                  { id: 'education', label: 'EDUCAÇÃO' },
-                  { id: 'agents', label: 'AGENTES' },
-                  { id: 'contact', label: 'CONTATO' }
-                ].map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-300"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </nav>
-
-        {/* Hero Section */}
-        <section id="home" className="min-h-screen flex items-center justify-center relative pt-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="mb-8">
-              <div className="inline-flex items-center justify-center p-6 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-full border border-cyan-400/30 mb-8 relative">
-                {/* Pulsing aura around bot */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400/10 to-blue-400/10 animate-ping"></div>
-                <div className="absolute inset-0 rounded-full border-2 border-cyan-300/30 animate-pulse"></div>
-                <Bot className="relative h-20 w-20 text-cyan-300 animate-pulse" />
-              </div>
-              
-              {/* Enhanced title with neon cyan effect */}
-              <div className="relative mb-6">
-                <h1 className="text-5xl md:text-7xl font-bold mb-4 relative">
-                  {/* Glow backdrop */}
-                  <div className="absolute inset-0 text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 bg-clip-text text-transparent blur-sm opacity-50"></div>
-                  
-                  {/* Scanning effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-300/20 to-transparent animate-pulse"></div>
-                  
-                  {/* Main text with neon cyan */}
-                  <span className="relative bg-gradient-to-r from-cyan-300 via-cyan-400 to-cyan-300 bg-clip-text text-transparent animate-pulse">
-                    EXÉRCITO DE AGENTES
-                  </span>
-                </h1>
-                
-                {/* Scanning line effect */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-pulse"></div>
-              </div>
-              
-              <div className="flex items-center justify-center space-x-2 mb-6">
-                <span className="text-lg text-cyan-300">Powered by</span>
-                <span className="text-2xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  EssencialBot
-                </span>
-              </div>
-              <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Democratizando o acesso à solução e inteligência artificial para todos os negócios
+        {/* Nossa Cultura Section */}
+        <section className="py-20 bg-gray-900/50 backdrop-blur-sm">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                🌟 NOSSA CULTURA
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Conheça a essência estratégica que move o Exército de Agentes
               </p>
+            </div>
 
-              {/* Nossa Cultura */}
-              <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-blue-400/20 p-8 mb-8 max-w-4xl mx-auto">
-                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  🌟 NOSSA CULTURA
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                  <div className="text-center">
-                    <h4 className="text-lg font-semibold text-cyan-200 mb-2">🔹 MISSÃO</h4>
-                    <p className="text-sm text-gray-300">
-                      Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções que impulsionem o crescimento sustentável.
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-lg font-semibold text-cyan-200 mb-2">🔭 VISÃO</h4>
-                    <p className="text-sm text-gray-300">
-                      Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática.
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="text-lg font-semibold text-cyan-200 mb-2">💎 VALORES</h4>
-                    <p className="text-sm text-gray-300">
-                      Respeito acima de tudo, disciplina com empatia, tecnologia para todos, compromisso com resultado.
-                    </p>
-                  </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              {/* Missão */}
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center mb-6">
+                  <Target className="h-8 w-8 text-cyan-400 mr-3" />
+                  <h3 className="text-2xl font-bold text-white">MISSÃO</h3>
                 </div>
+                <p className="text-gray-300 leading-relaxed">
+                  Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções contábeis, consultivas e tecnológicas que aliviem a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade.
+                </p>
+              </div>
 
-                <div className="text-center space-y-2">
-                  <p className="text-cyan-300 font-semibold">"Não paramos até conseguir!"</p>
-                  <p className="text-blue-300 font-semibold">"A tecnologia está acessível a todos. Aqui temos a solução que você procura!"</p>
-                  <p className="text-purple-300 font-semibold">"Respeito, estrutura e entrega — esse é o nosso jeito."</p>
+              {/* Visão */}
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center mb-6">
+                  <Eye className="h-8 w-8 text-purple-400 mr-3" />
+                  <h3 className="text-2xl font-bold text-white">VISÃO</h3>
+                </div>
+                <p className="text-gray-300 leading-relaxed">
+                  Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática, confiável e presente no cotidiano dos que mais precisam — e menos têm acesso.
+                </p>
+              </div>
+
+              {/* Valores */}
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 hover:border-cyan-400/60 transition-all duration-300">
+                <div className="flex items-center mb-6">
+                  <Heart className="h-8 w-8 text-pink-400 mr-3" />
+                  <h3 className="text-2xl font-bold text-white">VALORES</h3>
+                </div>
+                <div className="space-y-3 text-gray-300">
+                  <p><strong className="text-cyan-400">Respeito acima de tudo:</strong> Não toleramos desrespeito em nenhuma forma</p>
+                  <p><strong className="text-purple-400">Disciplina com empatia:</strong> Agimos com firmeza e método, mas sempre com humanidade</p>
+                  <p><strong className="text-green-400">Tecnologia para todos:</strong> Acreditamos que inovação só faz sentido se for acessível</p>
+                  <p><strong className="text-orange-400">Compromisso com o resultado:</strong> Não paramos até conseguir</p>
+                  <p><strong className="text-blue-400">Clareza e estrutura:</strong> Preferimos processos bem definidos</p>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
-              {[
-                { icon: Brain, title: 'IA AVANÇADA', desc: 'EssencialBot com inteligência personalizada', color: 'from-purple-500 to-pink-500', link: 'automation' },
-                { icon: Calculator, title: 'CONTABILIDADE INTELIGENTE', desc: 'Escritório contábil completo', color: 'from-green-500 to-emerald-500', link: 'accounting' },
-                { icon: Users, title: 'CONSULTORIA EXPERT', desc: 'Estratégias empresariais eficazes', color: 'from-blue-500 to-cyan-500', link: 'consulting' },
-                { icon: GraduationCap, title: 'EDUCAÇÃO PRO', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500', link: 'education' },
-                { icon: Bot, title: 'PERSONALIZE SEU AGENTE', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500', link: 'agents' }
-              ].map((item, index) => (
-                <div key={index} className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 cursor-pointer" onClick={() => openAgentLink(item.link)}>
-                  <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
-                    <item.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2 text-cyan-200">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
+            {/* Princípios Culturais */}
+            <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30 mb-8">
+              <div className="flex items-center mb-6">
+                <Compass className="h-8 w-8 text-indigo-400 mr-3" />
+                <h3 className="text-2xl font-bold text-white">PRINCÍPIOS CULTURAIS EM AÇÃO</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300">
+                <div>
+                  <p><strong className="text-cyan-400">Estilo de liderança:</strong> Direto, estruturado e focado em resultados</p>
+                  <p><strong className="text-purple-400">Atitude frente a erros:</strong> Corrigimos o processo, não a pessoa</p>
+                  <p><strong className="text-green-400">Tom de voz interno:</strong> Objetivo, respeitoso e motivador</p>
                 </div>
-              ))}
+                <div>
+                  <p><strong className="text-orange-400">Ambiente de trabalho:</strong> Remoto e disciplinado</p>
+                  <p><strong className="text-blue-400">Decisões difíceis:</strong> Baseadas em dados e validação intuitiva</p>
+                </div>
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => {
-                  scrollToSection('automation');
-                  trackEvent('cta_click', { button: 'começar_agora' });
-                }}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 flex items-center justify-center group shadow-lg hover:shadow-cyan-400/30"
-              >
-                COMEÇAR AGORA
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button 
-                onClick={() => openAgentLink('agents')}
-                className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105"
-              >
-                VER AGENTES
-              </button>
+            {/* Frases-Símbolo */}
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-white mb-6">🧠 FRASES-SÍMBOLO DA CULTURA</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 p-6 rounded-xl border border-cyan-400/30">
+                  <p className="text-cyan-300 font-bold text-lg">"Não paramos até conseguir!"</p>
+                </div>
+                <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-6 rounded-xl border border-purple-400/30">
+                  <p className="text-purple-300 font-bold text-lg">"A tecnologia está acessível a todos!"</p>
+                </div>
+                <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 p-6 rounded-xl border border-green-400/30">
+                  <p className="text-green-300 font-bold text-lg">"Respeito, estrutura e entrega!"</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Automation Section */}
-        <section id="automation" className="py-20 bg-gray-800/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="automation" className="py-20">
+          <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  AUTOMAÇÃO INTELIGENTE
-                </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                🤖 AUTOMAÇÃO INTELIGENTE
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                O <span className="text-cyan-300 font-semibold">EssencialBot</span> trabalha 24/7 para otimizar sua empresa com inteligência artificial avançada
+                EssencialBot revoluciona seu negócio com IA avançada e automação personalizada
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-              {[
-                {
-                  level: 'NÍVEL 2 - INTEGRADO',
-                  price: 'Setup: R$ 397 + R$ 397/mês',
-                  features: [
-                    'EssencialBot personalizado',
-                    'Múltiplas integrações',
-                    'Machine Learning',
-                    'Análise de dados',
-                    'Suporte básico',
-                    '1 atualização por semana'
-                  ],
-                  popular: false
-                },
-                {
-                  level: 'NÍVEL 3 - AVANÇADO',
-                  price: 'Setup: R$ 497 + R$ 497/mês',
-                  features: [
-                    'Tudo do Integrado',
-                    'Landing page personalizada',
-                    'Deep Learning',
-                    'Processamento de linguagem neural',
-                    'Consultoria incluída',
-                    '3 atualizações por semana'
-                  ],
-                  popular: true
-                }
-              ].map((plan, index) => (
-                <div key={index} className={`relative p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border ${plan.popular ? 'border-cyan-400' : 'border-gray-700'} hover:border-cyan-400/60 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20`}>
-                  {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                        MAIS POPULAR
-                      </span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <h3 className="text-3xl font-bold text-white mb-6">Níveis de Automação</h3>
+                
+                <div className="space-y-6">
+                  <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-blue-400/30">
+                    <div className="flex items-center mb-4">
+                      <div className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-4">
+                        NÍVEL 2
+                      </div>
+                      <h4 className="text-xl font-bold text-white">INTEGRADO</h4>
                     </div>
-                  )}
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold mb-2 text-cyan-200">{plan.level}</h3>
-                    <div className="text-4xl font-bold text-cyan-300 mb-4">{plan.price}</div>
+                    <ul className="space-y-2 text-gray-300 mb-4">
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />EssencialBot personalizado</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Integração Google Sheets</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Automação Make/Zapier</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Relatórios automáticos</li>
+                    </ul>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-cyan-400">R$ 297/mês</span>
+                      <button 
+                        onClick={() => handleButtonClick('choose_plan_2', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                        className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 text-white"
+                      >
+                        ESCOLHER PLANO
+                      </button>
+                    </div>
                   </div>
-                  <ul className="space-y-4 mb-8">
-                    {plan.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center">
-                        <CheckCircle className="h-5 w-5 text-green-400 mr-3" />
-                        <span className="text-white">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button 
-                    onClick={() => {
-                      openAgentLink('automation');
-                      trackEvent('plan_click', { plan: plan.level });
-                    }}
-                    className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
-                      plan.popular 
-                        ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg hover:shadow-cyan-400/30' 
-                        : 'border border-cyan-400 hover:bg-cyan-400/10'
-                    }`}
-                  >
-                    ESCOLHER PLANO
-                  </button>
+
+                  <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-purple-400/30">
+                    <div className="flex items-center mb-4">
+                      <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold mr-4">
+                        NÍVEL 3
+                      </div>
+                      <h4 className="text-xl font-bold text-white">AVANÇADO</h4>
+                    </div>
+                    <ul className="space-y-2 text-gray-300 mb-4">
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Tudo do Nível 2 +</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Machine Learning avançado</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Análise preditiva</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Multi-plataformas</li>
+                      <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Consultoria incluída</li>
+                    </ul>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-purple-400">R$ 497/mês</span>
+                      <button 
+                        onClick={() => handleButtonClick('choose_plan_3', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                        className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 text-white"
+                      >
+                        ESCOLHER PLANO
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-2xl border border-blue-400/30">
+                <h3 className="text-2xl font-bold text-white mb-6">Por que EssencialBot?</h3>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3">
+                    <Star className="h-6 w-6 text-yellow-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-white">IA Personalizada</h4>
+                      <p className="text-gray-300">Treinada especificamente para seu negócio e necessidades</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Star className="h-6 w-6 text-yellow-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-white">Integração Total</h4>
+                      <p className="text-gray-300">Conecta com suas ferramentas e sistemas existentes</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Star className="h-6 w-6 text-yellow-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-white">Suporte Especializado</h4>
+                      <p className="text-gray-300">Equipe dedicada para implementação e suporte contínuo</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <Star className="h-6 w-6 text-yellow-400 mt-1 flex-shrink-0" />
+                    <div>
+                      <h4 className="font-semibold text-white">ROI Comprovado</h4>
+                      <p className="text-gray-300">Redução de até 80% no tempo de tarefas repetitivas</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Accounting Section */}
-        <section id="accounting" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="accounting" className="py-20 bg-gray-900/50 backdrop-blur-sm">
+          <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  ESCRITÓRIO DE CONTABILIDADE
-                </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                📊 CONTABILIDADE INTELIGENTE
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Somos um escritório de contabilidade especializado em empresas de comércio e serviços, oferecendo serviços completos com automação do <span className="text-cyan-300 font-semibold">EssencialBot</span>
+                Escritório contábil completo com tecnologia de ponta e automação IA
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              {[
-                {
-                  icon: Calculator,
-                  title: 'ABERTURA DE EMPRESAS',
-                  description: 'Constituição completa de empresas com toda documentação necessária',
-                  color: 'from-green-500 to-emerald-500'
-                },
-                {
-                  icon: Brain,
-                  title: 'CONTABILIDADE MENSAL',
-                  description: 'Escrituração contábil, balancetes e demonstrações financeiras',
-                  color: 'from-blue-500 to-cyan-500'
-                },
-                {
-                  icon: Shield,
-                  title: 'OBRIGAÇÕES FISCAIS',
-                  description: 'SPED, ECF, DEFIS e todas as obrigações acessórias',
-                  color: 'from-purple-500 to-pink-500'
-                },
-                {
-                  icon: Users,
-                  title: 'DEPARTAMENTO PESSOAL',
-                  description: 'Folha de pagamento, admissões, demissões e eSocial',
-                  color: 'from-orange-500 to-red-500'
-                },
-                {
-                  icon: Network,
-                  title: 'PLANEJAMENTO TRIBUTÁRIO',
-                  description: 'Otimização fiscal e escolha do melhor regime tributário',
-                  color: 'from-indigo-500 to-purple-500'
-                },
-                {
-                  icon: Cpu,
-                  title: 'RELATÓRIOS GERENCIAIS',
-                  description: 'Análises financeiras e relatórios para tomada de decisão',
-                  color: 'from-teal-500 to-cyan-500'
-                }
-              ].map((feature, index) => (
-                <div key={index} className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                  <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${feature.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
-                    <feature.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3 text-cyan-200">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.description}</p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="space-y-8">
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-green-400/30">
+                  <h3 className="text-xl font-bold text-white mb-4">🏢 Serviços Empresariais</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Abertura de empresas</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Alterações contratuais</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Encerramento de empresas</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Regularização fiscal</li>
+                  </ul>
                 </div>
-              ))}
-            </div>
 
-            <div className="text-center">
-              <button 
-                onClick={() => openAgentLink('accounting')}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
-              >
-                CONSULTAR CONTABILIDADE INTELIGENTE
-              </button>
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-blue-400/30">
+                  <h3 className="text-xl font-bold text-white mb-4">📋 Obrigações Fiscais</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />SPED Contábil e Fiscal</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />ECF (Escrituração Contábil Fiscal)</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />DEFIS (Simples Nacional)</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Declarações mensais e anuais</li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-purple-400/30">
+                  <h3 className="text-xl font-bold text-white mb-4">👥 Departamento Pessoal</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Folha de pagamento</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />eSocial e FGTS</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Admissões e demissões</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Benefícios e férias</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-orange-400/30">
+                  <h3 className="text-xl font-bold text-white mb-4">💰 Planejamento Tributário</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Análise de regime tributário</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Otimização fiscal</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Recuperação de tributos</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Consultoria tributária</li>
+                  </ul>
+                </div>
+
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/30">
+                  <h3 className="text-xl font-bold text-white mb-4">🤖 Diferencial IA</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Automação de processos</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Relatórios inteligentes</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Alertas automáticos</li>
+                    <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Dashboard em tempo real</li>
+                  </ul>
+                </div>
+
+                <div className="text-center">
+                  <button 
+                    onClick={() => handleButtonClick('accounting_consult', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                    className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-400/50 text-white"
+                  >
+                    CONSULTAR CONTABILIDADE INTELIGENTE
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Consulting Section */}
-        <section id="consulting" className="py-20 bg-gray-800/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    CONSULTORIA EMPRESARIAL
-                  </span>
-                </h2>
-                <p className="text-xl text-gray-300 mb-8">
-                  Consultoria completa que vai além da IA, oferecendo soluções estratégicas para todos os aspectos do seu negócio
-                </p>
-                <div className="space-y-4 mb-8">
-                  {[
-                    'Gestão empresarial e planejamento estratégico',
-                    'Fluxo de caixa e controle financeiro',
-                    'Recuperação judicial e reestruturação',
-                    'Busca de crédito em factorings',
-                    'Fusões e aquisições',
-                    'Consultoria com IA e automação'
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="h-5 w-5 text-cyan-300 mr-3" />
-                      <span className="text-white">{item}</span>
-                    </div>
-                  ))}
-                </div>
-                <button 
-                  onClick={() => openAgentLink('consulting')}
-                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
-                >
-                  CONSULTAR EXPERT
-                </button>
-              </div>
-              <div className="relative">
-                <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
-                  <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
-                    <Users className="h-16 w-16 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">CONSULTORIA ESPECIALIZADA</h3>
-                  <p className="text-white mb-6">
-                    Nossa equipe de especialistas combina décadas de experiência empresarial com soluções inovadoras para entregar resultados excepcionais em todas as áreas do seu negócio.
-                  </p>
-                  
-                  {/* Alert Badge for Critical Services */}
-                  <div className="relative inline-block">
-                    <div className="bg-red-500/20 border border-red-400/50 rounded-lg p-3 backdrop-blur-sm">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                        <span className="text-red-300 font-semibold text-sm uppercase tracking-wide">
-                          RECUPERAÇÃO JUDICIAL, CAPTURA DE CRÉDITO, REESTRUTURAÇÃO
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Education Section */}
-        <section id="education" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="relative">
-                <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
-                  <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg mb-6">
-                    <GraduationCap className="h-16 w-16 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-4 text-cyan-200">CAPACITAÇÃO AVANÇADA</h3>
-                  <p className="text-white mb-6">
-                    Prepare sua equipe para a era digital com nossos cursos especializados em contabilidade, controladoria, finanças e tecnologia.
-                  </p>
-                  <div className="space-y-3">
-                    {[
-                      'Workshops práticos especializados',
-                      'Certificações reconhecidas no mercado',
-                      'Mentoria personalizada por especialistas',
-                      'Projetos reais com EssencialBot',
-                      'Networking com profissionais da área',
-                      'Material didático atualizado'
-                    ].map((item, index) => (
-                      <div key={index} className="flex items-center">
-                        <Star className="h-4 w-4 text-yellow-400 mr-2" />
-                        <span className="text-sm text-white">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    EDUCAÇÃO & TREINAMENTOS
-                  </span>
-                </h2>
-                <p className="text-xl text-gray-300 mb-8">
-                  Cursos, palestras e workshops especializados em áreas contábeis, financeiras e tecnológicas para empresas
-                </p>
-                
-                <div className="space-y-6 mb-8">
-                  {[
-                    {
-                      category: '🤖 IA EMPRESARIAL',
-                      courses: ['Fundamentos de IA', 'Implementação de Chatbots', 'Machine Learning para Negócios', 'Automação Inteligente']
-                    },
-                    {
-                      category: '📊 CONTABILIDADE DIGITAL',
-                      courses: ['Contabilidade 4.0', 'SPED e Obrigações Digitais', 'Análise de Balanços', 'Contabilidade Gerencial']
-                    },
-                    {
-                      category: '🎯 CONTROLADORIA',
-                      courses: ['Controles Internos', 'Auditoria Interna', 'Compliance Empresarial', 'Gestão de Riscos']
-                    },
-                    {
-                      category: '💰 GESTÃO FINANCEIRA',
-                      courses: ['Fluxo de Caixa Avançado', 'Análise Financeira', 'Orçamento Empresarial', 'Planejamento Estratégico']
-                    }
-                  ].map((area, index) => (
-                    <div key={index} className="p-4 bg-gray-800/30 rounded-lg border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
-                      <h4 className="text-cyan-300 font-semibold mb-2">{area.category}</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {area.courses.map((course, cIndex) => (
-                          <span key={cIndex} className="text-sm text-white">• {course}</span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <button 
-                  onClick={() => openAgentLink('education')}
-                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
-                >
-                  CONSULTAR EDUCAÇÃO PRO
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Agents Models Section */}
-        <section id="agents" className="py-20 bg-gray-800/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="consulting" className="py-20">
+          <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  MODELOS DO ESSENCIALBOT
-                </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                💼 CONSULTORIA EXPERT
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Escolha o nível de inteligência artificial perfeito para suas necessidades empresariais
+                Soluções empresariais completas para crescimento e recuperação de negócios
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              {[
-                {
-                  level: 'NÍVEL 1',
-                  title: 'PERSONALIZADO',
-                  description: 'Agente customizado sob demanda com respostas de alta performance',
-                  features: ['Agente customizado sob demanda', 'Respostas de alta performance', 'Sem suporte técnico', 'Entrega via link GPT privado'],
-                  price: 'Setup: R$ 120 + R$ 50 manutenção',
-                  color: 'from-green-500 to-emerald-400'
-                },
-                {
-                  level: 'NÍVEL 2',
-                  title: 'INTEGRADO',
-                  description: 'EssencialBot inteligente com aprendizado e integração avançada',
-                  features: ['Agente customizado sob demanda', 'Múltiplas integrações', 'Machine Learning', 'Análise de dados', 'Suporte básico', '1 atualização por semana'],
-                  price: 'Setup: R$ 397 + R$ 397/mês',
-                  color: 'from-blue-500 to-cyan-400'
-                },
-                {
-                  level: 'NÍVEL 3',
-                  title: 'AVANÇADO',
-                  description: 'EssencialBot de última geração com capacidades cognitivas avançadas',
-                  features: ['Tudo do Integrado', 'Landing page personalizada', 'Deep Learning', 'Processamento de linguagem neural', 'Consultoria incluída', '3 atualizações por semana'],
-                  price: 'Setup: R$ 497 + R$ 497/mês',
-                  color: 'from-purple-500 to-pink-400'
-                }
-              ].map((agent, index) => (
-                <div key={index} className="relative p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-cyan-400/60 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                  <div className={`inline-flex items-center px-3 py-1 rounded-full bg-gradient-to-r ${agent.color} text-white text-sm font-semibold mb-4`}>
-                    {agent.level}
-                  </div>
-                  <h3 className="text-2xl font-bold mb-3 text-cyan-200">{agent.title}</h3>
-                  <p className="text-gray-300 mb-4">{agent.description}</p>
-                  <div className="text-lg font-bold text-cyan-300 mb-6">{agent.price}</div>
-                  <ul className="space-y-3 mb-8">
-                    {agent.features.map((feature, fIndex) => (
-                      <li key={fIndex} className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-green-400 mr-3" />
-                        <span className="text-sm text-white">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <button 
-                    onClick={() => {
-                      openAgentLink('agents');
-                      trackEvent('agent_demo_click', { agent: agent.level });
-                    }}
-                    className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg`}
-                  >
-                    SOLICITAR DEMO
-                  </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-purple-400/30 hover:border-purple-300/60 transition-all duration-300">
+                <div className="p-3 bg-purple-500/20 rounded-lg mb-4 w-fit">
+                  <Users className="h-6 w-6 text-purple-400" />
                 </div>
-              ))}
-            </div>
-
-            {/* Detailed Examples Section */}
-            <div className="space-y-12">
-              {/* Nível 1 Examples */}
-              <div>
-                <h3 className="text-3xl font-bold mb-8 text-center">
-                  <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
-                    NÍVEL 1 — ESSENCIALBOT PERSONALIZADO
-                  </span>
-                </h3>
-                <p className="text-center text-gray-400 mb-8">
-                  Sem automação. Personalidade e função ajustadas para o perfil desejado. Entrega via link GPT privado.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    { title: 'ESSENCIALBOT PROFESSOR UNIVERSITÁRIO', desc: 'Interage como professor de ensino superior com didática formal e linguagem acessível. Ideal para estudantes e mentoria acadêmica.' },
-                    { title: 'ESSENCIALBOT NUTRICIONISTA', desc: 'Atende com linguagem acolhedora e técnica, explicando dietas e orientações nutricionais personalizadas.' },
-                    { title: 'ESSENCIALBOT COSTUREIRO', desc: 'Atua como profissional experiente em moda sob medida. Usa linguagem prática de ateliê com referências de moda.' },
-                    { title: 'ESSENCIALBOT DESENVOLVEDOR MOBILE', desc: 'Responde com vocabulário técnico e linguagem direta. Ideal para mentorias em desenvolvimento.' },
-                    { title: 'ESSENCIALBOT CONSULTOR JURÍDICO', desc: 'Atende dúvidas iniciais com linguagem descomplicada. Ideal para advocacia preventiva e esclarecimentos básicos.' }
-                  ].map((bot, index) => (
-                    <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-green-400/20 hover:border-green-400/40 transition-all duration-300">
-                      <h4 className="text-lg font-semibold text-green-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </div>
-                  ))}
-                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Gestão Empresarial</h3>
+                <p className="text-gray-300 mb-4">Planejamento estratégico, estruturação organizacional e otimização de processos.</p>
+                <ul className="space-y-1 text-sm text-gray-400">
+                  <li>• Planejamento estratégico</li>
+                  <li>• Reestruturação organizacional</li>
+                  <li>• Otimização de processos</li>
+                </ul>
               </div>
 
-              {/* Nível 2 Examples */}
-              <div>
-                <h3 className="text-3xl font-bold mb-8 text-center">
-                  <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                    NÍVEL 2 — ESSENCIALBOT INTEGRADO
-                  </span>
-                </h3>
-                <p className="text-center text-gray-400 mb-8">
-                  Com automação leve. GPT + formulário + integração via webhook com WhatsApp e Google Sheets.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-                    { title: 'ESSENCIALBOT ATENDIMENTO COMERCIAL', desc: 'Recebe solicitações de orçamento e envia para o responsável via WhatsApp. Ideal para lojas e comércios locais.' },
-                    { title: 'ESSENCIALBOT COLETA DE DOCUMENTOS', desc: 'Automatiza a coleta de arquivos e comprovantes de clientes. Atualiza planilhas e envia alertas ao gestor.' },
-                    { title: 'ESSENCIALBOT CONTROLE DE PEDIDOS', desc: 'Recebe pedidos de produtos ou refeições e os redireciona para setores específicos. Ideal para restaurantes e deliveries.' }
-                  ].map((bot, index) => (
-                    <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-blue-400/20 hover:border-blue-400/40 transition-all duration-300">
-                      <h4 className="text-lg font-semibold text-blue-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </div>
-                  ))}
+              <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-green-400/30 hover:border-green-300/60 transition-all duration-300">
+                <div className="p-3 bg-green-500/20 rounded-lg mb-4 w-fit">
+                  <Calculator className="h-6 w-6 text-green-400" />
                 </div>
+                <h3 className="text-xl font-bold text-white mb-3">Fluxo de Caixa</h3>
+                <p className="text-gray-300 mb-4">Controle financeiro avançado e gestão de capital de giro para sustentabilidade.</p>
+                <ul className="space-y-1 text-sm text-gray-400">
+                  <li>• Controle de fluxo de caixa</li>
+                  <li>• Gestão de capital de giro</li>
+                  <li>• Projeções financeiras</li>
+                </ul>
               </div>
 
-              {/* Nível 3 Examples */}
-              <div>
-                <h3 className="text-3xl font-bold mb-8 text-center">
-                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                    NÍVEL 3 — ESSENCIALBOT AVANÇADO
-                  </span>
-                </h3>
-                <p className="text-center text-gray-400 mb-8">
-                  Com landing page personalizada, identidade visual e fluxos automatizados integrados.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {[
-                    { title: 'ESSENCIALBOT CENTRAL DE AGENDAMENTOS', desc: 'Permite marcação de horários com confirmação automática, integração com agenda e WhatsApp. Ideal para clínicas, salões e consultórios.' },
-                    { title: 'ESSENCIALBOT RECEPÇÃO INTELIGENTE', desc: 'Atua como recepcionista digital em sites e páginas institucionais. Apresenta os serviços, coleta informações e encaminha para atendimento.' }
-                  ].map((bot, index) => (
-                    <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-purple-400/20 hover:border-purple-400/40 transition-all duration-300">
-                      <h4 className="text-lg font-semibold text-purple-300 mb-3">{bot.title}</h4>
-                      <p className="text-gray-400 text-sm">{bot.desc}</p>
-                    </div>
-                  ))}
+              <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-red-400/30 hover:border-red-300/60 transition-all duration-300">
+                <div className="p-3 bg-red-500/20 rounded-lg mb-4 w-fit">
+                  <Target className="h-6 w-6 text-red-400" />
                 </div>
+                <h3 className="text-xl font-bold text-white mb-3">Recuperação Judicial</h3>
+                <p className="text-gray-300 mb-4">Reestruturação de empresas em dificuldades financeiras e negociação com credores.</p>
+                <ul className="space-y-1 text-sm text-gray-400">
+                  <li>• Análise de viabilidade</li>
+                  <li>• Plano de recuperação</li>
+                  <li>• Negociação com credores</li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-blue-400/30 hover:border-blue-300/60 transition-all duration-300">
+                <div className="p-3 bg-blue-500/20 rounded-lg mb-4 w-fit">
+                  <Star className="h-6 w-6 text-blue-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Busca de Crédito</h3>
+                <p className="text-gray-300 mb-4">Intermediação com factorings e instituições financeiras para capital de giro.</p>
+                <ul className="space-y-1 text-sm text-gray-400">
+                  <li>• Análise de necessidades</li>
+                  <li>• Negociação com factorings</li>
+                  <li>• Estruturação de operações</li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-orange-400/30 hover:border-orange-300/60 transition-all duration-300">
+                <div className="p-3 bg-orange-500/20 rounded-lg mb-4 w-fit">
+                  <Zap className="h-6 w-6 text-orange-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Fusões e Aquisições</h3>
+                <p className="text-gray-300 mb-4">Assessoria completa em processos de M&A, due diligence e valuation.</p>
+                <ul className="space-y-1 text-sm text-gray-400">
+                  <li>• Due diligence</li>
+                  <li>• Valuation empresarial</li>
+                  <li>• Estruturação de negócios</li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/30 hover:border-cyan-300/60 transition-all duration-300">
+                <div className="p-3 bg-cyan-500/20 rounded-lg mb-4 w-fit">
+                  <Bot className="h-6 w-6 text-cyan-400" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Consultoria com IA</h3>
+                <p className="text-gray-300 mb-4">Implementação de inteligência artificial nos processos de consultoria e gestão.</p>
+                <ul className="space-y-1 text-sm text-gray-400">
+                  <li>• Automação de análises</li>
+                  <li>• Relatórios inteligentes</li>
+                  <li>• Predição de cenários</li>
+                </ul>
               </div>
             </div>
 
             <div className="text-center mt-12">
               <button 
-                onClick={() => openAgentLink('agents')}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+                onClick={() => handleButtonClick('consulting_expert', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
+                className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-400/50 text-white"
               >
-                PERSONALIZE SEU AGENTE
+                CONSULTAR EXPERT
               </button>
             </div>
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Education Section */}
+        <section id="education" className="py-20 bg-gray-900/50 backdrop-blur-sm">
+          <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  ENTRE EM CONTATO
-                </span>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                🎓 EDUCAÇÃO PRO
               </h2>
-              <p className="text-xl text-gray-300 mb-8">
-                Pronto para transformar seu negócio com o <span className="text-cyan-300 font-semibold">EssencialBot</span>? Vamos conversar sobre suas necessidades
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Capacitação profissional em áreas contábeis, financeiras e tecnológicas
               </p>
-              
-              {/* Contact Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <a 
-                  href="https://wa.me/5511911757113" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:bg-cyan-400/10"
-                >
-                  <Phone className="h-5 w-5 text-cyan-300" />
-                  <span className="text-cyan-200 text-sm">(11) 91175-7113</span>
-                </a>
-                <a 
-                  href="mailto:sac@exercitodeagentes.com.br"
-                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:bg-cyan-400/10"
-                >
-                  <Mail className="h-5 w-5 text-cyan-300" />
-                  <span className="text-cyan-200 text-sm">sac@exercitodeagentes.com.br</span>
-                </a>
-                <a 
-                  href="mailto:financeiro@exercitodeagentes.com.br"
-                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:bg-cyan-400/10"
-                >
-                  <Mail className="h-5 w-5 text-green-400" />
-                  <span className="text-green-200 text-sm">financeiro@exercitodeagentes.com.br</span>
-                </a>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
-                  <Globe className="h-5 w-5 text-cyan-300" />
-                  <span className="text-cyan-200 text-sm">exercitodeagentes.com.br</span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl border border-cyan-400/30">
+                <div className="p-4 bg-cyan-500/20 rounded-lg mb-6 w-fit">
+                  <Bot className="h-8 w-8 text-cyan-400" />
                 </div>
+                <h3 className="text-2xl font-bold text-white mb-4">IA EMPRESARIAL</h3>
+                <p className="text-gray-300 mb-6">Domine as ferramentas de inteligência artificial para transformar seu negócio.</p>
+                <ul className="space-y-2 text-gray-300 mb-6">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Fundamentos de IA</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Chatbots e automação</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Machine Learning aplicado</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Projetos práticos</li>
+                </ul>
               </div>
 
-              {/* Social Media */}
-              <div className="flex justify-center space-x-6 mb-12">
-                <a 
-                  href="https://wa.me/5511911757113" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('social_click', { platform: 'whatsapp' })}
-                  className="group p-4 bg-gradient-to-r from-green-500 to-green-600 rounded-full hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-green-400/30"
-                >
-                  <MessageCircle className="h-6 w-6 text-white group-hover:animate-pulse" />
-                </a>
-                <a 
-                  href="https://linkedin.com/company/exercitodeagentes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('social_click', { platform: 'linkedin' })}
-                  className="group p-4 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-blue-400/30"
-                >
-                  <Linkedin className="h-6 w-6 text-white group-hover:animate-pulse" />
-                </a>
-                <a 
-                  href="https://instagram.com/exercitodeagentes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  onClick={() => trackEvent('social_click', { platform: 'instagram' })}
-                  className="group p-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-pink-400/30"
-                >
-                  <Instagram className="h-6 w-6 text-white group-hover:animate-pulse" />
-                </a>
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl border border-green-400/30">
+                <div className="p-4 bg-green-500/20 rounded-lg mb-6 w-fit">
+                  <Calculator className="h-8 w-8 text-green-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">CONTABILIDADE DIGITAL</h3>
+                <p className="text-gray-300 mb-6">Modernize seus conhecimentos contábeis com tecnologia de ponta.</p>
+                <ul className="space-y-2 text-gray-300 mb-6">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Contabilidade 4.0</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />SPED e obrigações</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Análise de balanços</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Automação contábil</li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl border border-purple-400/30">
+                <div className="p-4 bg-purple-500/20 rounded-lg mb-6 w-fit">
+                  <Target className="h-8 w-8 text-purple-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">CONTROLADORIA</h3>
+                <p className="text-gray-300 mb-6">Desenvolva competências em controles internos e auditoria.</p>
+                <ul className="space-y-2 text-gray-300 mb-6">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Controles internos</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Auditoria interna</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Compliance</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Gestão de riscos</li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl border border-orange-400/30">
+                <div className="p-4 bg-orange-500/20 rounded-lg mb-6 w-fit">
+                  <Star className="h-8 w-8 text-orange-400" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4">GESTÃO FINANCEIRA</h3>
+                <p className="text-gray-300 mb-6">Aprenda técnicas avançadas de gestão e análise financeira.</p>
+                <ul className="space-y-2 text-gray-300 mb-6">
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Fluxo de caixa</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Análise financeira</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Orçamento empresarial</li>
+                  <li className="flex items-center"><CheckCircle className="h-4 w-4 text-green-400 mr-2" />Valuation</li>
+                </ul>
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 p-8 hover:shadow-lg hover:shadow-cyan-400/20 transition-all duration-300">
-              <form className="space-y-6" onSubmit={(e) => {
-                e.preventDefault();
-                trackEvent('form_submit', { form: 'contact' });
-                // Aqui você adicionaria a lógica de envio do formulário
-              }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="text-center">
+              <button 
+                onClick={() => handleButtonClick('education_pro', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
+                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-orange-400/50 text-white"
+              >
+                CONSULTAR EDUCAÇÃO PRO
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Agents Section */}
+        <section id="agents" className="py-20">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                🤖 NOSSOS AGENTES ESPECIALIZADOS
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Cada agente é especializado em uma área específica para oferecer o melhor atendimento
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div 
+                onClick={() => handleCardClick('concierge', 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge')}
+                className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/30 hover:border-cyan-300/60 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="p-4 bg-cyan-500/20 rounded-lg mb-4 w-fit group-hover:bg-cyan-400/30 transition-all duration-300">
+                  <Bot className="h-8 w-8 text-cyan-400 group-hover:text-cyan-300" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">EssencialBot Concierge</h3>
+                <p className="text-gray-300 mb-4">Seu assistente pessoal especializado com informações completas sobre todos os serviços.</p>
+                <div className="flex items-center text-cyan-400 font-semibold group-hover:text-cyan-300">
+                  <span>Acessar Concierge</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('ai_agent', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-blue-400/30 hover:border-blue-300/60 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="p-4 bg-blue-500/20 rounded-lg mb-4 w-fit group-hover:bg-blue-400/30 transition-all duration-300">
+                  <Zap className="h-8 w-8 text-blue-400 group-hover:text-blue-300" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">Agente IA</h3>
+                <p className="text-gray-300 mb-4">Especialista em automação inteligente e soluções de IA para empresas.</p>
+                <div className="flex items-center text-blue-400 font-semibold group-hover:text-blue-300">
+                  <span>Consultar Agente</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('accounting_agent', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-green-400/30 hover:border-green-300/60 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="p-4 bg-green-500/20 rounded-lg mb-4 w-fit group-hover:bg-green-400/30 transition-all duration-300">
+                  <Calculator className="h-8 w-8 text-green-400 group-hover:text-green-300" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-green-300 transition-colors">Contabilidade Inteligente</h3>
+                <p className="text-gray-300 mb-4">Especialista em serviços contábeis, fiscais e obrigações empresariais.</p>
+                <div className="flex items-center text-green-400 font-semibold group-hover:text-green-300">
+                  <span>Consultar Contabilidade</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('consulting_agent', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
+                className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-purple-400/30 hover:border-purple-300/60 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="p-4 bg-purple-500/20 rounded-lg mb-4 w-fit group-hover:bg-purple-400/30 transition-all duration-300">
+                  <Users className="h-8 w-8 text-purple-400 group-hover:text-purple-300" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">Consultoria Expert</h3>
+                <p className="text-gray-300 mb-4">Especialista em gestão empresarial, recuperação judicial e consultoria estratégica.</p>
+                <div className="flex items-center text-purple-400 font-semibold group-hover:text-purple-300">
+                  <span>Consultar Expert</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('education_agent', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
+                className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-orange-400/30 hover:border-orange-300/60 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="p-4 bg-orange-500/20 rounded-lg mb-4 w-fit group-hover:bg-orange-400/30 transition-all duration-300">
+                  <GraduationCap className="h-8 w-8 text-orange-400 group-hover:text-orange-300" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-orange-300 transition-colors">Educação Pro</h3>
+                <p className="text-gray-300 mb-4">Especialista em treinamentos e capacitação profissional em áreas técnicas.</p>
+                <div className="flex items-center text-orange-400 font-semibold group-hover:text-orange-300">
+                  <span>Consultar Educação</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              <div 
+                onClick={() => handleCardClick('personal_agent', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-indigo-400/30 hover:border-indigo-300/60 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
+              >
+                <div className="p-4 bg-indigo-500/20 rounded-lg mb-4 w-fit group-hover:bg-indigo-400/30 transition-all duration-300">
+                  <Settings className="h-8 w-8 text-indigo-400 group-hover:text-indigo-300" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-indigo-300 transition-colors">Personalize seu Agente</h3>
+                <p className="text-gray-300 mb-4">Especialista em criar agentes IA personalizados para necessidades específicas.</p>
+                <div className="flex items-center text-indigo-400 font-semibold group-hover:text-indigo-300">
+                  <span>Personalizar Agente</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 bg-gray-900/50 backdrop-blur-sm">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                📞 ENTRE EM CONTATO
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Estamos prontos para transformar seu negócio com nossas soluções inteligentes
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div className="space-y-8">
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-blue-400/30">
+                  <h3 className="text-2xl font-bold text-white mb-6">Informações de Contato</h3>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-4">
+                      <div className="p-3 bg-green-500/20 rounded-lg">
+                        <Phone className="h-6 w-6 text-green-400" />
+                      </div>
+                      <div>
+                        <p className="text-gray-300">WhatsApp</p>
+                        <button 
+                          onClick={() => handleContactClick('whatsapp', config.WHATSAPP_NUMBER)}
+                          className="text-green-400 hover:text-green-300 font-semibold transition-colors"
+                        >
+                          (11) 91175-7113
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-4">
+                      <div className="p-3 bg-blue-500/20 rounded-lg">
+                        <Mail className="h-6 w-6 text-blue-400" />
+                      </div>
+                      <div>
+                        <p className="text-gray-300">E-mail SAC</p>
+                        <button 
+                          onClick={() => handleContactClick('email', config.EMAIL_CONTACT)}
+                          className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+                        >
+                          {config.EMAIL_CONTACT}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-4">
+                      <div className="p-3 bg-purple-500/20 rounded-lg">
+                        <Mail className="h-6 w-6 text-purple-400" />
+                      </div>
+                      <div>
+                        <p className="text-gray-300">E-mail Financeiro</p>
+                        <button 
+                          onClick={() => handleContactClick('email', config.EMAIL_FINANCIAL)}
+                          className="text-purple-400 hover:text-purple-300 font-semibold transition-colors"
+                        >
+                          {config.EMAIL_FINANCIAL}
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center space-x-4">
+                      <div className="p-3 bg-orange-500/20 rounded-lg">
+                        <Clock className="h-6 w-6 text-orange-400" />
+                      </div>
+                      <div>
+                        <p className="text-gray-300">Horário de Atendimento</p>
+                        <p className="text-orange-400 font-semibold">Segunda a Sexta: 8h às 18h</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gray-800/80 backdrop-blur-sm p-6 rounded-xl border border-cyan-400/30">
+                  <h3 className="text-2xl font-bold text-white mb-6">Redes Sociais</h3>
+                  <div className="flex space-x-4">
+                    <button 
+                      onClick={() => handleContactClick('whatsapp', config.WHATSAPP_NUMBER)}
+                      className="p-3 bg-green-500/20 rounded-lg hover:bg-green-500/30 transition-all duration-300 group"
+                    >
+                      <MessageSquare className="h-6 w-6 text-green-400 group-hover:text-green-300" />
+                    </button>
+                    <button 
+                      onClick={() => window.open('https://linkedin.com/company/exercitodeagentes', '_blank')}
+                      className="p-3 bg-blue-500/20 rounded-lg hover:bg-blue-500/30 transition-all duration-300 group"
+                    >
+                      <Linkedin className="h-6 w-6 text-blue-400 group-hover:text-blue-300" />
+                    </button>
+                    <button 
+                      onClick={() => window.open('https://instagram.com/exercitodeagentes', '_blank')}
+                      className="p-3 bg-pink-500/20 rounded-lg hover:bg-pink-500/30 transition-all duration-300 group"
+                    >
+                      <Instagram className="h-6 w-6 text-pink-400 group-hover:text-pink-300" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-800/80 backdrop-blur-sm p-8 rounded-xl border border-blue-400/30">
+                <h3 className="text-2xl font-bold text-white mb-6">Envie uma Mensagem</h3>
+                <form className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">NOME</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Nome</label>
                     <input
                       type="text"
-                      required
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400"
                       placeholder="Seu nome completo"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">WHATSAPP</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">E-mail</label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400"
+                      placeholder="seu@email.com"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">WhatsApp</label>
                     <input
                       type="tel"
-                      required
-                      className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400"
                       placeholder="(11) 99999-9999"
                     />
                   </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">E-MAIL</label>
-                  <input
-                    type="email"
-                    required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
-                    placeholder="seu@email.com"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">INTERESSE</label>
-                  <select 
-                    required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Mensagem</label>
+                    <textarea
+                      rows={4}
+                      className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400"
+                      placeholder="Como podemos ajudar você?"
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 text-white"
                   >
-                    <option value="">Selecione seu interesse</option>
-                    <option value="automation">Automação IA</option>
-                    <option value="accounting">Serviços contábeis</option>
-                    <option value="consulting">Consultoria empresarial</option>
-                    <option value="education">Educação e treinamentos</option>
-                    <option value="agents">Modelos de agentes</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">MENSAGEM</label>
-                  <textarea
-                    rows={4}
-                    required
-                    className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300"
-                    placeholder="Conte-nos sobre seu projeto..."
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/30"
-                >
-                  ENVIAR MENSAGEM
-                </button>
-              </form>
+                    ENVIAR MENSAGEM
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="py-12 border-t border-gray-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="flex items-center space-x-3 mb-4 md:mb-0">
-                <div className="relative p-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl shadow-lg">
-                  <div className="absolute inset-0 rounded-xl border-2 border-cyan-300/30 animate-pulse"></div>
-                  <Bot className="relative h-6 w-6 text-white" />
+        <footer className="bg-gray-900 border-t border-gray-800 py-12">
+          <div className="container mx-auto px-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center space-x-3 mb-4">
+                  <Bot className="h-8 w-8 text-cyan-400" />
+                  <span className="text-xl font-bold text-white">EXÉRCITO DE AGENTES</span>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-xl font-bold bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    EXÉRCITO DE AGENTES
-                  </span>
-                  <span className="text-xs text-cyan-300 -mt-1">
-                    Powered by EssencialBot
-                  </span>
+                <p className="text-gray-400 mb-4">
+                  Transformando negócios com inteligência artificial e automação inteligente.
+                </p>
+                <div className="flex space-x-4">
+                  <button 
+                    onClick={() => handleContactClick('whatsapp', config.WHATSAPP_NUMBER)}
+                    className="text-green-400 hover:text-green-300 transition-colors"
+                  >
+                    <MessageSquare className="h-5 w-5" />
+                  </button>
+                  <button 
+                    onClick={() => window.open('https://linkedin.com/company/exercitodeagentes', '_blank')}
+                    className="text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    <Linkedin className="h-5 w-5" />
+                  </button>
+                  <button 
+                    onClick={() => window.open('https://instagram.com/exercitodeagentes', '_blank')}
+                    className="text-pink-400 hover:text-pink-300 transition-colors"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </button>
                 </div>
               </div>
-              <div className="text-gray-400 text-sm text-center md:text-right">
-                <div>© 2024 Exército de Agentes. Todos os direitos reservados.</div>
-                <div className="mt-1">www.exercitodeagentes.com.br</div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">SERVIÇOS</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li><a href="#automation" className="hover:text-cyan-400 transition-colors">Automação IA</a></li>
+                  <li><a href="#accounting" className="hover:text-cyan-400 transition-colors">Contabilidade</a></li>
+                  <li><a href="#consulting" className="hover:text-cyan-400 transition-colors">Consultoria</a></li>
+                  <li><a href="#education" className="hover:text-cyan-400 transition-colors">Educação</a></li>
+                </ul>
               </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">AGENTES</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>
+                    <button 
+                      onClick={() => handleCardClick('concierge', 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge')}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      EssencialBot Concierge
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      onClick={() => handleCardClick('ai_agent', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Agente IA
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      onClick={() => handleCardClick('accounting_agent', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Contabilidade Inteligente
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      onClick={() => handleCardClick('personal_agent', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      Personalize seu Agente
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">CONTATO</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li>
+                    <button 
+                      onClick={() => handleContactClick('whatsapp', config.WHATSAPP_NUMBER)}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      (11) 91175-7113
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      onClick={() => handleContactClick('email', config.EMAIL_CONTACT)}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      {config.EMAIL_CONTACT}
+                    </button>
+                  </li>
+                  <li>
+                    <button 
+                      onClick={() => handleContactClick('email', config.EMAIL_FINANCIAL)}
+                      className="hover:text-cyan-400 transition-colors"
+                    >
+                      {config.EMAIL_FINANCIAL}
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+              <p className="text-gray-400">
+                © 2024 Exército de Agentes. Todos os direitos reservados.
+              </p>
             </div>
           </div>
         </footer>
 
-        {/* EssencialBot Chat Component */}
+        {/* EssencialBot Chat */}
         <EssencialBotChat />
       </div>
     </HelmetProvider>
