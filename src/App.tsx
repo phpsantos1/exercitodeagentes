@@ -24,10 +24,7 @@ import {
   Instagram,
   Target,
   Eye,
-  Heart,
-  Compass,
-  Award,
-  Lightbulb
+  Heart
 } from 'lucide-react';
 import EssencialBotChat from './components/EssencialBotChat';
 import SEOHead from './components/SEOHead';
@@ -75,14 +72,11 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gray-900 text-white relative overflow-x-hidden">
+      <div className="min-h-screen bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-x-hidden">
         <SEOHead />
         
         {/* Advanced Electronic Circuit Background */}
         <div className="fixed inset-0 opacity-20 pointer-events-none">
-          {/* Base gradient */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950"></div>
-          
           {/* Animated circuit lines */}
           <div className="absolute inset-0">
             {/* Horizontal scanning lines */}
@@ -752,9 +746,9 @@ function App() {
               </p>
             </div>
 
-            {/* Missão, Visão e Valores */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              {/* Missão */}
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
                 <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
                   <Target className="h-12 w-12 text-white" />
                 </div>
@@ -764,7 +758,8 @@ function App() {
                 </p>
               </div>
 
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+              {/* Visão */}
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
                 <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-6">
                   <Eye className="h-12 w-12 text-white" />
                 </div>
@@ -774,17 +769,28 @@ function App() {
                 </p>
               </div>
 
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg mb-6">
+              {/* Valores */}
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg mb-6">
                   <Heart className="h-12 w-12 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-cyan-200">💎 VALORES INEGOCIÁVEIS</h3>
                 <div className="space-y-3 text-gray-300">
-                  <div><strong className="text-cyan-300">Respeito acima de tudo:</strong> Não toleramos desrespeito em nenhuma forma</div>
-                  <div><strong className="text-cyan-300">Disciplina com empatia:</strong> Agimos com firmeza e método, mas sempre com humanidade</div>
-                  <div><strong className="text-cyan-300">Tecnologia para todos:</strong> Acreditamos que inovação só faz sentido se for acessível</div>
-                  <div><strong className="text-cyan-300">Compromisso com o resultado:</strong> Não paramos até conseguir</div>
-                  <div><strong className="text-cyan-300">Clareza e estrutura:</strong> Preferimos processos bem definidos</div>
+                  <div>
+                    <span className="font-semibold text-cyan-300">Respeito acima de tudo:</span> Não toleramos desrespeito em nenhuma forma.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-cyan-300">Disciplina com empatia:</span> Agimos com firmeza e método, mas sempre com humanidade.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-cyan-300">Tecnologia para todos:</span> Acreditamos que inovação só faz sentido se for acessível.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-cyan-300">Compromisso com o resultado:</span> Não paramos até conseguir — e entregamos com excelência.
+                  </div>
+                  <div>
+                    <span className="font-semibold text-cyan-300">Clareza e estrutura:</span> Preferimos processos bem definidos a improvisos recorrentes.
+                  </div>
                 </div>
               </div>
             </div>
@@ -796,86 +802,52 @@ function App() {
                   🧭 PRINCÍPIOS CULTURAIS EM AÇÃO
                 </span>
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   {
-                    icon: Compass,
-                    title: 'ESTILO DE LIDERANÇA',
-                    description: 'Direto, estruturado e focado em resultados. A liderança aqui orienta, corrige e conduz — com firmeza, mas com respeito.',
-                    color: 'from-blue-500 to-cyan-500'
+                    title: 'Estilo de liderança',
+                    description: 'Direto, estruturado e focado em resultados. A liderança aqui orienta, corrige e conduz — com firmeza, mas com respeito.'
                   },
                   {
-                    icon: Shield,
-                    title: 'ATITUDE FRENTE A ERROS',
-                    description: 'Corrigimos o processo, não a pessoa. O erro é uma chance de fortalecer o sistema.',
-                    color: 'from-green-500 to-emerald-500'
+                    title: 'Atitude frente a erros',
+                    description: 'Corrigimos o processo, não a pessoa. O erro é uma chance de fortalecer o sistema.'
                   },
                   {
-                    icon: MessageCircle,
-                    title: 'TOM DE VOZ INTERNO',
-                    description: 'Objetivo, respeitoso e motivador. Aqui se fala com clareza e sem rodeios.',
-                    color: 'from-purple-500 to-pink-500'
+                    title: 'Tom de voz interno',
+                    description: 'Objetivo, respeitoso e motivador. Aqui se fala com clareza e sem rodeios.'
                   },
                   {
-                    icon: Globe,
-                    title: 'AMBIENTE DE TRABALHO',
-                    description: 'Remoto e disciplinado. Cada um com liberdade e responsabilidade para entregar o que promete.',
-                    color: 'from-orange-500 to-red-500'
+                    title: 'Ambiente de trabalho',
+                    description: 'Remoto e disciplinado. Cada um com liberdade e responsabilidade para entregar o que promete.'
                   },
                   {
-                    icon: Brain,
-                    title: 'DECISÕES DIFÍCEIS',
-                    description: 'São tomadas com base em dados e validação intuitiva — equilibramos razão e sensibilidade.',
-                    color: 'from-indigo-500 to-purple-500'
-                  },
-                  {
-                    icon: Award,
-                    title: 'EXCELÊNCIA OPERACIONAL',
-                    description: 'Buscamos sempre a melhoria contínua em todos os processos, mantendo o foco na qualidade e eficiência.',
-                    color: 'from-teal-500 to-cyan-500'
+                    title: 'Decisões difíceis',
+                    description: 'São tomadas com base em dados e validação intuitiva — equilibramos razão e sensibilidade.'
                   }
                 ].map((principle, index) => (
-                  <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
-                    <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${principle.color} rounded-lg mb-4`}>
-                      <principle.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <h4 className="text-lg font-semibold text-cyan-200 mb-3">{principle.title}</h4>
-                    <p className="text-gray-400 text-sm">{principle.description}</p>
+                  <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
+                    <h4 className="text-lg font-semibold text-cyan-300 mb-3">{principle.title}</h4>
+                    <p className="text-gray-400">{principle.description}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Frases-Símbolo */}
-            <div>
-              <h3 className="text-3xl font-bold mb-8 text-center">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold mb-8">
                 <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
                   🧠 FRASES-SÍMBOLO DA CULTURA
                 </span>
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {[
-                  {
-                    icon: Target,
-                    phrase: '"Não paramos até conseguir!"',
-                    color: 'from-red-500 to-orange-500'
-                  },
-                  {
-                    icon: Lightbulb,
-                    phrase: '"A tecnologia está acessível a todos. Aqui temos a solução que você procura!"',
-                    color: 'from-yellow-500 to-orange-500'
-                  },
-                  {
-                    icon: Award,
-                    phrase: '"Respeito, estrutura e entrega — esse é o nosso jeito."',
-                    color: 'from-blue-500 to-cyan-500'
-                  }
-                ].map((symbol, index) => (
-                  <div key={index} className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 text-center">
-                    <div className={`inline-flex items-center justify-center p-4 bg-gradient-to-r ${symbol.color} rounded-full mb-4`}>
-                      <symbol.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <p className="text-xl font-semibold text-cyan-200 italic">{symbol.phrase}</p>
+                  "Não paramos até conseguir!",
+                  "A tecnologia está acessível a todos. Aqui temos a solução que você procura!",
+                  "Respeito, estrutura e entrega — esse é o nosso jeito."
+                ].map((phrase, index) => (
+                  <div key={index} className="p-6 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-xl border border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300">
+                    <p className="text-xl font-semibold text-cyan-200 italic">"{phrase}"</p>
                   </div>
                 ))}
               </div>
