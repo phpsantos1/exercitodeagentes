@@ -21,7 +21,13 @@ import {
   Globe,
   MessageCircle,
   Linkedin,
-  Instagram
+  Instagram,
+  Target,
+  Eye,
+  Heart,
+  Award,
+  Lightbulb,
+  Handshake
 } from 'lucide-react';
 import EssencialBotChat from './components/EssencialBotChat';
 import SEOHead from './components/SEOHead';
@@ -36,7 +42,7 @@ function App() {
     initializeAnalytics();
     
     const handleScroll = () => {
-      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'contact'];
+      const sections = ['home', 'culture', 'automation', 'accounting', 'consulting', 'education', 'agents', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -150,6 +156,7 @@ function App() {
                 <div className="flex items-center space-x-8">
                   {[
                     { id: 'home', label: 'INÍCIO' },
+                    { id: 'culture', label: 'CULTURA' },
                     { id: 'automation', label: 'AUTOMAÇÃO IA' },
                     { id: 'accounting', label: 'CONTABILIDADE' },
                     { id: 'consulting', label: 'CONSULTORIA' },
@@ -190,6 +197,7 @@ function App() {
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {[
                   { id: 'home', label: 'INÍCIO' },
+                  { id: 'culture', label: 'CULTURA' },
                   { id: 'automation', label: 'AUTOMAÇÃO IA' },
                   { id: 'accounting', label: 'CONTABILIDADE' },
                   { id: 'consulting', label: 'CONSULTORIA' },
@@ -246,8 +254,11 @@ function App() {
                   EssencialBot
                 </span>
               </div>
-              <p className="text-xl md:text-2xl text-white mb-8 max-w-3xl mx-auto">
-                Revolução digital para sua empresa com IA avançada, automação inteligente e consultoria especializada
+              <p className="text-xl md:text-2xl text-white mb-4 max-w-3xl mx-auto">
+                Democratizando o acesso à inteligência artificial para pequenos negócios
+              </p>
+              <p className="text-lg text-cyan-200 mb-8 max-w-4xl mx-auto">
+                Soluções contábeis, consultivas e tecnológicas que aliviam a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade
               </p>
             </div>
 
@@ -282,19 +293,160 @@ function App() {
               </button>
               <button 
                 onClick={() => {
-                  scrollToSection('agents');
-                  trackEvent('cta_click', { button: 'ver_agentes' });
+                  scrollToSection('culture');
+                  trackEvent('cta_click', { button: 'nossa_cultura' });
                 }}
                 className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105"
               >
-                VER AGENTES
+                NOSSA CULTURA
               </button>
             </div>
           </div>
         </section>
 
+        {/* Culture Section */}
+        <section id="culture" className="py-20 bg-gray-800/30">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  NOSSA ESSÊNCIA ESTRATÉGICA
+                </span>
+              </h2>
+              <p className="text-xl text-white max-w-3xl mx-auto">
+                Conheça os valores e princípios que guiam nossa missão de democratizar a inteligência artificial
+              </p>
+            </div>
+
+            {/* Missão, Visão e Valores */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              {/* Missão */}
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
+                  <Target className="h-12 w-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🌟 MISSÃO</h3>
+                <p className="text-white leading-relaxed">
+                  Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções contábeis, consultivas e tecnológicas que aliviem a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade.
+                </p>
+              </div>
+
+              {/* Visão */}
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-6">
+                  <Eye className="h-12 w-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔭 VISÃO</h3>
+                <p className="text-white leading-relaxed">
+                  Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática, confiável e presente no cotidiano dos que mais precisam — e menos têm acesso.
+                </p>
+              </div>
+
+              {/* Valores */}
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg mb-6">
+                  <Heart className="h-12 w-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-cyan-200">💎 VALORES</h3>
+                <div className="space-y-3">
+                  {[
+                    'Respeito acima de tudo',
+                    'Disciplina com empatia',
+                    'Tecnologia para todos',
+                    'Compromisso com o resultado',
+                    'Clareza e estrutura'
+                  ].map((valor, index) => (
+                    <div key={index} className="flex items-center">
+                      <CheckCircle className="h-4 w-4 text-green-400 mr-3" />
+                      <span className="text-white text-sm">{valor}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Valores Detalhados */}
+            <div className="mb-16">
+              <h3 className="text-3xl font-bold mb-8 text-center">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  VALORES INEGOCIÁVEIS
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    icon: Shield,
+                    title: 'RESPEITO ACIMA DE TUDO',
+                    desc: 'Não toleramos desrespeito em nenhuma forma — seja entre colegas, clientes ou parceiros.',
+                    color: 'from-red-500 to-pink-500'
+                  },
+                  {
+                    icon: Handshake,
+                    title: 'DISCIPLINA COM EMPATIA',
+                    desc: 'Agimos com firmeza e método, mas sempre com humanidade.',
+                    color: 'from-blue-500 to-cyan-500'
+                  },
+                  {
+                    icon: Lightbulb,
+                    title: 'TECNOLOGIA PARA TODOS',
+                    desc: 'Acreditamos que inovação só faz sentido se for acessível.',
+                    color: 'from-yellow-500 to-orange-500'
+                  },
+                  {
+                    icon: Award,
+                    title: 'COMPROMISSO COM O RESULTADO',
+                    desc: 'Não paramos até conseguir — e entregamos com excelência.',
+                    color: 'from-green-500 to-emerald-500'
+                  }
+                ].map((valor, index) => (
+                  <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
+                    <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${valor.color} rounded-lg mb-4`}>
+                      <valor.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-cyan-300 mb-3">{valor.title}</h4>
+                    <p className="text-white text-sm">{valor.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Frases-Símbolo */}
+            <div className="text-center">
+              <h3 className="text-3xl font-bold mb-8">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  FRASES-SÍMBOLO DA NOSSA CULTURA
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    frase: '"Não paramos até conseguir!"',
+                    desc: 'Persistência e determinação em cada projeto'
+                  },
+                  {
+                    frase: '"A tecnologia está acessível a todos. Aqui temos a solução que você procura!"',
+                    desc: 'Democratização da tecnologia'
+                  },
+                  {
+                    frase: '"Respeito, estrutura, planejamento e entrega — esse é o nosso jeito."',
+                    desc: 'Nossa metodologia de trabalho'
+                  }
+                ].map((item, index) => (
+                  <div key={index} className="p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl border border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300">
+                    <div className="text-2xl mb-4">💬</div>
+                    <blockquote className="text-lg font-semibold text-cyan-200 mb-3 italic">
+                      {item.frase}
+                    </blockquote>
+                    <p className="text-white text-sm">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Automation Section */}
-        <section id="automation" className="py-20 bg-gray-800/30">
+        <section id="automation" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -373,7 +525,7 @@ function App() {
         </section>
 
         {/* Accounting Section */}
-        <section id="accounting" className="py-20">
+        <section id="accounting" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -438,7 +590,7 @@ function App() {
         </section>
 
         {/* Consulting Section */}
-        <section id="consulting" className="py-20 bg-gray-800/30">
+        <section id="consulting" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -503,7 +655,7 @@ function App() {
         </section>
 
         {/* Education Section */}
-        <section id="education" className="py-20">
+        <section id="education" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative">
@@ -587,7 +739,7 @@ function App() {
         </section>
 
         {/* Agents Models Section */}
-        <section id="agents" className="py-20 bg-gray-800/30">
+        <section id="agents" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -731,7 +883,7 @@ function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20">
+        <section id="contact" className="py-20 bg-gray-800/30">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
