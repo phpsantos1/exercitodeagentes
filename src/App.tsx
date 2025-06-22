@@ -42,7 +42,7 @@ function App() {
     initializeAnalytics();
     
     const handleScroll = () => {
-      const sections = ['home', 'culture', 'automation', 'accounting', 'consulting', 'education', 'agents', 'contact'];
+      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'culture', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -156,12 +156,12 @@ function App() {
                 <div className="flex items-center space-x-8">
                   {[
                     { id: 'home', label: 'INÍCIO' },
-                    { id: 'culture', label: 'NOSSA CULTURA' },
                     { id: 'automation', label: 'AUTOMAÇÃO IA' },
                     { id: 'accounting', label: 'CONTABILIDADE' },
                     { id: 'consulting', label: 'CONSULTORIA' },
                     { id: 'education', label: 'EDUCAÇÃO' },
                     { id: 'agents', label: 'AGENTES' },
+                    { id: 'culture', label: 'NOSSA CULTURA' },
                     { id: 'contact', label: 'CONTATO' }
                   ].map((item) => (
                     <button
@@ -197,12 +197,12 @@ function App() {
               <div className="px-2 pt-2 pb-3 space-y-1">
                 {[
                   { id: 'home', label: 'INÍCIO' },
-                  { id: 'culture', label: 'NOSSA CULTURA' },
                   { id: 'automation', label: 'AUTOMAÇÃO IA' },
                   { id: 'accounting', label: 'CONTABILIDADE' },
                   { id: 'consulting', label: 'CONSULTORIA' },
                   { id: 'education', label: 'EDUCAÇÃO' },
                   { id: 'agents', label: 'AGENTES' },
+                  { id: 'culture', label: 'NOSSA CULTURA' },
                   { id: 'contact', label: 'CONTATO' }
                 ].map((item) => (
                   <button
@@ -301,169 +301,8 @@ function App() {
           </div>
         </section>
 
-        {/* Culture Section */}
-        <section id="culture" className="py-20 bg-gray-800/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  NOSSA ESSÊNCIA ESTRATÉGICA
-                </span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Conheça os valores, princípios e cultura que movem o <span className="text-cyan-300 font-semibold">Exército de Agentes</span>
-              </p>
-            </div>
-
-            {/* Missão, Visão e Valores */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-              {/* Missão */}
-              <div className="group p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6 group-hover:shadow-lg transition-all duration-300">
-                  <Target className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔹 MISSÃO</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções contábeis, consultivas e tecnológicas que aliviem a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade.
-                </p>
-              </div>
-
-              {/* Visão */}
-              <div className="group p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-6 group-hover:shadow-lg transition-all duration-300">
-                  <Eye className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔭 VISÃO</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática, confiável e presente no cotidiano dos que mais precisam — e menos têm acesso.
-                </p>
-              </div>
-
-              {/* Valores */}
-              <div className="group p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg mb-6 group-hover:shadow-lg transition-all duration-300">
-                  <Heart className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">💎 VALORES INEGOCIÁVEIS</h3>
-                <div className="space-y-3">
-                  {[
-                    { title: 'Respeito acima de tudo', desc: 'Não toleramos desrespeito em nenhuma forma' },
-                    { title: 'Disciplina com empatia', desc: 'Agimos com firmeza e método, mas sempre com humanidade' },
-                    { title: 'Tecnologia para todos', desc: 'Acreditamos que inovação só faz sentido se for acessível' },
-                    { title: 'Compromisso com o resultado', desc: 'Não paramos até conseguir — e entregamos com excelência' },
-                    { title: 'Clareza e estrutura', desc: 'Preferimos processos bem definidos a improvisos recorrentes' }
-                  ].map((valor, index) => (
-                    <div key={index} className="border-l-2 border-cyan-400 pl-4">
-                      <h4 className="font-semibold text-cyan-300 text-sm">{valor.title}</h4>
-                      <p className="text-gray-400 text-xs">{valor.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Princípios Culturais */}
-            <div className="mb-16">
-              <div className="text-center mb-12">
-                <h3 className="text-3xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                    🧭 PRINCÍPIOS CULTURAIS EM AÇÃO
-                  </span>
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[
-                  {
-                    icon: Compass,
-                    title: 'ESTILO DE LIDERANÇA',
-                    desc: 'Direto, estruturado e focado em resultados. A liderança aqui orienta, corrige e conduz — com firmeza, mas com respeito.',
-                    color: 'from-blue-500 to-cyan-500'
-                  },
-                  {
-                    icon: Shield,
-                    title: 'ATITUDE FRENTE A ERROS',
-                    desc: 'Corrigimos o processo, não a pessoa. O erro é uma chance de fortalecer o sistema.',
-                    color: 'from-green-500 to-emerald-500'
-                  },
-                  {
-                    icon: MessageCircle,
-                    title: 'TOM DE VOZ INTERNO',
-                    desc: 'Objetivo, respeitoso e motivador. Aqui se fala com clareza e sem rodeios.',
-                    color: 'from-purple-500 to-pink-500'
-                  },
-                  {
-                    icon: Globe,
-                    title: 'AMBIENTE DE TRABALHO',
-                    desc: 'Remoto e disciplinado. Cada um com liberdade e responsabilidade para entregar o que promete.',
-                    color: 'from-orange-500 to-red-500'
-                  },
-                  {
-                    icon: Brain,
-                    title: 'DECISÕES DIFÍCEIS',
-                    desc: 'São tomadas com base em dados e validação intuitiva — equilibramos razão e sensibilidade.',
-                    color: 'from-indigo-500 to-purple-500'
-                  },
-                  {
-                    icon: Award,
-                    title: 'EXCELÊNCIA OPERACIONAL',
-                    desc: 'Cada processo é uma oportunidade de demonstrar nossa competência e compromisso com a qualidade.',
-                    color: 'from-teal-500 to-cyan-500'
-                  }
-                ].map((principio, index) => (
-                  <div key={index} className="group p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
-                    <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${principio.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
-                      <principio.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <h4 className="text-lg font-semibold mb-3 text-cyan-200">{principio.title}</h4>
-                    <p className="text-gray-400 text-sm leading-relaxed">{principio.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Frases-Símbolo */}
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-8">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  🧠 FRASES-SÍMBOLO DA CULTURA
-                </span>
-              </h3>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  {
-                    frase: "Não paramos até conseguir!",
-                    icon: Target,
-                    color: 'from-red-500 to-pink-500'
-                  },
-                  {
-                    frase: "A tecnologia está acessível a todos. Aqui temos a solução que você procura!",
-                    icon: Lightbulb,
-                    color: 'from-yellow-500 to-orange-500'
-                  },
-                  {
-                    frase: "Respeito, estrutura e entrega — esse é o nosso jeito.",
-                    icon: Award,
-                    color: 'from-green-500 to-emerald-500'
-                  }
-                ].map((item, index) => (
-                  <div key={index} className="group p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-                    <div className={`inline-flex items-center justify-center p-4 bg-gradient-to-r ${item.color} rounded-full mb-6 group-hover:shadow-lg transition-all duration-300`}>
-                      <item.icon className="h-8 w-8 text-white" />
-                    </div>
-                    <blockquote className="text-xl font-semibold text-cyan-200 italic leading-relaxed">
-                      "{item.frase}"
-                    </blockquote>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Automation Section */}
-        <section id="automation" className="py-20">
+        <section id="automation" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -542,7 +381,7 @@ function App() {
         </section>
 
         {/* Accounting Section */}
-        <section id="accounting" className="py-20 bg-gray-800/30">
+        <section id="accounting" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -607,7 +446,7 @@ function App() {
         </section>
 
         {/* Consulting Section */}
-        <section id="consulting" className="py-20">
+        <section id="consulting" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -672,7 +511,7 @@ function App() {
         </section>
 
         {/* Education Section */}
-        <section id="education" className="py-20 bg-gray-800/30">
+        <section id="education" className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative">
@@ -756,7 +595,7 @@ function App() {
         </section>
 
         {/* Agents Models Section */}
-        <section id="agents" className="py-20">
+        <section id="agents" className="py-20 bg-gray-800/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -894,6 +733,151 @@ function App() {
                     </div>
                   ))}
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Nossa Cultura Section */}
+        <section id="culture" className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  NOSSA CULTURA
+                </span>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Conheça os valores e princípios que guiam o Exército de Agentes na missão de democratizar a inteligência artificial
+              </p>
+            </div>
+
+            {/* Missão, Visão e Valores */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
+                  <Target className="h-12 w-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔹 MISSÃO</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções contábeis, consultivas e tecnológicas que aliviem a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade.
+                </p>
+              </div>
+
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-6">
+                  <Eye className="h-12 w-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔭 VISÃO</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática, confiável e presente no cotidiano dos que mais precisam — e menos têm acesso.
+                </p>
+              </div>
+
+              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-red-500 to-orange-500 rounded-lg mb-6">
+                  <Heart className="h-12 w-12 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold mb-4 text-cyan-200">💎 VALORES INEGOCIÁVEIS</h3>
+                <div className="space-y-3 text-gray-300">
+                  <div><strong className="text-cyan-300">Respeito acima de tudo:</strong> Não toleramos desrespeito em nenhuma forma</div>
+                  <div><strong className="text-cyan-300">Disciplina com empatia:</strong> Agimos com firmeza e método, mas sempre com humanidade</div>
+                  <div><strong className="text-cyan-300">Tecnologia para todos:</strong> Acreditamos que inovação só faz sentido se for acessível</div>
+                  <div><strong className="text-cyan-300">Compromisso com o resultado:</strong> Não paramos até conseguir</div>
+                  <div><strong className="text-cyan-300">Clareza e estrutura:</strong> Preferimos processos bem definidos</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Princípios Culturais */}
+            <div className="mb-16">
+              <h3 className="text-3xl font-bold mb-8 text-center">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  🧭 PRINCÍPIOS CULTURAIS EM AÇÃO
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  {
+                    icon: Compass,
+                    title: 'ESTILO DE LIDERANÇA',
+                    description: 'Direto, estruturado e focado em resultados. A liderança aqui orienta, corrige e conduz — com firmeza, mas com respeito.',
+                    color: 'from-blue-500 to-cyan-500'
+                  },
+                  {
+                    icon: Shield,
+                    title: 'ATITUDE FRENTE A ERROS',
+                    description: 'Corrigimos o processo, não a pessoa. O erro é uma chance de fortalecer o sistema.',
+                    color: 'from-green-500 to-emerald-500'
+                  },
+                  {
+                    icon: MessageCircle,
+                    title: 'TOM DE VOZ INTERNO',
+                    description: 'Objetivo, respeitoso e motivador. Aqui se fala com clareza e sem rodeios.',
+                    color: 'from-purple-500 to-pink-500'
+                  },
+                  {
+                    icon: Globe,
+                    title: 'AMBIENTE DE TRABALHO',
+                    description: 'Remoto e disciplinado. Cada um com liberdade e responsabilidade para entregar o que promete.',
+                    color: 'from-orange-500 to-red-500'
+                  },
+                  {
+                    icon: Brain,
+                    title: 'DECISÕES DIFÍCEIS',
+                    description: 'São tomadas com base em dados e validação intuitiva — equilibramos razão e sensibilidade.',
+                    color: 'from-indigo-500 to-purple-500'
+                  },
+                  {
+                    icon: Award,
+                    title: 'EXCELÊNCIA OPERACIONAL',
+                    description: 'Buscamos sempre a melhoria contínua em todos os processos, mantendo o foco na qualidade e eficiência.',
+                    color: 'from-teal-500 to-cyan-500'
+                  }
+                ].map((principle, index) => (
+                  <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105">
+                    <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${principle.color} rounded-lg mb-4`}>
+                      <principle.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h4 className="text-lg font-semibold text-cyan-200 mb-3">{principle.title}</h4>
+                    <p className="text-gray-400 text-sm">{principle.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Frases-Símbolo */}
+            <div>
+              <h3 className="text-3xl font-bold mb-8 text-center">
+                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  🧠 FRASES-SÍMBOLO DA CULTURA
+                </span>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  {
+                    icon: Target,
+                    phrase: '"Não paramos até conseguir!"',
+                    color: 'from-red-500 to-orange-500'
+                  },
+                  {
+                    icon: Lightbulb,
+                    phrase: '"A tecnologia está acessível a todos. Aqui temos a solução que você procura!"',
+                    color: 'from-yellow-500 to-orange-500'
+                  },
+                  {
+                    icon: Award,
+                    phrase: '"Respeito, estrutura e entrega — esse é o nosso jeito."',
+                    color: 'from-blue-500 to-cyan-500'
+                  }
+                ].map((symbol, index) => (
+                  <div key={index} className="p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 text-center">
+                    <div className={`inline-flex items-center justify-center p-4 bg-gradient-to-r ${symbol.color} rounded-full mb-4`}>
+                      <symbol.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <p className="text-xl font-semibold text-cyan-200 italic">{symbol.phrase}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
