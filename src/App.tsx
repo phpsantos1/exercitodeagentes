@@ -21,10 +21,7 @@ import {
   Globe,
   MessageCircle,
   Linkedin,
-  Instagram,
-  Target,
-  Eye,
-  Heart
+  Instagram
 } from 'lucide-react';
 import EssencialBotChat from './components/EssencialBotChat';
 import SEOHead from './components/SEOHead';
@@ -39,7 +36,7 @@ function App() {
     initializeAnalytics();
     
     const handleScroll = () => {
-      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'culture', 'contact'];
+      const sections = ['home', 'automation', 'accounting', 'consulting', 'education', 'agents', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -70,6 +67,23 @@ function App() {
     setIsMenuOpen(false);
   };
 
+  const openAgentLink = (agentType: string) => {
+    const links = {
+      'automation': 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3',
+      'accounting': 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil',
+      'consulting': 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial',
+      'education': 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro',
+      'agents': 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal',
+      'concierge': 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge'
+    };
+    
+    const url = links[agentType as keyof typeof links];
+    if (url) {
+      window.open(url, '_blank');
+      trackEvent('agent_link_click', { agent: agentType });
+    }
+  };
+
   return (
     <HelmetProvider>
       <div className="min-h-screen bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-x-hidden">
@@ -77,6 +91,9 @@ function App() {
         
         {/* Advanced Electronic Circuit Background */}
         <div className="fixed inset-0 opacity-20 pointer-events-none">
+          {/* Base gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-slate-900 to-indigo-950"></div>
+          
           {/* Animated circuit lines */}
           <div className="absolute inset-0">
             {/* Horizontal scanning lines */}
@@ -155,7 +172,6 @@ function App() {
                     { id: 'consulting', label: 'CONSULTORIA' },
                     { id: 'education', label: 'EDUCAÇÃO' },
                     { id: 'agents', label: 'AGENTES' },
-                    { id: 'culture', label: 'NOSSA CULTURA' },
                     { id: 'contact', label: 'CONTATO' }
                   ].map((item) => (
                     <button
@@ -196,7 +212,6 @@ function App() {
                   { id: 'consulting', label: 'CONSULTORIA' },
                   { id: 'education', label: 'EDUCAÇÃO' },
                   { id: 'agents', label: 'AGENTES' },
-                  { id: 'culture', label: 'NOSSA CULTURA' },
                   { id: 'contact', label: 'CONTATO' }
                 ].map((item) => (
                   <button
@@ -251,17 +266,51 @@ function App() {
               <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
                 Democratizando o acesso à solução e inteligência artificial para todos os negócios
               </p>
+
+              {/* Nossa Cultura */}
+              <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl border border-blue-400/20 p-8 mb-8 max-w-4xl mx-auto">
+                <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
+                  🌟 NOSSA CULTURA
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                  <div className="text-center">
+                    <h4 className="text-lg font-semibold text-cyan-200 mb-2">🔹 MISSÃO</h4>
+                    <p className="text-sm text-gray-300">
+                      Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções que impulsionem o crescimento sustentável.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-lg font-semibold text-cyan-200 mb-2">🔭 VISÃO</h4>
+                    <p className="text-sm text-gray-300">
+                      Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática.
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-lg font-semibold text-cyan-200 mb-2">💎 VALORES</h4>
+                    <p className="text-sm text-gray-300">
+                      Respeito acima de tudo, disciplina com empatia, tecnologia para todos, compromisso com resultado.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="text-center space-y-2">
+                  <p className="text-cyan-300 font-semibold">"Não paramos até conseguir!"</p>
+                  <p className="text-blue-300 font-semibold">"A tecnologia está acessível a todos. Aqui temos a solução que você procura!"</p>
+                  <p className="text-purple-300 font-semibold">"Respeito, estrutura e entrega — esse é o nosso jeito."</p>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
               {[
-                { icon: Brain, title: 'IA AVANÇADA', desc: 'EssencialBot com inteligência personalizada', color: 'from-purple-500 to-pink-500' },
-                { icon: Calculator, title: 'CONTABILIDADE', desc: 'Escritório contábil completo', color: 'from-green-500 to-emerald-500' },
-                { icon: Users, title: 'CONSULTORIA EXPERT', desc: 'Estratégias empresariais eficazes', color: 'from-blue-500 to-cyan-500' },
-                { icon: GraduationCap, title: 'EDUCAÇÃO PRO', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500' },
-                { icon: Bot, title: 'PERSONALIZE SEU AGENTE', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500' }
+                { icon: Brain, title: 'IA AVANÇADA', desc: 'EssencialBot com inteligência personalizada', color: 'from-purple-500 to-pink-500', link: 'automation' },
+                { icon: Calculator, title: 'CONTABILIDADE INTELIGENTE', desc: 'Escritório contábil completo', color: 'from-green-500 to-emerald-500', link: 'accounting' },
+                { icon: Users, title: 'CONSULTORIA EXPERT', desc: 'Estratégias empresariais eficazes', color: 'from-blue-500 to-cyan-500', link: 'consulting' },
+                { icon: GraduationCap, title: 'EDUCAÇÃO PRO', desc: 'Treinamentos e capacitações', color: 'from-orange-500 to-red-500', link: 'education' },
+                { icon: Bot, title: 'PERSONALIZE SEU AGENTE', desc: 'Temos diversos modelos', color: 'from-indigo-500 to-purple-500', link: 'agents' }
               ].map((item, index) => (
-                <div key={index} className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
+                <div key={index} className="group p-6 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20 cursor-pointer" onClick={() => openAgentLink(item.link)}>
                   <div className={`inline-flex items-center justify-center p-3 bg-gradient-to-r ${item.color} rounded-lg mb-4 group-hover:shadow-lg transition-all duration-300`}>
                     <item.icon className="h-8 w-8 text-white" />
                   </div>
@@ -283,10 +332,7 @@ function App() {
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button 
-                onClick={() => {
-                  scrollToSection('agents');
-                  trackEvent('cta_click', { button: 'ver_agentes' });
-                }}
+                onClick={() => openAgentLink('agents')}
                 className="px-8 py-4 border border-cyan-400 rounded-lg font-semibold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105"
               >
                 VER AGENTES
@@ -359,7 +405,10 @@ function App() {
                     ))}
                   </ul>
                   <button 
-                    onClick={() => trackEvent('plan_click', { plan: plan.level })}
+                    onClick={() => {
+                      openAgentLink('automation');
+                      trackEvent('plan_click', { plan: plan.level });
+                    }}
                     className={`w-full py-3 rounded-lg font-semibold transition-all duration-300 ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg hover:shadow-cyan-400/30' 
@@ -388,7 +437,7 @@ function App() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               {[
                 {
                   icon: Calculator,
@@ -436,6 +485,15 @@ function App() {
                 </div>
               ))}
             </div>
+
+            <div className="text-center">
+              <button 
+                onClick={() => openAgentLink('accounting')}
+                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+              >
+                CONSULTAR CONTABILIDADE INTELIGENTE
+              </button>
+            </div>
           </div>
         </section>
 
@@ -452,7 +510,7 @@ function App() {
                 <p className="text-xl text-gray-300 mb-8">
                   Consultoria completa que vai além da IA, oferecendo soluções estratégicas para todos os aspectos do seu negócio
                 </p>
-                <div className="space-y-4">
+                <div className="space-y-4 mb-8">
                   {[
                     'Gestão empresarial e planejamento estratégico',
                     'Fluxo de caixa e controle financeiro',
@@ -468,13 +526,10 @@ function App() {
                   ))}
                 </div>
                 <button 
-                  onClick={() => {
-                    scrollToSection('contact');
-                    trackEvent('cta_click', { button: 'agendar_consultoria' });
-                  }}
-                  className="mt-8 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+                  onClick={() => openAgentLink('consulting')}
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
                 >
-                  AGENDAR CONSULTORIA
+                  CONSULTAR EXPERT
                 </button>
               </div>
               <div className="relative">
@@ -575,13 +630,10 @@ function App() {
                 </div>
                 
                 <button 
-                  onClick={() => {
-                    scrollToSection('contact');
-                    trackEvent('cta_click', { button: 'ver_cursos' });
-                  }}
+                  onClick={() => openAgentLink('education')}
                   className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
                 >
-                  VER TODOS OS CURSOS
+                  CONSULTAR EDUCAÇÃO PRO
                 </button>
               </div>
             </div>
@@ -645,7 +697,10 @@ function App() {
                     ))}
                   </ul>
                   <button 
-                    onClick={() => trackEvent('agent_demo_click', { agent: agent.level })}
+                    onClick={() => {
+                      openAgentLink('agents');
+                      trackEvent('agent_demo_click', { agent: agent.level });
+                    }}
                     className={`w-full py-3 rounded-lg font-semibold bg-gradient-to-r ${agent.color} hover:opacity-90 transition-all duration-300 shadow-lg`}
                   >
                     SOLICITAR DEMO
@@ -729,134 +784,20 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* Nossa Cultura Section */}
-        <section id="culture" className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  NOSSA CULTURA
-                </span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Conheça os valores e princípios que guiam o Exército de Agentes na missão de democratizar a inteligência artificial
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-              {/* Missão */}
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg mb-6">
-                  <Target className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔹 MISSÃO</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Democratizar o acesso à inteligência artificial e à automação para pequenos negócios, oferecendo soluções contábeis, consultivas e tecnológicas que aliviem a sobrecarga operacional e impulsionem o crescimento sustentável com eficiência e humanidade.
-                </p>
-              </div>
-
-              {/* Visão */}
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg mb-6">
-                  <Eye className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">🔭 VISÃO</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  Ser referência nacional em soluções inteligentes e acessíveis para pequenos empreendedores, tornando a tecnologia uma aliada prática, confiável e presente no cotidiano dos que mais precisam — e menos têm acesso.
-                </p>
-              </div>
-
-              {/* Valores */}
-              <div className="p-8 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
-                <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg mb-6">
-                  <Heart className="h-12 w-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-cyan-200">💎 VALORES INEGOCIÁVEIS</h3>
-                <div className="space-y-3 text-gray-300">
-                  <div>
-                    <span className="font-semibold text-cyan-300">Respeito acima de tudo:</span> Não toleramos desrespeito em nenhuma forma.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-cyan-300">Disciplina com empatia:</span> Agimos com firmeza e método, mas sempre com humanidade.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-cyan-300">Tecnologia para todos:</span> Acreditamos que inovação só faz sentido se for acessível.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-cyan-300">Compromisso com o resultado:</span> Não paramos até conseguir — e entregamos com excelência.
-                  </div>
-                  <div>
-                    <span className="font-semibold text-cyan-300">Clareza e estrutura:</span> Preferimos processos bem definidos a improvisos recorrentes.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Princípios Culturais */}
-            <div className="mb-16">
-              <h3 className="text-3xl font-bold mb-8 text-center">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  🧭 PRINCÍPIOS CULTURAIS EM AÇÃO
-                </span>
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  {
-                    title: 'Estilo de liderança',
-                    description: 'Direto, estruturado e focado em resultados. A liderança aqui orienta, corrige e conduz — com firmeza, mas com respeito.'
-                  },
-                  {
-                    title: 'Atitude frente a erros',
-                    description: 'Corrigimos o processo, não a pessoa. O erro é uma chance de fortalecer o sistema.'
-                  },
-                  {
-                    title: 'Tom de voz interno',
-                    description: 'Objetivo, respeitoso e motivador. Aqui se fala com clareza e sem rodeios.'
-                  },
-                  {
-                    title: 'Ambiente de trabalho',
-                    description: 'Remoto e disciplinado. Cada um com liberdade e responsabilidade para entregar o que promete.'
-                  },
-                  {
-                    title: 'Decisões difíceis',
-                    description: 'São tomadas com base em dados e validação intuitiva — equilibramos razão e sensibilidade.'
-                  }
-                ].map((principle, index) => (
-                  <div key={index} className="p-6 bg-gray-800/30 rounded-xl border border-gray-700 hover:border-cyan-400/40 transition-all duration-300">
-                    <h4 className="text-lg font-semibold text-cyan-300 mb-3">{principle.title}</h4>
-                    <p className="text-gray-400">{principle.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Frases-Símbolo */}
-            <div className="text-center">
-              <h3 className="text-3xl font-bold mb-8">
-                <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-transparent">
-                  🧠 FRASES-SÍMBOLO DA CULTURA
-                </span>
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  "Não paramos até conseguir!",
-                  "A tecnologia está acessível a todos. Aqui temos a solução que você procura!",
-                  "Respeito, estrutura e entrega — esse é o nosso jeito."
-                ].map((phrase, index) => (
-                  <div key={index} className="p-6 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 rounded-xl border border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300">
-                    <p className="text-xl font-semibold text-cyan-200 italic">"{phrase}"</p>
-                  </div>
-                ))}
-              </div>
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => openAgentLink('agents')}
+                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+              >
+                PERSONALIZE SEU AGENTE
+              </button>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 bg-gray-800/30">
+        <section id="contact" className="py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
@@ -870,18 +811,29 @@ function App() {
               
               {/* Contact Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
+                <a 
+                  href="https://wa.me/5511911757113" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:bg-cyan-400/10"
+                >
                   <Phone className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">(11) 91175-7113</span>
-                </div>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
+                </a>
+                <a 
+                  href="mailto:sac@exercitodeagentes.com.br"
+                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:bg-cyan-400/10"
+                >
                   <Mail className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">sac@exercitodeagentes.com.br</span>
-                </div>
-                <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
+                </a>
+                <a 
+                  href="mailto:financeiro@exercitodeagentes.com.br"
+                  className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300 hover:bg-cyan-400/10"
+                >
                   <Mail className="h-5 w-5 text-green-400" />
                   <span className="text-green-200 text-sm">financeiro@exercitodeagentes.com.br</span>
-                </div>
+                </a>
                 <div className="flex items-center justify-center space-x-2 p-4 bg-gray-800/30 rounded-lg border border-blue-400/20 hover:border-cyan-400/40 transition-all duration-300">
                   <Globe className="h-5 w-5 text-cyan-300" />
                   <span className="text-cyan-200 text-sm">exercitodeagentes.com.br</span>

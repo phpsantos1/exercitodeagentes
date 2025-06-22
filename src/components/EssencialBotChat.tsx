@@ -201,7 +201,7 @@ const EssencialBotChat: React.FC = () => {
         setCurrentFlow('interested');
         addBotMessage(
           "Perfeito! Nossa automação IA com EssencialBot é revolucionária. Oferecemos:\n\n🔹 **Nível 2 - Integrado** (R$ 297/mês)\n- EssencialBot personalizado\n- Integração Google Sheets\n- Automação Make/Zapier\n- Relatórios automáticos\n\n🔹 **Nível 3 - Avançado** (R$ 497/mês)\n- Machine Learning avançado\n- Análise preditiva\n- Multi-plataformas\n- Consultoria incluída\n\nQual nível desperta mais seu interesse?",
-          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero mais detalhes", "Gostaria de uma proposta", "🔗 Consultar IA Avançada"]
+          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero mais detalhes", "Gostaria de uma proposta", "🔗 Consultar Agente"]
         );
       } else if (lowerInput.includes('contábil') || lowerInput.includes('contabilidade')) {
         setCurrentFlow('interested');
@@ -245,9 +245,9 @@ const EssencialBotChat: React.FC = () => {
       setShowPreCadastro(true);
     } else if (lowerInput.includes('🔗 consultar')) {
       // Detectar qual GPT acessar baseado no texto
-      if (lowerInput.includes('ia avançada')) {
+      if (lowerInput.includes('agente')) {
         window.open('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', '_blank');
-        addBotMessage("Redirecionando para consulta sobre IA Avançada! 🤖");
+        addBotMessage("Redirecionando para consulta sobre Agente! 🤖");
       } else if (lowerInput.includes('contabilidade inteligente')) {
         window.open('https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil', '_blank');
         addBotMessage("Redirecionando para consulta sobre Contabilidade Inteligente! 📊");
@@ -261,12 +261,12 @@ const EssencialBotChat: React.FC = () => {
     } else if (lowerInput.includes('nível 2') || lowerInput.includes('integrado')) {
       addBotMessage(
         "Excelente escolha! O Nível 2 - Integrado é perfeito para empresas que querem:\n\n✅ EssencialBot personalizado para seu negócio\n✅ Integração automática com Google Sheets\n✅ Automações Make/Zapier\n✅ Relatórios automáticos\n✅ Suporte prioritário\n\n**Investimento: R$ 297/mês**\n\nEste nível já resolve 80% das necessidades de automação. Gostaria de uma demonstração prática?",
-        ["Quero uma demo", "Vamos fechar negócio", "Preciso pensar", "🔗 Consultar IA Avançada"]
+        ["Quero uma demo", "Vamos fechar negócio", "Preciso pensar", "🔗 Consultar Agente"]
       );
     } else if (lowerInput.includes('nível 3') || lowerInput.includes('avançado')) {
       addBotMessage(
         "Perfeita escolha! O Nível 3 - Avançado é nossa solução premium:\n\n🚀 Tudo do Nível 2 MAIS:\n✅ EssencialBot com Machine Learning\n✅ Análise preditiva avançada\n✅ Multi-plataformas\n✅ Consultoria empresarial incluída\n✅ API personalizada\n\n**Investimento: R$ 497/mês**\n\nÉ a solução completa para empresas que querem estar na vanguarda da IA. Pronto para começar?",
-        ["Sim, vamos começar!", "Quero uma proposta", "Preciso de mais detalhes", "🔗 Consultar IA Avançada"]
+        ["Sim, vamos começar!", "Quero uma proposta", "Preciso de mais detalhes", "🔗 Consultar Agente"]
       );
     } else {
       // Resposta genérica inteligente
