@@ -200,7 +200,7 @@ const EssencialBotChat: React.FC = () => {
       if (lowerInput.includes('automação') || lowerInput.includes('quero conhecer') || lowerInput.includes('preciso de automação')) {
         setCurrentFlow('interested');
         addBotMessage(
-          "Perfeito! Nossa automação IA com EssencialBot é revolucionária. Oferecemos:\n\n🔹 **Nível 2 - Integrado** (R$ 297/mês)\n- EssencialBot personalizado\n- Integração Google Sheets\n- Automação Make/Zapier\n- Relatórios automáticos\n\n🔹 **Nível 3 - Avançado** (R$ 497/mês)\n- Machine Learning avançado\n- Análise preditiva\n- Multi-plataformas\n- Consultoria incluída\n\nQual nível desperta mais seu interesse?",
+          "Perfeito! Nossa automação IA com EssencialBot é revolucionária. Oferecemos:\n\n🔹 **Nível 2 - Integrado** (R$ 397 setup + R$ 397/mês)\n- EssencialBot personalizado\n- Integração Google Sheets\n- Automação Make/Zapier\n- Relatórios automáticos\n\n🔹 **Nível 3 - Avançado** (R$ 497 setup + R$ 497/mês)\n- Machine Learning avançado\n- Análise preditiva\n- Multi-plataformas\n- Consultoria incluída\n\nQual nível desperta mais seu interesse?",
           ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero mais detalhes", "Gostaria de uma proposta", "🔗 Consultar Agente"]
         );
       } else if (lowerInput.includes('contábil') || lowerInput.includes('contabilidade')) {
@@ -260,12 +260,12 @@ const EssencialBotChat: React.FC = () => {
       }
     } else if (lowerInput.includes('nível 2') || lowerInput.includes('integrado')) {
       addBotMessage(
-        "Excelente escolha! O Nível 2 - Integrado é perfeito para empresas que querem:\n\n✅ EssencialBot personalizado para seu negócio\n✅ Integração automática com Google Sheets\n✅ Automações Make/Zapier\n✅ Relatórios automáticos\n✅ Suporte prioritário\n\n**Investimento: R$ 297/mês**\n\nEste nível já resolve 80% das necessidades de automação. Gostaria de uma demonstração prática?",
+        "Excelente escolha! O Nível 2 - Integrado é perfeito para empresas que querem:\n\n✅ EssencialBot personalizado para seu negócio\n✅ Integração automática com Google Sheets\n✅ Automações Make/Zapier\n✅ Relatórios automáticos\n✅ Suporte prioritário\n\n**Investimento: R$ 397 setup + R$ 397/mês**\n\nEste nível já resolve 80% das necessidades de automação. Gostaria de uma demonstração prática?",
         ["Quero uma demo", "Vamos fechar negócio", "Preciso pensar", "🔗 Consultar Agente"]
       );
     } else if (lowerInput.includes('nível 3') || lowerInput.includes('avançado')) {
       addBotMessage(
-        "Perfeita escolha! O Nível 3 - Avançado é nossa solução premium:\n\n🚀 Tudo do Nível 2 MAIS:\n✅ EssencialBot com Machine Learning\n✅ Análise preditiva avançada\n✅ Multi-plataformas\n✅ Consultoria empresarial incluída\n✅ API personalizada\n\n**Investimento: R$ 497/mês**\n\nÉ a solução completa para empresas que querem estar na vanguarda da IA. Pronto para começar?",
+        "Perfeita escolha! O Nível 3 - Avançado é nossa solução premium:\n\n🚀 Tudo do Nível 2 MAIS:\n✅ EssencialBot com Machine Learning\n✅ Análise preditiva avançada\n✅ Multi-plataformas\n✅ Consultoria empresarial incluída\n✅ API personalizada\n\n**Investimento: R$ 497 setup + R$ 497/mês**\n\nÉ a solução completa para empresas que querem estar na vanguarda da IA. Pronto para começar?",
         ["Sim, vamos começar!", "Quero uma proposta", "Preciso de mais detalhes", "🔗 Consultar Agente"]
       );
     } else {
@@ -640,8 +640,8 @@ const EssencialBotChat: React.FC = () => {
                   className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
                 >
                   <option value="">Selecione o produto</option>
-                  <option value="Nível 2 - Integrado (R$ 297/mês)">Nível 2 - Integrado (R$ 297/mês)</option>
-                  <option value="Nível 3 - Avançado (R$ 497/mês)">Nível 3 - Avançado (R$ 497/mês)</option>
+                  <option value="Nível 2 - Integrado (R$ 397 setup + R$ 397/mês)">Nível 2 - Integrado (R$ 397 setup + R$ 397/mês)</option>
+                  <option value="Nível 3 - Avançado (R$ 497 setup + R$ 497/mês)">Nível 3 - Avançado (R$ 497 setup + R$ 497/mês)</option>
                   <option value="Serviços Contábeis">Serviços Contábeis</option>
                   <option value="Consultoria Empresarial">Consultoria Empresarial</option>
                   <option value="Treinamentos">Treinamentos e Cursos</option>
