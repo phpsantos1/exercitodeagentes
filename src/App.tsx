@@ -25,11 +25,11 @@ import {
   BookOpen,
   Cog,
   Search,
-  Eye,
+  Brain,
   Wrench,
   MapPin,
   Dumbbell,
-  Palette
+  Instagram
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -54,148 +54,92 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 text-white relative overflow-hidden">
         <SEOHead />
         
-        {/* Circuito Eletrônico de Fundo High-Tech */}
-        <div className="absolute inset-0 opacity-30">
+        {/* Circuito Eletrônico de Fundo */}
+        <div className="absolute inset-0 opacity-20">
           <svg className="w-full h-full" viewBox="0 0 1920 1080" fill="none">
             <defs>
               <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#06b6d4" />
-                <stop offset="25%" stopColor="#3b82f6" />
-                <stop offset="50%" stopColor="#8b5cf6" />
-                <stop offset="75%" stopColor="#d946ef" />
-                <stop offset="100%" stopColor="#f59e0b" />
+                <stop offset="0%" stopColor="#3b82f6" />
+                <stop offset="50%" stopColor="#06b6d4" />
+                <stop offset="100%" stopColor="#8b5cf6" />
               </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
             </defs>
             
-            {/* Grid principal de circuitos */}
-            {Array.from({ length: 25 }, (_, i) => (
+            {/* Grid de linhas horizontais */}
+            {Array.from({ length: 20 }, (_, i) => (
               <line
                 key={`h-${i}`}
                 x1="0"
-                y1={i * 43.2}
+                y1={i * 54}
                 x2="1920"
-                y2={i * 43.2}
+                y2={i * 54}
                 stroke="url(#circuitGradient)"
-                strokeWidth="0.8"
-                filter="url(#glow)"
+                strokeWidth="1"
               />
             ))}
             
-            {Array.from({ length: 45 }, (_, i) => (
+            {/* Grid de linhas verticais */}
+            {Array.from({ length: 35 }, (_, i) => (
               <line
                 key={`v-${i}`}
-                x1={i * 42.7}
+                x1={i * 55}
                 y1="0"
-                x2={i * 42.7}
+                x2={i * 55}
                 y2="1080"
                 stroke="url(#circuitGradient)"
-                strokeWidth="0.8"
-                filter="url(#glow)"
+                strokeWidth="1"
               />
             ))}
             
             {/* Conexões diagonais sequenciais */}
-            {Array.from({ length: 20 }, (_, i) => (
+            {Array.from({ length: 15 }, (_, i) => (
               <g key={`diag-${i}`}>
                 <line
-                  x1={i * 96}
-                  y1={80 + (i % 4) * 180}
-                  x2={i * 96 + 80}
-                  y2={160 + (i % 4) * 180}
+                  x1={i * 128}
+                  y1={100 + (i % 3) * 200}
+                  x2={i * 128 + 100}
+                  y2={200 + (i % 3) * 200}
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1.2"
-                  filter="url(#glow)"
+                  strokeWidth="1"
                 />
                 <line
-                  x1={i * 96 + 40}
-                  y1={120 + (i % 5) * 150}
-                  x2={i * 96 + 120}
-                  y2={40 + (i % 5) * 150}
+                  x1={i * 128 + 50}
+                  y1={150 + (i % 4) * 180}
+                  x2={i * 128 + 150}
+                  y2={50 + (i % 4) * 180}
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1.2"
-                  filter="url(#glow)"
+                  strokeWidth="1"
                 />
               </g>
             ))}
             
-            {/* Nós de circuito com brilho */}
-            {Array.from({ length: 80 }, (_, i) => (
+            {/* Nós de circuito */}
+            {Array.from({ length: 50 }, (_, i) => (
               <circle
                 key={`node-${i}`}
-                cx={(i % 12) * 160 + 80}
-                cy={Math.floor(i / 12) * 162 + 81}
-                r="4"
+                cx={(i % 10) * 192 + 96}
+                cy={Math.floor(i / 10) * 216 + 108}
+                r="3"
                 fill="url(#circuitGradient)"
-                filter="url(#glow)"
               />
             ))}
             
-            {/* Componentes eletrônicos (resistores, capacitores) */}
-            {Array.from({ length: 35 }, (_, i) => (
+            {/* Componentes eletrônicos */}
+            {Array.from({ length: 25 }, (_, i) => (
               <rect
                 key={`comp-${i}`}
-                x={(i % 7) * 274 + 120}
-                y={Math.floor(i / 7) * 216 + 60}
-                width="100"
-                height="24"
+                x={(i % 5) * 384 + 150}
+                y={Math.floor(i / 5) * 216 + 80}
+                width="80"
+                height="20"
                 fill="none"
-                stroke="url(#circuitGradient)"
-                strokeWidth="1.5"
-                rx="3"
-                filter="url(#glow)"
-              />
-            ))}
-            
-            {/* Trilhas de circuito complexas */}
-            {Array.from({ length: 15 }, (_, i) => (
-              <path
-                key={`path-${i}`}
-                d={`M${i * 128} ${200 + i * 40} Q${i * 128 + 64} ${160 + i * 40} ${i * 128 + 128} ${200 + i * 40}`}
                 stroke="url(#circuitGradient)"
                 strokeWidth="1"
-                fill="none"
-                filter="url(#glow)"
+                rx="2"
               />
-            ))}
-            
-            {/* Microchips com pinos */}
-            {Array.from({ length: 12 }, (_, i) => (
-              <g key={`chip-${i}`}>
-                <rect
-                  x={(i % 4) * 480 + 200}
-                  y={Math.floor(i / 4) * 360 + 150}
-                  width="80"
-                  height="60"
-                  fill="none"
-                  stroke="url(#circuitGradient)"
-                  strokeWidth="2"
-                  rx="4"
-                  filter="url(#glow)"
-                />
-                {/* Pinos do chip */}
-                {Array.from({ length: 8 }, (_, j) => (
-                  <line
-                    key={`pin-${j}`}
-                    x1={(i % 4) * 480 + 200 + (j < 4 ? -8 : 88)}
-                    y1={Math.floor(i / 4) * 360 + 150 + 15 + (j % 4) * 10}
-                    x2={(i % 4) * 480 + 200 + (j < 4 ? 0 : 80)}
-                    y2={Math.floor(i / 4) * 360 + 150 + 15 + (j % 4) * 10}
-                    stroke="url(#circuitGradient)"
-                    strokeWidth="1.5"
-                    filter="url(#glow)"
-                  />
-                ))}
-              </g>
             ))}
           </svg>
         </div>
@@ -208,49 +152,49 @@ function App() {
                 <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg">
                   <Bot className="h-8 w-8 text-white" />
                 </div>
-                <span className="text-2xl font-bold text-white">EXÉRCITO DE AGENTES</span>
+                <span className="text-2xl font-bold">EXÉRCITO DE AGENTES</span>
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
                 <button 
                   onClick={() => scrollToSection('automation')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   AUTOMAÇÃO IA
                 </button>
                 <button 
                   onClick={() => scrollToSection('accounting')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   CONTABILIDADE
                 </button>
                 <button 
                   onClick={() => scrollToSection('consulting')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   CONSULTORIA
                 </button>
                 <button 
                   onClick={() => scrollToSection('education')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   ENSINO PRÓ
                 </button>
                 <button 
                   onClick={() => scrollToSection('personalization')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   PERSONALIZAÇÃO DE IA
                 </button>
                 <button 
                   onClick={() => scrollToSection('mission')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   MISSÃO
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
+                  className="hover:text-cyan-300 transition-colors font-medium"
                 >
                   CONTATO
                 </button>
@@ -815,23 +759,18 @@ function App() {
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
                 Configuração e disponibilização de agentes de IA customizados para suas necessidades específicas
               </p>
-              <div className="text-center mb-12">
+              <div className="text-center mb-8">
                 <div className="text-4xl font-bold text-cyan-300 mb-2">R$ 120</div>
-                <p className="text-gray-300">Setup + R$ 50/mês manutenção</p>
+                <p className="text-gray-300">Setup + R$ 50 por manutenção</p>
               </div>
-            </div>
-
-            {/* Sub-slogan */}
-            <div className="text-center mb-16">
-              <h3 className="text-2xl font-bold text-cyan-300 mb-8">
+              <p className="text-lg text-cyan-300 font-semibold italic">
                 "Você não sabe que precisa desses agentes até conhecê-los!"
-              </h3>
+              </p>
             </div>
 
-            {/* Exemplos de Agentes Personalizados */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Palette className="h-12 w-12 text-cyan-400 mb-4" />
+                <Lightbulb className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Agente de Renovação Visual</h3>
                 <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
               </div>
@@ -843,43 +782,43 @@ function App() {
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Lightbulb className="h-12 w-12 text-cyan-400 mb-4" />
+                <Brain className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Compilador de Insights</h3>
                 <p className="text-gray-300 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Target className="h-12 w-12 text-cyan-400 mb-4" />
+                <Search className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Agente Buscador de Cupons</h3>
                 <p className="text-gray-300 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Eye className="h-12 w-12 text-cyan-400 mb-4" />
+                <Brain className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Avaliador de QIs</h3>
-                <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados, traduzindo pontuações em diagnósticos compreensíveis, éticos e acionáveis.</p>
+                <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
                 <Wrench className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Encanador</h3>
-                <p className="text-gray-300 text-sm">Atuar como especialista sênior em sistemas hidráulicos residenciais e comerciais, com domínio técnico absoluto para identificar, projetar, planejar e executar soluções de encanamento com precisão e confiabilidade.</p>
+                <p className="text-gray-300 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais com domínio técnico absoluto.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
                 <MapPin className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Passeios em SP</h3>
-                <p className="text-gray-300 text-sm">Ser o estrategista urbano supremo, capaz de transformar desejos subjetivos em vivências memoráveis em São Paulo.</p>
+                <p className="text-gray-300 text-sm">Estrategista urbano supremo, capaz de transformar desejos subjetivos em vivências memoráveis em São Paulo.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
                 <Dumbbell className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Treinadores Esportivos</h3>
-                <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades esportivas para orientação personalizada.</p>
+                <p className="text-gray-300 text-sm">Especialistas em diversas modalidades esportivas para otimizar seu desempenho.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Bot className="h-12 w-12 text-cyan-400 mb-4" />
+                <Settings className="h-12 w-12 text-cyan-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">E Muito Mais!</h3>
                 <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
               </div>
@@ -1045,6 +984,14 @@ function App() {
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   <Mail className="h-6 w-6" />
+                </a>
+                <a 
+                  href="https://instagram.com/exercitodeagentes" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-pink-400 transition-colors"
+                >
+                  <Instagram className="h-6 w-6" />
                 </a>
               </div>
               
