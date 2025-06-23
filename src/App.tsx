@@ -23,7 +23,13 @@ import {
   FileText,
   Briefcase,
   BookOpen,
-  Cog
+  Cog,
+  Search,
+  Eye,
+  Wrench,
+  MapPin,
+  Dumbbell,
+  Palette
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -51,19 +57,19 @@ function App() {
       <div className="min-h-screen bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
         <SEOHead />
         
-        {/* Circuito Eletrônico High-Tech de Fundo */}
+        {/* Circuito Eletrônico de Fundo High-Tech */}
         <div className="absolute inset-0 opacity-30">
           <svg className="w-full h-full" viewBox="0 0 1920 1080" fill="none">
             <defs>
               <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00ffff" />
-                <stop offset="25%" stopColor="#0099ff" />
-                <stop offset="50%" stopColor="#3366ff" />
-                <stop offset="75%" stopColor="#6633ff" />
-                <stop offset="100%" stopColor="#9900ff" />
+                <stop offset="0%" stopColor="#06b6d4" />
+                <stop offset="25%" stopColor="#3b82f6" />
+                <stop offset="50%" stopColor="#8b5cf6" />
+                <stop offset="75%" stopColor="#d946ef" />
+                <stop offset="100%" stopColor="#f59e0b" />
               </linearGradient>
               <filter id="glow">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
                 <feMerge> 
                   <feMergeNode in="coloredBlur"/>
                   <feMergeNode in="SourceGraphic"/>
@@ -73,28 +79,29 @@ function App() {
             
             {/* Grid principal de circuitos */}
             {Array.from({ length: 25 }, (_, i) => (
-              <g key={`circuit-${i}`}>
-                {/* Linhas horizontais principais */}
-                <line
-                  x1="0"
-                  y1={i * 43.2}
-                  x2="1920"
-                  y2={i * 43.2}
-                  stroke="url(#circuitGradient)"
-                  strokeWidth="0.8"
-                  filter="url(#glow)"
-                />
-                {/* Linhas verticais principais */}
-                <line
-                  x1={i * 76.8}
-                  y1="0"
-                  x2={i * 76.8}
-                  y2="1080"
-                  stroke="url(#circuitGradient)"
-                  strokeWidth="0.8"
-                  filter="url(#glow)"
-                />
-              </g>
+              <line
+                key={`h-${i}`}
+                x1="0"
+                y1={i * 43.2}
+                x2="1920"
+                y2={i * 43.2}
+                stroke="url(#circuitGradient)"
+                strokeWidth="0.8"
+                filter="url(#glow)"
+              />
+            ))}
+            
+            {Array.from({ length: 45 }, (_, i) => (
+              <line
+                key={`v-${i}`}
+                x1={i * 42.7}
+                y1="0"
+                x2={i * 42.7}
+                y2="1080"
+                stroke="url(#circuitGradient)"
+                strokeWidth="0.8"
+                filter="url(#glow)"
+              />
             ))}
             
             {/* Conexões diagonais sequenciais */}
@@ -102,49 +109,49 @@ function App() {
               <g key={`diag-${i}`}>
                 <line
                   x1={i * 96}
-                  y1={80 + (i % 4) * 200}
+                  y1={80 + (i % 4) * 180}
                   x2={i * 96 + 80}
-                  y2={160 + (i % 4) * 200}
+                  y2={160 + (i % 4) * 180}
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1"
+                  strokeWidth="1.2"
                   filter="url(#glow)"
                 />
                 <line
                   x1={i * 96 + 40}
-                  y1={120 + (i % 5) * 160}
+                  y1={120 + (i % 5) * 150}
                   x2={i * 96 + 120}
-                  y2={40 + (i % 5) * 160}
+                  y2={40 + (i % 5) * 150}
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1"
+                  strokeWidth="1.2"
                   filter="url(#glow)"
                 />
               </g>
             ))}
             
             {/* Nós de circuito com brilho */}
-            {Array.from({ length: 60 }, (_, i) => (
+            {Array.from({ length: 80 }, (_, i) => (
               <circle
                 key={`node-${i}`}
                 cx={(i % 12) * 160 + 80}
-                cy={Math.floor(i / 12) * 216 + 108}
-                r="2.5"
+                cy={Math.floor(i / 12) * 162 + 81}
+                r="4"
                 fill="url(#circuitGradient)"
                 filter="url(#glow)"
               />
             ))}
             
-            {/* Componentes eletrônicos */}
-            {Array.from({ length: 30 }, (_, i) => (
+            {/* Componentes eletrônicos (resistores, capacitores) */}
+            {Array.from({ length: 35 }, (_, i) => (
               <rect
                 key={`comp-${i}`}
-                x={(i % 6) * 320 + 120}
-                y={Math.floor(i / 6) * 180 + 60}
-                width="60"
-                height="16"
+                x={(i % 7) * 274 + 120}
+                y={Math.floor(i / 7) * 216 + 60}
+                width="100"
+                height="24"
                 fill="none"
                 stroke="url(#circuitGradient)"
-                strokeWidth="1"
-                rx="2"
+                strokeWidth="1.5"
+                rx="3"
                 filter="url(#glow)"
               />
             ))}
@@ -153,7 +160,7 @@ function App() {
             {Array.from({ length: 15 }, (_, i) => (
               <path
                 key={`path-${i}`}
-                d={`M${i * 128} ${100 + i * 60} L${i * 128 + 60} ${100 + i * 60} L${i * 128 + 60} ${140 + i * 60} L${i * 128 + 120} ${140 + i * 60}`}
+                d={`M${i * 128} ${200 + i * 40} Q${i * 128 + 64} ${160 + i * 40} ${i * 128 + 128} ${200 + i * 40}`}
                 stroke="url(#circuitGradient)"
                 strokeWidth="1"
                 fill="none"
@@ -161,17 +168,17 @@ function App() {
               />
             ))}
             
-            {/* Microchips */}
+            {/* Microchips com pinos */}
             {Array.from({ length: 12 }, (_, i) => (
               <g key={`chip-${i}`}>
                 <rect
                   x={(i % 4) * 480 + 200}
-                  y={Math.floor(i / 4) * 300 + 150}
+                  y={Math.floor(i / 4) * 360 + 150}
                   width="80"
                   height="60"
                   fill="none"
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1.5"
+                  strokeWidth="2"
                   rx="4"
                   filter="url(#glow)"
                 />
@@ -179,12 +186,12 @@ function App() {
                 {Array.from({ length: 8 }, (_, j) => (
                   <line
                     key={`pin-${j}`}
-                    x1={(i % 4) * 480 + 200 + (j * 10)}
-                    y1={Math.floor(i / 4) * 300 + 150}
-                    x2={(i % 4) * 480 + 200 + (j * 10)}
-                    y2={Math.floor(i / 4) * 300 + 140}
+                    x1={(i % 4) * 480 + 200 + (j < 4 ? -8 : 88)}
+                    y1={Math.floor(i / 4) * 360 + 150 + 15 + (j % 4) * 10}
+                    x2={(i % 4) * 480 + 200 + (j < 4 ? 0 : 80)}
+                    y2={Math.floor(i / 4) * 360 + 150 + 15 + (j % 4) * 10}
                     stroke="url(#circuitGradient)"
-                    strokeWidth="1"
+                    strokeWidth="1.5"
                     filter="url(#glow)"
                   />
                 ))}
@@ -254,14 +261,14 @@ function App() {
                     className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors"
                     title="WhatsApp: (11) 91175-7113"
                   >
-                    <Phone className="h-4 w-4 text-white" />
+                    <Phone className="h-4 w-4" />
                   </a>
                   <a 
                     href="mailto:sac@exercitodeagentes.com.br" 
                     className="p-2 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors"
                     title="Email: sac@exercitodeagentes.com.br"
                   >
-                    <Mail className="h-4 w-4 text-white" />
+                    <Mail className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -805,47 +812,80 @@ function App() {
               <h2 className="text-5xl font-bold mb-6">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">PERSONALIZAÇÃO DE IA</span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Agentes de IA customizados para suas necessidades específicas e integração total com seus sistemas
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
+                Configuração e disponibilização de agentes de IA customizados para suas necessidades específicas
               </p>
+              <div className="text-center mb-12">
+                <div className="text-4xl font-bold text-cyan-300 mb-2">R$ 120</div>
+                <p className="text-gray-300">Setup + R$ 50/mês manutenção</p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Sub-slogan */}
+            <div className="text-center mb-16">
+              <h3 className="text-2xl font-bold text-cyan-300 mb-8">
+                "Você não sabe que precisa desses agentes até conhecê-los!"
+              </h3>
+            </div>
+
+            {/* Exemplos de Agentes Personalizados */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-12">
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Cog className="h-12 w-12 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Agentes Customizados</h3>
-                <p className="text-gray-300 mb-4">IA personalizada para seu setor e necessidades</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Análise de requisitos</li>
-                  <li>• Desenvolvimento personalizado</li>
-                  <li>• Treinamento específico</li>
-                </ul>
+                <Palette className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Agente de Renovação Visual</h3>
+                <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
+                <Search className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Pesquisador de Mercado</h3>
+                <p className="text-gray-300 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
                 <Lightbulb className="h-12 w-12 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Integração Total</h3>
-                <p className="text-gray-300 mb-4">Conexão com todos os seus sistemas existentes</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• APIs personalizadas</li>
-                  <li>• Sincronização de dados</li>
-                  <li>• Workflow automatizado</li>
-                </ul>
+                <h3 className="text-xl font-bold mb-3">Compilador de Insights</h3>
+                <p className="text-gray-300 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
               <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Clock className="h-12 w-12 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Suporte Contínuo</h3>
-                <p className="text-gray-300 mb-4">Evolução constante dos seus agentes de IA</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Monitoramento 24/7</li>
-                  <li>• Atualizações automáticas</li>
-                  <li>• Otimização contínua</li>
-                </ul>
+                <Target className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Agente Buscador de Cupons</h3>
+                <p className="text-gray-300 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
+                <Eye className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Avaliador de QIs</h3>
+                <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados, traduzindo pontuações em diagnósticos compreensíveis, éticos e acionáveis.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
+                <Wrench className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Encanador</h3>
+                <p className="text-gray-300 text-sm">Atuar como especialista sênior em sistemas hidráulicos residenciais e comerciais, com domínio técnico absoluto para identificar, projetar, planejar e executar soluções de encanamento com precisão e confiabilidade.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
+                <MapPin className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Passeios em SP</h3>
+                <p className="text-gray-300 text-sm">Ser o estrategista urbano supremo, capaz de transformar desejos subjetivos em vivências memoráveis em São Paulo.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
+                <Dumbbell className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Treinadores Esportivos</h3>
+                <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades esportivas para orientação personalizada.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
+                <Bot className="h-12 w-12 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">E Muito Mais!</h3>
+                <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
               </div>
             </div>
 
-            <div className="text-center mt-12">
+            <div className="text-center">
               <button 
                 onClick={() => window.open('https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge', '_blank')}
                 className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl font-bold text-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300"
