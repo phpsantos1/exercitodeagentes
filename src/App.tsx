@@ -24,11 +24,6 @@ import {
   Briefcase,
   BookOpen,
   Cog,
-  Search,
-  Brain,
-  Wrench,
-  MapPin,
-  Dumbbell,
   Instagram
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
@@ -54,7 +49,7 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-r from-blue-900 via-blue-800 to-purple-900 text-white relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-r from-blue-900 to-purple-900 text-white relative overflow-hidden">
         <SEOHead />
         
         {/* Circuito Eletrônico de Fundo */}
@@ -152,49 +147,49 @@ function App() {
                 <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg">
                   <Bot className="h-8 w-8 text-white" />
                 </div>
-                <span className="text-2xl font-bold">EXÉRCITO DE AGENTES</span>
+                <span className="text-2xl font-bold text-white">EXÉRCITO DE AGENTES</span>
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
                 <button 
                   onClick={() => scrollToSection('automation')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   AUTOMAÇÃO IA
                 </button>
                 <button 
                   onClick={() => scrollToSection('accounting')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   CONTABILIDADE
                 </button>
                 <button 
                   onClick={() => scrollToSection('consulting')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   CONSULTORIA
                 </button>
                 <button 
                   onClick={() => scrollToSection('education')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   ENSINO PRÓ
                 </button>
                 <button 
                   onClick={() => scrollToSection('personalization')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   PERSONALIZAÇÃO DE IA
                 </button>
                 <button 
                   onClick={() => scrollToSection('mission')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   MISSÃO
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   CONTATO
                 </button>
@@ -301,15 +296,15 @@ function App() {
             </div>
 
             {/* Personalização IA */}
-            <div className="bg-gradient-to-br from-cyan-600/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-cyan-400/20">
-              <div className="p-4 bg-cyan-500 rounded-xl mb-4 w-fit mx-auto">
+            <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-red-400/20">
+              <div className="p-4 bg-red-500 rounded-xl mb-4 w-fit mx-auto">
                 <Settings className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-bold mb-3">Personalização IA</h3>
               <p className="text-gray-300 text-sm mb-4">Agentes customizados para suas necessidades</p>
               <button 
                 onClick={() => scrollToSection('personalization')}
-                className="text-cyan-300 hover:text-cyan-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
+                className="text-red-300 hover:text-red-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
               >
                 <span>Saiba mais</span>
                 <ArrowRight className="h-4 w-4" />
@@ -754,80 +749,80 @@ function App() {
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">PERSONALIZAÇÃO DE IA</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">PERSONALIZAÇÃO DE IA</span>
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
                 Configuração e disponibilização de agentes de IA customizados para suas necessidades específicas
               </p>
               <div className="text-center mb-8">
-                <div className="text-4xl font-bold text-cyan-300 mb-2">R$ 120</div>
+                <div className="text-4xl font-bold text-red-300 mb-2">R$ 120</div>
                 <p className="text-gray-300">Setup + R$ 50 por manutenção</p>
               </div>
-              <p className="text-lg text-cyan-300 font-semibold italic">
+              <p className="text-lg text-red-300 font-semibold italic">
                 "Você não sabe que precisa desses agentes até conhecê-los!"
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Lightbulb className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Cog className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Agente de Renovação Visual</h3>
                 <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Search className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Lightbulb className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Pesquisador de Mercado</h3>
                 <p className="text-gray-300 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Brain className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Clock className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Compilador de Insights</h3>
                 <p className="text-gray-300 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Search className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Target className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Agente Buscador de Cupons</h3>
                 <p className="text-gray-300 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Brain className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Award className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Avaliador de QIs</h3>
                 <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Wrench className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Settings className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Encanador</h3>
                 <p className="text-gray-300 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais com domínio técnico absoluto.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <MapPin className="h-12 w-12 text-cyan-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <Bot className="h-12 w-12 text-red-400 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Passeios em SP</h3>
-                <p className="text-gray-300 text-sm">Estrategista urbano supremo, capaz de transformar desejos subjetivos em vivências memoráveis em São Paulo.</p>
+                <p className="text-gray-300 text-sm">Ser o estrategista urbano supremo, capaz de transformar desejos subjetivos em vivências memoráveis em São Paulo.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Dumbbell className="h-12 w-12 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Treinadores Esportivos</h3>
-                <p className="text-gray-300 text-sm">Especialistas em diversas modalidades esportivas para otimizar seu desempenho.</p>
+              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
+                <TrendingUp className="h-12 w-12 text-red-400 mb-4" />
+                <h3 className="text-xl font-bold mb-3">Treinadores</h3>
+                <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades para desenvolvimento pessoal e profissional.</p>
               </div>
+            </div>
 
-              <div className="bg-gradient-to-br from-cyan-900/30 to-cyan-800/30 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6">
-                <Settings className="h-12 w-12 text-cyan-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">E Muito Mais!</h3>
-                <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
-              </div>
+            <div className="text-center mb-8">
+              <p className="text-xl text-gray-300 font-semibold">
+                Temos mais de <span className="text-red-300 font-bold">250 modelos de agentes</span> que podem facilitar seu dia a dia.
+              </p>
             </div>
 
             <div className="text-center">
               <button 
                 onClick={() => window.open('https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge', '_blank')}
-                className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl font-bold text-lg hover:from-cyan-600 hover:to-blue-600 transition-all duration-300"
+                className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-bold text-lg hover:from-red-600 hover:to-red-700 transition-all duration-300"
               >
                 PERSONALIZAR AGENTE
               </button>
