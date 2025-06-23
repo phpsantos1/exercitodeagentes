@@ -34,7 +34,8 @@ import {
   Lock,
   Smartphone,
   Headphones,
-  ChevronRight
+  ChevronRight,
+  Building
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
