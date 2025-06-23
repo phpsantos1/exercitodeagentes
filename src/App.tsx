@@ -48,147 +48,202 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 text-white relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-r from-slate-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
         <SEOHead />
         
-        {/* Circuito Eletrônico de Fundo */}
-        <div className="absolute inset-0 opacity-20">
+        {/* Circuito Eletrônico High-Tech de Fundo */}
+        <div className="absolute inset-0 opacity-30">
           <svg className="w-full h-full" viewBox="0 0 1920 1080" fill="none">
             <defs>
               <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#3b82f6" />
-                <stop offset="50%" stopColor="#06b6d4" />
-                <stop offset="100%" stopColor="#8b5cf6" />
+                <stop offset="0%" stopColor="#00ffff" />
+                <stop offset="25%" stopColor="#0099ff" />
+                <stop offset="50%" stopColor="#3366ff" />
+                <stop offset="75%" stopColor="#6633ff" />
+                <stop offset="100%" stopColor="#9900ff" />
               </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
             
-            {/* Grid de linhas horizontais */}
-            {Array.from({ length: 20 }, (_, i) => (
-              <line
-                key={`h-${i}`}
-                x1="0"
-                y1={i * 54}
-                x2="1920"
-                y2={i * 54}
-                stroke="url(#circuitGradient)"
-                strokeWidth="1"
-              />
-            ))}
-            
-            {/* Grid de linhas verticais */}
-            {Array.from({ length: 35 }, (_, i) => (
-              <line
-                key={`v-${i}`}
-                x1={i * 55}
-                y1="0"
-                x2={i * 55}
-                y2="1080"
-                stroke="url(#circuitGradient)"
-                strokeWidth="1"
-              />
-            ))}
-            
-            {/* Conexões diagonais sequenciais */}
-            {Array.from({ length: 15 }, (_, i) => (
-              <g key={`diag-${i}`}>
+            {/* Grid principal de circuitos */}
+            {Array.from({ length: 25 }, (_, i) => (
+              <g key={`circuit-${i}`}>
+                {/* Linhas horizontais principais */}
                 <line
-                  x1={i * 128}
-                  y1={100 + (i % 3) * 200}
-                  x2={i * 128 + 100}
-                  y2={200 + (i % 3) * 200}
+                  x1="0"
+                  y1={i * 43.2}
+                  x2="1920"
+                  y2={i * 43.2}
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1"
+                  strokeWidth="0.8"
+                  filter="url(#glow)"
                 />
+                {/* Linhas verticais principais */}
                 <line
-                  x1={i * 128 + 50}
-                  y1={150 + (i % 4) * 180}
-                  x2={i * 128 + 150}
-                  y2={50 + (i % 4) * 180}
+                  x1={i * 76.8}
+                  y1="0"
+                  x2={i * 76.8}
+                  y2="1080"
                   stroke="url(#circuitGradient)"
-                  strokeWidth="1"
+                  strokeWidth="0.8"
+                  filter="url(#glow)"
                 />
               </g>
             ))}
             
-            {/* Nós de circuito */}
-            {Array.from({ length: 50 }, (_, i) => (
+            {/* Conexões diagonais sequenciais */}
+            {Array.from({ length: 20 }, (_, i) => (
+              <g key={`diag-${i}`}>
+                <line
+                  x1={i * 96}
+                  y1={80 + (i % 4) * 200}
+                  x2={i * 96 + 80}
+                  y2={160 + (i % 4) * 200}
+                  stroke="url(#circuitGradient)"
+                  strokeWidth="1"
+                  filter="url(#glow)"
+                />
+                <line
+                  x1={i * 96 + 40}
+                  y1={120 + (i % 5) * 160}
+                  x2={i * 96 + 120}
+                  y2={40 + (i % 5) * 160}
+                  stroke="url(#circuitGradient)"
+                  strokeWidth="1"
+                  filter="url(#glow)"
+                />
+              </g>
+            ))}
+            
+            {/* Nós de circuito com brilho */}
+            {Array.from({ length: 60 }, (_, i) => (
               <circle
                 key={`node-${i}`}
-                cx={(i % 10) * 192 + 96}
-                cy={Math.floor(i / 10) * 216 + 108}
-                r="3"
+                cx={(i % 12) * 160 + 80}
+                cy={Math.floor(i / 12) * 216 + 108}
+                r="2.5"
                 fill="url(#circuitGradient)"
+                filter="url(#glow)"
               />
             ))}
             
             {/* Componentes eletrônicos */}
-            {Array.from({ length: 25 }, (_, i) => (
+            {Array.from({ length: 30 }, (_, i) => (
               <rect
                 key={`comp-${i}`}
-                x={(i % 5) * 384 + 150}
-                y={Math.floor(i / 5) * 216 + 80}
-                width="80"
-                height="20"
+                x={(i % 6) * 320 + 120}
+                y={Math.floor(i / 6) * 180 + 60}
+                width="60"
+                height="16"
                 fill="none"
                 stroke="url(#circuitGradient)"
                 strokeWidth="1"
                 rx="2"
+                filter="url(#glow)"
               />
+            ))}
+            
+            {/* Trilhas de circuito complexas */}
+            {Array.from({ length: 15 }, (_, i) => (
+              <path
+                key={`path-${i}`}
+                d={`M${i * 128} ${100 + i * 60} L${i * 128 + 60} ${100 + i * 60} L${i * 128 + 60} ${140 + i * 60} L${i * 128 + 120} ${140 + i * 60}`}
+                stroke="url(#circuitGradient)"
+                strokeWidth="1"
+                fill="none"
+                filter="url(#glow)"
+              />
+            ))}
+            
+            {/* Microchips */}
+            {Array.from({ length: 12 }, (_, i) => (
+              <g key={`chip-${i}`}>
+                <rect
+                  x={(i % 4) * 480 + 200}
+                  y={Math.floor(i / 4) * 300 + 150}
+                  width="80"
+                  height="60"
+                  fill="none"
+                  stroke="url(#circuitGradient)"
+                  strokeWidth="1.5"
+                  rx="4"
+                  filter="url(#glow)"
+                />
+                {/* Pinos do chip */}
+                {Array.from({ length: 8 }, (_, j) => (
+                  <line
+                    key={`pin-${j}`}
+                    x1={(i % 4) * 480 + 200 + (j * 10)}
+                    y1={Math.floor(i / 4) * 300 + 150}
+                    x2={(i % 4) * 480 + 200 + (j * 10)}
+                    y2={Math.floor(i / 4) * 300 + 140}
+                    stroke="url(#circuitGradient)"
+                    strokeWidth="1"
+                    filter="url(#glow)"
+                  />
+                ))}
+              </g>
             ))}
           </svg>
         </div>
 
         {/* Header */}
-        <header className="relative z-10">
+        <header className="relative z-10 bg-black">
           <nav className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg">
                   <Bot className="h-8 w-8 text-white" />
                 </div>
-                <span className="text-2xl font-bold">EXÉRCITO DE AGENTES</span>
+                <span className="text-2xl font-bold text-white">EXÉRCITO DE AGENTES</span>
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
                 <button 
                   onClick={() => scrollToSection('automation')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   AUTOMAÇÃO IA
                 </button>
                 <button 
                   onClick={() => scrollToSection('accounting')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   CONTABILIDADE
                 </button>
                 <button 
                   onClick={() => scrollToSection('consulting')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   CONSULTORIA
                 </button>
                 <button 
                   onClick={() => scrollToSection('education')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   ENSINO PRÓ
                 </button>
                 <button 
                   onClick={() => scrollToSection('personalization')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   PERSONALIZAÇÃO DE IA
                 </button>
                 <button 
                   onClick={() => scrollToSection('mission')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   MISSÃO
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="hover:text-cyan-300 transition-colors font-medium"
+                  className="hover:text-cyan-300 transition-colors font-medium text-white"
                 >
                   CONTATO
                 </button>
@@ -199,14 +254,14 @@ function App() {
                     className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors"
                     title="WhatsApp: (11) 91175-7113"
                   >
-                    <Phone className="h-4 w-4" />
+                    <Phone className="h-4 w-4 text-white" />
                   </a>
                   <a 
                     href="mailto:sac@exercitodeagentes.com.br" 
                     className="p-2 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors"
                     title="Email: sac@exercitodeagentes.com.br"
                   >
-                    <Mail className="h-4 w-4" />
+                    <Mail className="h-4 w-4 text-white" />
                   </a>
                 </div>
               </div>
