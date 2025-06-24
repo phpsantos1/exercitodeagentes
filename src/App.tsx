@@ -29,6 +29,16 @@ import {
   MapIcon,
   Dumbbell,
   Instagram,
+  FileText,
+  Building,
+  CreditCard,
+  PieChart,
+  BarChart3,
+  Receipt,
+  Banknote,
+  FileCheck,
+  Scale,
+  Gavel,
   ExternalLink
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
@@ -45,11 +55,6 @@ function App() {
     trackEvent('contact_click', { method });
   };
 
-  const handleServiceClick = (service: string, url: string) => {
-    trackEvent('service_click', { service });
-    window.open(url, '_blank');
-  };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -63,15 +68,13 @@ function App() {
         <SEOHead />
         
         {/* Header */}
-        <header className="bg-gradient-to-r from-blue-800 to-blue-900 border-b border-blue-700 sticky top-0 z-40">
+        <header className="bg-gradient-to-r from-blue-900 to-blue-950 border-b border-blue-700 sticky top-0 z-40">
           <div className="container mx-auto px-6 py-4">
             <nav className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <img 
-                  src="/imagem_gerada.png" 
-                  alt="Exército de Agentes Logo" 
-                  className="h-12 w-12 object-contain"
-                />
+                <div className="p-2 bg-blue-800/30 rounded-full">
+                  <Bot className="h-12 w-12 text-yellow-400" />
+                </div>
                 <span className="text-2xl font-bold text-yellow-400">EXÉRCITO DE AGENTES</span>
               </div>
               
@@ -102,6 +105,7 @@ function App() {
               </div>
             </nav>
           </div>
+          <div className="h-1 bg-blue-800"></div>
         </header>
 
         {/* Hero Section */}
@@ -129,120 +133,55 @@ function App() {
               <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
                 EXÉRCITO DE AGENTES
               </h1>
-
-              {/* Services Icons */}
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12 max-w-6xl mx-auto">
-                {/* IA Automação */}
-                <div 
-                  onClick={() => handleServiceClick('IA Automação', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
-                  className="bg-gradient-to-br from-blue-600/40 to-blue-800/40 backdrop-blur-sm rounded-2xl p-6 border border-blue-400/50 hover:border-blue-300/70 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="p-4 bg-blue-500/30 rounded-full mb-4 group-hover:bg-blue-400/40 transition-colors">
-                      <Shield className="h-8 w-8 text-blue-300" />
-                      <ExternalLink className="h-3 w-3 text-blue-200 absolute ml-6 -mt-2" />
-                    </div>
-                    <h3 className="text-lg font-bold text-yellow-400 mb-2">IA AUTOMAÇÃO</h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Soluções completas de automação inteligente com EssencialBot. 
-                      Integração com sistemas, Machine Learning avançado, análise preditiva 
-                      e automação de processos empresariais para máxima eficiência operacional.
-                    </p>
-                  </div>
+              
+              {/* Service Icons */}
+              <div className="flex flex-wrap justify-center gap-6 mb-8">
+                <div className="flex flex-col items-center p-4 bg-blue-600/20 rounded-xl border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105">
+                  <Bot className="h-8 w-8 text-blue-300 mb-2" />
+                  <span className="text-yellow-400 font-semibold text-sm">IA AUTOMAÇÃO</span>
+                  <span className="text-gray-300 text-xs text-center">Soluções completas de automação inteligente</span>
                 </div>
-
-                {/* Contabilidade */}
-                <div 
-                  onClick={() => handleServiceClick('Contabilidade', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
-                  className="bg-gradient-to-br from-green-600/40 to-green-800/40 backdrop-blur-sm rounded-2xl p-6 border border-green-400/50 hover:border-green-300/70 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="p-4 bg-green-500/30 rounded-full mb-4 group-hover:bg-green-400/40 transition-colors">
-                      <Shield className="h-8 w-8 text-green-300" />
-                      <ExternalLink className="h-3 w-3 text-green-200 absolute ml-6 -mt-2" />
-                    </div>
-                    <h3 className="text-lg font-bold text-yellow-400 mb-2">CONTABILIDADE</h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Escritório contábil completo com tecnologia avançada. 
-                      Abertura de empresas, contabilidade mensal, obrigações fiscais, 
-                      departamento pessoal, planejamento tributário e relatórios inteligentes.
-                    </p>
-                  </div>
+                
+                <div className="flex flex-col items-center p-4 bg-green-600/20 rounded-xl border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                  <Calculator className="h-8 w-8 text-green-300 mb-2" />
+                  <span className="text-yellow-400 font-semibold text-sm">CONTABILIDADE</span>
+                  <span className="text-gray-300 text-xs text-center">Escritório contábil completo</span>
                 </div>
-
-                {/* Consultoria */}
-                <div 
-                  onClick={() => handleServiceClick('Consultoria', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
-                  className="bg-gradient-to-br from-orange-600/40 to-orange-800/40 backdrop-blur-sm rounded-2xl p-6 border border-orange-400/50 hover:border-orange-300/70 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="p-4 bg-orange-500/30 rounded-full mb-4 group-hover:bg-orange-400/40 transition-colors">
-                      <Shield className="h-8 w-8 text-orange-300" />
-                      <ExternalLink className="h-3 w-3 text-orange-200 absolute ml-6 -mt-2" />
-                    </div>
-                    <h3 className="text-lg font-bold text-yellow-400 mb-2">CONSULTORIA</h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Consultoria empresarial estratégica completa. 
-                      Gestão empresarial, fluxo de caixa, recuperação judicial, 
-                      busca de crédito, fusões & aquisições e reestruturação organizacional.
-                    </p>
-                  </div>
+                
+                <div className="flex flex-col items-center p-4 bg-orange-600/20 rounded-xl border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300 transform hover:scale-105">
+                  <Briefcase className="h-8 w-8 text-orange-300 mb-2" />
+                  <span className="text-yellow-400 font-semibold text-sm">CONSULTORIA</span>
+                  <span className="text-gray-300 text-xs text-center">Consultoria empresarial estratégica</span>
                 </div>
-
-                {/* Educação Pró */}
-                <div 
-                  onClick={() => handleServiceClick('Educação Pró', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
-                  className="bg-gradient-to-br from-purple-600/40 to-purple-800/40 backdrop-blur-sm rounded-2xl p-6 border border-purple-400/50 hover:border-purple-300/70 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="p-4 bg-purple-500/30 rounded-full mb-4 group-hover:bg-purple-400/40 transition-colors">
-                      <Shield className="h-8 w-8 text-purple-300" />
-                      <ExternalLink className="h-3 w-3 text-purple-200 absolute ml-6 -mt-2" />
-                    </div>
-                    <h3 className="text-lg font-bold text-yellow-400 mb-2">EDUCAÇÃO PRÓ</h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Capacitação profissional avançada em IA empresarial, 
-                      contabilidade digital, controladoria, gestão financeira 
-                      e tecnologias emergentes com certificação reconhecida.
-                    </p>
-                  </div>
+                
+                <div className="flex flex-col items-center p-4 bg-purple-600/20 rounded-xl border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105">
+                  <GraduationCap className="h-8 w-8 text-purple-300 mb-2" />
+                  <span className="text-yellow-400 font-semibold text-sm">EDUCAÇÃO PRÓ</span>
+                  <span className="text-gray-300 text-xs text-center">Capacitação profissional avançada</span>
                 </div>
-
-                {/* IA Personalizada */}
-                <div 
-                  onClick={() => handleServiceClick('IA Personalizada', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
-                  className="bg-gradient-to-br from-red-600/40 to-red-800/40 backdrop-blur-sm rounded-2xl p-6 border border-red-400/50 hover:border-red-300/70 transition-all duration-300 transform hover:scale-105 cursor-pointer group"
-                >
-                  <div className="flex flex-col items-center text-center">
-                    <div className="p-4 bg-red-500/30 rounded-full mb-4 group-hover:bg-red-400/40 transition-colors">
-                      <Shield className="h-8 w-8 text-red-300" />
-                      <ExternalLink className="h-3 w-3 text-red-200 absolute ml-6 -mt-2" />
-                    </div>
-                    <h3 className="text-lg font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
-                    <p className="text-sm text-gray-300 leading-relaxed">
-                      Configuração e desenvolvimento de agentes de IA customizados 
-                      para necessidades específicas. Mais de 250 modelos disponíveis 
-                      para otimizar processos únicos do seu negócio.
-                    </p>
-                  </div>
+                
+                <div className="flex flex-col items-center p-4 bg-red-600/20 rounded-xl border border-red-400/30 hover:border-red-400/50 transition-all duration-300 transform hover:scale-105">
+                  <Settings className="h-8 w-8 text-red-300 mb-2" />
+                  <span className="text-yellow-400 font-semibold text-sm">IA PERSONALIZADA</span>
+                  <span className="text-gray-300 text-xs text-center">Agentes customizados</span>
                 </div>
               </div>
-
+              
               <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                Transforme seu negócio com <span className="text-yellow-400 font-semibold">EssencialBot</span> - 
+                Transforme seu negócio com <span className="text-cyan-400 font-semibold">EssencialBot</span> - 
                 IA avançada, automação inteligente, contabilidade smart e consultoria especializada
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
                   onClick={() => scrollToSection('automation')}
-                  className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 text-black rounded-lg font-semibold hover:from-yellow-600 hover:to-yellow-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-400/25"
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/25"
                 >
                   CONHECER SOLUÇÕES
                 </button>
                 <a 
                   href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
                   onClick={() => handleContactClick('whatsapp')}
-                  className="px-8 py-4 border-2 border-yellow-400 text-yellow-400 rounded-lg font-semibold hover:bg-yellow-400 hover:text-black transition-all duration-300 transform hover:scale-105"
+                  className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300 transform hover:scale-105"
                 >
                   FALAR COM ESPECIALISTA
                 </a>
@@ -273,7 +212,7 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
                 AUTOMAÇÃO INTELIGENTE
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -289,7 +228,7 @@ function App() {
                     <Zap className="h-8 w-8 text-blue-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-yellow-400">NÍVEL 2 - INTEGRADO</h3>
+                    <h3 className="text-2xl font-bold text-white">NÍVEL 2 - INTEGRADO</h3>
                     <p className="text-blue-200">Automação Essencial</p>
                   </div>
                 </div>
@@ -318,7 +257,7 @@ function App() {
                 </div>
 
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">R$ 397</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
                   <div className="text-blue-200">Setup + R$ 397/mês</div>
                 </div>
 
@@ -340,7 +279,7 @@ function App() {
                     <Bot className="h-8 w-8 text-purple-300" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-yellow-400">NÍVEL 3 - AVANÇADO</h3>
+                    <h3 className="text-2xl font-bold text-white">NÍVEL 3 - AVANÇADO</h3>
                     <p className="text-purple-200">IA Completa</p>
                   </div>
                 </div>
@@ -369,7 +308,7 @@ function App() {
                 </div>
 
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">R$ 497</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
                   <div className="text-purple-200">Setup + R$ 497/mês</div>
                 </div>
 
@@ -403,7 +342,7 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
                 CONTABILIDADE INTELIGENTE
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -411,74 +350,86 @@ function App() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
-                <Calculator className="h-12 w-12 text-green-300 mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">SERVIÇOS ESSENCIAIS</h3>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Abertura de empresas</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Contabilidade mensal</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Obrigações fiscais</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Departamento pessoal</span>
-                  </li>
-                </ul>
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {/* Serviços Essenciais */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <Calculator className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">SERVIÇOS ESSENCIAIS</h3>
+                <p className="text-gray-300 text-sm">
+                  Abertura de empresas, contabilidade mensal, obrigações fiscais e departamento pessoal.
+                </p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
-                <TrendingUp className="h-12 w-12 text-green-300 mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO AVANÇADA</h3>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Planejamento tributário</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Relatórios gerenciais</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Compliance e auditoria</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Consultoria fiscal</span>
-                  </li>
-                </ul>
+              {/* Gestão Avançada */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <TrendingUp className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">GESTÃO AVANÇADA</h3>
+                <p className="text-gray-300 text-sm">
+                  Planejamento tributário, relatórios gerenciais, compliance e auditoria.
+                </p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
-                <Bot className="h-12 w-12 text-green-300 mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">DIFERENCIAL IA</h3>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Automação total</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>EssencialBot integrado</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Relatórios inteligentes</span>
-                  </li>
-                  <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
-                    <span>Atendimento 24/7</span>
-                  </li>
-                </ul>
+              {/* Diferencial IA */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <Bot className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">DIFERENCIAL IA</h3>
+                <p className="text-gray-300 text-sm">
+                  Automação total, EssencialBot integrado, relatórios inteligentes e atendimento 24/7.
+                </p>
+              </div>
+
+              {/* SPED e Obrigações */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <FileText className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">SPED E OBRIGAÇÕES</h3>
+                <p className="text-gray-300 text-sm">
+                  SPED Fiscal, ECF, DEFIS, ECD e todas as obrigações acessórias automatizadas.
+                </p>
+              </div>
+
+              {/* Departamento Pessoal */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <Users className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">DEPARTAMENTO PESSOAL</h3>
+                <p className="text-gray-300 text-sm">
+                  Folha de pagamento, admissões, demissões, férias e 13º salário automatizados.
+                </p>
+              </div>
+
+              {/* Análise Financeira */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <PieChart className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">ANÁLISE FINANCEIRA</h3>
+                <p className="text-gray-300 text-sm">
+                  Análise de balanços, DRE, fluxo de caixa e indicadores de performance empresarial.
+                </p>
+              </div>
+
+              {/* Consultoria Tributária */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <Receipt className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">CONSULTORIA TRIBUTÁRIA</h3>
+                <p className="text-gray-300 text-sm">
+                  Elisão fiscal, recuperação de tributos, enquadramento tributário e revisão de impostos.
+                </p>
+              </div>
+
+              {/* Regularização Empresarial */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <FileCheck className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">REGULARIZAÇÃO</h3>
+                <p className="text-gray-300 text-sm">
+                  Regularização de pendências, parcelamentos, certidões negativas e compliance total.
+                </p>
+              </div>
+
+              {/* Auditoria Interna */}
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-6 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105">
+                <Scale className="h-10 w-10 text-green-300 mb-4" />
+                <h3 className="text-lg font-bold text-yellow-400 mb-3">AUDITORIA INTERNA</h3>
+                <p className="text-gray-300 text-sm">
+                  Auditoria de processos, controles internos, revisão contábil e prevenção de riscos.
+                </p>
               </div>
             </div>
 
@@ -512,7 +463,7 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-300 bg-clip-text text-transparent">
                 CONSULTORIA EMPRESARIAL
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -525,7 +476,7 @@ function App() {
                 <Briefcase className="h-12 w-12 text-orange-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO EMPRESARIAL</h3>
                 <p className="text-gray-300">
-                  Planejamento estratégico, otimização de processos e estruturação organizacional para crescimento sustentável.
+                  Planejamento estratégico, otimização de processos e estruturação organizacional.
                 </p>
               </div>
 
@@ -533,7 +484,7 @@ function App() {
                 <TrendingUp className="h-12 w-12 text-orange-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">FLUXO DE CAIXA</h3>
                 <p className="text-gray-300">
-                  Controle financeiro rigoroso, projeções precisas e estratégias para otimização do capital de giro.
+                  Controle financeiro rigoroso, projeções precisas e estratégias para otimização.
                 </p>
               </div>
 
@@ -541,7 +492,7 @@ function App() {
                 <Shield className="h-12 w-12 text-orange-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">RECUPERAÇÃO JUDICIAL</h3>
                 <p className="text-gray-300">
-                  Reestruturação empresarial, negociação com credores e estratégias para superação de crises financeiras.
+                  Reestruturação empresarial, negociação com credores e estratégias para superação.
                 </p>
               </div>
 
@@ -549,7 +500,7 @@ function App() {
                 <Target className="h-12 w-12 text-orange-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">BUSCA DE CRÉDITO</h3>
                 <p className="text-gray-300">
-                  Conexão com factorings, estruturação de propostas e negociação de condições favoráveis de financiamento.
+                  Conexão com factorings, estruturação de propostas e negociação de condições.
                 </p>
               </div>
 
@@ -557,7 +508,7 @@ function App() {
                 <Users className="h-12 w-12 text-orange-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">FUSÕES & AQUISIÇÕES</h3>
                 <p className="text-gray-300">
-                  Due diligence, avaliação de empresas, estruturação de operações e acompanhamento de transações.
+                  Due diligence, avaliação de empresas, estruturação de operações.
                 </p>
               </div>
 
@@ -565,7 +516,7 @@ function App() {
                 <Bot className="h-12 w-12 text-orange-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">CONSULTORIA COM IA</h3>
                 <p className="text-gray-300">
-                  Integração de inteligência artificial nos processos de consultoria para análises mais precisas e eficientes.
+                  Integração de inteligência artificial nos processos de consultoria.
                 </p>
               </div>
             </div>
@@ -600,7 +551,7 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
                 ENSINO PRÓ
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -612,45 +563,33 @@ function App() {
               <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                 <Bot className="h-12 w-12 text-purple-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">IA EMPRESARIAL</h3>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• Fundamentos de IA</li>
-                  <li>• Chatbots empresariais</li>
-                  <li>• Machine Learning</li>
-                  <li>• Automação inteligente</li>
-                </ul>
+                <p className="text-gray-300 text-sm">
+                  Fundamentos de IA, Chatbots empresariais, Machine Learning e automação inteligente.
+                </p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                 <Calculator className="h-12 w-12 text-purple-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">CONTABILIDADE DIGITAL</h3>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• Contabilidade 4.0</li>
-                  <li>• SPED e obrigações</li>
-                  <li>• Análise de balanços</li>
-                  <li>• Tecnologia contábil</li>
-                </ul>
+                <p className="text-gray-300 text-sm">
+                  Contabilidade 4.0, SPED e obrigações, análise de balanços e tecnologia contábil.
+                </p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                 <Shield className="h-12 w-12 text-purple-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">CONTROLADORIA</h3>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• Controles internos</li>
-                  <li>• Auditoria interna</li>
-                  <li>• Compliance</li>
-                  <li>• Gestão de riscos</li>
-                </ul>
+                <p className="text-gray-300 text-sm">
+                  Controles internos, auditoria interna, compliance e gestão de riscos.
+                </p>
               </div>
 
               <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
                 <TrendingUp className="h-12 w-12 text-purple-300 mb-6" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO FINANCEIRA</h3>
-                <ul className="space-y-2 text-gray-300 text-sm">
-                  <li>• Fluxo de caixa</li>
-                  <li>• Análise financeira</li>
-                  <li>• Orçamento empresarial</li>
-                  <li>• Planejamento estratégico</li>
-                </ul>
+                <p className="text-gray-300 text-sm">
+                  Fluxo de caixa, análise financeira, orçamento empresarial e planejamento estratégico.
+                </p>
               </div>
             </div>
 
@@ -691,11 +630,11 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
                 PERSONALIZAÇÃO DE IA
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
-                Configuração e disponibilização de agentes de IA customizados para suas necessidades específicas
+                Configuração e disponibilização de agentes de IA customizados
               </p>
               <p className="text-lg text-red-300 font-semibold">
                 Você não sabe que precisa desses agentes até conhecê-los!
@@ -707,7 +646,7 @@ function App() {
                 <Settings className="h-16 w-16 text-red-400 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-yellow-400 mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">R$ 120</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 120</div>
                   <div className="text-red-200">Setup + R$ 50 por manutenção</div>
                 </div>
                 <button className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 text-white">
@@ -720,13 +659,13 @@ function App() {
               <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
                 <Palette className="h-8 w-8 text-red-400 mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">Agente de Renovação Visual</h4>
-                <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
+                <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
                 <Search className="h-8 w-8 text-red-400 mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">Pesquisador de Mercado</h4>
-                <p className="text-gray-300 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
+                <p className="text-gray-300 text-sm">Transforma dados dispersos em inteligência estratégica clara.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
@@ -738,37 +677,19 @@ function App() {
               <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
                 <Tag className="h-8 w-8 text-red-400 mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">Agente Buscador de Cupons</h4>
-                <p className="text-gray-300 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
+                <p className="text-gray-300 text-sm">Informa se o fornecedor está disponibilizando cupons na internet.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
                 <Brain className="h-8 w-8 text-red-400 mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">Avaliador de QIs</h4>
-                <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
+                <p className="text-gray-300 text-sm">Avaliações cognitivas rigorosas com instrumentos cientificamente validados.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Wrench className="h-8 w-8 text-red-400 mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">Encanador</h4>
-                <p className="text-gray-300 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <MapIcon className="h-8 w-8 text-red-400 mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">Passeios em SP</h4>
-                <p className="text-gray-300 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Dumbbell className="h-8 w-8 text-red-400 mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">Treinadores</h4>
-                <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
                 <Star className="h-8 w-8 text-red-400 mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">E Muito Mais!</h4>
-                <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
+                <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes disponíveis.</p>
               </div>
             </div>
           </div>
@@ -796,7 +717,7 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
                 NOSSA MISSÃO
               </h2>
             </div>
@@ -811,21 +732,17 @@ function App() {
                 <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
                   <p>
                     O <span className="text-cyan-400 font-semibold">Exército de Agentes</span> nasceu com uma missão clara: 
-                    democratizar o acesso à inteligência artificial e automação empresarial, tornando essas tecnologias 
-                    acessíveis para empresas de todos os portes.
+                    democratizar o acesso à inteligência artificial e automação empresarial.
                   </p>
                   
                   <p>
                     Combinamos <span className="text-cyan-400 font-semibold">expertise tradicional</span> em contabilidade 
-                    e consultoria com <span className="text-cyan-400 font-semibold">inovação tecnológica</span> de ponta, 
-                    criando soluções que não apenas automatizam processos, mas transformam completamente a forma como 
-                    as empresas operam.
+                    e consultoria com <span className="text-cyan-400 font-semibold">inovação tecnológica</span> de ponta.
                   </p>
                   
                   <p>
                     Nosso <span className="text-cyan-400 font-semibold">EssencialBot</span> é mais que um chatbot - 
-                    é um assistente inteligente que aprende, evolui e se adapta às necessidades específicas de cada negócio, 
-                    proporcionando eficiência operacional e insights estratégicos únicos.
+                    é um assistente inteligente que aprende, evolui e se adapta.
                   </p>
                   
                   <div className="text-center mt-8">
@@ -861,7 +778,7 @@ function App() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-300 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
                 FALE CONOSCO
               </h2>
               <p className="text-xl text-gray-300">
@@ -916,19 +833,15 @@ function App() {
         </section>
 
         {/* Footer */}
-        <footer className="bg-gradient-to-r from-blue-800 to-blue-900 border-t border-blue-700 py-12">
+        <footer className="bg-gradient-to-r from-blue-900 to-blue-950 border-t border-blue-700 py-12">
           <div className="container mx-auto px-6">
             <div className="grid md:grid-cols-4 gap-8">
               <div>
                 <div className="flex items-center space-x-3 mb-6">
-                  <img 
-                    src="/imagem_gerada.png" 
-                    alt="Exército de Agentes Logo" 
-                    className="h-8 w-8 object-contain"
-                  />
+                  <Bot className="h-8 w-8 text-yellow-400" />
                   <span className="text-xl font-bold text-yellow-400">EXÉRCITO DE AGENTES</span>
                 </div>
-                <p className="text-gray-300 mb-4">
+                <p className="text-gray-400 mb-4">
                   Transformando negócios com inteligência artificial e automação avançada.
                 </p>
                 <div className="flex space-x-4">
@@ -936,7 +849,7 @@ function App() {
                     href="https://instagram.com/exercitodeagentes" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-yellow-400 transition-colors"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors"
                   >
                     <Instagram className="h-6 w-6" />
                   </a>
@@ -945,17 +858,17 @@ function App() {
 
               <div>
                 <h4 className="text-lg font-semibold text-yellow-400 mb-4">SERVIÇOS</h4>
-                <ul className="space-y-2 text-gray-300">
-                  <li><button onClick={() => scrollToSection('automation')} className="hover:text-yellow-400 transition-colors">Automação IA</button></li>
-                  <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-400 transition-colors">Contabilidade</button></li>
-                  <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-400 transition-colors">Consultoria</button></li>
-                  <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-400 transition-colors">Ensino Pró</button></li>
+                <ul className="space-y-2 text-gray-400">
+                  <li><button onClick={() => scrollToSection('automation')} className="hover:text-cyan-400 transition-colors">Automação IA</button></li>
+                  <li><button onClick={() => scrollToSection('accounting')} className="hover:text-cyan-400 transition-colors">Contabilidade</button></li>
+                  <li><button onClick={() => scrollToSection('consulting')} className="hover:text-cyan-400 transition-colors">Consultoria</button></li>
+                  <li><button onClick={() => scrollToSection('education')} className="hover:text-cyan-400 transition-colors">Ensino Pró</button></li>
                 </ul>
               </div>
 
               <div>
                 <h4 className="text-lg font-semibold text-yellow-400 mb-4">CONTATO</h4>
-                <ul className="space-y-2 text-gray-300">
+                <ul className="space-y-2 text-gray-400">
                   <li className="flex items-center">
                     <Phone className="h-4 w-4 mr-2" />
                     <span>(11) 91175-7113</span>
@@ -977,16 +890,16 @@ function App() {
 
               <div>
                 <h4 className="text-lg font-semibold text-yellow-400 mb-4">EMPRESA</h4>
-                <ul className="space-y-2 text-gray-300">
-                  <li><button onClick={() => scrollToSection('mission')} className="hover:text-yellow-400 transition-colors">Nossa Missão</button></li>
-                  <li><a href="#" className="hover:text-yellow-400 transition-colors">Política de Privacidade</a></li>
-                  <li><a href="#" className="hover:text-yellow-400 transition-colors">Termos de Uso</a></li>
+                <ul className="space-y-2 text-gray-400">
+                  <li><button onClick={() => scrollToSection('mission')} className="hover:text-cyan-400 transition-colors">Nossa Missão</button></li>
+                  <li><a href="#" className="hover:text-cyan-400 transition-colors">Política de Privacidade</a></li>
+                  <li><a href="#" className="hover:text-cyan-400 transition-colors">Termos de Uso</a></li>
                 </ul>
               </div>
             </div>
 
             <div className="border-t border-blue-700 mt-8 pt-8 text-center">
-              <p className="text-gray-300">
+              <p className="text-gray-400">
                 © 2024 Exército de Agentes. Todos os direitos reservados.
               </p>
             </div>
