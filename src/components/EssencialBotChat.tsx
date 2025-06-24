@@ -93,8 +93,7 @@ const EssencialBotChat: React.FC = () => {
             "Preciso de automação IA",
             "Serviços contábeis",
             "Consultoria empresarial",
-            "Treinamentos e cursos",
-            "Acessar EssencialBot Concierge"
+            "Treinamentos e cursos"
           ]
         );
       }, 500);
@@ -155,25 +154,6 @@ const EssencialBotChat: React.FC = () => {
   const processUserInput = (input: string) => {
     const lowerInput = input.toLowerCase();
 
-    // Detectar acesso ao Concierge
-    if (lowerInput.includes('acessar essencialbot concierge') || lowerInput.includes('concierge')) {
-      addBotMessage(
-        "Perfeito! Vou te direcionar para o EssencialBot Concierge, nosso assistente especializado que pode te ajudar com informações mais detalhadas sobre todos os nossos serviços.\n\n🤖 **EssencialBot Concierge** é seu guia completo para:\n- Automação IA personalizada\n- Serviços contábeis inteligentes\n- Consultoria empresarial expert\n- Educação e treinamentos\n- Personalização de agentes\n\nClique no link abaixo para acessar:",
-        ["🔗 Acessar EssencialBot Concierge"]
-      );
-      return;
-    }
-
-    // Link para o Concierge
-    if (lowerInput.includes('🔗 acessar essencialbot concierge')) {
-      window.open('https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge', '_blank');
-      addBotMessage(
-        "Redirecionando você para o EssencialBot Concierge! 🚀\n\nLá você terá acesso a informações mais detalhadas e poderá fazer consultas específicas sobre nossos serviços.\n\nPosso ajudar com mais alguma coisa aqui?",
-        ["Voltar ao menu principal", "Quero mais informações", "Encerrar conversa"]
-      );
-      return;
-    }
-
     // Detectar interesse em contratar
     if (lowerInput.includes('quero contratar') || 
         lowerInput.includes('fechar negócio') || 
@@ -201,30 +181,30 @@ const EssencialBotChat: React.FC = () => {
         setCurrentFlow('interested');
         addBotMessage(
           "Perfeito! Nossa automação IA com EssencialBot é revolucionária. Oferecemos:\n\n🔹 **Nível 2 - Integrado** (R$ 397 setup + R$ 397/mês)\n- EssencialBot personalizado\n- Integração Google Sheets\n- Automação Make/Zapier\n- Relatórios automáticos\n\n🔹 **Nível 3 - Avançado** (R$ 497 setup + R$ 497/mês)\n- Machine Learning avançado\n- Análise preditiva\n- Multi-plataformas\n- Consultoria incluída\n\nQual nível desperta mais seu interesse?",
-          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero mais detalhes", "Gostaria de uma proposta", "🔗 Consultar Agente"]
+          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero mais detalhes", "Gostaria de uma proposta"]
         );
       } else if (lowerInput.includes('contábil') || lowerInput.includes('contabilidade')) {
         setCurrentFlow('interested');
         addBotMessage(
           "Somos um escritório de contabilidade especializado em empresas! 📊\n\n🏢 **Nossos Serviços Completos:**\n- Abertura de empresas\n- Contabilidade mensal\n- Obrigações fiscais (SPED, ECF, DEFIS)\n- Departamento pessoal\n- Planejamento tributário\n- Relatórios gerenciais\n- Compliance e auditoria\n\n🤖 **Diferencial**: Tudo automatizado com EssencialBot para maior agilidade e precisão!\n\nQual serviço contábil mais interessa sua empresa?",
-          ["Abertura de empresa", "Contabilidade mensal", "Planejamento tributário", "Quero uma proposta", "🔗 Consultar Contabilidade Inteligente"]
+          ["Abertura de empresa", "Contabilidade mensal", "Planejamento tributário", "Quero uma proposta"]
         );
       } else if (lowerInput.includes('consultoria')) {
         setCurrentFlow('interested');
         addBotMessage(
           "Nossa consultoria empresarial é completa e vai além da IA! 💼\n\n🎯 **Áreas de Atuação:**\n- Gestão empresarial e planejamento estratégico\n- Fluxo de caixa e controle financeiro\n- Recuperação judicial e reestruturação\n- Busca de crédito em factorings\n- Fusões e aquisições\n- Consultoria com IA e automação\n\n✅ Atendemos desde empresas em crescimento até casos críticos de recuperação.\n\nQual área da consultoria mais se adequa à sua necessidade?",
-          ["Gestão empresarial", "Fluxo de caixa", "Recuperação judicial", "Busca de crédito", "Consultoria com IA", "🔗 Consultar Expert"]
+          ["Gestão empresarial", "Fluxo de caixa", "Recuperação judicial", "Busca de crédito", "Consultoria com IA"]
         );
       } else if (lowerInput.includes('treinamento') || lowerInput.includes('curso')) {
         setCurrentFlow('interested');
         addBotMessage(
           "Nossos treinamentos são focados em áreas contábeis, financeiras e tecnológicas! 🎓\n\n📚 **Áreas de Capacitação:**\n\n🤖 **IA Empresarial**: Fundamentos de IA, Chatbots, Machine Learning\n📊 **Contabilidade Digital**: Contabilidade 4.0, SPED, Análise de Balanços\n🎯 **Controladoria**: Controles Internos, Auditoria, Compliance\n💰 **Gestão Financeira**: Fluxo de Caixa, Análise Financeira, Orçamento\n\nTodos com certificação e projetos práticos. Qual área mais interessa sua equipe?",
-          ["IA Empresarial", "Contabilidade Digital", "Controladoria", "Gestão Financeira", "Todos os cursos", "🔗 Consultar Educação Pró"]
+          ["IA Empresarial", "Contabilidade Digital", "Controladoria", "Gestão Financeira", "Todos os cursos"]
         );
       } else {
         addBotMessage(
           "Vou te apresentar nossas principais soluções:\n\n🤖 **Automação IA**: EssencialBot personalizado para seu negócio\n📊 **Escritório Contábil**: Serviços completos para empresas\n💼 **Consultoria**: Gestão, recuperação judicial, crédito\n🎓 **Treinamentos**: Contabilidade, controladoria e IA\n\nQual área desperta mais seu interesse?",
-          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "🔗 Acessar EssencialBot Concierge"]
+          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos"]
         );
       }
       
@@ -243,36 +223,21 @@ const EssencialBotChat: React.FC = () => {
         'pre-cadastro'
       );
       setShowPreCadastro(true);
-    } else if (lowerInput.includes('🔗 consultar')) {
-      // Detectar qual GPT acessar baseado no texto
-      if (lowerInput.includes('agente')) {
-        window.open('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', '_blank');
-        addBotMessage("Redirecionando para consulta sobre Agente! 🤖");
-      } else if (lowerInput.includes('contabilidade inteligente')) {
-        window.open('https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil', '_blank');
-        addBotMessage("Redirecionando para consulta sobre Contabilidade Inteligente! 📊");
-      } else if (lowerInput.includes('expert')) {
-        window.open('https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial', '_blank');
-        addBotMessage("Redirecionando para consulta com Expert em Consultoria! 💼");
-      } else if (lowerInput.includes('educação pró')) {
-        window.open('https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro', '_blank');
-        addBotMessage("Redirecionando para consulta sobre Educação Pró! 🎓");
-      }
     } else if (lowerInput.includes('nível 2') || lowerInput.includes('integrado')) {
       addBotMessage(
         "Excelente escolha! O Nível 2 - Integrado é perfeito para empresas que querem:\n\n✅ EssencialBot personalizado para seu negócio\n✅ Integração automática com Google Sheets\n✅ Automações Make/Zapier\n✅ Relatórios automáticos\n✅ Suporte prioritário\n\n**Investimento: R$ 397 setup + R$ 397/mês**\n\nEste nível já resolve 80% das necessidades de automação. Gostaria de uma demonstração prática?",
-        ["Quero uma demo", "Vamos fechar negócio", "Preciso pensar", "🔗 Consultar Agente"]
+        ["Quero uma demo", "Vamos fechar negócio", "Preciso pensar"]
       );
     } else if (lowerInput.includes('nível 3') || lowerInput.includes('avançado')) {
       addBotMessage(
         "Perfeita escolha! O Nível 3 - Avançado é nossa solução premium:\n\n🚀 Tudo do Nível 2 MAIS:\n✅ EssencialBot com Machine Learning\n✅ Análise preditiva avançada\n✅ Multi-plataformas\n✅ Consultoria empresarial incluída\n✅ API personalizada\n\n**Investimento: R$ 497 setup + R$ 497/mês**\n\nÉ a solução completa para empresas que querem estar na vanguarda da IA. Pronto para começar?",
-        ["Sim, vamos começar!", "Quero uma proposta", "Preciso de mais detalhes", "🔗 Consultar Agente"]
+        ["Sim, vamos começar!", "Quero uma proposta", "Preciso de mais detalhes"]
       );
     } else {
       // Resposta genérica inteligente
       addBotMessage(
         "Entendo! Como EssencialBot, estou aqui para esclarecer qualquer dúvida sobre nossas soluções de IA, contabilidade e consultoria.\n\nPosso ajudar você com informações específicas sobre:\n- Preços e planos\n- Funcionalidades técnicas\n- Casos de sucesso\n- Demonstrações práticas\n\nO que gostaria de saber?",
-        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo", "🔗 Acessar EssencialBot Concierge"]
+        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo"]
       );
     }
   };
@@ -289,7 +254,7 @@ const EssencialBotChat: React.FC = () => {
     setShowPreCadastro(false);
     addBotMessage(
       `Obrigado, ${preCadastroData.nome}! 🎉\n\nSuas informações foram registradas com sucesso. Vou enviar materiais personalizados sobre ${preCadastroData.interesse} para seu WhatsApp e email.\n\nEm breve, nossa equipe entrará em contato para uma conversa mais detalhada. Enquanto isso, posso responder mais alguma dúvida?`,
-      ["Quero saber mais sobre preços", "Como é o processo de implementação?", "Tenho outras dúvidas", "🔗 Acessar EssencialBot Concierge"]
+      ["Quero saber mais sobre preços", "Como é o processo de implementação?", "Tenho outras dúvidas"]
     );
   };
 
@@ -310,7 +275,7 @@ const EssencialBotChat: React.FC = () => {
     setShowCadastroFinal(false);
     addBotMessage(
       `🎉 **PARABÉNS, ${cadastroFinalData.nomeCompleto}!**\n\nSeu cadastro foi finalizado com sucesso! Você agora faz parte do Exército de Agentes.\n\n📋 **Próximos passos:**\n1. Você receberá um email de confirmação\n2. Nossa equipe entrará em contato em até 2h\n3. Agendaremos o onboarding do seu EssencialBot\n\n💬 **Grupo VIP**: [Clique aqui para entrar no grupo exclusivo de clientes](https://wa.me/5511911757113)\n\nBem-vindo à revolução da automação inteligente! 🚀`,
-      ["Entrar no grupo VIP", "Quando começa a implementação?", "🔗 Acessar EssencialBot Concierge"]
+      ["Entrar no grupo VIP", "Quando começa a implementação?"]
     );
   };
 
