@@ -28,7 +28,8 @@ import {
   Wrench,
   MapIcon,
   Dumbbell,
-  Instagram
+  Instagram,
+  ExternalLink
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -49,6 +50,11 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleServiceClick = (serviceName: string, url: string) => {
+    trackEvent('service_shield_click', { service: serviceName });
+    window.open(url, '_blank');
   };
 
   return (
@@ -97,24 +103,6 @@ function App() {
 
         {/* Hero Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
               <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
@@ -143,26 +131,107 @@ function App() {
           </div>
         </section>
 
-        {/* Automation Section */}
-        <section id="automation" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-auto" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-auto)"/>
-              </svg>
+        {/* Service Shields Section */}
+        <section className="py-16 relative">
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                ACESSE NOSSOS ESPECIALISTAS IA
+              </h2>
+              <p className="text-lg text-gray-300 mb-8">
+                Converse diretamente com nossos agentes especializados para cada área
+              </p>
+              
+              {/* EssencialBot Concierge - Destaque Principal */}
+              <div className="mb-12">
+                <button
+                  onClick={() => handleServiceClick('EssencialBot Concierge', 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge')}
+                  className="group bg-gradient-to-br from-cyan-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 hover:border-cyan-400/80 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/25 max-w-md mx-auto block"
+                >
+                  <div className="flex items-center justify-center mb-4">
+                    <div className="p-4 bg-cyan-500/20 rounded-full mr-4">
+                      <Bot className="h-12 w-12 text-cyan-300" />
+                    </div>
+                    <ExternalLink className="h-6 w-6 text-cyan-300 group-hover:scale-110 transition-transform" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">ESSENCIALBOT CONCIERGE</h3>
+                  <p className="text-cyan-200 text-sm">Seu guia completo para todos os nossos serviços</p>
+                </button>
+              </div>
+            </div>
+
+            {/* Service Shields Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+              {/* IA para Automação */}
+              <button
+                onClick={() => handleServiceClick('IA para Automação', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                className="group bg-gradient-to-br from-blue-600/30 to-cyan-800/30 backdrop-blur-sm rounded-xl p-6 border border-blue-400/30 hover:border-blue-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <Shield className="h-12 w-12 text-blue-300" />
+                  <ExternalLink className="h-4 w-4 text-blue-300 ml-2 group-hover:scale-110 transition-transform" />
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">IA AUTOMAÇÃO</h4>
+                <p className="text-blue-200 text-sm">Especialista em soluções de automação inteligente</p>
+              </button>
+
+              {/* Contabilidade Inteligente */}
+              <button
+                onClick={() => handleServiceClick('Contabilidade Inteligente', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                className="group bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-xl p-6 border border-green-400/30 hover:border-green-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <Shield className="h-12 w-12 text-green-300" />
+                  <ExternalLink className="h-4 w-4 text-green-300 ml-2 group-hover:scale-110 transition-transform" />
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">CONTABILIDADE</h4>
+                <p className="text-green-200 text-sm">Expert em serviços contábeis inteligentes</p>
+              </button>
+
+              {/* Consultoria Empresarial */}
+              <button
+                onClick={() => handleServiceClick('Consultoria Empresarial', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
+                className="group bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-orange-400/30 hover:border-orange-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <Shield className="h-12 w-12 text-orange-300" />
+                  <ExternalLink className="h-4 w-4 text-orange-300 ml-2 group-hover:scale-110 transition-transform" />
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">CONSULTORIA</h4>
+                <p className="text-orange-200 text-sm">Especialista em gestão e estratégia empresarial</p>
+              </button>
+
+              {/* Educação Pró */}
+              <button
+                onClick={() => handleServiceClick('Educação Pró', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
+                className="group bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-xl p-6 border border-purple-400/30 hover:border-purple-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <Shield className="h-12 w-12 text-purple-300" />
+                  <ExternalLink className="h-4 w-4 text-purple-300 ml-2 group-hover:scale-110 transition-transform" />
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">EDUCAÇÃO PRÓ</h4>
+                <p className="text-purple-200 text-sm">Expert em treinamentos e capacitação</p>
+              </button>
+
+              {/* IA Personalizada */}
+              <button
+                onClick={() => handleServiceClick('IA Personalizada', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                className="group bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+              >
+                <div className="flex items-center justify-center mb-4">
+                  <Shield className="h-12 w-12 text-red-300" />
+                  <ExternalLink className="h-4 w-4 text-red-300 ml-2 group-hover:scale-110 transition-transform" />
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">IA PERSONALIZADA</h4>
+                <p className="text-red-200 text-sm">Especialista em agentes customizados</p>
+              </button>
             </div>
           </div>
-          
+        </section>
+
+        {/* Automation Section */}
+        <section id="automation" className="py-20 relative">
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
@@ -275,24 +344,6 @@ function App() {
 
         {/* Accounting Section */}
         <section id="accounting" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-acc" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-acc)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
@@ -384,24 +435,6 @@ function App() {
 
         {/* Consulting Section */}
         <section id="consulting" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-cons" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-cons)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-300 bg-clip-text text-transparent">
@@ -472,24 +505,6 @@ function App() {
 
         {/* Education Section */}
         <section id="education" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-edu" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-edu)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
@@ -563,24 +578,6 @@ function App() {
 
         {/* AI Agents Section */}
         <section id="agents" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-agents" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-agents)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
@@ -668,24 +665,6 @@ function App() {
 
         {/* Mission Section */}
         <section id="mission" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-mission" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-mission)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
@@ -733,24 +712,6 @@ function App() {
 
         {/* Contact Section */}
         <section id="contact" className="py-20 relative">
-          <div className="absolute inset-0 bg-black">
-            <div className="absolute inset-0 opacity-20">
-              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
-                <defs>
-                  <pattern id="circuit-contact" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
-                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
-                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#circuit-contact)"/>
-              </svg>
-            </div>
-          </div>
-          
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
@@ -851,6 +812,10 @@ function App() {
                   <li className="flex items-center">
                     <Mail className="h-4 w-4 mr-2" />
                     <span>sac@exercitodeagentes.com.br</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Mail className="h-4 w-4 mr-2" />
+                    <span>financeiro@exercitodeagentes.com.br</span>
                   </li>
                   <li className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
