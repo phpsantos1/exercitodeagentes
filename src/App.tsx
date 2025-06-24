@@ -63,34 +63,42 @@ function App() {
         <SEOHead />
         
         {/* Header */}
-        <header className="bg-black border-b border-gray-800 sticky top-0 z-40">
+        <header className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 border-b border-yellow-400/50 sticky top-0 z-40">
           <div className="container mx-auto px-6 py-4">
             <nav className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <Bot className="h-8 w-8 text-cyan-400" />
-                <span className="text-2xl font-bold text-white">EXÉRCITO DE AGENTES</span>
+              <div className="flex items-center space-x-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-2 border-2 border-yellow-400/70 shadow-lg">
+                  <img 
+                    src="/image copy copy copy copy.png" 
+                    alt="Exército de Agentes Logo" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent">
+                  EXÉRCITO DE AGENTES
+                </span>
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
-                <button onClick={() => scrollToSection('automation')} className="text-white hover:text-cyan-400 transition-colors">
+                <button onClick={() => scrollToSection('automation')} className="text-yellow-300 hover:text-yellow-200 transition-colors font-semibold">
                   AUTOMAÇÃO IA
                 </button>
-                <button onClick={() => scrollToSection('accounting')} className="text-white hover:text-cyan-400 transition-colors">
+                <button onClick={() => scrollToSection('accounting')} className="text-yellow-300 hover:text-yellow-200 transition-colors font-semibold">
                   CONTABILIDADE
                 </button>
-                <button onClick={() => scrollToSection('consulting')} className="text-white hover:text-cyan-400 transition-colors">
+                <button onClick={() => scrollToSection('consulting')} className="text-yellow-300 hover:text-yellow-200 transition-colors font-semibold">
                   CONSULTORIA
                 </button>
-                <button onClick={() => scrollToSection('education')} className="text-white hover:text-cyan-400 transition-colors">
+                <button onClick={() => scrollToSection('education')} className="text-yellow-300 hover:text-yellow-200 transition-colors font-semibold">
                   ENSINO PRÓ
                 </button>
-                <button onClick={() => scrollToSection('agents')} className="text-white hover:text-cyan-400 transition-colors">
+                <button onClick={() => scrollToSection('agents')} className="text-yellow-300 hover:text-yellow-200 transition-colors font-semibold">
                   PERSONALIZAÇÃO DE IA
                 </button>
-                <button onClick={() => scrollToSection('mission')} className="text-white hover:text-cyan-400 transition-colors">
+                <button onClick={() => scrollToSection('mission')} className="text-yellow-300 hover:text-yellow-200 transition-colors font-semibold">
                   MISSÃO
                 </button>
-                <button onClick={() => scrollToSection('contact')} className="text-white hover:text-cyan-400 transition-colors flex items-center space-x-2">
+                <button onClick={() => scrollToSection('contact')} className="text-yellow-300 hover:text-yellow-200 transition-colors flex items-center space-x-2 font-semibold">
                   <span>CONTATO</span>
                   <Phone className="h-4 w-4" />
                   <Mail className="h-4 w-4" />
@@ -98,7 +106,7 @@ function App() {
               </div>
             </nav>
           </div>
-          <div className="h-1 bg-black"></div>
+          <div className="h-1 bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400"></div>
         </header>
 
         {/* Hero Section */}
@@ -146,16 +154,16 @@ function App() {
               <div className="mb-12">
                 <button
                   onClick={() => handleServiceClick('EssencialBot Concierge', 'https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge')}
-                  className="group bg-gradient-to-br from-cyan-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 hover:border-cyan-400/80 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/25 max-w-md mx-auto block"
+                  className="group bg-gradient-to-br from-cyan-600/50 to-blue-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-cyan-400/70 hover:border-cyan-400/90 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-cyan-400/40 max-w-md mx-auto block"
                 >
                   <div className="flex items-center justify-center mb-4">
-                    <div className="p-4 bg-cyan-500/20 rounded-full mr-4">
-                      <Bot className="h-12 w-12 text-cyan-300" />
+                    <div className="p-4 bg-cyan-500/40 rounded-full mr-4">
+                      <Bot className="h-12 w-12 text-cyan-200" />
                     </div>
-                    <ExternalLink className="h-6 w-6 text-cyan-300 group-hover:scale-110 transition-transform" />
+                    <ExternalLink className="h-6 w-6 text-cyan-200 group-hover:scale-110 transition-transform" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">ESSENCIALBOT CONCIERGE</h3>
-                  <p className="text-cyan-200 text-sm">Seu guia completo para todos os nossos serviços</p>
+                  <p className="text-cyan-100 text-sm">Seu guia completo para todos os nossos serviços</p>
                 </button>
               </div>
             </div>
@@ -165,66 +173,66 @@ function App() {
               {/* IA para Automação */}
               <button
                 onClick={() => handleServiceClick('IA para Automação', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
-                className="group bg-gradient-to-br from-blue-600/30 to-cyan-800/30 backdrop-blur-sm rounded-xl p-6 border border-blue-400/30 hover:border-blue-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+                className="group bg-gradient-to-br from-blue-600/50 to-cyan-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-blue-400/60 hover:border-blue-400/90 transition-all duration-300 transform hover:scale-105 text-center shadow-lg hover:shadow-blue-400/30"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <Shield className="h-12 w-12 text-blue-300" />
-                  <ExternalLink className="h-4 w-4 text-blue-300 ml-2 group-hover:scale-110 transition-transform" />
+                  <Shield className="h-12 w-12 text-blue-200" />
+                  <ExternalLink className="h-4 w-4 text-blue-200 ml-2 group-hover:scale-110 transition-transform" />
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">IA AUTOMAÇÃO</h4>
-                <p className="text-blue-200 text-sm">Especialista em soluções de automação inteligente</p>
+                <p className="text-blue-100 text-sm">Especialista em soluções de automação inteligente</p>
               </button>
 
               {/* Contabilidade Inteligente */}
               <button
                 onClick={() => handleServiceClick('Contabilidade Inteligente', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
-                className="group bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-xl p-6 border border-green-400/30 hover:border-green-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+                className="group bg-gradient-to-br from-green-600/50 to-emerald-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-green-400/60 hover:border-green-400/90 transition-all duration-300 transform hover:scale-105 text-center shadow-lg hover:shadow-green-400/30"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <Shield className="h-12 w-12 text-green-300" />
-                  <ExternalLink className="h-4 w-4 text-green-300 ml-2 group-hover:scale-110 transition-transform" />
+                  <Shield className="h-12 w-12 text-green-200" />
+                  <ExternalLink className="h-4 w-4 text-green-200 ml-2 group-hover:scale-110 transition-transform" />
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">CONTABILIDADE</h4>
-                <p className="text-green-200 text-sm">Expert em serviços contábeis inteligentes</p>
+                <p className="text-green-100 text-sm">Expert em serviços contábeis inteligentes</p>
               </button>
 
               {/* Consultoria Empresarial */}
               <button
                 onClick={() => handleServiceClick('Consultoria Empresarial', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
-                className="group bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-orange-400/30 hover:border-orange-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+                className="group bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-orange-400/60 hover:border-orange-400/90 transition-all duration-300 transform hover:scale-105 text-center shadow-lg hover:shadow-orange-400/30"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <Shield className="h-12 w-12 text-orange-300" />
-                  <ExternalLink className="h-4 w-4 text-orange-300 ml-2 group-hover:scale-110 transition-transform" />
+                  <Shield className="h-12 w-12 text-orange-200" />
+                  <ExternalLink className="h-4 w-4 text-orange-200 ml-2 group-hover:scale-110 transition-transform" />
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">CONSULTORIA</h4>
-                <p className="text-orange-200 text-sm">Especialista em gestão e estratégia empresarial</p>
+                <p className="text-orange-100 text-sm">Especialista em gestão e estratégia empresarial</p>
               </button>
 
               {/* Educação Pró */}
               <button
                 onClick={() => handleServiceClick('Educação Pró', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
-                className="group bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-xl p-6 border border-purple-400/30 hover:border-purple-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+                className="group bg-gradient-to-br from-purple-600/50 to-pink-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-purple-400/60 hover:border-purple-400/90 transition-all duration-300 transform hover:scale-105 text-center shadow-lg hover:shadow-purple-400/30"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <Shield className="h-12 w-12 text-purple-300" />
-                  <ExternalLink className="h-4 w-4 text-purple-300 ml-2 group-hover:scale-110 transition-transform" />
+                  <Shield className="h-12 w-12 text-purple-200" />
+                  <ExternalLink className="h-4 w-4 text-purple-200 ml-2 group-hover:scale-110 transition-transform" />
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">EDUCAÇÃO PRÓ</h4>
-                <p className="text-purple-200 text-sm">Expert em treinamentos e capacitação</p>
+                <p className="text-purple-100 text-sm">Expert em treinamentos e capacitação</p>
               </button>
 
               {/* IA Personalizada */}
               <button
                 onClick={() => handleServiceClick('IA Personalizada', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
-                className="group bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/60 transition-all duration-300 transform hover:scale-105 text-center"
+                className="group bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/90 transition-all duration-300 transform hover:scale-105 text-center shadow-lg hover:shadow-red-400/30"
               >
                 <div className="flex items-center justify-center mb-4">
-                  <Shield className="h-12 w-12 text-red-300" />
-                  <ExternalLink className="h-4 w-4 text-red-300 ml-2 group-hover:scale-110 transition-transform" />
+                  <Shield className="h-12 w-12 text-red-200" />
+                  <ExternalLink className="h-4 w-4 text-red-200 ml-2 group-hover:scale-110 transition-transform" />
                 </div>
                 <h4 className="text-lg font-bold text-white mb-2">IA PERSONALIZADA</h4>
-                <p className="text-red-200 text-sm">Especialista em agentes customizados</p>
+                <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
               </button>
             </div>
           </div>
@@ -244,43 +252,43 @@ function App() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {/* Nível 2 - Integrado */}
-              <div className="bg-gradient-to-br from-blue-600/30 to-cyan-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105">
+              <div className="bg-gradient-to-br from-blue-600/50 to-cyan-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-blue-400/60 hover:border-blue-400/80 transition-all duration-300 transform hover:scale-105 shadow-xl">
                 <div className="flex items-center mb-6">
-                  <div className="p-3 bg-blue-500/20 rounded-full mr-4">
-                    <Zap className="h-8 w-8 text-blue-300" />
+                  <div className="p-3 bg-blue-500/40 rounded-full mr-4">
+                    <Zap className="h-8 w-8 text-blue-200" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-white">NÍVEL 2 - INTEGRADO</h3>
-                    <p className="text-blue-200">Automação Essencial</p>
+                    <p className="text-blue-100">Automação Essencial</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>EssencialBot personalizado</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Integração Google Sheets</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Automação Make/Zapier</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Relatórios automáticos</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Suporte prioritário</span>
                   </div>
                 </div>
 
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
-                  <div className="text-blue-200">Setup + R$ 397/mês</div>
+                  <div className="text-blue-100">Setup + R$ 397/mês</div>
                 </div>
 
                 <button className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg font-semibold hover:from-blue-600 hover:to-cyan-500 transition-all duration-300 text-white">
@@ -289,7 +297,7 @@ function App() {
               </div>
 
               {/* Nível 3 - Avançado */}
-              <div className="bg-gradient-to-br from-purple-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 relative">
+              <div className="bg-gradient-to-br from-purple-600/50 to-blue-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 hover:border-purple-400/80 transition-all duration-300 transform hover:scale-105 relative shadow-xl">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                   <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold">
                     MAIS POPULAR
@@ -297,41 +305,41 @@ function App() {
                 </div>
                 
                 <div className="flex items-center mb-6">
-                  <div className="p-3 bg-purple-500/20 rounded-full mr-4">
-                    <Bot className="h-8 w-8 text-purple-300" />
+                  <div className="p-3 bg-purple-500/40 rounded-full mr-4">
+                    <Bot className="h-8 w-8 text-purple-200" />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-white">NÍVEL 3 - AVANÇADO</h3>
-                    <p className="text-purple-200">IA Completa</p>
+                    <p className="text-purple-100">IA Completa</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Tudo do Nível 2 +</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Machine Learning avançado</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Análise preditiva</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Multi-plataformas</span>
                   </div>
                   <div className="flex items-center text-gray-300">
-                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Consultoria incluída</span>
                   </div>
                 </div>
 
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
-                  <div className="text-purple-200">Setup + R$ 497/mês</div>
+                  <div className="text-purple-100">Setup + R$ 497/mês</div>
                 </div>
 
                 <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 text-white">
@@ -355,70 +363,70 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
-                <Calculator className="h-12 w-12 text-green-300 mb-6" />
+              <div className="bg-gradient-to-br from-green-600/50 to-emerald-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-green-400/60 hover:border-green-400/80 transition-all duration-300 shadow-xl">
+                <Calculator className="h-12 w-12 text-green-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">SERVIÇOS ESSENCIAIS</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Abertura de empresas</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Contabilidade mensal</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Obrigações fiscais</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Departamento pessoal</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
-                <TrendingUp className="h-12 w-12 text-green-300 mb-6" />
+              <div className="bg-gradient-to-br from-green-600/50 to-emerald-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-green-400/60 hover:border-green-400/80 transition-all duration-300 shadow-xl">
+                <TrendingUp className="h-12 w-12 text-green-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">GESTÃO AVANÇADA</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Planejamento tributário</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Relatórios gerenciais</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Compliance e auditoria</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Consultoria fiscal</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
-                <Bot className="h-12 w-12 text-green-300 mb-6" />
+              <div className="bg-gradient-to-br from-green-600/50 to-emerald-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-green-400/60 hover:border-green-400/80 transition-all duration-300 shadow-xl">
+                <Bot className="h-12 w-12 text-green-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">DIFERENCIAL IA</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Automação total</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>EssencialBot integrado</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Relatórios inteligentes</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Atendimento 24/7</span>
                   </li>
                 </ul>
@@ -446,48 +454,48 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
-                <Briefcase className="h-12 w-12 text-orange-300 mb-6" />
+              <div className="bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-400/60 hover:border-orange-400/80 transition-all duration-300 shadow-xl">
+                <Briefcase className="h-12 w-12 text-orange-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">GESTÃO EMPRESARIAL</h3>
                 <p className="text-gray-300">
                   Planejamento estratégico, otimização de processos e estruturação organizacional para crescimento sustentável.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
-                <TrendingUp className="h-12 w-12 text-orange-300 mb-6" />
+              <div className="bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-400/60 hover:border-orange-400/80 transition-all duration-300 shadow-xl">
+                <TrendingUp className="h-12 w-12 text-orange-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">FLUXO DE CAIXA</h3>
                 <p className="text-gray-300">
                   Controle financeiro rigoroso, projeções precisas e estratégias para otimização do capital de giro.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
-                <Shield className="h-12 w-12 text-orange-300 mb-6" />
+              <div className="bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-400/60 hover:border-orange-400/80 transition-all duration-300 shadow-xl">
+                <Shield className="h-12 w-12 text-orange-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">RECUPERAÇÃO JUDICIAL</h3>
                 <p className="text-gray-300">
                   Reestruturação empresarial, negociação com credores e estratégias para superação de crises financeiras.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
-                <Target className="h-12 w-12 text-orange-300 mb-6" />
+              <div className="bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-400/60 hover:border-orange-400/80 transition-all duration-300 shadow-xl">
+                <Target className="h-12 w-12 text-orange-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">BUSCA DE CRÉDITO</h3>
                 <p className="text-gray-300">
                   Conexão com factorings, estruturação de propostas e negociação de condições favoráveis de financiamento.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
-                <Users className="h-12 w-12 text-orange-300 mb-6" />
+              <div className="bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-400/60 hover:border-orange-400/80 transition-all duration-300 shadow-xl">
+                <Users className="h-12 w-12 text-orange-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">FUSÕES & AQUISIÇÕES</h3>
                 <p className="text-gray-300">
                   Due diligence, avaliação de empresas, estruturação de operações e acompanhamento de transações.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
-                <Bot className="h-12 w-12 text-orange-300 mb-6" />
+              <div className="bg-gradient-to-br from-orange-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-orange-400/60 hover:border-orange-400/80 transition-all duration-300 shadow-xl">
+                <Bot className="h-12 w-12 text-orange-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">CONSULTORIA COM IA</h3>
                 <p className="text-gray-300">
                   Integração de inteligência artificial nos processos de consultoria para análises mais precisas e eficientes.
@@ -516,8 +524,8 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
-                <Bot className="h-12 w-12 text-purple-300 mb-6" />
+              <div className="bg-gradient-to-br from-purple-600/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 hover:border-purple-400/80 transition-all duration-300 shadow-xl">
+                <Bot className="h-12 w-12 text-purple-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">IA EMPRESARIAL</h3>
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>• Fundamentos de IA</li>
@@ -527,8 +535,8 @@ function App() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
-                <Calculator className="h-12 w-12 text-purple-300 mb-6" />
+              <div className="bg-gradient-to-br from-purple-600/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 hover:border-purple-400/80 transition-all duration-300 shadow-xl">
+                <Calculator className="h-12 w-12 text-purple-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">CONTABILIDADE DIGITAL</h3>
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>• Contabilidade 4.0</li>
@@ -538,8 +546,8 @@ function App() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
-                <Shield className="h-12 w-12 text-purple-300 mb-6" />
+              <div className="bg-gradient-to-br from-purple-600/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 hover:border-purple-400/80 transition-all duration-300 shadow-xl">
+                <Shield className="h-12 w-12 text-purple-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">CONTROLADORIA</h3>
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>• Controles internos</li>
@@ -549,8 +557,8 @@ function App() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
-                <TrendingUp className="h-12 w-12 text-purple-300 mb-6" />
+              <div className="bg-gradient-to-br from-purple-600/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 hover:border-purple-400/80 transition-all duration-300 shadow-xl">
+                <TrendingUp className="h-12 w-12 text-purple-200 mb-6" />
                 <h3 className="text-xl font-bold text-white mb-4">GESTÃO FINANCEIRA</h3>
                 <ul className="space-y-2 text-gray-300 text-sm">
                   <li>• Fluxo de caixa</li>
@@ -562,8 +570,8 @@ function App() {
             </div>
 
             <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 max-w-2xl mx-auto">
-                <Award className="h-16 w-16 text-purple-300 mx-auto mb-6" />
+              <div className="bg-gradient-to-br from-purple-600/50 to-pink-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 max-w-2xl mx-auto shadow-xl">
+                <Award className="h-16 w-16 text-purple-200 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-white mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
                 <p className="text-gray-300 mb-6">
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
@@ -592,12 +600,12 @@ function App() {
             </div>
 
             <div className="text-center mb-12">
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-red-400/30 max-w-md mx-auto">
-                <Settings className="h-16 w-16 text-red-400 mx-auto mb-6" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-red-400/60 max-w-md mx-auto shadow-xl">
+                <Settings className="h-16 w-16 text-red-200 mx-auto mb-6" />
                 <h3 className="text-2xl font-bold text-white mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 120</div>
-                  <div className="text-red-200">Setup + R$ 50 por manutenção</div>
+                  <div className="text-red-100">Setup + R$ 50 por manutenção</div>
                 </div>
                 <button className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 text-white">
                   PERSONALIZAR AGENTE
@@ -606,56 +614,56 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Palette className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Palette className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Agente de Renovação Visual</h4>
                 <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Search className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Search className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Pesquisador de Mercado</h4>
                 <p className="text-gray-300 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Lightbulb className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Lightbulb className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Compilador de Insights</h4>
                 <p className="text-gray-300 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Tag className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Tag className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Agente Buscador de Cupons</h4>
                 <p className="text-gray-300 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Brain className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Brain className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Avaliador de QIs</h4>
                 <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Wrench className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Wrench className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Encanador</h4>
                 <p className="text-gray-300 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <MapIcon className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <MapIcon className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Passeios em SP</h4>
                 <p className="text-gray-300 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
-                <Dumbbell className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg">
+                <Dumbbell className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">Treinadores</h4>
                 <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
-                <Star className="h-8 w-8 text-red-400 mb-4" />
+              <div className="bg-gradient-to-br from-red-600/50 to-red-800/50 backdrop-blur-sm rounded-xl p-6 border-2 border-red-400/60 hover:border-red-400/80 transition-all duration-300 shadow-lg md:col-span-2 lg:col-span-1">
+                <Star className="h-8 w-8 text-red-200 mb-4" />
                 <h4 className="text-lg font-bold text-white mb-2">E Muito Mais!</h4>
                 <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
               </div>
@@ -673,34 +681,34 @@ function App() {
             </div>
 
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-br from-cyan-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-12 border border-cyan-400/30">
+              <div className="bg-gradient-to-br from-cyan-600/50 to-blue-800/50 backdrop-blur-sm rounded-2xl p-12 border-2 border-cyan-400/60 shadow-xl">
                 <div className="text-center mb-8">
-                  <Bot className="h-20 w-20 text-cyan-300 mx-auto mb-6" />
+                  <Bot className="h-20 w-20 text-cyan-200 mx-auto mb-6" />
                   <h3 className="text-3xl font-bold text-white mb-6">TRANSFORMAÇÃO DIGITAL COMPLETA</h3>
                 </div>
                 
                 <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
                   <p>
-                    O <span className="text-cyan-400 font-semibold">Exército de Agentes</span> nasceu com uma missão clara: 
+                    O <span className="text-cyan-300 font-semibold">Exército de Agentes</span> nasceu com uma missão clara: 
                     democratizar o acesso à inteligência artificial e automação empresarial, tornando essas tecnologias 
                     acessíveis para empresas de todos os portes.
                   </p>
                   
                   <p>
-                    Combinamos <span className="text-cyan-400 font-semibold">expertise tradicional</span> em contabilidade 
-                    e consultoria com <span className="text-cyan-400 font-semibold">inovação tecnológica</span> de ponta, 
+                    Combinamos <span className="text-cyan-300 font-semibold">expertise tradicional</span> em contabilidade 
+                    e consultoria com <span className="text-cyan-300 font-semibold">inovação tecnológica</span> de ponta, 
                     criando soluções que não apenas automatizam processos, mas transformam completamente a forma como 
                     as empresas operam.
                   </p>
                   
                   <p>
-                    Nosso <span className="text-cyan-400 font-semibold">EssencialBot</span> é mais que um chatbot - 
+                    Nosso <span className="text-cyan-300 font-semibold">EssencialBot</span> é mais que um chatbot - 
                     é um assistente inteligente que aprende, evolui e se adapta às necessidades específicas de cada negócio, 
                     proporcionando eficiência operacional e insights estratégicos únicos.
                   </p>
                   
                   <div className="text-center mt-8">
-                    <p className="text-xl font-semibold text-cyan-300">
+                    <p className="text-xl font-semibold text-cyan-200">
                       "Construindo o futuro dos negócios, um agente por vez."
                     </p>
                   </div>
@@ -726,36 +734,36 @@ function App() {
               <a 
                 href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
                 onClick={() => handleContactClick('whatsapp')}
-                className="bg-gradient-to-br from-green-600/30 to-green-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 text-center group"
+                className="bg-gradient-to-br from-green-600/50 to-green-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-green-400/60 hover:border-green-400/80 transition-all duration-300 transform hover:scale-105 text-center group shadow-xl"
               >
-                <Phone className="h-12 w-12 text-green-300 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <Phone className="h-12 w-12 text-green-200 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-white mb-2">WhatsApp</h3>
-                <p className="text-green-200">(11) 91175-7113</p>
+                <p className="text-green-100">(11) 91175-7113</p>
                 <p className="text-gray-300 text-sm mt-2">Atendimento imediato</p>
               </a>
 
               <a 
                 href={`mailto:${config.EMAIL_CONTACT}`}
                 onClick={() => handleContactClick('email')}
-                className="bg-gradient-to-br from-blue-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105 text-center group"
+                className="bg-gradient-to-br from-blue-600/50 to-blue-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-blue-400/60 hover:border-blue-400/80 transition-all duration-300 transform hover:scale-105 text-center group shadow-xl"
               >
-                <Mail className="h-12 w-12 text-blue-300 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <Mail className="h-12 w-12 text-blue-200 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-white mb-2">E-mail</h3>
-                <p className="text-blue-200">sac@exercitodeagentes.com.br</p>
+                <p className="text-blue-100">sac@exercitodeagentes.com.br</p>
                 <p className="text-gray-300 text-sm mt-2">Resposta em até 2h</p>
               </a>
 
-              <div className="bg-gradient-to-br from-purple-600/30 to-purple-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 text-center">
-                <Clock className="h-12 w-12 text-purple-300 mx-auto mb-4" />
+              <div className="bg-gradient-to-br from-purple-600/50 to-purple-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-400/60 text-center shadow-xl">
+                <Clock className="h-12 w-12 text-purple-200 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Horário</h3>
-                <p className="text-purple-200">Segunda a Sexta</p>
-                <p className="text-purple-200">8h às 18h</p>
+                <p className="text-purple-100">Segunda a Sexta</p>
+                <p className="text-purple-100">8h às 18h</p>
                 <p className="text-gray-300 text-sm mt-2">Suporte 24/7 via IA</p>
               </div>
             </div>
 
             <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-cyan-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/30 max-w-2xl mx-auto">
+              <div className="bg-gradient-to-br from-cyan-600/50 to-blue-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-cyan-400/60 max-w-2xl mx-auto shadow-xl">
                 <h3 className="text-2xl font-bold text-white mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
                 <p className="text-gray-300 mb-6">
                   Veja na prática como o EssencialBot pode revolucionar seu negócio
