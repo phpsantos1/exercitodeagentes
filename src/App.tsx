@@ -2,38 +2,47 @@ import React, { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { 
   Bot, 
+  Shield, 
   Zap, 
-  Calculator, 
   Users, 
-  GraduationCap, 
-  Settings, 
-  ArrowRight, 
-  CheckCircle, 
-  Star,
-  Phone,
-  Mail,
-  MessageCircle,
-  Target,
-  TrendingUp,
-  Shield,
+  Calculator, 
+  TrendingUp, 
+  BookOpen, 
+  Award, 
+  Phone, 
+  Mail, 
+  MapPin, 
   Clock,
-  Award,
-  Lightbulb,
-  BarChart3,
-  FileText,
+  CheckCircle,
+  ArrowRight,
+  Star,
+  Target,
   Briefcase,
-  BookOpen,
-  Cog,
+  GraduationCap,
+  Settings,
+  Palette,
+  Search,
+  Lightbulb,
+  Tag,
+  Brain,
+  Wrench,
+  MapIcon,
+  Dumbbell,
   Instagram
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
+import { config } from './config/environment';
 
 function App() {
   useEffect(() => {
     initializeAnalytics();
   }, []);
+
+  const handleContactClick = (method: string) => {
+    trackEvent('contact_click', { method });
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -42,844 +51,679 @@ function App() {
     }
   };
 
-  const handleCTAClick = (action: string) => {
-    trackEvent('cta_click', { action });
-    // Implementar ação específica
-  };
-
   return (
     <HelmetProvider>
-      <div className="min-h-screen bg-gradient-to-r from-blue-900 to-purple-900 text-white relative overflow-hidden">
+      <div className="min-h-screen bg-black text-white">
         <SEOHead />
         
-        {/* Circuito Eletrônico de Fundo */}
-        <div className="absolute inset-0 opacity-20">
-          <svg className="w-full h-full" viewBox="0 0 1920 1080" fill="none">
-            <defs>
-              <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#3b82f6" />
-                <stop offset="50%" stopColor="#06b6d4" />
-                <stop offset="100%" stopColor="#8b5cf6" />
-              </linearGradient>
-            </defs>
-            
-            {/* Grid de linhas horizontais */}
-            {Array.from({ length: 20 }, (_, i) => (
-              <line
-                key={`h-${i}`}
-                x1="0"
-                y1={i * 54}
-                x2="1920"
-                y2={i * 54}
-                stroke="url(#circuitGradient)"
-                strokeWidth="1"
-              />
-            ))}
-            
-            {/* Grid de linhas verticais */}
-            {Array.from({ length: 35 }, (_, i) => (
-              <line
-                key={`v-${i}`}
-                x1={i * 55}
-                y1="0"
-                x2={i * 55}
-                y2="1080"
-                stroke="url(#circuitGradient)"
-                strokeWidth="1"
-              />
-            ))}
-            
-            {/* Conexões diagonais sequenciais */}
-            {Array.from({ length: 15 }, (_, i) => (
-              <g key={`diag-${i}`}>
-                <line
-                  x1={i * 128}
-                  y1={100 + (i % 3) * 200}
-                  x2={i * 128 + 100}
-                  y2={200 + (i % 3) * 200}
-                  stroke="url(#circuitGradient)"
-                  strokeWidth="1"
-                />
-                <line
-                  x1={i * 128 + 50}
-                  y1={150 + (i % 4) * 180}
-                  x2={i * 128 + 150}
-                  y2={50 + (i % 4) * 180}
-                  stroke="url(#circuitGradient)"
-                  strokeWidth="1"
-                />
-              </g>
-            ))}
-            
-            {/* Nós de circuito */}
-            {Array.from({ length: 50 }, (_, i) => (
-              <circle
-                key={`node-${i}`}
-                cx={(i % 10) * 192 + 96}
-                cy={Math.floor(i / 10) * 216 + 108}
-                r="3"
-                fill="url(#circuitGradient)"
-              />
-            ))}
-            
-            {/* Componentes eletrônicos */}
-            {Array.from({ length: 25 }, (_, i) => (
-              <rect
-                key={`comp-${i}`}
-                x={(i % 5) * 384 + 150}
-                y={Math.floor(i / 5) * 216 + 80}
-                width="80"
-                height="20"
-                fill="none"
-                stroke="url(#circuitGradient)"
-                strokeWidth="1"
-                rx="2"
-              />
-            ))}
-          </svg>
-        </div>
-
         {/* Header */}
-        <header className="relative z-10 bg-black">
-          <nav className="container mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
+        <header className="bg-black border-b border-gray-800 sticky top-0 z-40">
+          <div className="container mx-auto px-6 py-4">
+            <nav className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg">
-                  <Bot className="h-8 w-8 text-white" />
-                </div>
+                <Bot className="h-8 w-8 text-cyan-400" />
                 <span className="text-2xl font-bold text-white">EXÉRCITO DE AGENTES</span>
               </div>
               
               <div className="hidden md:flex items-center space-x-8">
-                <button 
-                  onClick={() => scrollToSection('automation')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
+                <button onClick={() => scrollToSection('automation')} className="text-white hover:text-cyan-400 transition-colors">
                   AUTOMAÇÃO IA
                 </button>
-                <button 
-                  onClick={() => scrollToSection('accounting')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
+                <button onClick={() => scrollToSection('accounting')} className="text-white hover:text-cyan-400 transition-colors">
                   CONTABILIDADE
                 </button>
-                <button 
-                  onClick={() => scrollToSection('consulting')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
+                <button onClick={() => scrollToSection('consulting')} className="text-white hover:text-cyan-400 transition-colors">
                   CONSULTORIA
                 </button>
-                <button 
-                  onClick={() => scrollToSection('education')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
+                <button onClick={() => scrollToSection('education')} className="text-white hover:text-cyan-400 transition-colors">
                   ENSINO PRÓ
                 </button>
-                <button 
-                  onClick={() => scrollToSection('personalization')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
+                <button onClick={() => scrollToSection('agents')} className="text-white hover:text-cyan-400 transition-colors">
                   PERSONALIZAÇÃO DE IA
                 </button>
-                <button 
-                  onClick={() => scrollToSection('mission')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
+                <button onClick={() => scrollToSection('mission')} className="text-white hover:text-cyan-400 transition-colors">
                   MISSÃO
                 </button>
-                <button 
-                  onClick={() => scrollToSection('contact')}
-                  className="hover:text-cyan-300 transition-colors font-medium text-white"
-                >
-                  CONTATO
+                <button onClick={() => scrollToSection('contact')} className="text-white hover:text-cyan-400 transition-colors flex items-center space-x-2">
+                  <span>CONTATO</span>
+                  <Phone className="h-4 w-4" />
+                  <Mail className="h-4 w-4" />
                 </button>
-                
-                <div className="flex items-center space-x-3">
-                  <a 
-                    href="tel:+5511911757113" 
-                    className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition-colors"
-                    title="WhatsApp: (11) 91175-7113"
-                  >
-                    <Phone className="h-4 w-4" />
-                  </a>
-                  <a 
-                    href="mailto:sac@exercitodeagentes.com.br" 
-                    className="p-2 bg-blue-500 rounded-full hover:bg-blue-600 transition-colors"
-                    title="Email: sac@exercitodeagentes.com.br"
-                  >
-                    <Mail className="h-4 w-4" />
-                  </a>
-                </div>
               </div>
-            </div>
-          </nav>
-          
-          {/* Faixa preta abaixo do cabeçalho */}
-          <div className="w-full h-1 bg-black"></div>
+            </nav>
+          </div>
+          <div className="h-1 bg-black"></div>
         </header>
 
         {/* Hero Section */}
-        <section className="relative z-10 container mx-auto px-6 py-20 text-center">
-          <h1 className="text-6xl md:text-8xl font-bold mb-8 leading-tight">
-            EXÉRCITO DE <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-300">AGENTES</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl mb-12 max-w-4xl mx-auto leading-relaxed">
-            Transforme seu negócio com <span className="font-bold text-cyan-300">EssencialBot</span> - IA avançada, automação inteligente,
-            <br />contabilidade smart e consultoria especializada
-          </p>
-
-          {/* Service Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12 max-w-7xl mx-auto">
-            {/* Automação IA */}
-            <div className="bg-gradient-to-br from-blue-600/30 to-blue-800/30 backdrop-blur-sm border border-blue-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-400/20">
-              <div className="p-4 bg-blue-500 rounded-xl mb-4 w-fit mx-auto">
-                <Zap className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Automação IA</h3>
-              <p className="text-gray-300 text-sm mb-4">EssencialBot personalizado para seu negócio</p>
-              <button 
-                onClick={() => scrollToSection('automation')}
-                className="text-cyan-300 hover:text-cyan-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
-              >
-                <span>Saiba mais</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* Contabilidade */}
-            <div className="bg-gradient-to-br from-green-600/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-green-400/20">
-              <div className="p-4 bg-green-500 rounded-xl mb-4 w-fit mx-auto">
-                <Calculator className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Contabilidade</h3>
-              <p className="text-gray-300 text-sm mb-4">Escritório contábil completo e inteligente</p>
-              <button 
-                onClick={() => scrollToSection('accounting')}
-                className="text-green-300 hover:text-green-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
-              >
-                <span>Saiba mais</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* Consultoria */}
-            <div className="bg-gradient-to-br from-purple-600/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-400/20">
-              <div className="p-4 bg-purple-500 rounded-xl mb-4 w-fit mx-auto">
-                <Users className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Consultoria</h3>
-              <p className="text-gray-300 text-sm mb-4">Gestão empresarial e recuperação judicial</p>
-              <button 
-                onClick={() => scrollToSection('consulting')}
-                className="text-purple-300 hover:text-purple-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
-              >
-                <span>Saiba mais</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* Educação */}
-            <div className="bg-gradient-to-br from-orange-600/30 to-orange-800/30 backdrop-blur-sm border border-orange-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-orange-400/20">
-              <div className="p-4 bg-orange-500 rounded-xl mb-4 w-fit mx-auto">
-                <GraduationCap className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Educação</h3>
-              <p className="text-gray-300 text-sm mb-4">Treinamentos em IA e contabilidade</p>
-              <button 
-                onClick={() => scrollToSection('education')}
-                className="text-orange-300 hover:text-orange-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
-              >
-                <span>Saiba mais</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
-            </div>
-
-            {/* Personalização IA */}
-            <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6 hover:transform hover:scale-105 transition-all duration-300 hover:shadow-2xl hover:shadow-red-400/20">
-              <div className="p-4 bg-red-500 rounded-xl mb-4 w-fit mx-auto">
-                <Settings className="h-8 w-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Personalização IA</h3>
-              <p className="text-gray-300 text-sm mb-4">Agentes customizados para suas necessidades</p>
-              <button 
-                onClick={() => scrollToSection('personalization')}
-                className="text-red-300 hover:text-red-200 font-medium text-sm flex items-center justify-center space-x-2 mx-auto"
-              >
-                <span>Saiba mais</span>
-                <ArrowRight className="h-4 w-4" />
-              </button>
+        <section className="relative py-20 overflow-hidden">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit)"/>
+              </svg>
             </div>
           </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-            <button 
-              onClick={() => handleCTAClick('start_now')}
-              className="px-12 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full text-xl font-bold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/50"
-            >
-              COMEÇAR AGORA
-            </button>
-            
-            <button 
-              onClick={() => handleCTAClick('talk_to_essencialbot')}
-              className="px-12 py-4 bg-transparent border-2 border-cyan-400 rounded-full text-xl font-bold hover:bg-cyan-400/10 transition-all duration-300 transform hover:scale-105"
-            >
-              FALAR COM ESSENCIALBOT
-            </button>
+          
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                EXÉRCITO DE AGENTES
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+                Transforme seu negócio com <span className="text-cyan-400 font-semibold">EssencialBot</span> - 
+                IA avançada, automação inteligente, contabilidade smart e consultoria especializada
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => scrollToSection('automation')}
+                  className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-400/25"
+                >
+                  CONHECER SOLUÇÕES
+                </button>
+                <a 
+                  href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                  onClick={() => handleContactClick('whatsapp')}
+                  className="px-8 py-4 border-2 border-cyan-400 text-cyan-400 rounded-lg font-semibold hover:bg-cyan-400 hover:text-black transition-all duration-300 transform hover:scale-105"
+                >
+                  FALAR COM ESPECIALISTA
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Automação IA Section */}
-        <section id="automation" className="relative z-10 py-20 bg-black/20 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
+        {/* Automation Section */}
+        <section id="automation" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-auto" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-auto)"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">AUTOMAÇÃO IA</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                AUTOMAÇÃO INTELIGENTE
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Revolucione seu negócio com EssencialBot - nossa IA personalizada que automatiza processos, 
-                otimiza operações e impulsiona resultados
+                Revolucione seus processos com EssencialBot - IA que aprende, evolui e otimiza seu negócio 24/7
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {/* Nível 2 - Integrado */}
-              <div className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 backdrop-blur-sm border border-blue-400/30 rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-300">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center p-4 bg-blue-500 rounded-2xl mb-6">
-                    <Zap className="h-12 w-12 text-white" />
+              <div className="bg-gradient-to-br from-blue-600/30 to-cyan-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-blue-500/20 rounded-full mr-4">
+                    <Zap className="h-8 w-8 text-blue-300" />
                   </div>
-                  <h3 className="text-3xl font-bold mb-4">NÍVEL 2 - INTEGRADO</h3>
-                  <div className="text-4xl font-bold text-blue-300 mb-2">R$ 397</div>
-                  <p className="text-gray-300">Setup + R$ 397/mês</p>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">NÍVEL 2 - INTEGRADO</h3>
+                    <p className="text-blue-200">Automação Essencial</p>
+                  </div>
                 </div>
-
+                
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>EssencialBot personalizado para seu negócio</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <span>EssencialBot personalizado</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Integração automática com Google Sheets</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <span>Integração Google Sheets</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Automações Make/Zapier incluídas</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <span>Automação Make/Zapier</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Relatórios automáticos personalizados</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <span>Relatórios automáticos</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Suporte prioritário via WhatsApp</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-blue-300 mr-3" />
+                    <span>Suporte prioritário</span>
                   </div>
                 </div>
 
-                <button 
-                  onClick={() => window.open('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', '_blank')}
-                  className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-xl font-bold text-lg hover:from-blue-600 hover:to-cyan-500 transition-all duration-300"
-                >
-                  CONTRATAR NÍVEL 2
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
+                  <div className="text-blue-200">Setup + R$ 397/mês</div>
+                </div>
+
+                <button className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg font-semibold hover:from-blue-600 hover:to-cyan-500 transition-all duration-300 text-white">
+                  ESCOLHER INTEGRADO
                 </button>
               </div>
 
               {/* Nível 3 - Avançado */}
-              <div className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 backdrop-blur-sm border border-purple-400/30 rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-300 relative">
+              <div className="bg-gradient-to-br from-purple-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300 transform hover:scale-105 relative">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black px-6 py-2 rounded-full font-bold text-sm">
+                  <span className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold">
                     MAIS POPULAR
+                  </span>
+                </div>
+                
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-purple-500/20 rounded-full mr-4">
+                    <Bot className="h-8 w-8 text-purple-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-white">NÍVEL 3 - AVANÇADO</h3>
+                    <p className="text-purple-200">IA Completa</p>
                   </div>
                 </div>
-
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center justify-center p-4 bg-purple-500 rounded-2xl mb-6">
-                    <Bot className="h-12 w-12 text-white" />
-                  </div>
-                  <h3 className="text-3xl font-bold mb-4">NÍVEL 3 - AVANÇADO</h3>
-                  <div className="text-4xl font-bold text-purple-300 mb-2">R$ 497</div>
-                  <p className="text-gray-300">Setup + R$ 497/mês</p>
-                </div>
-
+                
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-center space-x-3">
-                    <Star className="h-6 w-6 text-yellow-400 flex-shrink-0" />
-                    <span className="font-semibold">Tudo do Nível 2 MAIS:</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <span>Tudo do Nível 2 +</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>EssencialBot com Machine Learning avançado</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <span>Machine Learning avançado</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Análise preditiva e insights automáticos</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <span>Análise preditiva</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Integração multi-plataformas</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <span>Multi-plataformas</span>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>Consultoria empresarial incluída</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-6 w-6 text-green-400 flex-shrink-0" />
-                    <span>API personalizada para integrações</span>
+                  <div className="flex items-center text-gray-300">
+                    <CheckCircle className="h-5 w-5 text-purple-300 mr-3" />
+                    <span>Consultoria incluída</span>
                   </div>
                 </div>
 
-                <button 
-                  onClick={() => window.open('https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3', '_blank')}
-                  className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
-                >
-                  CONTRATAR NÍVEL 3
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
+                  <div className="text-purple-200">Setup + R$ 497/mês</div>
+                </div>
+
+                <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 text-white">
+                  ESCOLHER AVANÇADO
                 </button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contabilidade Section */}
-        <section id="accounting" className="relative z-10 py-20">
-          <div className="container mx-auto px-6">
+        {/* Accounting Section */}
+        <section id="accounting" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-acc" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-acc)"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">CONTABILIDADE INTELIGENTE</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+                CONTABILIDADE INTELIGENTE
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Escritório contábil completo com tecnologia de ponta e automação inteligente para sua empresa
+                Escritório contábil completo com tecnologia de ponta e automação total
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6">
-                <FileText className="h-12 w-12 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Abertura de Empresas</h3>
-                <p className="text-gray-300 mb-4">Processo completo de abertura com agilidade e segurança jurídica</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Consultoria de enquadramento</li>
-                  <li>• Documentação completa</li>
-                  <li>• Registro em órgãos competentes</li>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
+                <Calculator className="h-12 w-12 text-green-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">SERVIÇOS ESSENCIAIS</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Abertura de empresas</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Contabilidade mensal</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Obrigações fiscais</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Departamento pessoal</span>
+                  </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6">
-                <BarChart3 className="h-12 w-12 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Contabilidade Mensal</h3>
-                <p className="text-gray-300 mb-4">Escrituração completa com relatórios gerenciais automatizados</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Balancetes mensais</li>
-                  <li>• DRE automatizado</li>
-                  <li>• Fluxo de caixa inteligente</li>
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
+                <TrendingUp className="h-12 w-12 text-green-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">GESTÃO AVANÇADA</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Planejamento tributário</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Relatórios gerenciais</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Compliance e auditoria</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Consultoria fiscal</span>
+                  </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6">
-                <Shield className="h-12 w-12 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Obrigações Fiscais</h3>
-                <p className="text-gray-300 mb-4">Cumprimento de todas as obrigações com automação total</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• SPED Fiscal e Contábil</li>
-                  <li>• ECF e DEFIS</li>
-                  <li>• Declarações automáticas</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6">
-                <Users className="h-12 w-12 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Departamento Pessoal</h3>
-                <p className="text-gray-300 mb-4">Gestão completa de RH com automação de processos</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Folha de pagamento</li>
-                  <li>• eSocial automatizado</li>
-                  <li>• Controle de ponto digital</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6">
-                <TrendingUp className="h-12 w-12 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Planejamento Tributário</h3>
-                <p className="text-gray-300 mb-4">Otimização fiscal inteligente com IA preditiva</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Análise de regime tributário</li>
-                  <li>• Simulações automáticas</li>
-                  <li>• Economia fiscal garantida</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-900/30 to-green-800/30 backdrop-blur-sm border border-green-400/30 rounded-2xl p-6">
-                <Award className="h-12 w-12 text-green-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Compliance & Auditoria</h3>
-                <p className="text-gray-300 mb-4">Conformidade total com monitoramento contínuo</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Auditoria preventiva</li>
-                  <li>• Compliance automatizado</li>
-                  <li>• Relatórios de conformidade</li>
+              <div className="bg-gradient-to-br from-green-600/30 to-emerald-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300">
+                <Bot className="h-12 w-12 text-green-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">DIFERENCIAL IA</h3>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Automação total</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>EssencialBot integrado</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Relatórios inteligentes</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-300 mr-2" />
+                    <span>Atendimento 24/7</span>
+                  </li>
                 </ul>
               </div>
             </div>
 
             <div className="text-center mt-12">
-              <button 
-                onClick={() => window.open('https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil', '_blank')}
-                className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl font-bold text-lg hover:from-green-600 hover:to-emerald-600 transition-all duration-300"
-              >
+              <button className="px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-600 transition-all duration-300 text-white">
                 SOLICITAR PROPOSTA CONTÁBIL
               </button>
             </div>
           </div>
         </section>
 
-        {/* Consultoria Section */}
-        <section id="consulting" className="relative z-10 py-20 bg-black/20 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
+        {/* Consulting Section */}
+        <section id="consulting" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-cons" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-cons)"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">CONSULTORIA EMPRESARIAL</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-red-300 bg-clip-text text-transparent">
+                CONSULTORIA EMPRESARIAL
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Consultoria especializada em gestão, recuperação judicial e reestruturação empresarial
+                Soluções estratégicas completas - da gestão à recuperação judicial
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6">
-                <Target className="h-12 w-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Gestão Empresarial</h3>
-                <p className="text-gray-300 mb-4">Planejamento estratégico e otimização de processos</p>
-                <ul className="space-y-2 text-sm text-gray-400">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
+                <Briefcase className="h-12 w-12 text-orange-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">GESTÃO EMPRESARIAL</h3>
+                <p className="text-gray-300">
+                  Planejamento estratégico, otimização de processos e estruturação organizacional para crescimento sustentável.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
+                <TrendingUp className="h-12 w-12 text-orange-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">FLUXO DE CAIXA</h3>
+                <p className="text-gray-300">
+                  Controle financeiro rigoroso, projeções precisas e estratégias para otimização do capital de giro.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
+                <Shield className="h-12 w-12 text-orange-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">RECUPERAÇÃO JUDICIAL</h3>
+                <p className="text-gray-300">
+                  Reestruturação empresarial, negociação com credores e estratégias para superação de crises financeiras.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
+                <Target className="h-12 w-12 text-orange-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">BUSCA DE CRÉDITO</h3>
+                <p className="text-gray-300">
+                  Conexão com factorings, estruturação de propostas e negociação de condições favoráveis de financiamento.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
+                <Users className="h-12 w-12 text-orange-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">FUSÕES & AQUISIÇÕES</h3>
+                <p className="text-gray-300">
+                  Due diligence, avaliação de empresas, estruturação de operações e acompanhamento de transações.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-orange-400/30 hover:border-orange-400/50 transition-all duration-300">
+                <Bot className="h-12 w-12 text-orange-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">CONSULTORIA COM IA</h3>
+                <p className="text-gray-300">
+                  Integração de inteligência artificial nos processos de consultoria para análises mais precisas e eficientes.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <button className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg font-semibold hover:from-orange-600 hover:to-red-600 transition-all duration-300 text-white">
+                AGENDAR CONSULTORIA
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section id="education" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-edu" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-edu)"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-pink-300 bg-clip-text text-transparent">
+                ENSINO PRÓ
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Capacitação avançada em contabilidade, controladoria, gestão financeira e IA empresarial
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
+                <Bot className="h-12 w-12 text-purple-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">IA EMPRESARIAL</h3>
+                <ul className="space-y-2 text-gray-300 text-sm">
+                  <li>• Fundamentos de IA</li>
+                  <li>• Chatbots empresariais</li>
+                  <li>• Machine Learning</li>
+                  <li>• Automação inteligente</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
+                <Calculator className="h-12 w-12 text-purple-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">CONTABILIDADE DIGITAL</h3>
+                <ul className="space-y-2 text-gray-300 text-sm">
+                  <li>• Contabilidade 4.0</li>
+                  <li>• SPED e obrigações</li>
+                  <li>• Análise de balanços</li>
+                  <li>• Tecnologia contábil</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
+                <Shield className="h-12 w-12 text-purple-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">CONTROLADORIA</h3>
+                <ul className="space-y-2 text-gray-300 text-sm">
+                  <li>• Controles internos</li>
+                  <li>• Auditoria interna</li>
+                  <li>• Compliance</li>
+                  <li>• Gestão de riscos</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 hover:border-purple-400/50 transition-all duration-300">
+                <TrendingUp className="h-12 w-12 text-purple-300 mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">GESTÃO FINANCEIRA</h3>
+                <ul className="space-y-2 text-gray-300 text-sm">
+                  <li>• Fluxo de caixa</li>
+                  <li>• Análise financeira</li>
+                  <li>• Orçamento empresarial</li>
                   <li>• Planejamento estratégico</li>
-                  <li>• Reestruturação organizacional</li>
-                  <li>• Otimização de processos</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6">
-                <BarChart3 className="h-12 w-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Fluxo de Caixa</h3>
-                <p className="text-gray-300 mb-4">Controle financeiro inteligente e previsibilidade</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Controle de fluxo de caixa</li>
-                  <li>• Projeções financeiras</li>
-                  <li>• Análise de viabilidade</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6">
-                <Shield className="h-12 w-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Recuperação Judicial</h3>
-                <p className="text-gray-300 mb-4">Especialistas em reestruturação e recuperação</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Análise de viabilidade</li>
-                  <li>• Plano de recuperação</li>
-                  <li>• Acompanhamento processual</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6">
-                <Briefcase className="h-12 w-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Busca de Crédito</h3>
-                <p className="text-gray-300 mb-4">Conexão com factorings e linhas de crédito</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Análise de perfil creditício</li>
-                  <li>• Negociação com factorings</li>
-                  <li>• Estruturação de operações</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6">
-                <TrendingUp className="h-12 w-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Fusões & Aquisições</h3>
-                <p className="text-gray-300 mb-4">Assessoria completa em M&A e reestruturações</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Due diligence</li>
-                  <li>• Valuation empresarial</li>
-                  <li>• Estruturação de negócios</li>
-                </ul>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-900/30 to-purple-800/30 backdrop-blur-sm border border-purple-400/30 rounded-2xl p-6">
-                <Bot className="h-12 w-12 text-purple-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Consultoria com IA</h3>
-                <p className="text-gray-300 mb-4">Transformação digital e automação inteligente</p>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>• Diagnóstico de automação</li>
-                  <li>• Implementação de IA</li>
-                  <li>• Transformação digital</li>
                 </ul>
               </div>
             </div>
 
             <div className="text-center mt-12">
-              <button 
-                onClick={() => window.open('https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial', '_blank')}
-                className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl font-bold text-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300"
-              >
-                SOLICITAR CONSULTORIA
-              </button>
+              <div className="bg-gradient-to-br from-purple-600/30 to-pink-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 max-w-2xl mx-auto">
+                <Award className="h-16 w-16 text-purple-300 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
+                <p className="text-gray-300 mb-6">
+                  Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
+                </p>
+                <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all duration-300 text-white">
+                  VER CURSOS DISPONÍVEIS
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Educação Section */}
-        <section id="education" className="relative z-10 py-20">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-300">ENSINO PRÓ</span>
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Capacitação profissional em contabilidade, controladoria e inteligência artificial
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/30 backdrop-blur-sm border border-orange-400/30 rounded-2xl p-8">
-                <Bot className="h-16 w-16 text-orange-400 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">IA EMPRESARIAL</h3>
-                <p className="text-gray-300 mb-6">Domine a inteligência artificial aplicada aos negócios</p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Fundamentos de IA e Machine Learning</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Desenvolvimento de Chatbots</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Automação de Processos com IA</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Projetos práticos reais</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/30 backdrop-blur-sm border border-orange-400/30 rounded-2xl p-8">
-                <Calculator className="h-16 w-16 text-orange-400 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">CONTABILIDADE DIGITAL</h3>
-                <p className="text-gray-300 mb-6">Contabilidade 4.0 com tecnologia de ponta</p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">SPED Fiscal e Contábil avançado</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Análise de Balanços com IA</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Automação contábil</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Certificação profissional</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/30 backdrop-blur-sm border border-orange-400/30 rounded-2xl p-8">
-                <Shield className="h-16 w-16 text-orange-400 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">CONTROLADORIA</h3>
-                <p className="text-gray-300 mb-6">Controles internos e auditoria empresarial</p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Controles Internos eficazes</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Auditoria interna e externa</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Compliance e governança</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Cases práticos</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-orange-900/30 to-orange-800/30 backdrop-blur-sm border border-orange-400/30 rounded-2xl p-8">
-                <TrendingUp className="h-16 w-16 text-orange-400 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">GESTÃO FINANCEIRA</h3>
-                <p className="text-gray-300 mb-6">Finanças corporativas e análise de investimentos</p>
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Fluxo de caixa inteligente</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Análise financeira avançada</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Orçamento e planejamento</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-400" />
-                    <span className="text-sm">Simuladores financeiros</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center mt-12">
-              <button 
-                onClick={() => window.open('https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro', '_blank')}
-                className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl font-bold text-lg hover:from-orange-600 hover:to-red-600 transition-all duration-300"
-              >
-                CONHECER CURSOS
-              </button>
+        {/* AI Agents Section */}
+        <section id="agents" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-agents" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-agents)"/>
+              </svg>
             </div>
           </div>
-        </section>
-
-        {/* Personalização IA Section */}
-        <section id="personalization" className="relative z-10 py-20 bg-black/20 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
+          
+          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-red-300">PERSONALIZAÇÃO DE IA</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-400 to-red-300 bg-clip-text text-transparent">
+                PERSONALIZAÇÃO DE IA
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-4">
                 Configuração e disponibilização de agentes de IA customizados para suas necessidades específicas
               </p>
-              <div className="text-center mb-8">
-                <div className="text-4xl font-bold text-red-300 mb-2">R$ 120</div>
-                <p className="text-gray-300">Setup + R$ 50 por manutenção</p>
-              </div>
-              <p className="text-lg text-red-300 font-semibold italic">
-                "Você não sabe que precisa desses agentes até conhecê-los!"
+              <p className="text-lg text-red-300 font-semibold">
+                Você não sabe que precisa desses agentes até conhecê-los!
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Cog className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Agente de Renovação Visual</h3>
+            <div className="text-center mb-12">
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-2xl p-8 border border-red-400/30 max-w-md mx-auto">
+                <Settings className="h-16 w-16 text-red-400 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 120</div>
+                  <div className="text-red-200">Setup + R$ 50 por manutenção</div>
+                </div>
+                <button className="w-full py-3 bg-gradient-to-r from-red-500 to-red-600 rounded-lg font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-300 text-white">
+                  PERSONALIZAR AGENTE
+                </button>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Palette className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Agente de Renovação Visual</h4>
                 <p className="text-gray-300 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Lightbulb className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Pesquisador de Mercado</h3>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Search className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Pesquisador de Mercado</h4>
                 <p className="text-gray-300 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Clock className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Compilador de Insights</h3>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Lightbulb className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Compilador de Insights</h4>
                 <p className="text-gray-300 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Target className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Agente Buscador de Cupons</h3>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Tag className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Agente Buscador de Cupons</h4>
                 <p className="text-gray-300 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Award className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Avaliador de QIs</h3>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Brain className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Avaliador de QIs</h4>
                 <p className="text-gray-300 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Settings className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Encanador</h3>
-                <p className="text-gray-300 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais com domínio técnico absoluto.</p>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Wrench className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Encanador</h4>
+                <p className="text-gray-300 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <Bot className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Passeios em SP</h3>
-                <p className="text-gray-300 text-sm">Ser o estrategista urbano supremo, capaz de transformar desejos subjetivos em vivências memoráveis em São Paulo.</p>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <MapIcon className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Passeios em SP</h4>
+                <p className="text-gray-300 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-900/30 to-red-800/30 backdrop-blur-sm border border-red-400/30 rounded-2xl p-6">
-                <TrendingUp className="h-12 w-12 text-red-400 mb-4" />
-                <h3 className="text-xl font-bold mb-3">Treinadores</h3>
-                <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades para desenvolvimento pessoal e profissional.</p>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300">
+                <Dumbbell className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Treinadores</h4>
+                <p className="text-gray-300 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
               </div>
-            </div>
 
-            <div className="text-center mb-8">
-              <p className="text-xl text-gray-300 font-semibold">
-                Temos mais de <span className="text-red-300 font-bold">250 modelos de agentes</span> que podem facilitar seu dia a dia.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <button 
-                onClick={() => window.open('https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge', '_blank')}
-                className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 rounded-xl font-bold text-lg hover:from-red-600 hover:to-red-700 transition-all duration-300"
-              >
-                PERSONALIZAR AGENTE
-              </button>
+              <div className="bg-gradient-to-br from-red-600/30 to-red-800/30 backdrop-blur-sm rounded-xl p-6 border border-red-400/30 hover:border-red-400/50 transition-all duration-300 md:col-span-2 lg:col-span-1">
+                <Star className="h-8 w-8 text-red-400 mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">E Muito Mais!</h4>
+                <p className="text-gray-300 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Missão Section */}
-        <section id="mission" className="relative z-10 py-20">
-          <div className="container mx-auto px-6">
+        {/* Mission Section */}
+        <section id="mission" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-mission" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-mission)"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-300">NOSSA MISSÃO</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                NOSSA MISSÃO
               </h2>
             </div>
 
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-gradient-to-br from-yellow-900/20 to-orange-900/20 backdrop-blur-sm border border-yellow-400/30 rounded-3xl p-12">
-                <div className="mb-8">
-                  <div className="inline-flex items-center justify-center p-6 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full mb-6">
-                    <Target className="h-16 w-16 text-white" />
-                  </div>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-cyan-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-12 border border-cyan-400/30">
+                <div className="text-center mb-8">
+                  <Bot className="h-20 w-20 text-cyan-300 mx-auto mb-6" />
+                  <h3 className="text-3xl font-bold text-white mb-6">TRANSFORMAÇÃO DIGITAL COMPLETA</h3>
                 </div>
                 
-                <h3 className="text-3xl font-bold mb-8 text-yellow-300">
-                  DEMOCRATIZAR A INTELIGÊNCIA ARTIFICIAL
-                </h3>
-                
-                <p className="text-xl text-gray-300 leading-relaxed mb-8">
-                  Nossa missão é tornar a inteligência artificial acessível para todas as empresas, 
-                  independentemente do tamanho ou setor. Acreditamos que a IA não deve ser privilégio 
-                  de grandes corporações, mas uma ferramenta transformadora disponível para todos.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center p-4 bg-yellow-500/20 rounded-full mb-4">
-                      <Lightbulb className="h-8 w-8 text-yellow-400" />
-                    </div>
-                    <h4 className="text-lg font-bold mb-2 text-yellow-300">INOVAÇÃO</h4>
-                    <p className="text-gray-400 text-sm">Tecnologia de ponta aplicada de forma prática e acessível</p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center p-4 bg-orange-500/20 rounded-full mb-4">
-                      <Users className="h-8 w-8 text-orange-400" />
-                    </div>
-                    <h4 className="text-lg font-bold mb-2 text-orange-300">PARCERIA</h4>
-                    <p className="text-gray-400 text-sm">Relacionamento próximo e suporte dedicado a cada cliente</p>
-                  </div>
-
-                  <div className="text-center">
-                    <div className="inline-flex items-center justify-center p-4 bg-red-500/20 rounded-full mb-4">
-                      <TrendingUp className="h-8 w-8 text-red-400" />
-                    </div>
-                    <h4 className="text-lg font-bold mb-2 text-red-300">RESULTADOS</h4>
-                    <p className="text-gray-400 text-sm">Foco em ROI mensurável e transformação real dos negócios</p>
+                <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
+                  <p>
+                    O <span className="text-cyan-400 font-semibold">Exército de Agentes</span> nasceu com uma missão clara: 
+                    democratizar o acesso à inteligência artificial e automação empresarial, tornando essas tecnologias 
+                    acessíveis para empresas de todos os portes.
+                  </p>
+                  
+                  <p>
+                    Combinamos <span className="text-cyan-400 font-semibold">expertise tradicional</span> em contabilidade 
+                    e consultoria com <span className="text-cyan-400 font-semibold">inovação tecnológica</span> de ponta, 
+                    criando soluções que não apenas automatizam processos, mas transformam completamente a forma como 
+                    as empresas operam.
+                  </p>
+                  
+                  <p>
+                    Nosso <span className="text-cyan-400 font-semibold">EssencialBot</span> é mais que um chatbot - 
+                    é um assistente inteligente que aprende, evolui e se adapta às necessidades específicas de cada negócio, 
+                    proporcionando eficiência operacional e insights estratégicos únicos.
+                  </p>
+                  
+                  <div className="text-center mt-8">
+                    <p className="text-xl font-semibold text-cyan-300">
+                      "Construindo o futuro dos negócios, um agente por vez."
+                    </p>
                   </div>
                 </div>
               </div>
@@ -888,62 +732,75 @@ function App() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="relative z-10 py-20 bg-black/20 backdrop-blur-sm">
-          <div className="container mx-auto px-6">
+        <section id="contact" className="py-20 relative">
+          <div className="absolute inset-0 bg-black">
+            <div className="absolute inset-0 opacity-20">
+              <svg className="w-full h-full" viewBox="0 0 1200 800" fill="none">
+                <defs>
+                  <pattern id="circuit-contact" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20 20h60v60h-60z" fill="none" stroke="cyan" strokeWidth="0.5" opacity="0.3"/>
+                    <circle cx="20" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="20" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="20" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <circle cx="80" cy="80" r="2" fill="cyan" opacity="0.6"/>
+                    <path d="M20 20L80 20M20 80L80 80M20 20L20 80M80 20L80 80" stroke="cyan" strokeWidth="0.3" opacity="0.4"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#circuit-contact)"/>
+              </svg>
+            </div>
+          </div>
+          
+          <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">CONTATO</span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-300 bg-clip-text text-transparent">
+                FALE CONOSCO
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Entre em contato conosco e descubra como podemos transformar seu negócio com IA
+              <p className="text-xl text-gray-300">
+                Pronto para transformar seu negócio? Entre em contato agora!
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center p-6 bg-green-500 rounded-full mb-6">
-                  <MessageCircle className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">WhatsApp</h3>
-                <p className="text-gray-300 mb-4">Atendimento direto e personalizado</p>
-                <a 
-                  href="https://wa.me/5511911757113" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-green-500 rounded-lg hover:bg-green-600 transition-colors"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  <span>(11) 91175-7113</span>
-                </a>
-              </div>
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <a 
+                href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                onClick={() => handleContactClick('whatsapp')}
+                className="bg-gradient-to-br from-green-600/30 to-green-800/30 backdrop-blur-sm rounded-2xl p-8 border border-green-400/30 hover:border-green-400/50 transition-all duration-300 transform hover:scale-105 text-center group"
+              >
+                <Phone className="h-12 w-12 text-green-300 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-white mb-2">WhatsApp</h3>
+                <p className="text-green-200">(11) 91175-7113</p>
+                <p className="text-gray-300 text-sm mt-2">Atendimento imediato</p>
+              </a>
 
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center p-6 bg-blue-500 rounded-full mb-6">
-                  <Mail className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">E-mail</h3>
-                <p className="text-gray-300 mb-4">Suporte técnico e comercial</p>
-                <a 
-                  href="mailto:sac@exercitodeagentes.com.br"
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-blue-500 rounded-lg hover:bg-blue-600 transition-colors"
-                >
-                  <Mail className="h-5 w-5" />
-                  <span>sac@exercitodeagentes.com.br</span>
-                </a>
-              </div>
+              <a 
+                href={`mailto:${config.EMAIL_CONTACT}`}
+                onClick={() => handleContactClick('email')}
+                className="bg-gradient-to-br from-blue-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-blue-400/30 hover:border-blue-400/50 transition-all duration-300 transform hover:scale-105 text-center group"
+              >
+                <Mail className="h-12 w-12 text-blue-300 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-white mb-2">E-mail</h3>
+                <p className="text-blue-200">sac@exercitodeagentes.com.br</p>
+                <p className="text-gray-300 text-sm mt-2">Resposta em até 2h</p>
+              </a>
 
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center p-6 bg-purple-500 rounded-full mb-6">
-                  <Bot className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">EssencialBot</h3>
-                <p className="text-gray-300 mb-4">Assistente IA especializado</p>
-                <button 
-                  onClick={() => window.open('https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge', '_blank')}
-                  className="inline-flex items-center space-x-2 px-6 py-3 bg-purple-500 rounded-lg hover:bg-purple-600 transition-colors"
-                >
-                  <Bot className="h-5 w-5" />
-                  <span>Falar Agora</span>
+              <div className="bg-gradient-to-br from-purple-600/30 to-purple-800/30 backdrop-blur-sm rounded-2xl p-8 border border-purple-400/30 text-center">
+                <Clock className="h-12 w-12 text-purple-300 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">Horário</h3>
+                <p className="text-purple-200">Segunda a Sexta</p>
+                <p className="text-purple-200">8h às 18h</p>
+                <p className="text-gray-300 text-sm mt-2">Suporte 24/7 via IA</p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <div className="bg-gradient-to-br from-cyan-600/30 to-blue-800/30 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/30 max-w-2xl mx-auto">
+                <h3 className="text-2xl font-bold text-white mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
+                <p className="text-gray-300 mb-6">
+                  Veja na prática como o EssencialBot pode revolucionar seu negócio
+                </p>
+                <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:from-cyan-600 hover:to-blue-600 transition-all duration-300 text-white">
+                  AGENDAR DEMO GRATUITA
                 </button>
               </div>
             </div>
@@ -951,46 +808,69 @@ function App() {
         </section>
 
         {/* Footer */}
-        <footer className="relative z-10 py-12 border-t border-gray-800">
+        <footer className="bg-black border-t border-gray-800 py-12">
           <div className="container mx-auto px-6">
-            <div className="text-center">
-              <div className="flex items-center justify-center space-x-3 mb-6">
-                <div className="p-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg">
-                  <Bot className="h-8 w-8 text-white" />
+            <div className="grid md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center space-x-3 mb-6">
+                  <Bot className="h-8 w-8 text-cyan-400" />
+                  <span className="text-xl font-bold text-white">EXÉRCITO DE AGENTES</span>
                 </div>
-                <span className="text-2xl font-bold">EXÉRCITO DE AGENTES</span>
+                <p className="text-gray-400 mb-4">
+                  Transformando negócios com inteligência artificial e automação avançada.
+                </p>
+                <div className="flex space-x-4">
+                  <a 
+                    href="https://instagram.com/exercitodeagentes" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors"
+                  >
+                    <Instagram className="h-6 w-6" />
+                  </a>
+                </div>
               </div>
-              
-              <p className="text-gray-400 mb-6">
-                Transformando negócios com inteligência artificial desde 2024
-              </p>
-              
-              <div className="flex justify-center space-x-6 mb-6">
-                <a 
-                  href="https://wa.me/5511911757113" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-green-400 transition-colors"
-                >
-                  <MessageCircle className="h-6 w-6" />
-                </a>
-                <a 
-                  href="mailto:sac@exercitodeagentes.com.br"
-                  className="text-gray-400 hover:text-blue-400 transition-colors"
-                >
-                  <Mail className="h-6 w-6" />
-                </a>
-                <a 
-                  href="https://instagram.com/exercitodeagentes" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-pink-400 transition-colors"
-                >
-                  <Instagram className="h-6 w-6" />
-                </a>
+
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">SERVIÇOS</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li><button onClick={() => scrollToSection('automation')} className="hover:text-cyan-400 transition-colors">Automação IA</button></li>
+                  <li><button onClick={() => scrollToSection('accounting')} className="hover:text-cyan-400 transition-colors">Contabilidade</button></li>
+                  <li><button onClick={() => scrollToSection('consulting')} className="hover:text-cyan-400 transition-colors">Consultoria</button></li>
+                  <li><button onClick={() => scrollToSection('education')} className="hover:text-cyan-400 transition-colors">Ensino Pró</button></li>
+                </ul>
               </div>
-              
-              <p className="text-gray-500 text-sm">
+
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">CONTATO</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li className="flex items-center">
+                    <Phone className="h-4 w-4 mr-2" />
+                    <span>(11) 91175-7113</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Mail className="h-4 w-4 mr-2" />
+                    <span>sac@exercitodeagentes.com.br</span>
+                  </li>
+                  <li className="flex items-center">
+                    <MapPin className="h-4 w-4 mr-2" />
+                    <span>São Paulo, SP</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-4">EMPRESA</h4>
+                <ul className="space-y-2 text-gray-400">
+                  <li><button onClick={() => scrollToSection('mission')} className="hover:text-cyan-400 transition-colors">Nossa Missão</button></li>
+                  <li><a href="#" className="hover:text-cyan-400 transition-colors">Política de Privacidade</a></li>
+                  <li><a href="#" className="hover:text-cyan-400 transition-colors">Termos de Uso</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+              <p className="text-gray-400">
                 © 2024 Exército de Agentes. Todos os direitos reservados.
               </p>
             </div>
