@@ -214,106 +214,106 @@ function App() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
               {/* Nível 2 - Integrado */}
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/50">
                 <div className="flex items-center mb-6">
-                  <div className="p-3 bg-blue-600 rounded-full mr-4">
+                  <div className="p-3 bg-white/20 rounded-full mr-4">
                     <Zap className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-blue-800">NÍVEL 2 - INTEGRADO</h3>
-                    <p className="text-blue-600">Automação Essencial</p>
+                    <h3 className="text-2xl font-bold text-white">NÍVEL 2 - INTEGRADO</h3>
+                    <p className="text-blue-100">Automação Essencial</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>EssencialBot personalizado</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Integração Google Sheets</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Automação Make/Zapier</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Relatórios automáticos</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-blue-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
                     <span>Suporte prioritário</span>
                   </div>
                 </div>
 
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-blue-800 mb-2">R$ 397</div>
-                  <div className="text-blue-600">Setup + R$ 397/mês</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
+                  <div className="text-blue-100">Setup + R$ 397/mês</div>
                 </div>
 
                 <a 
                   href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-300 block text-center"
+                  className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 block text-center shadow-lg"
                 >
                   ESCOLHER INTEGRADO
                 </a>
               </div>
 
               {/* Nível 3 - Avançado */}
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 transform hover:scale-105 shadow-lg relative">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/50 relative">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-purple-600 to-purple-500 text-white px-4 py-2 rounded-full text-sm font-bold">
+                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                     MAIS POPULAR
                   </span>
                 </div>
                 
                 <div className="flex items-center mb-6">
-                  <div className="p-3 bg-purple-600 rounded-full mr-4">
+                  <div className="p-3 bg-white/20 rounded-full mr-4">
                     <Bot className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-purple-800">NÍVEL 3 - AVANÇADO</h3>
-                    <p className="text-purple-600">IA Completa</p>
+                    <h3 className="text-2xl font-bold text-white">NÍVEL 3 - AVANÇADO</h3>
+                    <p className="text-purple-100">IA Completa</p>
                   </div>
                 </div>
                 
                 <div className="space-y-4 mb-8">
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-purple-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Tudo do Nível 2 +</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-purple-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Machine Learning avançado</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-purple-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Análise preditiva</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-purple-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Multi-plataformas</span>
                   </div>
-                  <div className="flex items-center text-gray-700">
-                    <CheckCircle className="h-5 w-5 text-purple-600 mr-3" />
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Consultoria incluída</span>
                   </div>
                 </div>
 
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-purple-800 mb-2">R$ 497</div>
-                  <div className="text-purple-600">Setup + R$ 497/mês</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
+                  <div className="text-purple-100">Setup + R$ 497/mês</div>
                 </div>
 
                 <a 
                   href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-purple-600 transition-all duration-300 block text-center"
+                  className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 block text-center shadow-lg"
                 >
                   ESCOLHER AVANÇADO
                 </a>
@@ -335,70 +335,70 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-300 transition-all duration-300 shadow-lg">
-                <Calculator className="h-12 w-12 text-green-600 mb-6" />
-                <h3 className="text-xl font-bold text-green-800 mb-4">SERVIÇOS ESSENCIAIS</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <Calculator className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">SERVIÇOS ESSENCIAIS</h3>
+                <ul className="space-y-3 text-white">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Abertura de empresas</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Contabilidade mensal</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Obrigações fiscais</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Departamento pessoal</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-300 transition-all duration-300 shadow-lg">
-                <TrendingUp className="h-12 w-12 text-green-600 mb-6" />
-                <h3 className="text-xl font-bold text-green-800 mb-4">GESTÃO AVANÇADA</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <TrendingUp className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">GESTÃO AVANÇADA</h3>
+                <ul className="space-y-3 text-white">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Planejamento tributário</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Relatórios gerenciais</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Compliance e auditoria</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Consultoria fiscal</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-300 transition-all duration-300 shadow-lg">
-                <Bot className="h-12 w-12 text-green-600 mb-6" />
-                <h3 className="text-xl font-bold text-green-800 mb-4">DIFERENCIAL IA</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">DIFERENCIAL IA</h3>
+                <ul className="space-y-3 text-white">
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Automação total</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>EssencialBot integrado</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Relatórios inteligentes</span>
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="h-4 w-4 text-green-600 mr-2" />
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
                     <span>Atendimento 24/7</span>
                   </li>
                 </ul>
@@ -406,13 +406,13 @@ function App() {
             </div>
 
             {/* Detailed Accounting Services */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-12 border-2 border-green-200 shadow-lg">
-              <h3 className="text-3xl font-bold text-green-800 mb-8 text-center">SERVIÇOS CONTÁBEIS COMPLETOS</h3>
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-12 border-4 border-green-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-white mb-8 text-center">SERVIÇOS CONTÁBEIS COMPLETOS</h3>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div>
-                  <h4 className="text-xl font-bold text-green-700 mb-4">📊 CONTABILIDADE GERAL</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="text-xl font-bold text-green-100 mb-4">📊 CONTABILIDADE GERAL</h4>
+                  <ul className="space-y-2 text-white">
                     <li>• Escrituração contábil completa</li>
                     <li>• Balancetes mensais</li>
                     <li>• Demonstrações financeiras</li>
@@ -423,8 +423,8 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-700 mb-4">🏢 ABERTURA DE EMPRESAS</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="text-xl font-bold text-green-100 mb-4">🏢 ABERTURA DE EMPRESAS</h4>
+                  <ul className="space-y-2 text-white">
                     <li>• Consultoria de enquadramento</li>
                     <li>• Registro na Junta Comercial</li>
                     <li>• Inscrições municipais e estaduais</li>
@@ -435,8 +435,8 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-700 mb-4">📋 OBRIGAÇÕES FISCAIS</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="text-xl font-bold text-green-100 mb-4">📋 OBRIGAÇÕES FISCAIS</h4>
+                  <ul className="space-y-2 text-white">
                     <li>• SPED Contábil e Fiscal</li>
                     <li>• ECF (Escrituração Contábil Fiscal)</li>
                     <li>• DEFIS (Simples Nacional)</li>
@@ -447,8 +447,8 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-700 mb-4">👥 DEPARTAMENTO PESSOAL</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="text-xl font-bold text-green-100 mb-4">👥 DEPARTAMENTO PESSOAL</h4>
+                  <ul className="space-y-2 text-white">
                     <li>• Folha de pagamento</li>
                     <li>• Admissões e demissões</li>
                     <li>• eSocial e FGTS</li>
@@ -459,8 +459,8 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-700 mb-4">💰 PLANEJAMENTO TRIBUTÁRIO</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="text-xl font-bold text-green-100 mb-4">💰 PLANEJAMENTO TRIBUTÁRIO</h4>
+                  <ul className="space-y-2 text-white">
                     <li>• Análise de regime tributário</li>
                     <li>• Elisão fiscal legal</li>
                     <li>• Recuperação de tributos</li>
@@ -471,8 +471,8 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-700 mb-4">🤖 TECNOLOGIA E IA</h4>
-                  <ul className="space-y-2 text-gray-700">
+                  <h4 className="text-xl font-bold text-green-100 mb-4">🤖 TECNOLOGIA E IA</h4>
+                  <ul className="space-y-2 text-white">
                     <li>• EssencialBot contábil</li>
                     <li>• Automação de processos</li>
                     <li>• Relatórios inteligentes</li>
@@ -510,50 +510,50 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 shadow-lg">
-                <Briefcase className="h-12 w-12 text-orange-600 mb-6" />
-                <h3 className="text-xl font-bold text-orange-800 mb-4">GESTÃO EMPRESARIAL</h3>
-                <p className="text-gray-700">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Briefcase className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">GESTÃO EMPRESARIAL</h3>
+                <p className="text-white">
                   Planejamento estratégico, otimização de processos e estruturação organizacional para crescimento sustentável.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 shadow-lg">
-                <TrendingUp className="h-12 w-12 text-orange-600 mb-6" />
-                <h3 className="text-xl font-bold text-orange-800 mb-4">FLUXO DE CAIXA</h3>
-                <p className="text-gray-700">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <TrendingUp className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">FLUXO DE CAIXA</h3>
+                <p className="text-white">
                   Controle financeiro rigoroso, projeções precisas e estratégias para otimização do capital de giro.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 shadow-lg">
-                <Shield className="h-12 w-12 text-orange-600 mb-6" />
-                <h3 className="text-xl font-bold text-orange-800 mb-4">RECUPERAÇÃO JUDICIAL</h3>
-                <p className="text-gray-700">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Shield className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">RECUPERAÇÃO JUDICIAL</h3>
+                <p className="text-white">
                   Reestruturação empresarial, negociação com credores e estratégias para superação de crises financeiras.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 shadow-lg">
-                <Target className="h-12 w-12 text-orange-600 mb-6" />
-                <h3 className="text-xl font-bold text-orange-800 mb-4">BUSCA DE CRÉDITO</h3>
-                <p className="text-gray-700">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Target className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">BUSCA DE CRÉDITO</h3>
+                <p className="text-white">
                   Conexão com factorings, estruturação de propostas e negociação de condições favoráveis de financiamento.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 shadow-lg">
-                <Users className="h-12 w-12 text-orange-600 mb-6" />
-                <h3 className="text-xl font-bold text-orange-800 mb-4">FUSÕES & AQUISIÇÕES</h3>
-                <p className="text-gray-700">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Users className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">FUSÕES & AQUISIÇÕES</h3>
+                <p className="text-white">
                   Due diligence, avaliação de empresas, estruturação de operações e acompanhamento de transações.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl p-8 border-2 border-orange-200 hover:border-orange-300 transition-all duration-300 shadow-lg">
-                <Bot className="h-12 w-12 text-orange-600 mb-6" />
-                <h3 className="text-xl font-bold text-orange-800 mb-4">CONSULTORIA COM IA</h3>
-                <p className="text-gray-700">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">CONSULTORIA COM IA</h3>
+                <p className="text-white">
                   Integração de inteligência artificial nos processos de consultoria para análises mais precisas e eficientes.
                 </p>
               </div>
@@ -585,10 +585,10 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 shadow-lg">
-                <Bot className="h-12 w-12 text-purple-600 mb-6" />
-                <h3 className="text-xl font-bold text-purple-800 mb-4">IA EMPRESARIAL</h3>
-                <ul className="space-y-2 text-gray-700 text-sm">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">IA EMPRESARIAL</h3>
+                <ul className="space-y-2 text-white text-sm">
                   <li>• Fundamentos de IA</li>
                   <li>• Chatbots empresariais</li>
                   <li>• Machine Learning</li>
@@ -596,10 +596,10 @@ function App() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 shadow-lg">
-                <Calculator className="h-12 w-12 text-purple-600 mb-6" />
-                <h3 className="text-xl font-bold text-purple-800 mb-4">CONTABILIDADE DIGITAL</h3>
-                <ul className="space-y-2 text-gray-700 text-sm">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <Calculator className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">CONTABILIDADE DIGITAL</h3>
+                <ul className="space-y-2 text-white text-sm">
                   <li>• Contabilidade 4.0</li>
                   <li>• SPED e obrigações</li>
                   <li>• Análise de balanços</li>
@@ -607,10 +607,10 @@ function App() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 shadow-lg">
-                <Shield className="h-12 w-12 text-purple-600 mb-6" />
-                <h3 className="text-xl font-bold text-purple-800 mb-4">CONTROLADORIA</h3>
-                <ul className="space-y-2 text-gray-700 text-sm">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <Shield className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">CONTROLADORIA</h3>
+                <ul className="space-y-2 text-white text-sm">
                   <li>• Controles internos</li>
                   <li>• Auditoria interna</li>
                   <li>• Compliance</li>
@@ -618,10 +618,10 @@ function App() {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 hover:border-purple-300 transition-all duration-300 shadow-lg">
-                <TrendingUp className="h-12 w-12 text-purple-600 mb-6" />
-                <h3 className="text-xl font-bold text-purple-800 mb-4">GESTÃO FINANCEIRA</h3>
-                <ul className="space-y-2 text-gray-700 text-sm">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <TrendingUp className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-white mb-4">GESTÃO FINANCEIRA</h3>
+                <ul className="space-y-2 text-white text-sm">
                   <li>• Fluxo de caixa</li>
                   <li>• Análise financeira</li>
                   <li>• Orçamento empresarial</li>
@@ -631,17 +631,17 @@ function App() {
             </div>
 
             <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 max-w-2xl mx-auto shadow-lg">
-                <Award className="h-16 w-16 text-purple-600 mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-purple-800 mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
-                <p className="text-gray-700 mb-6">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 max-w-2xl mx-auto shadow-2xl">
+                <Award className="h-16 w-16 text-white mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
+                <p className="text-white mb-6">
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
                 <a 
                   href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-lg font-semibold hover:from-purple-700 hover:to-purple-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   VER CURSOS DISPONÍVEIS
                 </a>
@@ -666,18 +666,18 @@ function App() {
             </div>
 
             <div className="text-center mb-12">
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 border-2 border-red-200 max-w-md mx-auto shadow-lg">
-                <Settings className="h-16 w-16 text-red-600 mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-red-800 mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 max-w-md mx-auto shadow-2xl">
+                <Settings className="h-16 w-16 text-white mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-white mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-red-800 mb-2">R$ 120</div>
-                  <div className="text-red-600">Setup + R$ 50 por manutenção</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 120</div>
+                  <div className="text-red-100">Setup + R$ 50 por manutenção</div>
                 </div>
                 <a 
                   href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg font-semibold hover:from-red-700 hover:to-red-600 transition-all duration-300 block text-center"
+                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
                 >
                   PERSONALIZAR AGENTE
                 </a>
@@ -685,58 +685,58 @@ function App() {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Palette className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Agente de Renovação Visual</h4>
-                <p className="text-gray-700 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Palette className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Agente de Renovação Visual</h4>
+                <p className="text-red-100 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Search className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Pesquisador de Mercado</h4>
-                <p className="text-gray-700 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Search className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Pesquisador de Mercado</h4>
+                <p className="text-red-100 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Lightbulb className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Compilador de Insights</h4>
-                <p className="text-gray-700 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Lightbulb className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Compilador de Insights</h4>
+                <p className="text-red-100 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Tag className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Agente Buscador de Cupons</h4>
-                <p className="text-gray-700 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Tag className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Agente Buscador de Cupons</h4>
+                <p className="text-red-100 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Brain className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Avaliador de QIs</h4>
-                <p className="text-gray-700 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Brain className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Avaliador de QIs</h4>
+                <p className="text-red-100 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Wrench className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Encanador</h4>
-                <p className="text-gray-700 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Wrench className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Encanador</h4>
+                <p className="text-red-100 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <MapIcon className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Passeios em SP</h4>
-                <p className="text-gray-700 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <MapIcon className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Passeios em SP</h4>
+                <p className="text-red-100 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg">
-                <Dumbbell className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">Treinadores</h4>
-                <p className="text-gray-700 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Dumbbell className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">Treinadores</h4>
+                <p className="text-red-100 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border-2 border-red-200 hover:border-red-300 transition-all duration-300 shadow-lg md:col-span-2 lg:col-span-1">
-                <Star className="h-8 w-8 text-red-600 mb-4" />
-                <h4 className="text-lg font-bold text-red-800 mb-2">E Muito Mais!</h4>
-                <p className="text-gray-700 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 md:col-span-2 lg:col-span-1">
+                <Star className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-white mb-2">E Muito Mais!</h4>
+                <p className="text-red-100 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
               </div>
             </div>
           </div>
@@ -758,41 +758,41 @@ function App() {
               <a 
                 href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
                 onClick={() => handleContactClick('whatsapp')}
-                className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 border-2 border-green-200 hover:border-green-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-lg"
+                className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-2xl hover:shadow-green-500/50"
               >
-                <Phone className="h-12 w-12 text-green-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-green-800 mb-2">WhatsApp</h3>
-                <p className="text-green-600">(11) 91175-7113</p>
-                <p className="text-gray-700 text-sm mt-2">Atendimento imediato</p>
+                <Phone className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-white mb-2">WhatsApp</h3>
+                <p className="text-green-100">(11) 91175-7113</p>
+                <p className="text-white text-sm mt-2">Atendimento imediato</p>
               </a>
 
               <a 
                 href={`mailto:${config.EMAIL_CONTACT}`}
                 onClick={() => handleContactClick('email')}
-                className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-lg"
+                className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-2xl hover:shadow-blue-500/50"
               >
-                <Mail className="h-12 w-12 text-blue-600 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-blue-800 mb-2">E-mail</h3>
-                <p className="text-blue-600">sac@exercitodeagentes.com.br</p>
-                <p className="text-gray-700 text-sm mt-2">Resposta em até 2h</p>
+                <Mail className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-white mb-2">E-mail</h3>
+                <p className="text-blue-100">sac@exercitodeagentes.com.br</p>
+                <p className="text-white text-sm mt-2">Resposta em até 2h</p>
               </a>
 
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-8 border-2 border-purple-200 text-center shadow-lg">
-                <Clock className="h-12 w-12 text-purple-600 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-purple-800 mb-2">Horário</h3>
-                <p className="text-purple-600">Segunda a Sexta</p>
-                <p className="text-purple-600">8h às 18h</p>
-                <p className="text-gray-700 text-sm mt-2">Suporte 24/7 via IA</p>
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 text-center shadow-2xl">
+                <Clock className="h-12 w-12 text-white mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">Horário</h3>
+                <p className="text-purple-100">Segunda a Sexta</p>
+                <p className="text-purple-100">8h às 18h</p>
+                <p className="text-white text-sm mt-2">Suporte 24/7 via IA</p>
               </div>
             </div>
 
             <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 border-2 border-blue-200 max-w-2xl mx-auto shadow-lg">
-                <h3 className="text-2xl font-bold text-blue-800 mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
-                <p className="text-gray-700 mb-6">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 max-w-2xl mx-auto shadow-2xl">
+                <h3 className="text-2xl font-bold text-white mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
+                <p className="text-white mb-6">
                   Veja na prática como o EssencialBot pode revolucionar seu negócio
                 </p>
-                <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
                   AGENDAR DEMO GRATUITA
                 </button>
               </div>
