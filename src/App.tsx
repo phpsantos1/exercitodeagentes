@@ -145,7 +145,7 @@ function App() {
                 className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Shield className="h-12 w-12 text-blue-200 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-yellow-300 mb-2">IA AUTOMAÇÃO</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">IA AUTOMAÇÃO</h3>
                 <p className="text-blue-100 text-sm">Especialista em soluções de automação inteligente</p>
               </a>
 
@@ -157,7 +157,7 @@ function App() {
                 className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-center hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Calculator className="h-12 w-12 text-green-200 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-yellow-300 mb-2">CONTABILIDADE</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">CONTABILIDADE</h3>
                 <p className="text-green-100 text-sm">Expert em serviços contábeis inteligentes</p>
               </a>
 
@@ -169,7 +169,7 @@ function App() {
                 className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 text-center hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Briefcase className="h-12 w-12 text-orange-200 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-yellow-300 mb-2">CONSULTORIA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">CONSULTORIA</h3>
                 <p className="text-orange-100 text-sm">Especialista em gestão e estratégia empresarial</p>
               </a>
 
@@ -181,7 +181,7 @@ function App() {
                 className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-center hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <GraduationCap className="h-12 w-12 text-purple-200 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-yellow-300 mb-2">EDUCAÇÃO PRÓ</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EDUCAÇÃO PRÓ</h3>
                 <p className="text-purple-100 text-sm">Expert em treinamentos e capacitação</p>
               </a>
 
@@ -193,7 +193,7 @@ function App() {
                 className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 text-center hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Settings className="h-12 w-12 text-red-200 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-yellow-300 mb-2">IA PERSONALIZADA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
                 <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
               </a>
             </div>
@@ -220,7 +220,7 @@ function App() {
                     <Zap className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">NÍVEL 2 - INTEGRADO</h3>
+                    <h3 className="text-2xl font-bold text-yellow-400 mb-1">NÍVEL 2 - INTEGRADO</h3>
                     <p className="text-blue-100">Automação Essencial</p>
                   </div>
                 </div>
@@ -276,7 +276,7 @@ function App() {
                     <Bot className="h-8 w-8 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold text-white">NÍVEL 3 - AVANÇADO</h3>
+                    <h3 className="text-2xl font-bold text-yellow-400 mb-1">NÍVEL 3 - AVANÇADO</h3>
                     <p className="text-purple-100">IA Completa</p>
                   </div>
                 </div>
@@ -337,7 +337,7 @@ function App() {
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
                 <Calculator className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">SERVIÇOS ESSENCIAIS</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">SERVIÇOS ESSENCIAIS</h3>
                 <ul className="space-y-3 text-white">
                   <li className="flex items-center">
                     <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
@@ -360,7 +360,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
                 <TrendingUp className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">GESTÃO AVANÇADA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO AVANÇADA</h3>
                 <ul className="space-y-3 text-white">
                   <li className="flex items-center">
                     <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
@@ -383,7 +383,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
                 <Bot className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">DIFERENCIAL IA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">DIFERENCIAL IA</h3>
                 <ul className="space-y-3 text-white">
                   <li className="flex items-center">
                     <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
@@ -407,11 +407,11 @@ function App() {
 
             {/* Detailed Accounting Services */}
             <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-12 border-4 border-green-400 shadow-2xl">
-              <h3 className="text-3xl font-bold text-white mb-8 text-center">SERVIÇOS CONTÁBEIS COMPLETOS</h3>
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">SERVIÇOS CONTÁBEIS COMPLETOS</h3>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div>
-                  <h4 className="text-xl font-bold text-green-100 mb-4">📊 CONTABILIDADE GERAL</h4>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">📊 CONTABILIDADE GERAL</h4>
                   <ul className="space-y-2 text-white">
                     <li>• Escrituração contábil completa</li>
                     <li>• Balancetes mensais</li>
@@ -423,7 +423,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-100 mb-4">🏢 ABERTURA DE EMPRESAS</h4>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">🏢 ABERTURA DE EMPRESAS</h4>
                   <ul className="space-y-2 text-white">
                     <li>• Consultoria de enquadramento</li>
                     <li>• Registro na Junta Comercial</li>
@@ -435,7 +435,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-100 mb-4">📋 OBRIGAÇÕES FISCAIS</h4>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">📋 OBRIGAÇÕES FISCAIS</h4>
                   <ul className="space-y-2 text-white">
                     <li>• SPED Contábil e Fiscal</li>
                     <li>• ECF (Escrituração Contábil Fiscal)</li>
@@ -447,7 +447,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-100 mb-4">👥 DEPARTAMENTO PESSOAL</h4>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">👥 DEPARTAMENTO PESSOAL</h4>
                   <ul className="space-y-2 text-white">
                     <li>• Folha de pagamento</li>
                     <li>• Admissões e demissões</li>
@@ -459,7 +459,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-100 mb-4">💰 PLANEJAMENTO TRIBUTÁRIO</h4>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">💰 PLANEJAMENTO TRIBUTÁRIO</h4>
                   <ul className="space-y-2 text-white">
                     <li>• Análise de regime tributário</li>
                     <li>• Elisão fiscal legal</li>
@@ -471,7 +471,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className="text-xl font-bold text-green-100 mb-4">🤖 TECNOLOGIA E IA</h4>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">🤖 TECNOLOGIA E IA</h4>
                   <ul className="space-y-2 text-white">
                     <li>• EssencialBot contábil</li>
                     <li>• Automação de processos</li>
@@ -512,7 +512,7 @@ function App() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
                 <Briefcase className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">GESTÃO EMPRESARIAL</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO EMPRESARIAL</h3>
                 <p className="text-white">
                   Planejamento estratégico, otimização de processos e estruturação organizacional para crescimento sustentável.
                 </p>
@@ -520,7 +520,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
                 <TrendingUp className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">FLUXO DE CAIXA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">FLUXO DE CAIXA</h3>
                 <p className="text-white">
                   Controle financeiro rigoroso, projeções precisas e estratégias para otimização do capital de giro.
                 </p>
@@ -528,7 +528,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
                 <Shield className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">RECUPERAÇÃO JUDICIAL</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">RECUPERAÇÃO JUDICIAL</h3>
                 <p className="text-white">
                   Reestruturação empresarial, negociação com credores e estratégias para superação de crises financeiras.
                 </p>
@@ -536,7 +536,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
                 <Target className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">BUSCA DE CRÉDITO</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">BUSCA DE CRÉDITO</h3>
                 <p className="text-white">
                   Conexão com factorings, estruturação de propostas e negociação de condições favoráveis de financiamento.
                 </p>
@@ -544,7 +544,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
                 <Users className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">FUSÕES & AQUISIÇÕES</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">FUSÕES & AQUISIÇÕES</h3>
                 <p className="text-white">
                   Due diligence, avaliação de empresas, estruturação de operações e acompanhamento de transações.
                 </p>
@@ -552,7 +552,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
                 <Bot className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">CONSULTORIA COM IA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">CONSULTORIA COM IA</h3>
                 <p className="text-white">
                   Integração de inteligência artificial nos processos de consultoria para análises mais precisas e eficientes.
                 </p>
@@ -587,7 +587,7 @@ function App() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
                 <Bot className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">IA EMPRESARIAL</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">IA EMPRESARIAL</h3>
                 <ul className="space-y-2 text-white text-sm">
                   <li>• Fundamentos de IA</li>
                   <li>• Chatbots empresariais</li>
@@ -598,7 +598,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
                 <Calculator className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">CONTABILIDADE DIGITAL</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">CONTABILIDADE DIGITAL</h3>
                 <ul className="space-y-2 text-white text-sm">
                   <li>• Contabilidade 4.0</li>
                   <li>• SPED e obrigações</li>
@@ -609,7 +609,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
                 <Shield className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">CONTROLADORIA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">CONTROLADORIA</h3>
                 <ul className="space-y-2 text-white text-sm">
                   <li>• Controles internos</li>
                   <li>• Auditoria interna</li>
@@ -620,7 +620,7 @@ function App() {
 
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
                 <TrendingUp className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-white mb-4">GESTÃO FINANCEIRA</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO FINANCEIRA</h3>
                 <ul className="space-y-2 text-white text-sm">
                   <li>• Fluxo de caixa</li>
                   <li>• Análise financeira</li>
@@ -633,7 +633,7 @@ function App() {
             <div className="text-center mt-12">
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 max-w-2xl mx-auto shadow-2xl">
                 <Award className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-white mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
                 <p className="text-white mb-6">
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
@@ -668,7 +668,7 @@ function App() {
             <div className="text-center mb-12">
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 max-w-md mx-auto shadow-2xl">
                 <Settings className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-white mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">CONFIGURAÇÃO PERSONALIZADA</h3>
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 120</div>
                   <div className="text-red-100">Setup + R$ 50 por manutenção</div>
@@ -687,55 +687,55 @@ function App() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Palette className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Agente de Renovação Visual</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Agente de Renovação Visual</h4>
                 <p className="text-red-100 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Search className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Pesquisador de Mercado</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Pesquisador de Mercado</h4>
                 <p className="text-red-100 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Lightbulb className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Compilador de Insights</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Compilador de Insights</h4>
                 <p className="text-red-100 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Tag className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Agente Buscador de Cupons</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Agente Buscador de Cupons</h4>
                 <p className="text-red-100 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Brain className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Avaliador de QIs</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Avaliador de QIs</h4>
                 <p className="text-red-100 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Wrench className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Encanador</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Encanador</h4>
                 <p className="text-red-100 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <MapIcon className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Passeios em SP</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Passeios em SP</h4>
                 <p className="text-red-100 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Dumbbell className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">Treinadores</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Treinadores</h4>
                 <p className="text-red-100 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
               </div>
 
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 md:col-span-2 lg:col-span-1">
                 <Star className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-white mb-2">E Muito Mais!</h4>
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">E Muito Mais!</h4>
                 <p className="text-red-100 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
               </div>
             </div>
@@ -761,7 +761,7 @@ function App() {
                 className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-2xl hover:shadow-green-500/50"
               >
                 <Phone className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-white mb-2">WhatsApp</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">WhatsApp</h3>
                 <p className="text-green-100">(11) 91175-7113</p>
                 <p className="text-white text-sm mt-2">Atendimento imediato</p>
               </a>
@@ -772,14 +772,14 @@ function App() {
                 className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-2xl hover:shadow-blue-500/50"
               >
                 <Mail className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-white mb-2">E-mail</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">E-mail</h3>
                 <p className="text-blue-100">sac@exercitodeagentes.com.br</p>
                 <p className="text-white text-sm mt-2">Resposta em até 2h</p>
               </a>
 
               <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 text-center shadow-2xl">
                 <Clock className="h-12 w-12 text-white mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">Horário</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">Horário</h3>
                 <p className="text-purple-100">Segunda a Sexta</p>
                 <p className="text-purple-100">8h às 18h</p>
                 <p className="text-white text-sm mt-2">Suporte 24/7 via IA</p>
@@ -788,7 +788,7 @@ function App() {
 
             <div className="text-center mt-12">
               <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 max-w-2xl mx-auto shadow-2xl">
-                <h3 className="text-2xl font-bold text-white mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
                 <p className="text-white mb-6">
                   Veja na prática como o EssencialBot pode revolucionar seu negócio
                 </p>
