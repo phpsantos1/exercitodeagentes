@@ -792,9 +792,13 @@ function App() {
                 <p className="text-white mb-6">
                   Veja na prática como o EssencialBot pode revolucionar seu negócio
                 </p>
-                <button className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <a 
+                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de agendar uma demonstração gratuita do EssencialBot.`}
+                  onClick={() => handleContactClick('whatsapp_demo')}
+                  className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
                   AGENDAR DEMO GRATUITA
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -843,11 +847,23 @@ function App() {
                 <ul className="space-y-2 text-yellow-300">
                   <li className="flex items-center">
                     <Phone className="h-4 w-4 mr-2" />
-                    <span>(11) 91175-7113</span>
+                    <a 
+                      href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                      onClick={() => handleContactClick('whatsapp_footer')}
+                      className="hover:text-yellow-200 transition-colors"
+                    >
+                      (11) 91175-7113
+                    </a>
                   </li>
                   <li className="flex items-center">
                     <Mail className="h-4 w-4 mr-2" />
-                    <span>sac@exercitodeagentes.com.br</span>
+                    <a 
+                      href={`mailto:${config.EMAIL_CONTACT}`}
+                      onClick={() => handleContactClick('email_footer')}
+                      className="hover:text-yellow-200 transition-colors"
+                    >
+                      sac@exercitodeagentes.com.br
+                    </a>
                   </li>
                   <li className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
