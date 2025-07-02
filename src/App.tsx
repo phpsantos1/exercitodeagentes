@@ -29,7 +29,8 @@ import {
   MapIcon,
   Dumbbell,
   Instagram,
-  Heart
+  Heart,
+  Users2
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -86,7 +87,7 @@ function App() {
                 <button onClick={() => scrollToSection('agents')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   IA PERSONALIZADA
                 </button>
-                <button onClick={() => scrollToSection('ea-social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                <button onClick={() => scrollToSection('social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   EA SOCIAL
                 </button>
                 <button onClick={() => scrollToSection('contact')} className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-2 font-medium">
@@ -136,70 +137,82 @@ function App() {
                 NOSSOS SERVIÇOS
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Soluções completas em IA, contabilidade, consultoria, educação e inclusão social
+                Soluções completas em IA, contabilidade, consultoria e educação para transformar seu negócio
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-6 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
-              <button 
-                onClick={() => scrollToSection('automation')}
+              <a 
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre Automação IA."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Shield className="h-12 w-12 text-blue-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA AUTOMAÇÃO</h3>
                 <p className="text-blue-100 text-sm">Especialista em soluções de automação inteligente</p>
-              </button>
+              </a>
 
               {/* Contabilidade */}
-              <button 
-                onClick={() => scrollToSection('accounting')}
+              <a 
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre Serviços Contábeis."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-center hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Calculator className="h-12 w-12 text-green-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">CONTABILIDADE</h3>
                 <p className="text-green-100 text-sm">Expert em serviços contábeis inteligentes</p>
-              </button>
+              </a>
 
               {/* Consultoria */}
-              <button 
-                onClick={() => scrollToSection('consulting')}
+              <a 
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre Consultoria Empresarial."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 text-center hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Briefcase className="h-12 w-12 text-orange-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">CONSULTORIA</h3>
                 <p className="text-orange-100 text-sm">Especialista em gestão e estratégia empresarial</p>
-              </button>
+              </a>
 
               {/* Educação Pró */}
-              <button 
-                onClick={() => scrollToSection('education')}
+              <a 
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre Educação Pró."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-center hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <GraduationCap className="h-12 w-12 text-purple-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">EDUCAÇÃO PRÓ</h3>
                 <p className="text-purple-100 text-sm">Expert em treinamentos e capacitação</p>
-              </button>
+              </a>
 
               {/* IA Personalizada */}
-              <button 
-                onClick={() => scrollToSection('agents')}
+              <a 
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre IA Personalizada."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 text-center hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Settings className="h-12 w-12 text-red-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
                 <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
-              </button>
+              </a>
 
               {/* EA Social */}
-              <button 
-                onClick={() => scrollToSection('ea-social')}
+              <a 
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre EA Social - Projeto de Inclusão."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
-                <p className="text-pink-100 text-sm">Projeto de inclusão e acessibilidade</p>
-              </button>
+                <p className="text-pink-100 text-sm">Projeto de inclusão com agentes especializados</p>
+              </a>
             </div>
           </div>
         </section>
@@ -253,12 +266,12 @@ function App() {
                 </div>
 
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
-                  <div className="text-blue-100">Setup + R$ 397/mês</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 597</div>
+                  <div className="text-blue-100">Setup + R$ 597/mês</div>
                 </div>
 
                 <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Tenho interesse no Nível 2 - Integrado de Automação IA.`}
+                  href="https://wa.me/5511911757113?text=Olá! Gostaria de contratar o Nível 2 - Integrado (R$ 597 setup + R$ 597/mês)."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 block text-center shadow-lg"
@@ -281,7 +294,7 @@ function App() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold text-yellow-400 mb-1">NÍVEL 3 - AVANÇADO</h3>
-                    <p className="text-purple-100">IA Completa</p>
+                    <p className="text-purple-100">IA Completa com Automação</p>
                   </div>
                 </div>
                 
@@ -304,17 +317,17 @@ function App() {
                   </div>
                   <div className="flex items-center text-white">
                     <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
-                    <span>Consultoria incluída</span>
+                    <span>Automação completa incluída</span>
                   </div>
                 </div>
 
                 <div className="text-center mb-6">
-                  <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
-                  <div className="text-purple-100">Setup + R$ 497/mês</div>
+                  <div className="text-3xl font-bold text-white mb-2">R$ 797</div>
+                  <div className="text-purple-100">Setup + R$ 797/mês</div>
                 </div>
 
                 <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Tenho interesse no Nível 3 - Avançado de Automação IA.`}
+                  href="https://wa.me/5511911757113?text=Olá! Gostaria de contratar o Nível 3 - Avançado (R$ 797 setup + R$ 797/mês)."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 block text-center shadow-lg"
@@ -490,7 +503,7 @@ function App() {
 
             <div className="text-center mt-12">
               <a 
-                href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de solicitar uma proposta para serviços contábeis.`}
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de solicitar uma proposta para serviços contábeis."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -565,7 +578,7 @@ function App() {
 
             <div className="text-center mt-12">
               <a 
-                href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de agendar uma consultoria empresarial.`}
+                href="https://wa.me/5511911757113?text=Olá! Gostaria de agendar uma consultoria empresarial."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -642,7 +655,7 @@ function App() {
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
                 <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de ver os cursos disponíveis na Educação Pró.`}
+                  href="https://wa.me/5511911757113?text=Olá! Gostaria de ver os cursos disponíveis na Educação Pró."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -669,49 +682,61 @@ function App() {
               </p>
             </div>
 
-            <div className="text-center mb-12">
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 max-w-2xl mx-auto shadow-2xl">
-                <Settings className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-6">CONFIGURAÇÃO PERSONALIZADA</h3>
-                
-                {/* Pricing Table */}
-                <div className="bg-white/10 rounded-xl p-6 mb-6">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white">
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-yellow-400 mb-2">1 AGENTE</div>
-                      <div className="text-2xl font-bold mb-1">R$ 497</div>
-                      <div className="text-sm text-red-100">Setup + R$ 50/mês manutenção</div>
-                    </div>
-                    
-                    <div className="text-center border-l border-r border-white/20 px-4">
-                      <div className="text-lg font-bold text-yellow-400 mb-2">2 A 4 AGENTES</div>
-                      <div className="text-2xl font-bold mb-1">R$ 397</div>
-                      <div className="text-sm text-red-100">cada + R$ 50/mês manutenção</div>
-                      <div className="text-xs text-yellow-300 mt-1">ECONOMIA DE R$ 100</div>
-                    </div>
-                    
-                    <div className="text-center">
-                      <div className="text-lg font-bold text-yellow-400 mb-2">5+ AGENTES</div>
-                      <div className="text-2xl font-bold mb-1">R$ 297</div>
-                      <div className="text-sm text-red-100">cada + R$ 50/mês manutenção</div>
-                      <div className="text-xs text-yellow-300 mt-1">ECONOMIA DE R$ 200</div>
-                    </div>
+            {/* Pricing Table */}
+            <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 max-w-4xl mx-auto shadow-2xl mb-12">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">PREÇOS PROGRESSIVOS</h3>
+              
+              <div className="grid md:grid-cols-3 gap-6">
+                {/* 1 Agente */}
+                <div className="bg-white/10 rounded-xl p-6 border-2 border-red-300">
+                  <div className="text-center">
+                    <h4 className="text-xl font-bold text-yellow-400 mb-2">1 AGENTE</h4>
+                    <div className="text-2xl font-bold text-white mb-2">R$ 497</div>
+                    <div className="text-red-100 text-sm mb-4">Setup + R$ 100/mês</div>
+                    <div className="text-red-200 text-xs">Preço unitário</div>
                   </div>
                 </div>
 
-                <div className="bg-yellow-400/20 rounded-lg p-4 mb-6">
-                  <p className="text-yellow-200 text-sm">
-                    💡 <strong>DICA:</strong> Quanto mais agentes, maior a economia! Ideal para empresas que querem automatizar múltiplos processos.
-                  </p>
+                {/* 2-4 Agentes */}
+                <div className="bg-white/20 rounded-xl p-6 border-2 border-yellow-400 relative">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
+                      ECONOMIA R$ 100
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-xl font-bold text-yellow-400 mb-2">2 A 4 AGENTES</h4>
+                    <div className="text-2xl font-bold text-white mb-2">R$ 397</div>
+                    <div className="text-red-100 text-sm mb-4">Cada + R$ 100/mês</div>
+                    <div className="text-green-300 text-xs font-semibold">Desconto de R$ 100 por agente</div>
+                  </div>
                 </div>
 
+                {/* 5+ Agentes */}
+                <div className="bg-white/30 rounded-xl p-6 border-2 border-green-400 relative">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                    <span className="bg-green-400 text-black px-3 py-1 rounded-full text-xs font-bold">
+                      ECONOMIA R$ 200
+                    </span>
+                  </div>
+                  <div className="text-center">
+                    <h4 className="text-xl font-bold text-yellow-400 mb-2">5+ AGENTES</h4>
+                    <div className="text-2xl font-bold text-white mb-2">R$ 297</div>
+                    <div className="text-red-100 text-sm mb-4">Cada + R$ 100/mês</div>
+                    <div className="text-green-300 text-xs font-semibold">Desconto de R$ 200 por agente</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="text-center mt-8">
+                <p className="text-white mb-4">💡 <strong>Dica:</strong> Quanto mais agentes, maior sua economia e produtividade!</p>
                 <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de personalizar agentes de IA. Preciso de mais informações sobre os preços progressivos.`}
+                  href="https://wa.me/5511911757113?text=Olá! Gostaria de saber mais sobre os preços progressivos dos agentes de IA personalizada."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
+                  className="px-8 py-4 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
-                  PERSONALIZAR AGENTES
+                  SOLICITAR ORÇAMENTO PERSONALIZADO
                 </a>
               </div>
             </div>
@@ -775,121 +800,123 @@ function App() {
         </section>
 
         {/* EA Social Section */}
-        <section id="ea-social" className="py-20 bg-gray-50">
+        <section id="social" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
                 EA SOCIAL - PROJETO DE INCLUSÃO
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-                Nosso compromisso social: tecnologia de IA a serviço da inclusão e acessibilidade
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com necessidades especiais
               </p>
-              <div className="inline-block bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-2 rounded-full font-bold text-lg shadow-lg">
-                🌟 ACESSO 100% GRATUITO 🌟
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Brain className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">AUTISMO</h3>
+                <p className="text-white mb-4">
+                  Agentes especializados para facilitar relacionamento social, comunicação e desenvolvimento de habilidades.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Suporte à comunicação</li>
+                  <li>• Desenvolvimento social</li>
+                  <li>• Rotinas estruturadas</li>
+                  <li>• Orientação familiar</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">SÍNDROME DE DOWN</h3>
+                <p className="text-white mb-4">
+                  Suporte personalizado para desenvolvimento cognitivo, social e autonomia pessoal.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Desenvolvimento cognitivo</li>
+                  <li>• Autonomia pessoal</li>
+                  <li>• Habilidades sociais</li>
+                  <li>• Apoio educacional</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Shield className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">ANSIEDADE</h3>
+                <p className="text-white mb-4">
+                  Ferramentas para gerenciamento emocional, técnicas de relaxamento e apoio psicológico.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Técnicas de relaxamento</li>
+                  <li>• Gerenciamento emocional</li>
+                  <li>• Apoio psicológico</li>
+                  <li>• Estratégias de enfrentamento</li>
+                </ul>
               </div>
             </div>
 
-            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl mb-12">
-              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA</h3>
+            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA O EA SOCIAL</h3>
               
-              <div className="grid md:grid-cols-3 gap-8 mb-8">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                  <div className="p-4 bg-white/20 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">1</span>
                   </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-2">AGENTE ESPECIALIZADO</h4>
-                  <p className="text-white">Acesso gratuito a agentes de IA treinados especificamente para cada condição</p>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACESSO GRATUITO</h4>
+                  <p className="text-white text-sm">
+                    Agentes especializados disponíveis gratuitamente para pessoas com necessidades especiais e suas famílias.
+                  </p>
                 </div>
 
                 <div className="text-center">
-                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                  <div className="p-4 bg-white/20 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">2</span>
                   </div>
                   <h4 className="text-xl font-bold text-yellow-400 mb-2">SUPORTE FAMILIAR</h4>
-                  <p className="text-white">Agentes específicos para orientar familiares e cuidadores no dia a dia</p>
+                  <p className="text-white text-sm">
+                    Agentes específicos para orientar familiares e cuidadores com estratégias e técnicas especializadas.
+                  </p>
                 </div>
 
                 <div className="text-center">
-                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                  <div className="p-4 bg-white/20 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">3</span>
                   </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO PSICOLÓGICO</h4>
-                  <p className="text-white">Agente com perfil psicológico para mediar relações e oferecer suporte emocional</p>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO</h4>
+                  <p className="text-white text-sm">
+                    Agente com perfil psicológico para mediar relações e acompanhar o desenvolvimento contínuo.
+                  </p>
                 </div>
               </div>
-            </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
-                <div className="text-center mb-6">
-                  <div className="text-6xl mb-4">🧩</div>
-                  <h3 className="text-2xl font-bold text-yellow-400">AUTISMO</h3>
+              <div className="text-center mt-12">
+                <div className="bg-white/10 rounded-xl p-6 max-w-2xl mx-auto mb-6">
+                  <Users2 className="h-12 w-12 text-white mx-auto mb-4" />
+                  <h4 className="text-2xl font-bold text-yellow-400 mb-4">NOSSO COMPROMISSO SOCIAL</h4>
+                  <p className="text-white">
+                    O EA Social é nossa contribuição para uma sociedade mais inclusiva. Acreditamos que a tecnologia deve servir a todos, especialmente aqueles que mais precisam de apoio.
+                  </p>
                 </div>
-                <p className="text-white mb-6 text-center">
-                  Agentes especializados para facilitar relacionamento social, comunicação e rotinas diárias
-                </p>
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de acessar o agente especializado em Autismo do projeto EA Social.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 block text-center shadow-lg"
-                >
-                  ACESSAR AGENTE
-                </a>
-              </div>
-
-              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl p-8 border-4 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50">
-                <div className="text-center mb-6">
-                  <div className="text-6xl mb-4">😊</div>
-                  <h3 className="text-2xl font-bold text-white">SÍNDROME DE DOWN</h3>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href="https://wa.me/5511911757113?text=Olá! Gostaria de acessar os agentes do EA Social - Projeto de Inclusão."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    ACESSAR AGENTES GRATUITOS
+                  </a>
+                  <a 
+                    href="https://wa.me/5511911757113?text=Olá! Gostaria de ajudar o projeto EA Social."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105"
+                  >
+                    APOIAR O PROJETO
+                  </a>
                 </div>
-                <p className="text-white mb-6 text-center">
-                  Suporte personalizado para desenvolvimento cognitivo, autonomia e orientação familiar
-                </p>
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de acessar o agente especializado em Síndrome de Down do projeto EA Social.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-yellow-600 rounded-lg font-semibold hover:bg-yellow-50 transition-all duration-300 block text-center shadow-lg"
-                >
-                  ACESSAR AGENTE
-                </a>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
-                <div className="text-center mb-6">
-                  <div className="text-6xl mb-4">💚</div>
-                  <h3 className="text-2xl font-bold text-yellow-400">ANSIEDADE</h3>
-                </div>
-                <p className="text-white mb-6 text-center">
-                  Ferramentas para gerenciamento emocional, técnicas de relaxamento e suporte psicológico
-                </p>
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de acessar o agente especializado em Ansiedade do projeto EA Social.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300 block text-center shadow-lg"
-                >
-                  ACESSAR AGENTE
-                </a>
-              </div>
-            </div>
-
-            <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-8 border-4 border-pink-400 max-w-2xl mx-auto shadow-2xl">
-                <Heart className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4">NOSSO COMPROMISSO</h3>
-                <p className="text-white mb-6">
-                  Acreditamos que a tecnologia deve ser inclusiva e acessível a todos. O EA Social é nossa contribuição para um mundo mais justo e igualitário.
-                </p>
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o projeto EA Social e como posso contribuir.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  SAIBA MAIS SOBRE O PROJETO
-                </a>
               </div>
             </div>
           </div>
@@ -993,7 +1020,7 @@ function App() {
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
                   <li><button onClick={() => scrollToSection('agents')} className="hover:text-yellow-200 transition-colors">IA Personalizada</button></li>
-                  <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
+                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                 </ul>
               </div>
 
@@ -1033,7 +1060,6 @@ function App() {
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Nossa Missão</a></li>
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Política de Privacidade</a></li>
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Termos de Uso</a></li>
-                  <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">Projeto Social</button></li>
                 </ul>
               </div>
             </div>
