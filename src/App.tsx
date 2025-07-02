@@ -37,6 +37,7 @@ import EssencialBotChat from './components/EssencialBotChat';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
 import { config } from './config/environment';
 
+// GPT Modal Component
 interface GPTModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -48,21 +49,21 @@ const GPTModal: React.FC<GPTModalProps> = ({ isOpen, onClose, title, gptUrl }) =
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl w-full max-w-6xl h-[90vh] flex flex-col shadow-2xl">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <Bot className="h-6 w-6 text-blue-600" />
             <h3 className="text-xl font-bold text-gray-800">{title}</h3>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-gray-500 hover:text-gray-700 transition-colors"
           >
             <X className="h-6 w-6" />
           </button>
         </div>
-        <div className="flex-1 overflow-hidden">
+        <div className="flex-1">
           <iframe
             src={gptUrl}
             className="w-full h-full border-0"
@@ -76,7 +77,7 @@ const GPTModal: React.FC<GPTModalProps> = ({ isOpen, onClose, title, gptUrl }) =
 };
 
 function App() {
-  const [gptModal, setGptModal] = useState<{isOpen: boolean, title: string, url: string}>({
+  const [gptModal, setGptModal] = useState<{isOpen: boolean; title: string; url: string}>({
     isOpen: false,
     title: '',
     url: ''
@@ -160,7 +161,7 @@ function App() {
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
                 Transforme seu negócio com <span className="text-blue-600 font-semibold">EssencialBot</span> - 
-                IA avançada, automação inteligente, contabilidade smart e consultoria especializada
+                IA avançada, automação inteligente, contabilidade smart, consultoria especializada e projeto social de inclusão
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
@@ -189,11 +190,11 @@ function App() {
                 NOSSOS SERVIÇOS
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Soluções completas em IA, contabilidade, consultoria e educação para transformar seu negócio
+                Soluções completas em IA, contabilidade, consultoria, educação e projeto social para transformar seu negócio e sociedade
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
               <button 
                 onClick={() => openGPTModal('IA AUTOMAÇÃO - Especialista em Soluções', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
@@ -243,6 +244,109 @@ function App() {
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
                 <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
               </button>
+
+              {/* EA Social */}
+              <button 
+                onClick={() => scrollToSection('social')}
+                className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
+                <p className="text-pink-100 text-sm">Projeto de inclusão e acessibilidade</p>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* EA Social Section */}
+        <section id="social" className="py-20 bg-gradient-to-br from-pink-50 to-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+                EA SOCIAL - PROJETO DE INCLUSÃO
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Nosso compromisso social: agentes de IA especializados para promover inclusão e acessibilidade
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Brain className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">1. AGENTE ESPECIALIZADO</h3>
+                <p className="text-white">
+                  Cada pessoa terá acesso à página se cadastrando ou não na página do EA, ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Users className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">2. SUPORTE FAMILIAR</h3>
+                <p className="text-white">
+                  Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">3. ACOMPANHAMENTO PSICOLÓGICO</h3>
+                <p className="text-white">
+                  Um agente com perfil de psicólogos especializados para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">ÁREAS DE ATUAÇÃO</h3>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-3">🧩 AUTISMO</h4>
+                  <p className="text-white text-sm">Suporte especializado para pessoas no espectro autista, facilitando comunicação e relacionamento social.</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-3">💙 SÍNDROME DE DOWN</h4>
+                  <p className="text-white text-sm">Acompanhamento e orientação personalizada para desenvolvimento e autonomia.</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-3">😰 ANSIEDADE</h4>
+                  <p className="text-white text-sm">Apoio especializado para transtornos de ansiedade e técnicas de manejo emocional.</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-3">🦽 MOBILIDADE REDUZIDA</h4>
+                  <p className="text-white text-sm">Apoio para questões de mobilidade e acessibilidade no dia a dia.</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-3">👁️ DEFICIÊNCIA VISUAL</h4>
+                  <p className="text-white text-sm">Recursos adaptados para pessoas com deficiência visual e orientação.</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 backdrop-blur-sm">
+                  <h4 className="text-lg font-bold text-yellow-400 mb-3">🧠 NEURODIVERGÊNCIA</h4>
+                  <p className="text-white text-sm">Apoio para TDAH e outras neurodivergências com estratégias personalizadas.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 max-w-2xl mx-auto shadow-2xl">
+                <Heart className="h-16 w-16 text-white mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">ACESSO GRATUITO</h3>
+                <p className="text-white mb-6">
+                  Todos os agentes do EA Social são disponibilizados gratuitamente como nosso compromisso com a inclusão social.
+                </p>
+                <a 
+                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EA Social - Projeto de Inclusão.`}
+                  onClick={() => handleContactClick('whatsapp_social')}
+                  className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  SABER MAIS SOBRE EA SOCIAL
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -301,7 +405,7 @@ function App() {
                 </div>
 
                 <button 
-                  onClick={() => openGPTModal('IA AUTOMAÇÃO - Nível 2 Integrado', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  onClick={() => openGPTModal('NÍVEL 2 - INTEGRADO - Automação Essencial', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
                   className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER INTEGRADO
@@ -355,7 +459,7 @@ function App() {
                 </div>
 
                 <button 
-                  onClick={() => openGPTModal('IA AUTOMAÇÃO - Nível 3 Avançado', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  onClick={() => openGPTModal('NÍVEL 3 - AVANÇADO - IA Completa', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
                   className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER AVANÇADO
@@ -445,85 +549,6 @@ function App() {
                     <span>Atendimento 24/7</span>
                   </li>
                 </ul>
-              </div>
-            </div>
-
-            {/* Detailed Accounting Services */}
-            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-12 border-4 border-green-400 shadow-2xl">
-              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">SERVIÇOS CONTÁBEIS COMPLETOS</h3>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">📊 CONTABILIDADE GERAL</h4>
-                  <ul className="space-y-2 text-white">
-                    <li>• Escrituração contábil completa</li>
-                    <li>• Balancetes mensais</li>
-                    <li>• Demonstrações financeiras</li>
-                    <li>• Conciliações bancárias</li>
-                    <li>• Controle de estoque</li>
-                    <li>• Análise de custos</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">🏢 ABERTURA DE EMPRESAS</h4>
-                  <ul className="space-y-2 text-white">
-                    <li>• Consultoria de enquadramento</li>
-                    <li>• Registro na Junta Comercial</li>
-                    <li>• Inscrições municipais e estaduais</li>
-                    <li>• CNPJ e alvará de funcionamento</li>
-                    <li>• Contratos sociais</li>
-                    <li>• Licenças especiais</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">📋 OBRIGAÇÕES FISCAIS</h4>
-                  <ul className="space-y-2 text-white">
-                    <li>• SPED Contábil e Fiscal</li>
-                    <li>• ECF (Escrituração Contábil Fiscal)</li>
-                    <li>• DEFIS (Simples Nacional)</li>
-                    <li>• DCTF e DCTF-Web</li>
-                    <li>• EFD-Contribuições</li>
-                    <li>• Declarações diversas</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">👥 DEPARTAMENTO PESSOAL</h4>
-                  <ul className="space-y-2 text-white">
-                    <li>• Folha de pagamento</li>
-                    <li>• Admissões e demissões</li>
-                    <li>• eSocial e FGTS</li>
-                    <li>• Férias e 13º salário</li>
-                    <li>• CAGED e RAIS</li>
-                    <li>• Benefícios e vale-transporte</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">💰 PLANEJAMENTO TRIBUTÁRIO</h4>
-                  <ul className="space-y-2 text-white">
-                    <li>• Análise de regime tributário</li>
-                    <li>• Elisão fiscal legal</li>
-                    <li>• Recuperação de tributos</li>
-                    <li>• Parcelamentos fiscais</li>
-                    <li>• Consultoria tributária</li>
-                    <li>• Simulações e projeções</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">🤖 TECNOLOGIA E IA</h4>
-                  <ul className="space-y-2 text-white">
-                    <li>• EssencialBot contábil</li>
-                    <li>• Automação de processos</li>
-                    <li>• Relatórios inteligentes</li>
-                    <li>• Dashboard em tempo real</li>
-                    <li>• Integração com ERPs</li>
-                    <li>• Atendimento 24/7</li>
-                  </ul>
-                </div>
               </div>
             </div>
 
@@ -777,126 +802,6 @@ function App() {
           </div>
         </section>
 
-        {/* EA SOCIAL Section */}
-        <section id="social" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                EA SOCIAL
-              </h2>
-              <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-8">
-                Projeto de inclusão social através da tecnologia - Agentes de IA especializados para pessoas com autismo, síndrome de Down, ansiedade e outras necessidades especiais
-              </p>
-              <div className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-full inline-block font-semibold">
-                💖 TRANSFORMANDO VIDAS ATRAVÉS DA IA
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <div className="p-4 bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                  <Bot className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-yellow-300 mb-4 text-center">1. AGENTE ESPECIALIZADO</h3>
-                <p className="text-pink-100 text-center">
-                  Cada pessoa terá acesso à página se cadastrando ou não na página do EA, ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
-                <div className="p-4 bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                  <Heart className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-yellow-300 mb-4 text-center">2. SUPORTE FAMILIAR</h3>
-                <p className="text-purple-100 text-center">
-                  Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-8 border-4 border-indigo-400 hover:border-indigo-300 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/50">
-                <div className="p-4 bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-yellow-300 mb-4 text-center">3. ACOMPANHAMENTO com um agente de perfil PSICOLÓGICO</h3>
-                <p className="text-indigo-100 text-center">
-                  Um agente com perfil de psicólogos especializados para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
-              <h3 className="text-3xl font-bold text-yellow-300 mb-8 text-center">ÁREAS DE ATUAÇÃO DO EA SOCIAL</h3>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">🧩</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">AUTISMO</h4>
-                  <p className="text-white text-sm">Suporte especializado para pessoas no espectro autista</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">💝</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">SÍNDROME DE DOWN</h4>
-                  <p className="text-white text-sm">Acompanhamento e orientação personalizada</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">😰</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">ANSIEDADE</h4>
-                  <p className="text-white text-sm">Apoio especializado para transtornos de ansiedade</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">🧠</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">NEURODIVERGÊNCIA</h4>
-                  <p className="text-white text-sm">Apoio para TDAH e outras neurodivergências</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">👁️</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">DEFICIÊNCIA VISUAL</h4>
-                  <p className="text-white text-sm">Recursos adaptados para pessoas com deficiência visual</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">👂</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">DEFICIÊNCIA AUDITIVA</h4>
-                  <p className="text-white text-sm">Comunicação acessível para pessoas surdas</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">♿</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">MOBILIDADE REDUZIDA</h4>
-                  <p className="text-white text-sm">Apoio para questões de mobilidade e acessibilidade</p>
-                </div>
-
-                <div className="bg-white/10 rounded-xl p-6 text-center">
-                  <div className="text-4xl mb-4">👥</div>
-                  <h4 className="text-lg font-bold text-yellow-300 mb-2">CUIDADORES</h4>
-                  <p className="text-white text-sm">Suporte emocional para cuidadores</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-8 border-4 border-pink-400 max-w-2xl mx-auto shadow-2xl">
-                <Heart className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-yellow-300 mb-4">ACESSO GRATUITO</h3>
-                <p className="text-white mb-6">
-                  O EA Social é um projeto de responsabilidade social. Todos os agentes especializados são disponibilizados gratuitamente para promover inclusão e qualidade de vida.
-                </p>
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o projeto EA Social.`}
-                  onClick={() => handleContactClick('whatsapp_social')}
-                  className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  SABER MAIS SOBRE EA SOCIAL
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Contact Section */}
         <section id="contact" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
@@ -973,7 +878,7 @@ function App() {
                   <span className="text-xl font-bold text-yellow-400">EXÉRCITO DE AGENTES</span>
                 </div>
                 <p className="text-yellow-300 mb-4">
-                  Transformando negócios com inteligência artificial e automação avançada.
+                  Transformando negócios com inteligência artificial, automação avançada e compromisso social.
                 </p>
                 <div className="flex space-x-4">
                   <a 
@@ -1046,16 +951,16 @@ function App() {
           </div>
         </footer>
 
-        {/* EssencialBot Chat */}
-        <EssencialBotChat />
-
         {/* GPT Modal */}
-        <GPTModal 
+        <GPTModal
           isOpen={gptModal.isOpen}
           onClose={closeGPTModal}
           title={gptModal.title}
           gptUrl={gptModal.url}
         />
+
+        {/* EssencialBot Chat */}
+        <EssencialBotChat />
       </div>
     </HelmetProvider>
   );

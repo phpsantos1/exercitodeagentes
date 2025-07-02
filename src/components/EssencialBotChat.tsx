@@ -10,7 +10,13 @@ import {
   CreditCard,
   CheckCircle,
   ArrowRight,
-  MessageCircle
+  MessageCircle,
+  Mic,
+  MicOff,
+  Volume2,
+  VolumeX,
+  Maximize2,
+  Minimize2
 } from 'lucide-react';
 
 interface Message {
@@ -20,6 +26,7 @@ interface Message {
   timestamp: Date;
   options?: string[];
   showForm?: 'pre-cadastro' | 'cadastro-final';
+  isVoice?: boolean;
 }
 
 interface PreCadastroData {
@@ -46,12 +53,17 @@ interface CadastroFinalData {
 
 const EssencialBotChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [currentFlow, setCurrentFlow] = useState<'initial' | 'interested' | 'ready-to-buy'>('initial');
   const [showPreCadastro, setShowPreCadastro] = useState(false);
   const [showCadastroFinal, setShowCadastroFinal] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  
   const [preCadastroData, setPreCadastroData] = useState<PreCadastroData>({
     nome: '',
     whatsapp: '',
@@ -59,6 +71,7 @@ const EssencialBotChat: React.FC = () => {
     interesse: '',
     tipoNegocio: ''
   });
+  
   const [cadastroFinalData, setCadastroFinalData] = useState<CadastroFinalData>({
     nomeCompleto: '',
     whatsapp: '',
@@ -74,6 +87,37 @@ const EssencialBotChat: React.FC = () => {
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const recognitionRef = useRef<any>(null);
+  const synthRef = useRef<SpeechSynthesis | null>(null);
+
+  // Inicializar APIs de voz
+  useEffect(() => {
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
+      recognitionRef.current = new SpeechRecognition();
+      recognitionRef.current.continuous = false;
+      recognitionRef.current.interimResults = false;
+      recognitionRef.current.lang = 'pt-BR';
+
+      recognitionRef.current.onresult = (event: any) => {
+        const transcript = event.results[0][0].transcript;
+        setInputValue(transcript);
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onerror = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current.onend = () => {
+        setIsListening(false);
+      };
+    }
+
+    if ('speechSynthesis' in window) {
+      synthRef.current = window.speechSynthesis;
+    }
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -93,12 +137,52 @@ const EssencialBotChat: React.FC = () => {
             "Preciso de automação IA",
             "Serviços contábeis",
             "Consultoria empresarial",
-            "Treinamentos e cursos"
+            "Treinamentos e cursos",
+            "EA Social - Projeto de Inclusão"
           ]
         );
       }, 500);
     }
   }, [isOpen]);
+
+  const startListening = () => {
+    if (recognitionRef.current && !isListening) {
+      setIsListening(true);
+      recognitionRef.current.start();
+    }
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current && isListening) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+    }
+  };
+
+  const speakText = (text: string) => {
+    if (synthRef.current && voiceEnabled) {
+      // Parar qualquer fala anterior
+      synthRef.current.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'pt-BR';
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      utterance.onerror = () => setIsSpeaking(false);
+      
+      synthRef.current.speak(utterance);
+    }
+  };
+
+  const stopSpeaking = () => {
+    if (synthRef.current) {
+      synthRef.current.cancel();
+      setIsSpeaking(false);
+    }
+  };
 
   const addBotMessage = (text: string, options?: string[], showForm?: 'pre-cadastro' | 'cadastro-final') => {
     const newMessage: Message = {
@@ -110,14 +194,22 @@ const EssencialBotChat: React.FC = () => {
       showForm
     };
     setMessages(prev => [...prev, newMessage]);
+    
+    // Falar a mensagem automaticamente se a voz estiver habilitada
+    if (voiceEnabled) {
+      // Remover emojis e formatação para melhor síntese de voz
+      const cleanText = text.replace(/[🤖📊💼🎓⚡✅🔹🎯📋👥💰🚀📞💬🎉]/g, '').replace(/\*\*/g, '');
+      speakText(cleanText);
+    }
   };
 
-  const addUserMessage = (text: string) => {
+  const addUserMessage = (text: string, isVoice = false) => {
     const newMessage: Message = {
       id: Date.now().toString(),
       text,
       sender: 'user',
-      timestamp: new Date()
+      timestamp: new Date(),
+      isVoice
     };
     setMessages(prev => [...prev, newMessage]);
   };
@@ -141,7 +233,7 @@ const EssencialBotChat: React.FC = () => {
 
   const handleSendMessage = () => {
     if (inputValue.trim()) {
-      addUserMessage(inputValue);
+      addUserMessage(inputValue, isListening);
       const userInput = inputValue;
       setInputValue('');
       
@@ -154,8 +246,16 @@ const EssencialBotChat: React.FC = () => {
   const processUserInput = (input: string) => {
     const lowerInput = input.toLowerCase();
 
+    // EA Social
+    if (lowerInput.includes('ea social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
+      setCurrentFlow('interested');
+      addBotMessage(
+        "🌟 **EA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\nEste é nosso compromisso social com a inclusão! 💝",
+        ["Como acessar os agentes", "Quero ajudar o projeto", "Sou familiar/cuidador", "Voltar ao menu principal"]
+      );
+    }
     // Detectar interesse em contratar
-    if (lowerInput.includes('quero contratar') || 
+    else if (lowerInput.includes('quero contratar') || 
         lowerInput.includes('fechar negócio') || 
         lowerInput.includes('vamos começar') ||
         lowerInput.includes('aceito') ||
@@ -167,11 +267,9 @@ const EssencialBotChat: React.FC = () => {
         'cadastro-final'
       );
       setShowCadastroFinal(true);
-      return;
     }
-
     // Detectar interesse moderado
-    if (lowerInput.includes('interessante') || 
+    else if (lowerInput.includes('interessante') || 
         lowerInput.includes('gostaria de saber mais') ||
         lowerInput.includes('me interessou') ||
         lowerInput.includes('quero mais informações') ||
@@ -203,8 +301,8 @@ const EssencialBotChat: React.FC = () => {
         );
       } else {
         addBotMessage(
-          "Vou te apresentar nossas principais soluções:\n\n🤖 **Automação IA**: EssencialBot personalizado para seu negócio\n📊 **Escritório Contábil**: Serviços completos para empresas\n💼 **Consultoria**: Gestão, recuperação judicial, crédito\n🎓 **Treinamentos**: Contabilidade, controladoria e IA\n\nQual área desperta mais seu interesse?",
-          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos"]
+          "Vou te apresentar nossas principais soluções:\n\n🤖 **Automação IA**: EssencialBot personalizado para seu negócio\n📊 **Escritório Contábil**: Serviços completos para empresas\n💼 **Consultoria**: Gestão, recuperação judicial, crédito\n🎓 **Treinamentos**: Contabilidade, controladoria e IA\n🌟 **EA Social**: Projeto de inclusão com agentes especializados\n\nQual área desperta mais seu interesse?",
+          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "EA Social"]
         );
       }
       
@@ -236,8 +334,8 @@ const EssencialBotChat: React.FC = () => {
     } else {
       // Resposta genérica inteligente
       addBotMessage(
-        "Entendo! Como EssencialBot, estou aqui para esclarecer qualquer dúvida sobre nossas soluções de IA, contabilidade e consultoria.\n\nPosso ajudar você com informações específicas sobre:\n- Preços e planos\n- Funcionalidades técnicas\n- Casos de sucesso\n- Demonstrações práticas\n\nO que gostaria de saber?",
-        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo"]
+        "Entendo! Como EssencialBot, estou aqui para esclarecer qualquer dúvida sobre nossas soluções de IA, contabilidade, consultoria e nosso projeto social EA Social.\n\nPosso ajudar você com informações específicas sobre:\n- Preços e planos\n- Funcionalidades técnicas\n- Casos de sucesso\n- Demonstrações práticas\n- Projeto de inclusão social\n\nO que gostaria de saber?",
+        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo", "EA Social"]
       );
     }
   };
@@ -245,11 +343,7 @@ const EssencialBotChat: React.FC = () => {
   const handlePreCadastroSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Simular envio para Google Sheets
     console.log('Pré-cadastro enviado:', preCadastroData);
-    
-    // Aqui você integraria com Google Sheets via webhook
-    // await fetch('/api/pre-cadastro', { method: 'POST', body: JSON.stringify(preCadastroData) });
     
     setShowPreCadastro(false);
     addBotMessage(
@@ -266,11 +360,7 @@ const EssencialBotChat: React.FC = () => {
       return;
     }
     
-    // Simular envio para sistema principal
     console.log('Cadastro final enviado:', cadastroFinalData);
-    
-    // Aqui você integraria com seu backend/ERP
-    // await fetch('/api/cadastro-final', { method: 'POST', body: JSON.stringify(cadastroFinalData) });
     
     setShowCadastroFinal(false);
     addBotMessage(
@@ -278,6 +368,8 @@ const EssencialBotChat: React.FC = () => {
       ["Entrar no grupo VIP", "Quando começa a implementação?"]
     );
   };
+
+  const chatSize = isExpanded ? 'w-[95vw] h-[90vh]' : 'w-96 h-[600px]';
 
   return (
     <>
@@ -293,7 +385,7 @@ const EssencialBotChat: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 h-[600px] bg-gray-900/95 backdrop-blur-sm rounded-2xl border border-blue-400/30 shadow-2xl overflow-hidden flex flex-col">
+        <div className={`fixed bottom-6 right-6 z-50 ${chatSize} bg-gray-900/95 backdrop-blur-sm rounded-2xl border border-blue-400/30 shadow-2xl overflow-hidden flex flex-col transition-all duration-300`}>
           {/* Header */}
           <div className="p-4 bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -305,12 +397,43 @@ const EssencialBotChat: React.FC = () => {
                 <span className="text-xs text-blue-100">Exército de Agentes • Online</span>
               </div>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200 transition-colors"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <div className="flex items-center space-x-2">
+              {/* Voice Controls */}
+              <button
+                onClick={() => setVoiceEnabled(!voiceEnabled)}
+                className="text-white hover:text-gray-200 transition-colors p-1"
+                title={voiceEnabled ? "Desativar voz" : "Ativar voz"}
+              >
+                {voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
+              </button>
+              
+              {isSpeaking && (
+                <button
+                  onClick={stopSpeaking}
+                  className="text-white hover:text-gray-200 transition-colors p-1"
+                  title="Parar fala"
+                >
+                  <VolumeX className="h-4 w-4" />
+                </button>
+              )}
+              
+              {/* Expand/Minimize */}
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-white hover:text-gray-200 transition-colors p-1"
+                title={isExpanded ? "Minimizar" : "Expandir"}
+              >
+                {isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+              </button>
+              
+              {/* Close */}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-white hover:text-gray-200 transition-colors p-1"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages Area */}
@@ -327,7 +450,10 @@ const EssencialBotChat: React.FC = () => {
                       <Bot className="h-4 w-4 text-blue-300 mt-0.5 flex-shrink-0" />
                     )}
                     {message.sender === 'user' && (
-                      <User className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
+                      <div className="flex items-center space-x-1">
+                        <User className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
+                        {message.isVoice && <Mic className="h-3 w-3 text-blue-200" />}
+                      </div>
                     )}
                     <div className="flex-1">
                       <p className="text-sm whitespace-pre-line">{message.text}</p>
@@ -374,14 +500,36 @@ const EssencialBotChat: React.FC = () => {
           {/* Input Area */}
           <div className="p-4 border-t border-gray-700">
             <div className="flex space-x-2">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder="Digite sua mensagem..."
-                className="flex-1 px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-gray-400"
-              />
+              <div className="flex-1 relative">
+                <textarea
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendMessage();
+                    }
+                  }}
+                  placeholder="Digite sua mensagem... (Shift+Enter para nova linha)"
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-gray-400 resize-none min-h-[40px] max-h-[120px]"
+                  rows={2}
+                />
+              </div>
+              
+              {/* Voice Button */}
+              <button
+                onClick={isListening ? stopListening : startListening}
+                className={`px-3 py-2 rounded-lg transition-all duration-300 ${
+                  isListening 
+                    ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
+                    : 'bg-green-500 hover:bg-green-600'
+                }`}
+                title={isListening ? "Parar gravação" : "Gravar mensagem"}
+              >
+                {isListening ? <MicOff className="h-4 w-4 text-white" /> : <Mic className="h-4 w-4 text-white" />}
+              </button>
+              
+              {/* Send Button */}
               <button
                 onClick={handleSendMessage}
                 className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg hover:from-blue-600 hover:to-cyan-500 transition-all duration-300"
@@ -389,6 +537,19 @@ const EssencialBotChat: React.FC = () => {
                 <Send className="h-4 w-4 text-white" />
               </button>
             </div>
+            
+            {/* Voice Status */}
+            {isListening && (
+              <div className="mt-2 text-center">
+                <span className="text-xs text-green-400 animate-pulse">🎤 Ouvindo... Fale agora!</span>
+              </div>
+            )}
+            
+            {isSpeaking && (
+              <div className="mt-2 text-center">
+                <span className="text-xs text-blue-400 animate-pulse">🔊 EssencialBot está falando...</span>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -460,6 +621,7 @@ const EssencialBotChat: React.FC = () => {
                   <option value="Serviços Contábeis">Serviços Contábeis</option>
                   <option value="Consultoria Empresarial">Consultoria Empresarial</option>
                   <option value="Treinamentos">Treinamentos e Cursos</option>
+                  <option value="EA Social">EA Social - Projeto de Inclusão</option>
                 </select>
               </div>
 
@@ -610,6 +772,7 @@ const EssencialBotChat: React.FC = () => {
                   <option value="Serviços Contábeis">Serviços Contábeis</option>
                   <option value="Consultoria Empresarial">Consultoria Empresarial</option>
                   <option value="Treinamentos">Treinamentos e Cursos</option>
+                  <option value="EA Social">EA Social - Projeto de Inclusão</option>
                 </select>
               </div>
 
