@@ -54,27 +54,27 @@ function App() {
     }
   };
 
-  // Função para abrir assistente especializado
-  const openSpecialistAssistant = (type: string, initialMessage: string) => {
-    trackEvent('specialist_access', { type });
-    
-    // URLs dos assistentes especializados (camufladas)
-    const assistantUrls = {
+  // Função para abrir assistentes especializados de forma camuflada
+  const openSpecialistAssistant = (type: string, message: string) => {
+    const assistantUrls: { [key: string]: string } = {
       'automation': 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3',
       'accounting': 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil',
       'consulting': 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial',
       'education': 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro',
       'ai-personal': 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal',
-      'autism': 'https://chatgpt.com/g/g-675b123456789-ea-social-autismo',
-      'down-syndrome': 'https://chatgpt.com/g/g-675b123456790-ea-social-down',
-      'anxiety': 'https://chatgpt.com/g/g-675b123456791-ea-social-ansiedade'
+      'ea-social-autism': 'https://chatgpt.com/g/g-67571c4e6dc88191a7e7b5b8b8f8c8d8-ea-social-autismo',
+      'ea-social-down': 'https://chatgpt.com/g/g-67571c4e6dc88191a7e7b5b8b8f8c8d9-ea-social-down',
+      'ea-social-anxiety': 'https://chatgpt.com/g/g-67571c4e6dc88191a7e7b5b8b8f8c8da-ea-social-ansiedade'
     };
 
-    const url = assistantUrls[type as keyof typeof assistantUrls];
+    const url = assistantUrls[type];
     if (url) {
-      // Abrir em nova aba com mensagem inicial
-      const fullUrl = `${url}?message=${encodeURIComponent(initialMessage)}`;
+      // Abrir em nova aba com mensagem personalizada
+      const fullUrl = `${url}?message=${encodeURIComponent(message)}`;
       window.open(fullUrl, '_blank', 'noopener,noreferrer');
+      
+      // Track do evento
+      trackEvent('specialist_assistant_opened', { type, message });
     }
   };
 
@@ -162,11 +162,11 @@ function App() {
                 NOSSOS SERVIÇOS
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Soluções completas em IA, contabilidade, consultoria e educação para transformar seu negócio
+                Soluções completas em IA, contabilidade, consultoria, educação e inclusão social
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
               <button 
                 onClick={() => openSpecialistAssistant('automation', 'Olá! Preciso de informações sobre automação IA para minha empresa. Pode me ajudar com os planos disponíveis?')}
@@ -216,114 +216,16 @@ function App() {
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
                 <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
               </button>
-            </div>
-          </div>
-        </section>
 
-        {/* EA Social Section */}
-        <section id="ea-social" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
-                EA SOCIAL - PROJETO DE INCLUSÃO
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-                Nosso compromisso social: agentes de IA especializados para apoio e inclusão
-              </p>
-              <div className="inline-flex items-center space-x-2 bg-pink-100 px-4 py-2 rounded-full">
-                <Heart className="h-5 w-5 text-pink-600" />
-                <span className="text-pink-700 font-semibold">ACESSO GRATUITO</span>
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {/* Autismo */}
+              {/* EA Social */}
               <button 
-                onClick={() => openSpecialistAssistant('autism', 'Olá! Preciso de suporte especializado para autismo. Como vocês podem ajudar no relacionamento social?')}
-                className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/50 text-center group"
+                onClick={() => scrollToSection('ea-social')}
+                className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
-                <Puzzle className="h-16 w-16 text-white mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4">AUTISMO</h3>
-                <p className="text-blue-100 mb-4">
-                  Agente especializado para facilitar relacionamento social e comunicação
-                </p>
-                <div className="text-white text-sm">
-                  ✓ Suporte personalizado<br/>
-                  ✓ Estratégias de comunicação<br/>
-                  ✓ Orientação familiar
-                </div>
+                <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
+                <p className="text-pink-100 text-sm">Projeto de inclusão e suporte especializado</p>
               </button>
-
-              {/* Síndrome de Down */}
-              <button 
-                onClick={() => openSpecialistAssistant('down-syndrome', 'Olá! Preciso de orientação e suporte para Síndrome de Down. Como vocês podem ajudar?')}
-                className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl p-8 border-4 border-yellow-400 hover:border-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-500/50 text-center group"
-              >
-                <Smile className="h-16 w-16 text-white mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                <h3 className="text-2xl font-bold text-blue-700 mb-4">SÍNDROME DE DOWN</h3>
-                <p className="text-yellow-100 mb-4">
-                  Suporte personalizado e orientação para desenvolvimento
-                </p>
-                <div className="text-white text-sm">
-                  ✓ Desenvolvimento cognitivo<br/>
-                  ✓ Suporte educacional<br/>
-                  ✓ Orientação para famílias
-                </div>
-              </button>
-
-              {/* Ansiedade */}
-              <button 
-                onClick={() => openSpecialistAssistant('anxiety', 'Olá! Preciso de ferramentas para gerenciamento de ansiedade. Como vocês podem me ajudar?')}
-                className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/50 text-center group"
-              >
-                <Heart className="h-16 w-16 text-white mx-auto mb-6 group-hover:scale-110 transition-transform" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4">ANSIEDADE</h3>
-                <p className="text-green-100 mb-4">
-                  Ferramentas para gerenciamento emocional e bem-estar
-                </p>
-                <div className="text-white text-sm">
-                  ✓ Técnicas de relaxamento<br/>
-                  ✓ Gestão emocional<br/>
-                  ✓ Suporte contínuo
-                </div>
-              </button>
-            </div>
-
-            {/* Como Funciona */}
-            <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-12 border-4 border-purple-400 shadow-2xl">
-              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA O EA SOCIAL</h3>
-              
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white">1</span>
-                  </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-2">AGENTE ESPECIALIZADO</h4>
-                  <p className="text-white text-sm">
-                    Cada pessoa terá acesso a agentes treinados especificamente para suporte de relacionamento com suas necessidades e condições.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white">2</span>
-                  </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-2">SUPORTE FAMILIAR</h4>
-                  <p className="text-white text-sm">
-                    Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <span className="text-2xl font-bold text-white">3</span>
-                  </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO PSICOLÓGICO</h4>
-                  <p className="text-white text-sm">
-                    Um agente com perfil de psicólogo especializado para ajudar no relacionamento entre ambas as partes, facilitando as relações e garantindo melhor qualidade de vida.
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -382,7 +284,7 @@ function App() {
                 </div>
 
                 <button 
-                  onClick={() => openSpecialistAssistant('automation', 'Olá! Tenho interesse no Nível 2 - Integrado de automação IA. Podem me dar mais detalhes sobre este plano?')}
+                  onClick={() => openSpecialistAssistant('automation', 'Olá! Tenho interesse no Nível 2 - Integrado da automação IA. Pode me dar mais detalhes sobre este plano?')}
                   className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER INTEGRADO
@@ -436,7 +338,7 @@ function App() {
                 </div>
 
                 <button 
-                  onClick={() => openSpecialistAssistant('automation', 'Olá! Tenho interesse no Nível 3 - Avançado de automação IA. Podem me explicar todos os benefícios deste plano premium?')}
+                  onClick={() => openSpecialistAssistant('automation', 'Olá! Tenho interesse no Nível 3 - Avançado da automação IA. Pode me dar mais detalhes sobre este plano premium?')}
                   className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER AVANÇADO
@@ -610,7 +512,7 @@ function App() {
 
             <div className="text-center mt-12">
               <button 
-                onClick={() => openSpecialistAssistant('accounting', 'Olá! Gostaria de uma proposta completa dos serviços contábeis. Podem me apresentar as opções disponíveis para minha empresa?')}
+                onClick={() => openSpecialistAssistant('accounting', 'Olá! Gostaria de conhecer os serviços contábeis da empresa. Podem me apresentar as soluções disponíveis e fazer uma proposta personalizada?')}
                 className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 SOLICITAR PROPOSTA CONTÁBIL
@@ -683,7 +585,7 @@ function App() {
 
             <div className="text-center mt-12">
               <button 
-                onClick={() => openSpecialistAssistant('consulting', 'Olá! Preciso de consultoria empresarial para minha empresa. Podem me explicar como vocês podem ajudar com gestão e estratégia?')}
+                onClick={() => openSpecialistAssistant('consulting', 'Olá! Minha empresa precisa de consultoria empresarial. Podem me explicar como vocês podem ajudar e agendar uma reunião?')}
                 className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 AGENDAR CONSULTORIA
@@ -758,7 +660,7 @@ function App() {
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
                 <button 
-                  onClick={() => openSpecialistAssistant('education', 'Olá! Tenho interesse nos cursos e treinamentos profissionais. Quais são as opções disponíveis e como funciona a certificação?')}
+                  onClick={() => openSpecialistAssistant('education', 'Olá! Tenho interesse nos cursos e treinamentos profissionais. Quais são as opções disponíveis e como posso me inscrever?')}
                   className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   VER CURSOS DISPONÍVEIS
@@ -792,7 +694,7 @@ function App() {
                   <div className="text-red-100">Setup + R$ 50 por manutenção</div>
                 </div>
                 <button 
-                  onClick={() => openSpecialistAssistant('ai-personal', 'Olá! Gostaria de criar agentes de IA personalizados. Como funciona o processo de configuração e quais são as possibilidades?')}
+                  onClick={() => openSpecialistAssistant('ai-personal', 'Olá! Gostaria de criar agentes de IA personalizados para minha empresa. Como funciona o processo e quais são as opções disponíveis?')}
                   className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 shadow-lg"
                 >
                   PERSONALIZAR AGENTE
@@ -853,6 +755,188 @@ function App() {
                 <Star className="h-8 w-8 text-white mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">E Muito Mais!</h4>
                 <p className="text-red-100 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* EA Social Section - ÚLTIMA SEÇÃO */}
+        <section id="ea-social" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+                EA SOCIAL - PROJETO DE INCLUSÃO
+              </h2>
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-4">
+                Nosso compromisso social: agentes de IA especializados para apoio e inclusão de pessoas com necessidades especiais
+              </p>
+              <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-bold text-lg shadow-lg">
+                <Heart className="h-6 w-6 mr-2" />
+                ACESSO 100% GRATUITO
+              </div>
+            </div>
+
+            {/* Agentes Especializados */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {/* Autismo */}
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
+                <div className="text-center mb-6">
+                  <Puzzle className="h-16 w-16 text-white mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-yellow-400 mb-2">AGENTE AUTISMO</h3>
+                  <p className="text-blue-100">Suporte especializado para pessoas com TEA</p>
+                </div>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-blue-200 mr-3" />
+                    <span>Facilitação de relacionamento social</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-blue-200 mr-3" />
+                    <span>Estratégias de comunicação</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-blue-200 mr-3" />
+                    <span>Rotinas e organização</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-blue-200 mr-3" />
+                    <span>Suporte familiar</span>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => openSpecialistAssistant('ea-social-autism', 'Olá! Preciso de suporte especializado para uma pessoa com autismo. Podem me ajudar com estratégias e orientações?')}
+                  className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
+                >
+                  ACESSAR AGENTE AUTISMO
+                </button>
+              </div>
+
+              {/* Síndrome de Down */}
+              <div className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl p-8 border-4 border-yellow-400 hover:border-yellow-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50">
+                <div className="text-center mb-6">
+                  <Smile className="h-16 w-16 text-white mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-blue-800 mb-2">AGENTE SÍNDROME DE DOWN</h3>
+                  <p className="text-yellow-100">Suporte personalizado e orientação</p>
+                </div>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-yellow-200 mr-3" />
+                    <span>Desenvolvimento cognitivo</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-yellow-200 mr-3" />
+                    <span>Autonomia e independência</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-yellow-200 mr-3" />
+                    <span>Inclusão social</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-yellow-200 mr-3" />
+                    <span>Orientação familiar</span>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => openSpecialistAssistant('ea-social-down', 'Olá! Preciso de orientações e suporte para uma pessoa com Síndrome de Down. Podem me ajudar com estratégias de desenvolvimento?')}
+                  className="w-full py-3 bg-white text-yellow-600 rounded-lg font-semibold hover:bg-yellow-50 transition-all duration-300 shadow-lg"
+                >
+                  ACESSAR AGENTE SÍNDROME DE DOWN
+                </button>
+              </div>
+
+              {/* Ansiedade */}
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <div className="text-center mb-6">
+                  <Heart className="h-16 w-16 text-white mx-auto mb-4" />
+                  <h3 className="text-2xl font-bold text-yellow-400 mb-2">AGENTE ANSIEDADE</h3>
+                  <p className="text-green-100">Ferramentas para gerenciamento emocional</p>
+                </div>
+                
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-3" />
+                    <span>Técnicas de relaxamento</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-3" />
+                    <span>Controle de crises</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-3" />
+                    <span>Mindfulness e meditação</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-3" />
+                    <span>Suporte emocional</span>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => openSpecialistAssistant('ea-social-anxiety', 'Olá! Preciso de ajuda para gerenciar ansiedade. Podem me fornecer técnicas e estratégias de controle emocional?')}
+                  className="w-full py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-green-50 transition-all duration-300 shadow-lg"
+                >
+                  ACESSAR AGENTE ANSIEDADE
+                </button>
+              </div>
+            </div>
+
+            {/* Informações do Projeto */}
+            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+              <div className="text-center mb-8">
+                <Heart className="h-20 w-20 text-white mx-auto mb-6" />
+                <h3 className="text-3xl font-bold text-yellow-400 mb-4">COMO FUNCIONA O EA SOCIAL</h3>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-8 mb-8">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">1</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">AGENTE ESPECIALIZADO</h4>
+                  <p className="text-white">Acesso gratuito a agentes de IA treinados especificamente para cada condição</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">2</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">SUPORTE FAMILIAR</h4>
+                  <p className="text-white">Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">3</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO PSICOLÓGICO</h4>
+                  <p className="text-white">Agente com perfil psicológico para mediar relações e fornecer orientações profissionais</p>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="text-xl text-white mb-6">
+                  <strong>Este é nosso compromisso social com a inclusão!</strong><br/>
+                  Acreditamos que a tecnologia deve servir a todos, especialmente aqueles que mais precisam.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o projeto EA Social e como posso acessar os agentes especializados.`}
+                    onClick={() => handleContactClick('whatsapp_ea_social')}
+                    className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    SABER MAIS SOBRE O PROJETO
+                  </a>
+                  <button 
+                    onClick={() => scrollToSection('contact')}
+                    className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105"
+                  >
+                    COMO POSSO AJUDAR?
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -955,6 +1039,7 @@ function App() {
                   <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-200 transition-colors">Contabilidade</button></li>
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
+                  <li><button onClick={() => scrollToSection('agents')} className="hover:text-yellow-200 transition-colors">IA Personalizada</button></li>
                   <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                 </ul>
               </div>
@@ -995,6 +1080,7 @@ function App() {
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Nossa Missão</a></li>
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Política de Privacidade</a></li>
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Termos de Uso</a></li>
+                  <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">Projeto Social</button></li>
                 </ul>
               </div>
             </div>
