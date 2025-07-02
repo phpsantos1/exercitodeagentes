@@ -28,7 +28,8 @@ import {
   Wrench,
   MapIcon,
   Dumbbell,
-  Instagram
+  Instagram,
+  Heart
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -85,6 +86,9 @@ function App() {
                 <button onClick={() => scrollToSection('agents')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   IA PERSONALIZADA
                 </button>
+                <button onClick={() => scrollToSection('social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  EA SOCIAL
+                </button>
                 <button onClick={() => scrollToSection('contact')} className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-2 font-medium">
                   <span>CONTATO</span>
                   <Phone className="h-4 w-4" />
@@ -136,7 +140,7 @@ function App() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
               <a 
                 href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
@@ -195,6 +199,17 @@ function App() {
                 <Settings className="h-12 w-12 text-red-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
                 <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
+              </a>
+
+              {/* EA SOCIAL */}
+              <a 
+                href="#social"
+                onClick={() => scrollToSection('social')}
+                className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
+                <p className="text-pink-100 text-sm">Projeto de inclusão digital e social</p>
               </a>
             </div>
           </div>
@@ -742,8 +757,112 @@ function App() {
           </div>
         </section>
 
+        {/* EA SOCIAL Section */}
+        <section id="social" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+                EA SOCIAL
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Nosso compromisso com a inclusão digital e transformação social através da tecnologia
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+                <div className="text-center mb-8">
+                  <Heart className="h-16 w-16 text-white mx-auto mb-6" />
+                  <h3 className="text-3xl font-bold text-yellow-400 mb-4">PROJETO DE INCLUSÃO DIGITAL</h3>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
+                  <div>
+                    <h4 className="text-xl font-bold text-yellow-400 mb-4">🎯 NOSSA MISSÃO SOCIAL</h4>
+                    <ul className="space-y-3 text-white">
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Democratizar o acesso à tecnologia de IA para comunidades carentes</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Capacitar jovens em situação de vulnerabilidade social</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Promover inclusão digital através de treinamentos gratuitos</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Criar oportunidades de trabalho em tecnologia</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-bold text-yellow-400 mb-4">🚀 AÇÕES REALIZADAS</h4>
+                    <ul className="space-y-3 text-white">
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Workshops gratuitos de IA em escolas públicas</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Programa de mentoria para jovens empreendedores</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Doação de licenças de software para ONGs</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-pink-200 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Parcerias com centros comunitários</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 mb-8">
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4 text-center">💡 COMO PARTICIPAR</h4>
+                  <div className="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                      <Users className="h-8 w-8 text-white mx-auto mb-3" />
+                      <h5 className="font-bold text-white mb-2">VOLUNTARIADO</h5>
+                      <p className="text-pink-100 text-sm">Seja um voluntário em nossos projetos de capacitação</p>
+                    </div>
+                    <div>
+                      <Heart className="h-8 w-8 text-white mx-auto mb-3" />
+                      <h5 className="font-bold text-white mb-2">DOAÇÕES</h5>
+                      <p className="text-pink-100 text-sm">Contribua com recursos para expandir nosso alcance</p>
+                    </div>
+                    <div>
+                      <Target className="h-8 w-8 text-white mx-auto mb-3" />
+                      <h5 className="font-bold text-white mb-2">PARCERIAS</h5>
+                      <p className="text-pink-100 text-sm">Empresas que querem fazer a diferença social</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <p className="text-white mb-6 text-lg">
+                    <strong>Acreditamos que a tecnologia deve ser uma ferramenta de transformação social.</strong><br/>
+                    Cada projeto que desenvolvemos, uma parte é destinada ao EA Social.
+                  </p>
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o projeto EA Social e como posso participar.`}
+                    onClick={() => handleContactClick('whatsapp_social')}
+                    className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    PARTICIPAR DO EA SOCIAL
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Contact Section */}
-        <section id="contact" className="py-20 bg-gray-50">
+        <section id="contact" className="py-20 bg-white">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
@@ -839,6 +958,7 @@ function App() {
                   <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-200 transition-colors">Contabilidade</button></li>
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
+                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                 </ul>
               </div>
 
@@ -876,6 +996,7 @@ function App() {
                 <h4 className="text-lg font-semibold text-yellow-400 mb-4">EMPRESA</h4>
                 <ul className="space-y-2 text-yellow-300">
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Nossa Missão</a></li>
+                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Política de Privacidade</a></li>
                   <li><a href="#" className="hover:text-yellow-200 transition-colors">Termos de Uso</a></li>
                 </ul>
