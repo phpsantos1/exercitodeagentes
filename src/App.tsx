@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { 
   Bot, 
@@ -30,15 +30,58 @@ import {
   Dumbbell,
   Instagram,
   Heart,
-  HandHeart,
-  UserCheck
+  X
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
 import { config } from './config/environment';
 
+interface GPTModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  gptUrl: string;
+}
+
+const GPTModal: React.FC<GPTModalProps> = ({ isOpen, onClose, title, gptUrl }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white rounded-2xl w-full max-w-6xl h-[90vh] flex flex-col shadow-2xl">
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <div className="flex items-center space-x-3">
+            <Bot className="h-6 w-6 text-blue-600" />
+            <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+        <div className="flex-1 overflow-hidden">
+          <iframe
+            src={gptUrl}
+            className="w-full h-full border-0"
+            title={title}
+            allow="microphone; camera"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function App() {
+  const [gptModal, setGptModal] = useState<{isOpen: boolean, title: string, url: string}>({
+    isOpen: false,
+    title: '',
+    url: ''
+  });
+
   useEffect(() => {
     initializeAnalytics();
   }, []);
@@ -52,6 +95,14 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const openGPTModal = (title: string, url: string) => {
+    setGptModal({ isOpen: true, title, url });
+  };
+
+  const closeGPTModal = () => {
+    setGptModal({ isOpen: false, title: '', url: '' });
   };
 
   return (
@@ -88,7 +139,7 @@ function App() {
                 <button onClick={() => scrollToSection('agents')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   IA PERSONALIZADA
                 </button>
-                <button onClick={() => scrollToSection('ea-social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                <button onClick={() => scrollToSection('social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   EA SOCIAL
                 </button>
                 <button onClick={() => scrollToSection('contact')} className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-2 font-medium">
@@ -109,7 +160,7 @@ function App() {
               </h1>
               <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
                 Transforme seu negócio com <span className="text-blue-600 font-semibold">EssencialBot</span> - 
-                IA avançada, automação inteligente, contabilidade smart, consultoria especializada e inclusão social
+                IA avançada, automação inteligente, contabilidade smart e consultoria especializada
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
@@ -138,79 +189,59 @@ function App() {
                 NOSSOS SERVIÇOS
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Soluções completas em IA, contabilidade, consultoria, educação e inclusão social para transformar seu negócio e sociedade
+                Soluções completas em IA, contabilidade, consultoria e educação para transformar seu negócio
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-6 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
-              <a 
-                href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('IA AUTOMAÇÃO - Especialista em Soluções', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
                 className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Shield className="h-12 w-12 text-blue-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA AUTOMAÇÃO</h3>
                 <p className="text-blue-100 text-sm">Especialista em soluções de automação inteligente</p>
-              </a>
+              </button>
 
               {/* Contabilidade */}
-              <a 
-                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('CONTABILIDADE - Expert em Serviços Contábeis', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
                 className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-center hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Calculator className="h-12 w-12 text-green-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">CONTABILIDADE</h3>
                 <p className="text-green-100 text-sm">Expert em serviços contábeis inteligentes</p>
-              </a>
+              </button>
 
               {/* Consultoria */}
-              <a 
-                href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('CONSULTORIA - Especialista em Gestão Empresarial', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
                 className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 text-center hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Briefcase className="h-12 w-12 text-orange-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">CONSULTORIA</h3>
                 <p className="text-orange-100 text-sm">Especialista em gestão e estratégia empresarial</p>
-              </a>
+              </button>
 
               {/* Educação Pró */}
-              <a 
-                href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('EDUCAÇÃO PRÓ - Expert em Treinamentos', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
                 className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-center hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <GraduationCap className="h-12 w-12 text-purple-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">EDUCAÇÃO PRÓ</h3>
                 <p className="text-purple-100 text-sm">Expert em treinamentos e capacitação</p>
-              </a>
+              </button>
 
               {/* IA Personalizada */}
-              <a 
-                href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('IA PERSONALIZADA - Especialista em Agentes Customizados', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
                 className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 text-center hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Settings className="h-12 w-12 text-red-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
                 <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
-              </a>
-
-              {/* EA SOCIAL */}
-              <button 
-                onClick={() => scrollToSection('ea-social')}
-                className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
-              >
-                <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
-                <p className="text-pink-100 text-sm">Projeto de inclusão e acessibilidade</p>
               </button>
             </div>
           </div>
@@ -269,14 +300,12 @@ function App() {
                   <div className="text-blue-100">Setup + R$ 397/mês</div>
                 </div>
 
-                <a 
-                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 block text-center shadow-lg"
+                <button 
+                  onClick={() => openGPTModal('IA AUTOMAÇÃO - Nível 2 Integrado', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER INTEGRADO
-                </a>
+                </button>
               </div>
 
               {/* Nível 3 - Avançado */}
@@ -325,14 +354,12 @@ function App() {
                   <div className="text-purple-100">Setup + R$ 497/mês</div>
                 </div>
 
-                <a 
-                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 block text-center shadow-lg"
+                <button 
+                  onClick={() => openGPTModal('IA AUTOMAÇÃO - Nível 3 Avançado', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER AVANÇADO
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -501,14 +528,12 @@ function App() {
             </div>
 
             <div className="text-center mt-12">
-              <a 
-                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('CONTABILIDADE - Solicitar Proposta', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
                 className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 SOLICITAR PROPOSTA CONTÁBIL
-              </a>
+              </button>
             </div>
           </div>
         </section>
@@ -576,14 +601,12 @@ function App() {
             </div>
 
             <div className="text-center mt-12">
-              <a 
-                href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => openGPTModal('CONSULTORIA - Agendar Consultoria', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
                 className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 AGENDAR CONSULTORIA
-              </a>
+              </button>
             </div>
           </div>
         </section>
@@ -653,14 +676,12 @@ function App() {
                 <p className="text-white mb-6">
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
-                <a 
-                  href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button 
+                  onClick={() => openGPTModal('EDUCAÇÃO PRÓ - Ver Cursos Disponíveis', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
                   className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   VER CURSOS DISPONÍVEIS
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -689,14 +710,12 @@ function App() {
                   <div className="text-3xl font-bold text-white mb-2">R$ 120</div>
                   <div className="text-red-100">Setup + R$ 50 por manutenção</div>
                 </div>
-                <a 
-                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
+                <button 
+                  onClick={() => openGPTModal('IA PERSONALIZADA - Personalizar Agente', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 shadow-lg"
                 >
                   PERSONALIZAR AGENTE
-                </a>
+                </button>
               </div>
             </div>
 
@@ -759,118 +778,127 @@ function App() {
         </section>
 
         {/* EA SOCIAL Section */}
-        <section id="ea-social" className="py-20 bg-gray-50">
+        <section id="social" className="py-20 bg-gradient-to-br from-pink-50 to-purple-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 EA SOCIAL
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Projeto de inclusão social através da tecnologia - Agentes de IA especializados para pessoas com autismo, síndrome de Down, ansiedade e suas famílias
+              <p className="text-xl text-gray-700 max-w-4xl mx-auto mb-8">
+                Projeto de inclusão social através da tecnologia - Agentes de IA especializados para pessoas com autismo, síndrome de Down, ansiedade e outras necessidades especiais
               </p>
+              <div className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-full inline-block font-semibold">
+                💖 TRANSFORMANDO VIDAS ATRAVÉS DA IA
+              </div>
             </div>
 
-            {/* Como Funciona */}
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <Bot className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">1. AGENTE ESPECIALIZADO</h3>
-                <p className="text-white">
-                  Cada pessoa terá acesso à página se cadastrando ou não na página do EA. Ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
+                <div className="p-4 bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                  <Bot className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-yellow-300 mb-4 text-center">1. AGENTE ESPECIALIZADO</h3>
+                <p className="text-pink-100 text-center">
+                  Cada pessoa terá acesso à página se cadastrando ou não na página do EA, ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
-                <HandHeart className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">2. SUPORTE FAMILIAR</h3>
-                <p className="text-white">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <div className="p-4 bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                  <Heart className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-yellow-300 mb-4 text-center">2. SUPORTE FAMILIAR</h3>
+                <p className="text-purple-100 text-center">
                   Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
-                <UserCheck className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">3. ACOMPANHAMENTO com um agente de perfil PSICOLÓGICO</h3>
-                <p className="text-white">
-                  Um agente com perfil de psicólogo especializado para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
+              <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl p-8 border-4 border-indigo-400 hover:border-indigo-300 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/50">
+                <div className="p-4 bg-white/20 rounded-full w-16 h-16 flex items-center justify-center mb-6 mx-auto">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-yellow-300 mb-4 text-center">3. ACOMPANHAMENTO com um agente de perfil PSICOLÓGICO</h3>
+                <p className="text-indigo-100 text-center">
+                  Um agente com perfil de psicólogos especializados para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
                 </p>
               </div>
             </div>
 
-            {/* Tipos de Participação */}
-            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl mb-12">
-              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO PARTICIPAR</h3>
+            <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-300 mb-8 text-center">ÁREAS DE ATUAÇÃO DO EA SOCIAL</h3>
               
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="p-4 bg-white/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                    <Heart className="h-10 w-10 text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">PESSOA ASSISTIDA</h4>
-                  <p className="text-white mb-4">
-                    Acesso direto aos agentes especializados para sua condição específica
-                  </p>
-                  <a 
-                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de participar do EA SOCIAL como pessoa assistida.`}
-                    onClick={() => handleContactClick('ea_social_assistida')}
-                    className="px-6 py-3 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    QUERO PARTICIPAR
-                  </a>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">🧩</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">AUTISMO</h4>
+                  <p className="text-white text-sm">Suporte especializado para pessoas no espectro autista</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="p-4 bg-white/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">FAMILIAR/CUIDADOR</h4>
-                  <p className="text-white mb-4">
-                    Ferramentas e orientação para apoiar melhor a pessoa assistida
-                  </p>
-                  <a 
-                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de participar do EA SOCIAL como familiar/cuidador.`}
-                    onClick={() => handleContactClick('ea_social_familiar')}
-                    className="px-6 py-3 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    SOU FAMILIAR
-                  </a>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">💝</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">SÍNDROME DE DOWN</h4>
+                  <p className="text-white text-sm">Acompanhamento e orientação personalizada</p>
                 </div>
 
-                <div className="text-center">
-                  <div className="p-4 bg-white/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
-                    <HandHeart className="h-10 w-10 text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">VOLUNTÁRIO</h4>
-                  <p className="text-white mb-4">
-                    Contribua com o projeto e ajude a expandir nossa rede de apoio
-                  </p>
-                  <a 
-                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de ser voluntário no EA SOCIAL.`}
-                    onClick={() => handleContactClick('ea_social_voluntario')}
-                    className="px-6 py-3 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  >
-                    SER VOLUNTÁRIO
-                  </a>
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">😰</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">ANSIEDADE</h4>
+                  <p className="text-white text-sm">Apoio especializado para transtornos de ansiedade</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">🧠</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">NEURODIVERGÊNCIA</h4>
+                  <p className="text-white text-sm">Apoio para TDAH e outras neurodivergências</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">👁️</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">DEFICIÊNCIA VISUAL</h4>
+                  <p className="text-white text-sm">Recursos adaptados para pessoas com deficiência visual</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">👂</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">DEFICIÊNCIA AUDITIVA</h4>
+                  <p className="text-white text-sm">Comunicação acessível para pessoas surdas</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">♿</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">MOBILIDADE REDUZIDA</h4>
+                  <p className="text-white text-sm">Apoio para questões de mobilidade e acessibilidade</p>
+                </div>
+
+                <div className="bg-white/10 rounded-xl p-6 text-center">
+                  <div className="text-4xl mb-4">👥</div>
+                  <h4 className="text-lg font-bold text-yellow-300 mb-2">CUIDADORES</h4>
+                  <p className="text-white text-sm">Suporte emocional para cuidadores</p>
                 </div>
               </div>
             </div>
 
-            {/* Missão */}
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 max-w-3xl mx-auto shadow-2xl">
+            <div className="text-center mt-12">
+              <div className="bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl p-8 border-4 border-pink-400 max-w-2xl mx-auto shadow-2xl">
                 <Heart className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4">NOSSA MISSÃO</h3>
-                <p className="text-white text-lg leading-relaxed">
-                  Democratizar o acesso à tecnologia assistiva através de agentes de IA especializados, 
-                  promovendo inclusão, autonomia e qualidade de vida para pessoas com necessidades especiais e suas famílias.
+                <h3 className="text-2xl font-bold text-yellow-300 mb-4">ACESSO GRATUITO</h3>
+                <p className="text-white mb-6">
+                  O EA Social é um projeto de responsabilidade social. Todos os agentes especializados são disponibilizados gratuitamente para promover inclusão e qualidade de vida.
                 </p>
+                <a 
+                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o projeto EA Social.`}
+                  onClick={() => handleContactClick('whatsapp_social')}
+                  className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  SABER MAIS SOBRE EA SOCIAL
+                </a>
               </div>
             </div>
           </div>
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 bg-white">
+        <section id="contact" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
@@ -945,7 +973,7 @@ function App() {
                   <span className="text-xl font-bold text-yellow-400">EXÉRCITO DE AGENTES</span>
                 </div>
                 <p className="text-yellow-300 mb-4">
-                  Transformando negócios com inteligência artificial, automação avançada e inclusão social.
+                  Transformando negócios com inteligência artificial e automação avançada.
                 </p>
                 <div className="flex space-x-4">
                   <a 
@@ -966,7 +994,7 @@ function App() {
                   <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-200 transition-colors">Contabilidade</button></li>
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
-                  <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
+                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                 </ul>
               </div>
 
@@ -1020,6 +1048,14 @@ function App() {
 
         {/* EssencialBot Chat */}
         <EssencialBotChat />
+
+        {/* GPT Modal */}
+        <GPTModal 
+          isOpen={gptModal.isOpen}
+          onClose={closeGPTModal}
+          title={gptModal.title}
+          gptUrl={gptModal.url}
+        />
       </div>
     </HelmetProvider>
   );
