@@ -29,9 +29,7 @@ import {
   MapIcon,
   Dumbbell,
   Instagram,
-  Heart,
-  UserPlus,
-  Globe
+  Heart
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -88,7 +86,7 @@ function App() {
                 <button onClick={() => scrollToSection('agents')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   IA PERSONALIZADA
                 </button>
-                <button onClick={() => scrollToSection('ea-social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                <button onClick={() => scrollToSection('social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   EA SOCIAL
                 </button>
                 <button onClick={() => scrollToSection('contact')} className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-2 font-medium">
@@ -145,7 +143,7 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-6 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
               <a 
-                href="https://bit.ly/ea-ia-automacao"
+                href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
@@ -157,7 +155,7 @@ function App() {
 
               {/* Contabilidade */}
               <a 
-                href="https://bit.ly/ea-contabilidade"
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-center hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
@@ -169,7 +167,7 @@ function App() {
 
               {/* Consultoria */}
               <a 
-                href="https://bit.ly/ea-consultoria"
+                href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 text-center hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
@@ -181,7 +179,7 @@ function App() {
 
               {/* Educação Pró */}
               <a 
-                href="https://bit.ly/ea-educacao"
+                href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-center hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
@@ -193,7 +191,7 @@ function App() {
 
               {/* IA Personalizada */}
               <a 
-                href="https://bit.ly/ea-ia-personalizada"
+                href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 text-center hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
@@ -205,9 +203,8 @@ function App() {
 
               {/* EA Social */}
               <a 
-                href="https://bit.ly/ea-social"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#social"
+                onClick={() => scrollToSection('social')}
                 className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
@@ -272,7 +269,7 @@ function App() {
                 </div>
 
                 <a 
-                  href="https://bit.ly/ea-ia-automacao"
+                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 block text-center shadow-lg"
@@ -320,6 +317,10 @@ function App() {
                     <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
                     <span>Automação completa incluída</span>
                   </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Site com link personalizado</span>
+                  </div>
                 </div>
 
                 <div className="text-center mb-6">
@@ -328,7 +329,7 @@ function App() {
                 </div>
 
                 <a 
-                  href="https://bit.ly/ea-ia-automacao"
+                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 block text-center shadow-lg"
@@ -504,7 +505,7 @@ function App() {
 
             <div className="text-center mt-12">
               <a 
-                href="https://bit.ly/ea-contabilidade"
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -579,7 +580,7 @@ function App() {
 
             <div className="text-center mt-12">
               <a 
-                href="https://bit.ly/ea-consultoria"
+                href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -656,7 +657,7 @@ function App() {
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
                 <a 
-                  href="https://bit.ly/ea-educacao"
+                  href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -683,67 +684,71 @@ function App() {
               </p>
             </div>
 
-            {/* Pricing Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {/* 1 Agente */}
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Settings className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">1 AGENTE</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">1 AGENTE</h3>
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
                   <div className="text-red-100">Setup + R$ 100/manutenção</div>
-                  <div className="text-sm text-red-200 mt-2">Preço unitário</div>
+                  <div className="text-yellow-300 text-sm mt-2">Preço unitário</div>
                 </div>
                 <a 
-                  href="https://bit.ly/ea-ia-personalizada"
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
                 >
-                  PERSONALIZAR AGENTE
+                  CONTRATAR 1 AGENTE
                 </a>
               </div>
 
               {/* 2 a 4 Agentes */}
               <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 relative">
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                    MAIS POPULAR
+                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    DESCONTO PROGRESSIVO
                   </span>
                 </div>
                 <Settings className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">2 A 4 AGENTES</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">2 A 4 AGENTES</h3>
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
                   <div className="text-red-100">Cada + R$ 100/manutenção</div>
-                  <div className="text-sm text-red-200 mt-2">Desconto progressivo</div>
+                  <div className="text-yellow-300 text-sm mt-2">Desconto progressivo</div>
                 </div>
                 <a 
-                  href="https://bit.ly/ea-ia-personalizada"
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
                 >
-                  PERSONALIZAR AGENTES
+                  CONTRATAR 2-4 AGENTES
                 </a>
               </div>
 
               {/* 5+ Agentes */}
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-green-400 to-green-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    MELHOR CUSTO-BENEFÍCIO
+                  </span>
+                </div>
                 <Settings className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">5+ AGENTES</h3>
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">5+ AGENTES</h3>
                 <div className="text-center mb-6">
                   <div className="text-3xl font-bold text-white mb-2">R$ 297</div>
                   <div className="text-red-100">Cada + R$ 100/manutenção</div>
-                  <div className="text-sm text-red-200 mt-2">Melhor custo-benefício</div>
+                  <div className="text-yellow-300 text-sm mt-2">Melhor custo-benefício</div>
                 </div>
                 <a 
-                  href="https://bit.ly/ea-ia-personalizada"
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
                 >
-                  PERSONALIZAR AGENTES
+                  CONTRATAR 5+ AGENTES
                 </a>
               </div>
             </div>
@@ -797,7 +802,7 @@ function App() {
                 <p className="text-red-100 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
               </div>
 
-              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 md:col-span-2 lg:col-span-1">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
                 <Star className="h-8 w-8 text-white mb-4" />
                 <h4 className="text-lg font-bold text-yellow-400 mb-2">E Muito Mais!</h4>
                 <p className="text-red-100 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
@@ -807,127 +812,111 @@ function App() {
         </section>
 
         {/* EA Social Section */}
-        <section id="ea-social" className="py-20 bg-gray-50">
+        <section id="social" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
                 EA SOCIAL - PROJETO DE INCLUSÃO
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com necessidades especiais
-              </p>
-              <p className="text-lg text-pink-600 font-semibold">
-                Tecnologia a serviço da inclusão e do bem-estar social
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down e ansiedade
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Agente Autismo */}
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <Brain className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">AGENTE AUTISMO</h3>
-                <p className="text-white mb-4">
-                  Especializado em facilitar relacionamento social e comunicação para pessoas no espectro autista.
-                </p>
-                <ul className="space-y-2 text-pink-100 text-sm">
-                  <li>• Estratégias de comunicação</li>
-                  <li>• Rotinas estruturadas</li>
-                  <li>• Gestão sensorial</li>
-                  <li>• Apoio comportamental</li>
-                </ul>
-              </div>
-
-              {/* Agente Síndrome de Down */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
                 <Heart className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">AGENTE SÍNDROME DE DOWN</h3>
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">AUTISMO</h3>
                 <p className="text-white mb-4">
-                  Suporte personalizado e orientação para desenvolvimento e autonomia.
+                  Agentes especializados para facilitar relacionamento social, comunicação e rotinas diárias.
                 </p>
                 <ul className="space-y-2 text-pink-100 text-sm">
-                  <li>• Desenvolvimento cognitivo</li>
-                  <li>• Habilidades sociais</li>
-                  <li>• Autonomia pessoal</li>
-                  <li>• Orientação familiar</li>
+                  <li>• Suporte para comunicação</li>
+                  <li>• Organização de rotinas</li>
+                  <li>• Desenvolvimento social</li>
+                  <li>• Apoio familiar</li>
                 </ul>
               </div>
 
-              {/* Agente Ansiedade */}
               <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <Shield className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">AGENTE ANSIEDADE</h3>
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">SÍNDROME DE DOWN</h3>
+                <p className="text-white mb-4">
+                  Suporte personalizado para desenvolvimento cognitivo e orientação educacional.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Apoio educacional</li>
+                  <li>• Desenvolvimento cognitivo</li>
+                  <li>• Orientação familiar</li>
+                  <li>• Inclusão social</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">ANSIEDADE</h3>
                 <p className="text-white mb-4">
                   Ferramentas para gerenciamento emocional e técnicas de relaxamento.
                 </p>
                 <ul className="space-y-2 text-pink-100 text-sm">
-                  <li>• Técnicas de respiração</li>
-                  <li>• Mindfulness</li>
-                  <li>• Gestão de crises</li>
-                  <li>• Apoio emocional</li>
-                </ul>
-              </div>
-
-              {/* Suporte Familiar */}
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <Users className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">SUPORTE FAMILIAR</h3>
-                <p className="text-white mb-4">
-                  Agentes específicos para familiares e cuidadores com orientações práticas.
-                </p>
-                <ul className="space-y-2 text-pink-100 text-sm">
-                  <li>• Orientação para pais</li>
-                  <li>• Estratégias de cuidado</li>
-                  <li>• Rede de apoio</li>
-                  <li>• Recursos disponíveis</li>
-                </ul>
-              </div>
-
-              {/* Acompanhamento Psicológico */}
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <UserPlus className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">ACOMPANHAMENTO PSICOLÓGICO</h3>
-                <p className="text-white mb-4">
-                  Agente com perfil psicológico para mediar relações e oferecer suporte.
-                </p>
-                <ul className="space-y-2 text-pink-100 text-sm">
-                  <li>• Mediação de conflitos</li>
-                  <li>• Apoio emocional</li>
-                  <li>• Desenvolvimento pessoal</li>
-                  <li>• Orientação terapêutica</li>
-                </ul>
-              </div>
-
-              {/* Página do Cliente */}
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <Globe className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">PÁGINA DO CLIENTE</h3>
-                <p className="text-white mb-4">
-                  Cada usuário recebe um link personalizado para acesso facilitado aos recursos.
-                </p>
-                <ul className="space-y-2 text-pink-100 text-sm">
-                  <li>• Link personalizado único</li>
-                  <li>• Acesso direto aos agentes</li>
-                  <li>• Histórico de conversas</li>
-                  <li>• Material de apoio</li>
+                  <li>• Técnicas de relaxamento</li>
+                  <li>• Gerenciamento emocional</li>
+                  <li>• Exercícios de respiração</li>
+                  <li>• Suporte psicológico</li>
                 </ul>
               </div>
             </div>
 
-            <div className="text-center mt-12">
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 max-w-2xl mx-auto shadow-2xl">
-                <Heart className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4">ACESSO GRATUITO</h3>
+            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA O EA SOCIAL</h3>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">1</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">AGENTE ESPECIALIZADO</h4>
+                  <p className="text-white">Acesso gratuito a agentes treinados especificamente para cada condição</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">2</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">SUPORTE FAMILIAR</h4>
+                  <p className="text-white">Agentes específicos para orientar familiares e cuidadores</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">3</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO PSICOLÓGICO</h4>
+                  <p className="text-white">Agente com perfil psicológico para mediar relações e oferecer suporte</p>
+                </div>
+              </div>
+
+              <div className="text-center mt-12">
+                <p className="text-2xl font-bold text-yellow-400 mb-4">100% GRATUITO</p>
                 <p className="text-white mb-6">
-                  Este é nosso compromisso social. Todos os agentes do EA Social são disponibilizados gratuitamente para quem precisa.
+                  Este é nosso compromisso social com a inclusão. Todos os agentes do EA Social são oferecidos gratuitamente.
                 </p>
-                <a 
-                  href="https://bit.ly/ea-social"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  ACESSAR EA SOCIAL
-                </a>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EA Social - Projeto de Inclusão.`}
+                    onClick={() => handleContactClick('whatsapp_social')}
+                    className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    ACESSAR AGENTES GRATUITOS
+                  </a>
+                  <a 
+                    href={`mailto:${config.EMAIL_CONTACT}?subject=EA Social - Projeto de Inclusão`}
+                    onClick={() => handleContactClick('email_social')}
+                    className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105"
+                  >
+                    QUERO AJUDAR O PROJETO
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1030,7 +1019,7 @@ function App() {
                   <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-200 transition-colors">Contabilidade</button></li>
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
-                  <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
+                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                 </ul>
               </div>
 
