@@ -30,12 +30,8 @@ import {
   Dumbbell,
   Instagram,
   Heart,
-  Stethoscope,
-  Accessibility,
-  UserPlus,
   HandHeart,
-  DollarSign,
-  Users2
+  UserCheck
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -92,7 +88,7 @@ function App() {
                 <button onClick={() => scrollToSection('agents')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   IA PERSONALIZADA
                 </button>
-                <button onClick={() => scrollToSection('social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                <button onClick={() => scrollToSection('ea-social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
                   EA SOCIAL
                 </button>
                 <button onClick={() => scrollToSection('contact')} className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-2 font-medium">
@@ -209,12 +205,12 @@ function App() {
 
               {/* EA SOCIAL */}
               <button 
-                onClick={() => scrollToSection('social')}
+                onClick={() => scrollToSection('ea-social')}
                 className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
                 <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
-                <p className="text-pink-100 text-sm">Projeto de inclusão social com IA</p>
+                <p className="text-pink-100 text-sm">Projeto de inclusão e acessibilidade</p>
               </button>
             </div>
           </div>
@@ -763,128 +759,111 @@ function App() {
         </section>
 
         {/* EA SOCIAL Section */}
-        <section id="social" className="py-20 bg-gray-50">
+        <section id="ea-social" className="py-20 bg-gray-50">
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
                 EA SOCIAL
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-                Projeto de inclusão social com agentes de IA especializados para pessoas com autismo, síndrome de Down, ansiedade e outras necessidades especiais
-              </p>
-              <p className="text-lg text-pink-600 font-semibold">
-                Projeto 100% gratuito para famílias
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Projeto de inclusão social através da tecnologia - Agentes de IA especializados para pessoas com autismo, síndrome de Down, ansiedade e suas famílias
               </p>
             </div>
 
             {/* Como Funciona */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">1. AGENTE ESPECIALIZADO</h3>
+                <p className="text-white">
+                  Cada pessoa terá acesso à página se cadastrando ou não na página do EA. Ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
+                <HandHeart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">2. SUPORTE FAMILIAR</h3>
+                <p className="text-white">
+                  Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <UserCheck className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">3. ACOMPANHAMENTO com um agente de perfil PSICOLÓGICO</h3>
+                <p className="text-white">
+                  Um agente com perfil de psicólogo especializado para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
+                </p>
+              </div>
+            </div>
+
+            {/* Tipos de Participação */}
             <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl mb-12">
-              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA</h3>
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO PARTICIPAR</h3>
               
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="p-4 bg-white/20 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Bot className="h-8 w-8 text-white" />
+                  <div className="p-4 bg-white/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <Heart className="h-10 w-10 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">1. AGENTE ESPECIALIZADO</h4>
-                  <p className="text-white">
-                    Cada pessoa terá acesso à página se cadastrando ou não na página do EA. Ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">PESSOA ASSISTIDA</h4>
+                  <p className="text-white mb-4">
+                    Acesso direto aos agentes especializados para sua condição específica
                   </p>
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de participar do EA SOCIAL como pessoa assistida.`}
+                    onClick={() => handleContactClick('ea_social_assistida')}
+                    className="px-6 py-3 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    QUERO PARTICIPAR
+                  </a>
                 </div>
 
                 <div className="text-center">
-                  <div className="p-4 bg-white/20 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Heart className="h-8 w-8 text-white" />
+                  <div className="p-4 bg-white/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <Users className="h-10 w-10 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">2. SUPORTE FAMILIAR</h4>
-                  <p className="text-white">
-                    Familiares e cuidadores também poderão acessar agentes específicos para lidar com e ferramentas para melhor apoiar a pessoa assistida.
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">FAMILIAR/CUIDADOR</h4>
+                  <p className="text-white mb-4">
+                    Ferramentas e orientação para apoiar melhor a pessoa assistida
                   </p>
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de participar do EA SOCIAL como familiar/cuidador.`}
+                    onClick={() => handleContactClick('ea_social_familiar')}
+                    className="px-6 py-3 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    SOU FAMILIAR
+                  </a>
                 </div>
 
                 <div className="text-center">
-                  <div className="p-4 bg-white/20 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                    <Stethoscope className="h-8 w-8 text-white" />
+                  <div className="p-4 bg-white/20 rounded-full w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <HandHeart className="h-10 w-10 text-white" />
                   </div>
-                  <h4 className="text-xl font-bold text-yellow-400 mb-4">3. ACOMPANHAMENTO PSICOLÓGICO</h4>
-                  <p className="text-white">
-                    Um agente com perfil de psicólogo especializado para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">VOLUNTÁRIO</h4>
+                  <p className="text-white mb-4">
+                    Contribua com o projeto e ajude a expandir nossa rede de apoio
                   </p>
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de ser voluntário no EA SOCIAL.`}
+                    onClick={() => handleContactClick('ea_social_voluntario')}
+                    className="px-6 py-3 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  >
+                    SER VOLUNTÁRIO
+                  </a>
                 </div>
               </div>
             </div>
 
-            {/* Áreas de Atuação */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
-                <Brain className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">AUTISMO</h4>
-                <p className="text-blue-100 text-sm">Agentes especializados para comunicação e interação social, facilitando o relacionamento com o mundo.</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl p-6 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
-                <Heart className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">SÍNDROME DE DOWN</h4>
-                <p className="text-pink-100 text-sm">Acompanhamento personalizado para desenvolvimento da autonomia e habilidades sociais.</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
-                <Stethoscope className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">ANSIEDADE</h4>
-                <p className="text-orange-100 text-sm">Suporte especializado com técnicas de relaxamento e manejo da ansiedade.</p>
-              </div>
-
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
-                <Accessibility className="h-8 w-8 text-white mb-4" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">OUTRAS NECESSIDADES</h4>
-                <p className="text-green-100 text-sm">Deficiência visual, auditiva, mobilidade reduzida, neurodivergência e muito mais.</p>
-              </div>
-            </div>
-
-            {/* Formas de Participação */}
-            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 shadow-2xl">
-              <h3 className="text-2xl font-bold text-yellow-400 mb-8 text-center">COMO PARTICIPAR</h3>
-              
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de ser voluntário no projeto EA SOCIAL.`}
-                  onClick={() => handleContactClick('whatsapp_volunteer')}
-                  className="bg-white/20 rounded-xl p-6 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
-                >
-                  <UserPlus className="h-8 w-8 text-white mx-auto mb-4" />
-                  <h4 className="text-lg font-bold text-yellow-400 mb-2">SER VOLUNTÁRIO</h4>
-                  <p className="text-white text-sm">Ajude como voluntário em nosso projeto de inclusão</p>
-                </a>
-
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Preciso de ajuda do projeto EA SOCIAL para minha família.`}
-                  onClick={() => handleContactClick('whatsapp_help')}
-                  className="bg-white/20 rounded-xl p-6 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
-                >
-                  <HandHeart className="h-8 w-8 text-white mx-auto mb-4" />
-                  <h4 className="text-lg font-bold text-yellow-400 mb-2">SOLICITAR AJUDA</h4>
-                  <p className="text-white text-sm">Sua família precisa de nosso apoio? Entre em contato</p>
-                </a>
-
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de fazer uma doação para o projeto EA SOCIAL.`}
-                  onClick={() => handleContactClick('whatsapp_donation')}
-                  className="bg-white/20 rounded-xl p-6 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
-                >
-                  <DollarSign className="h-8 w-8 text-white mx-auto mb-4" />
-                  <h4 className="text-lg font-bold text-yellow-400 mb-2">FAZER DOAÇÃO</h4>
-                  <p className="text-white text-sm">Contribua financeiramente com nosso projeto social</p>
-                </a>
-
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de participar do projeto EA SOCIAL.`}
-                  onClick={() => handleContactClick('whatsapp_participate')}
-                  className="bg-white/20 rounded-xl p-6 text-center hover:bg-white/30 transition-all duration-300 transform hover:scale-105"
-                >
-                  <Users2 className="h-8 w-8 text-white mx-auto mb-4" />
-                  <h4 className="text-lg font-bold text-yellow-400 mb-2">PARTICIPAR</h4>
-                  <p className="text-white text-sm">Outras formas de apoiar e participar do projeto</p>
-                </a>
+            {/* Missão */}
+            <div className="text-center">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 max-w-3xl mx-auto shadow-2xl">
+                <Heart className="h-16 w-16 text-white mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">NOSSA MISSÃO</h3>
+                <p className="text-white text-lg leading-relaxed">
+                  Democratizar o acesso à tecnologia assistiva através de agentes de IA especializados, 
+                  promovendo inclusão, autonomia e qualidade de vida para pessoas com necessidades especiais e suas famílias.
+                </p>
               </div>
             </div>
           </div>
@@ -987,7 +966,7 @@ function App() {
                   <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-200 transition-colors">Contabilidade</button></li>
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
-                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
+                  <li><button onClick={() => scrollToSection('ea-social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
                 </ul>
               </div>
 
