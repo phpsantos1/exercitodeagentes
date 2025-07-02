@@ -30,8 +30,8 @@ import {
   Dumbbell,
   Instagram,
   Heart,
-  Users2,
-  Accessibility
+  Puzzle,
+  Smile
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
@@ -47,15 +47,34 @@ function App() {
     trackEvent('contact_click', { method });
   };
 
-  const handleGPTClick = (gptName: string, url: string) => {
-    trackEvent('gpt_access', { gpt_name: gptName });
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Função para abrir assistente especializado
+  const openSpecialistAssistant = (type: string, initialMessage: string) => {
+    trackEvent('specialist_access', { type });
+    
+    // URLs dos assistentes especializados (camufladas)
+    const assistantUrls = {
+      'automation': 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3',
+      'accounting': 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil',
+      'consulting': 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial',
+      'education': 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro',
+      'ai-personal': 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal',
+      'autism': 'https://chatgpt.com/g/g-675b123456789-ea-social-autismo',
+      'down-syndrome': 'https://chatgpt.com/g/g-675b123456790-ea-social-down',
+      'anxiety': 'https://chatgpt.com/g/g-675b123456791-ea-social-ansiedade'
+    };
+
+    const url = assistantUrls[type as keyof typeof assistantUrls];
+    if (url) {
+      // Abrir em nova aba com mensagem inicial
+      const fullUrl = `${url}?message=${encodeURIComponent(initialMessage)}`;
+      window.open(fullUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -150,7 +169,7 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6 max-w-7xl mx-auto">
               {/* IA Automação */}
               <button 
-                onClick={() => handleGPTClick('IA Automação', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                onClick={() => openSpecialistAssistant('automation', 'Olá! Preciso de informações sobre automação IA para minha empresa. Pode me ajudar com os planos disponíveis?')}
                 className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Shield className="h-12 w-12 text-blue-200 mb-4 group-hover:scale-110 transition-transform" />
@@ -160,7 +179,7 @@ function App() {
 
               {/* Contabilidade */}
               <button 
-                onClick={() => handleGPTClick('Contabilidade', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                onClick={() => openSpecialistAssistant('accounting', 'Olá! Gostaria de conhecer os serviços contábeis da empresa. Podem me apresentar as soluções disponíveis?')}
                 className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-center hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Calculator className="h-12 w-12 text-green-200 mb-4 group-hover:scale-110 transition-transform" />
@@ -170,7 +189,7 @@ function App() {
 
               {/* Consultoria */}
               <button 
-                onClick={() => handleGPTClick('Consultoria', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
+                onClick={() => openSpecialistAssistant('consulting', 'Olá! Minha empresa precisa de consultoria empresarial. Podem me explicar como vocês podem ajudar?')}
                 className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 text-center hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Briefcase className="h-12 w-12 text-orange-200 mb-4 group-hover:scale-110 transition-transform" />
@@ -180,7 +199,7 @@ function App() {
 
               {/* Educação Pró */}
               <button 
-                onClick={() => handleGPTClick('Educação Pró', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
+                onClick={() => openSpecialistAssistant('education', 'Olá! Tenho interesse nos cursos e treinamentos profissionais. Quais são as opções disponíveis?')}
                 className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-center hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <GraduationCap className="h-12 w-12 text-purple-200 mb-4 group-hover:scale-110 transition-transform" />
@@ -190,7 +209,7 @@ function App() {
 
               {/* IA Personalizada */}
               <button 
-                onClick={() => handleGPTClick('IA Personalizada', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                onClick={() => openSpecialistAssistant('ai-personal', 'Olá! Gostaria de criar agentes de IA personalizados para minha empresa. Como funciona o processo?')}
                 className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 text-center hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
               >
                 <Settings className="h-12 w-12 text-red-200 mb-4 group-hover:scale-110 transition-transform" />
@@ -208,95 +227,102 @@ function App() {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
                 EA SOCIAL - PROJETO DE INCLUSÃO
               </h2>
-              <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down, ansiedade e suas famílias
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+                Nosso compromisso social: agentes de IA especializados para apoio e inclusão
               </p>
+              <div className="inline-flex items-center space-x-2 bg-pink-100 px-4 py-2 rounded-full">
+                <Heart className="h-5 w-5 text-pink-600" />
+                <span className="text-pink-700 font-semibold">ACESSO GRATUITO</span>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* Autismo */}
+              <button 
+                onClick={() => openSpecialistAssistant('autism', 'Olá! Preciso de suporte especializado para autismo. Como vocês podem ajudar no relacionamento social?')}
+                className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/50 text-center group"
+              >
+                <Puzzle className="h-16 w-16 text-white mx-auto mb-6 group-hover:scale-110 transition-transform" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">AUTISMO</h3>
+                <p className="text-blue-100 mb-4">
+                  Agente especializado para facilitar relacionamento social e comunicação
+                </p>
+                <div className="text-white text-sm">
+                  ✓ Suporte personalizado<br/>
+                  ✓ Estratégias de comunicação<br/>
+                  ✓ Orientação familiar
+                </div>
+              </button>
+
+              {/* Síndrome de Down */}
+              <button 
+                onClick={() => openSpecialistAssistant('down-syndrome', 'Olá! Preciso de orientação e suporte para Síndrome de Down. Como vocês podem ajudar?')}
+                className="bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-2xl p-8 border-4 border-yellow-400 hover:border-yellow-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-yellow-500/50 text-center group"
+              >
+                <Smile className="h-16 w-16 text-white mx-auto mb-6 group-hover:scale-110 transition-transform" />
+                <h3 className="text-2xl font-bold text-blue-700 mb-4">SÍNDROME DE DOWN</h3>
+                <p className="text-yellow-100 mb-4">
+                  Suporte personalizado e orientação para desenvolvimento
+                </p>
+                <div className="text-white text-sm">
+                  ✓ Desenvolvimento cognitivo<br/>
+                  ✓ Suporte educacional<br/>
+                  ✓ Orientação para famílias
+                </div>
+              </button>
+
+              {/* Ansiedade */}
+              <button 
+                onClick={() => openSpecialistAssistant('anxiety', 'Olá! Preciso de ferramentas para gerenciamento de ansiedade. Como vocês podem me ajudar?')}
+                className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-green-500/50 text-center group"
+              >
+                <Heart className="h-16 w-16 text-white mx-auto mb-6 group-hover:scale-110 transition-transform" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">ANSIEDADE</h3>
+                <p className="text-green-100 mb-4">
+                  Ferramentas para gerenciamento emocional e bem-estar
+                </p>
+                <div className="text-white text-sm">
+                  ✓ Técnicas de relaxamento<br/>
+                  ✓ Gestão emocional<br/>
+                  ✓ Suporte contínuo
+                </div>
+              </button>
             </div>
 
             {/* Como Funciona */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50">
-                <Accessibility className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">1. AGENTE ESPECIALIZADO</h3>
-                <p className="text-white">
-                  Cada pessoa terá acesso à página se cadastrando ou não na página do EA, ele terá acesso ao agente que lhe compete, treinado especificamente para suporte de relacionamento com suas necessidades e condições.
-                </p>
-              </div>
+            <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-12 border-4 border-purple-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA O EA SOCIAL</h3>
+              
+              <div className="grid md:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">1</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">AGENTE ESPECIALIZADO</h4>
+                  <p className="text-white text-sm">
+                    Cada pessoa terá acesso a agentes treinados especificamente para suporte de relacionamento com suas necessidades e condições.
+                  </p>
+                </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
-                <Users2 className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">2. SUPORTE FAMILIAR</h3>
-                <p className="text-white">
-                  Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
-                </p>
-              </div>
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">2</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">SUPORTE FAMILIAR</h4>
+                  <p className="text-white text-sm">
+                    Familiares e cuidadores também poderão acessar agentes específicos para lidar com a situação e desenvolver ferramentas para melhor apoiar a pessoa assistida.
+                  </p>
+                </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
-                <Heart className="h-12 w-12 text-white mb-6" />
-                <h3 className="text-xl font-bold text-yellow-400 mb-4">3. ACOMPANHAMENTO PSICOLÓGICO</h3>
-                <p className="text-white">
-                  Um agente com perfil de psicólogos especializados para ajudar no relacionamento entre ambas as partes. Pode atender ambos e facilitar as relações, garantindo uma melhor qualidade de vida.
-                </p>
-              </div>
-            </div>
-
-            {/* Agentes Disponíveis */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              <button 
-                onClick={() => handleGPTClick('Agente Autismo', 'https://chatgpt.com/g/g-autismo-support')}
-                className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50 group"
-              >
-                <Brain className="h-8 w-8 text-white mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">AUTISMO</h4>
-                <p className="text-blue-100 text-sm">Suporte especializado para pessoas no espectro autista</p>
-                <div className="mt-4 text-xs text-blue-200">Acessar agente →</div>
-              </button>
-
-              <button 
-                onClick={() => handleGPTClick('Agente Síndrome de Down', 'https://chatgpt.com/g/g-down-syndrome-support')}
-                className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl p-6 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50 group"
-              >
-                <Heart className="h-8 w-8 text-white mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">SÍNDROME DE DOWN</h4>
-                <p className="text-pink-100 text-sm">Acompanhamento e orientação personalizada</p>
-                <div className="mt-4 text-xs text-pink-200">Acessar agente →</div>
-              </button>
-
-              <button 
-                onClick={() => handleGPTClick('Agente Ansiedade', 'https://chatgpt.com/g/g-anxiety-support')}
-                className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50 group"
-              >
-                <Shield className="h-8 w-8 text-white mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">ANSIEDADE</h4>
-                <p className="text-orange-100 text-sm">Apoio especializado para transtornos de ansiedade</p>
-                <div className="mt-4 text-xs text-orange-200">Acessar agente →</div>
-              </button>
-
-              <button 
-                onClick={() => handleGPTClick('Agente Cuidadores', 'https://chatgpt.com/g/g-caregivers-support')}
-                className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50 group"
-              >
-                <Users2 className="h-8 w-8 text-white mb-4 group-hover:scale-110 transition-transform" />
-                <h4 className="text-lg font-bold text-yellow-400 mb-2">CUIDADORES</h4>
-                <p className="text-green-100 text-sm">Suporte emocional para cuidadores</p>
-                <div className="mt-4 text-xs text-green-200">Acessar agente →</div>
-              </button>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl p-8 border-4 border-purple-400 max-w-2xl mx-auto shadow-2xl">
-                <Heart className="h-16 w-16 text-white mx-auto mb-6" />
-                <h3 className="text-2xl font-bold text-yellow-400 mb-4">ACESSO GRATUITO</h3>
-                <p className="text-white mb-6">
-                  Todos os agentes do EA Social são <strong>100% gratuitos</strong>. Este é nosso compromisso com a inclusão e bem-estar social.
-                </p>
-                <a 
-                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EA Social - Projeto de Inclusão.`}
-                  onClick={() => handleContactClick('whatsapp_ea_social')}
-                  className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  SABER MAIS SOBRE EA SOCIAL
-                </a>
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">3</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO PSICOLÓGICO</h4>
+                  <p className="text-white text-sm">
+                    Um agente com perfil de psicólogo especializado para ajudar no relacionamento entre ambas as partes, facilitando as relações e garantindo melhor qualidade de vida.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -356,7 +382,7 @@ function App() {
                 </div>
 
                 <button 
-                  onClick={() => handleGPTClick('IA Automação - Nível 2', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  onClick={() => openSpecialistAssistant('automation', 'Olá! Tenho interesse no Nível 2 - Integrado de automação IA. Podem me dar mais detalhes sobre este plano?')}
                   className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER INTEGRADO
@@ -410,7 +436,7 @@ function App() {
                 </div>
 
                 <button 
-                  onClick={() => handleGPTClick('IA Automação - Nível 3', 'https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3')}
+                  onClick={() => openSpecialistAssistant('automation', 'Olá! Tenho interesse no Nível 3 - Avançado de automação IA. Podem me explicar todos os benefícios deste plano premium?')}
                   className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 shadow-lg"
                 >
                   ESCOLHER AVANÇADO
@@ -584,7 +610,7 @@ function App() {
 
             <div className="text-center mt-12">
               <button 
-                onClick={() => handleGPTClick('Contabilidade', 'https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil')}
+                onClick={() => openSpecialistAssistant('accounting', 'Olá! Gostaria de uma proposta completa dos serviços contábeis. Podem me apresentar as opções disponíveis para minha empresa?')}
                 className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 SOLICITAR PROPOSTA CONTÁBIL
@@ -657,7 +683,7 @@ function App() {
 
             <div className="text-center mt-12">
               <button 
-                onClick={() => handleGPTClick('Consultoria', 'https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial')}
+                onClick={() => openSpecialistAssistant('consulting', 'Olá! Preciso de consultoria empresarial para minha empresa. Podem me explicar como vocês podem ajudar com gestão e estratégia?')}
                 className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 AGENDAR CONSULTORIA
@@ -732,7 +758,7 @@ function App() {
                   Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
                 </p>
                 <button 
-                  onClick={() => handleGPTClick('Educação Pró', 'https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro')}
+                  onClick={() => openSpecialistAssistant('education', 'Olá! Tenho interesse nos cursos e treinamentos profissionais. Quais são as opções disponíveis e como funciona a certificação?')}
                   className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   VER CURSOS DISPONÍVEIS
@@ -766,7 +792,7 @@ function App() {
                   <div className="text-red-100">Setup + R$ 50 por manutenção</div>
                 </div>
                 <button 
-                  onClick={() => handleGPTClick('IA Personalizada', 'https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal')}
+                  onClick={() => openSpecialistAssistant('ai-personal', 'Olá! Gostaria de criar agentes de IA personalizados. Como funciona o processo de configuração e quais são as possibilidades?')}
                   className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 shadow-lg"
                 >
                   PERSONALIZAR AGENTE
