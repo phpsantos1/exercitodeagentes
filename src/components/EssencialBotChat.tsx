@@ -22,45 +22,45 @@ const EssencialBotChat: React.FC = () => {
 
   const gptLinks = [
     {
-      name: "EA EssencialBot Concierge",
-      description: "Atendimento geral que direciona para especialistas específicos",
-      url: "https://chatgpt.com/g/g-68570ffa-4eac-8191-960f-0475b576fb77-ea-essencialbot-concierge",
+      name: "Atendente Geral",
+      description: "Atendimento geral e direcionamento para especialistas",
+      url: "https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      name: "EA Triagem Contábil",
+      name: "Contabilidade",
       description: "Especialista em contabilidade e questões fiscais",
-      url: "https://chatgpt.com/g/g-68571184-fa60-8191-87a1-c1a4c459c153-ea-triagem-contabil",
+      url: "https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil",
       color: "from-green-500 to-emerald-500"
     },
     {
-      name: "EA Triagem Consultoria Empresarial",
+      name: "Consultoria Empresarial",
       description: "Consultoria empresarial e estratégica",
-      url: "https://chatgpt.com/g/g-685713a0-a450-8191-81b5-9fee416ebf2f-ea-triagem-consultoria-empresarial",
+      url: "https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial",
       color: "from-orange-500 to-red-500"
     },
     {
-      name: "EA Triagem Educação Pro",
+      name: "Educação Pro",
       description: "Cursos e capacitação profissional",
-      url: "https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro",
+      url: "https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro",
       color: "from-purple-500 to-indigo-500"
     },
     {
-      name: "EA Triagem IA - Planos 2 e 3",
+      name: "IA Planos Intermediário e Avançado",
       description: "Especialista em planos Intermediário e Avançado de IA",
-      url: "https://chatgpt.com/g/g-685716af-22f8-8191-8330-545239763a46-ea-triagem-de-ia-planos-2-e-3",
+      url: "https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3",
       color: "from-violet-500 to-purple-500"
     },
     {
-      name: "EA Triagem IA Personal",
+      name: "IA Personal",
       description: "Atendimento personalizado para soluções de IA customizadas",
-      url: "https://chatgpt.com/g/g-685717cd-0c74-8191-9dfa-f0d8654ef085-ea-triagem-ia-personal",
+      url: "https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal",
       color: "from-pink-500 to-rose-500"
     },
     {
       name: "EDA SOCIAL Bot",
       description: "Projeto de inclusão digital e apoio social",
-      url: "https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot",
+      url: "https://www.edasocial.org",
       color: "from-emerald-500 to-teal-500"
     }
   ];
