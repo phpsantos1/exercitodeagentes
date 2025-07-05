@@ -46,10 +46,22 @@ const EssencialBotChat: React.FC = () => {
       color: "from-purple-500 to-indigo-500"
     },
     {
+      name: "EA Triagem IA - Planos 2 e 3",
+      description: "Especialista em planos Intermediário e Avançado de IA",
+      url: "https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3",
+      color: "from-violet-500 to-purple-500"
+    },
+    {
+      name: "EA Triagem IA Personal",
+      description: "Atendimento personalizado para soluções de IA customizadas",
+      url: "https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal",
+      color: "from-pink-500 to-rose-500"
+    },
+    {
       name: "EDA SOCIAL Bot",
       description: "Projeto de inclusão digital e apoio social",
       url: "https://chatgpt.com/g/g-eda-social-bot",
-      color: "from-pink-500 to-purple-500"
+      color: "from-emerald-500 to-teal-500"
     }
   ];
 
