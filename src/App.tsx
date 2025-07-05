@@ -562,7 +562,9 @@ const App: React.FC = () => {
 }b-3">Planejamento Estratégico</h3>
                     <p className="text-gray-600">Definição de metas, análise de mercado e criação de roadmaps para crescimento sustentável.</p>
                   </div>
-                </div>
+
+  )
+}                </div>
 
                 <div className="flex items-start space-x-4">
                   <div className="p-3 bg-rose-100 rounded-2xl">
