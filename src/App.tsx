@@ -910,7 +910,7 @@ function App() {
                     ACESSAR AGENTES GRATUITOS
                   </a>
                   <a 
-                    href={`mailto:${config.EMAIL_CONTACT}?subject=EA Social - Projeto de Inclusão`}
+                    href="mailto:contato@edasocial.org"
                     onClick={() => handleContactClick('email_social')}
                     className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105"
                   >
