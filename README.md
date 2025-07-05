@@ -1,6 +1,6 @@
 # Exército de Agentes - Website
 
-Site oficial do Exército de Agentes com EssencialBot - Automação Inteligente para empresas e EDA Social - Projeto de Inclusão Digital.
+Site oficial do Exército de Agentes com EssencialBot - Automação Inteligente para empresas e EDA SOCIAL - Projeto de Inclusão Digital.
 
 ## 🚀 Deploy Automático
 
@@ -62,7 +62,7 @@ npm run build
 
 ## 🔧 Integrações
 
-- **EDA Social**: www.edasocial.org | contato@edasocial.org
+- **EDA SOCIAL**: www.edasocial.org | contato@edasocial.org
 - **Google Analytics**: Configurar ID no arquivo de ambiente
 - **Meta Pixel**: Configurar ID no arquivo de ambiente  
 - **Webhooks**: Make.com/Zapier para formulários

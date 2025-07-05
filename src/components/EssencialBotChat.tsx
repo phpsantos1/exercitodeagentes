@@ -269,22 +269,22 @@ const EssencialBotChat: React.FC = () => {
     const { hasShownServices, hasAskedForInfo, lastTopic, interactionCount } = conversationState;
 
     // EA Social
-    if (lowerInput.includes('eda social') || lowerInput.includes('ea social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
+    if (lowerInput.includes('eda social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
       setCurrentFlow('interested');
-      setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'eda-social' }));
+      setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'eda_social' }));
       addBotMessage(
-        "🌟 **EDA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\n🌐 **Site oficial:** www.edasocial.org\n📧 **Contato:** contato@edasocial.org\n\nEste é nosso compromisso social com a inclusão! 💝",
+        "🌟 **EDA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n🦽 **Mobilidade Reduzida** - Orientação sobre acessibilidade\n💔 **Luto** - Apoio emocional especializado\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\n🌐 **Site oficial:** www.edasocial.org\n📧 **Contato:** contato@edasocial.org\n\nEste é nosso compromisso social com a inclusão! 💝",
         ["Como acessar os agentes", "Quero ajudar o projeto", "Sou familiar/cuidador", "Conhecer outros serviços"]
       );
     }
     // Respostas específicas para EDA Social
-    else if (lowerInput.includes('como acessar') && lastTopic === 'eda-social') {
+    else if (lowerInput.includes('como acessar') && lastTopic === 'eda_social') {
       addBotMessage(
         "🚀 **ACESSO AOS AGENTES EDA SOCIAL:**\n\n1️⃣ **Acesse:** www.edasocial.org\n2️⃣ **Escolha seu agente** especializado\n3️⃣ **Cadastro gratuito** em 2 minutos\n4️⃣ **Comece a conversar** imediatamente\n\n✅ **100% GRATUITO** - Sem taxas, sem pegadinhas\n✅ **24/7 DISPONÍVEL** - Agentes sempre online\n✅ **PRIVACIDADE TOTAL** - Suas conversas são protegidas\n\nPrecisa de ajuda com o cadastro?",
         ["Sim, me ajude com cadastro", "Quero falar com humano", "Conhecer automação IA"]
       );
     }
-    else if (lowerInput.includes('quero ajudar') && lastTopic === 'eda-social') {
+    else if (lowerInput.includes('quero ajudar') && lastTopic === 'eda_social') {
       addBotMessage(
         "💝 **COMO VOCÊ PODE AJUDAR O EDA SOCIAL:**\n\n🎯 **FORMAS DE CONTRIBUIR:**\n\n💰 **Doações** - Qualquer valor ajuda a manter os agentes\n📢 **Divulgação** - Compartilhe com quem precisa\n🤝 **Voluntariado** - Ajude na moderação e suporte\n💻 **Desenvolvimento** - Contribua com código\n\n📧 **Contato:** contato@edasocial.org\n📱 **WhatsApp:** (11) 91175-7113\n\nQual forma de ajuda mais combina com você?",
         ["Quero fazer doação", "Posso ser voluntário", "Divulgar nas redes", "Conhecer automação IA"]

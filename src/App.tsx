@@ -903,15 +903,15 @@ function App() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
-                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EA Social - Projeto de Inclusão.`}
-                    onClick={() => handleContactClick('whatsapp_social')}
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EDA Social - Projeto de Inclusão.`}
+                    onClick={() => handleContactClick('whatsapp_eda_social')}
                     className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105"
                   >
                     CONHECER EA SOCIAL
                   </a>
                   <a 
                     href="mailto:contato@edasocial.org"
-                    onClick={() => handleContactClick('email_social')}
+                    onClick={() => handleContactClick('eda_social_email')}
                     className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105"
                   >
                     QUERO AJUDAR O PROJETO

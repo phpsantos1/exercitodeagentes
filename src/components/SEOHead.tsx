@@ -10,9 +10,9 @@ interface SEOHeadProps {
 }
 
 const SEOHead: React.FC<SEOHeadProps> = ({
-  title = "Exército de Agentes - Automação Inteligente com EssencialBot | EDA Social",
-  description = "Transforme seu negócio com o EssencialBot - IA avançada, automação inteligente, contabilidade smart e consultoria especializada. Conheça também o EDA Social - projeto de inclusão digital. Exército de Agentes - A revolução digital para sua empresa.",
-  keywords = "EssencialBot, automação, inteligência artificial, IA, contabilidade, consultoria empresarial, agentes IA, chatbot, transformação digital, Exército de Agentes, EDA Social, inclusão digital, autismo, síndrome de down",
+  title = "Exército de Agentes - Automação Inteligente com EssencialBot | EDA SOCIAL",
+  description = "Transforme seu negócio com o EssencialBot - IA avançada, automação inteligente, contabilidade smart e consultoria especializada. Conheça também o EDA SOCIAL - projeto de inclusão digital. Exército de Agentes - A revolução digital para sua empresa.",
+  keywords = "EssencialBot, automação, inteligência artificial, IA, contabilidade, consultoria empresarial, agentes IA, chatbot, transformação digital, Exército de Agentes, EDA SOCIAL, inclusão digital, autismo, síndrome de down",
   image = "https://www.exercitodeagentes.com.br/og-image.jpg",
   url = "https://www.exercitodeagentes.com.br"
 }) => {
