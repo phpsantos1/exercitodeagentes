@@ -847,11 +847,11 @@ const App: React.FC = () => {
                 </p>
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                    <span className="text-white font-bold">MR</span>
+                    <span className="text-white font-bold">PJ</span>
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900">Maria Rodrigues</div>
-                    <div className="text-gray-500 text-sm">CEO, TechSolutions</div>
+                    <div className="font-semibold text-gray-900">Sr. Paulo José</div>
+                    <div className="text-gray-500 text-sm">Essencial Hortifruti</div>
                   </div>
                 </div>
               </div>
