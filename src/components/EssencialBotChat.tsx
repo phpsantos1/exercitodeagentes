@@ -138,7 +138,7 @@ const EssencialBotChat: React.FC = () => {
             "Serviços contábeis",
             "Consultoria empresarial",
             "Treinamentos e cursos",
-            "EA Social - Projeto de Inclusão"
+            "EDA Social - Projeto de Inclusão"
           ]
         );
       }, 500);
@@ -247,10 +247,10 @@ const EssencialBotChat: React.FC = () => {
     const lowerInput = input.toLowerCase();
 
     // EA Social
-    if (lowerInput.includes('ea social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
+    if (lowerInput.includes('eda social') || lowerInput.includes('ea social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
       setCurrentFlow('interested');
       addBotMessage(
-        "🌟 **EA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\nEste é nosso compromisso social com a inclusão! 💝",
+        "🌟 **EDA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\n🌐 **Site oficial:** www.edasocial.org\n📧 **Contato:** contato@edasocial.org\n\nEste é nosso compromisso social com a inclusão! 💝",
         ["Como acessar os agentes", "Quero ajudar o projeto", "Sou familiar/cuidador", "Voltar ao menu principal"]
       );
     }
@@ -302,7 +302,7 @@ const EssencialBotChat: React.FC = () => {
       } else {
         addBotMessage(
           "Vou te apresentar nossas principais soluções:\n\n🤖 **Automação IA**: EssencialBot personalizado para seu negócio\n📊 **Escritório Contábil**: Serviços completos para empresas\n💼 **Consultoria**: Gestão, recuperação judicial, crédito\n🎓 **Treinamentos**: Contabilidade, controladoria e IA\n🌟 **EA Social**: Projeto de inclusão com agentes especializados\n\nQual área desperta mais seu interesse?",
-          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "EA Social"]
+          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "EDA Social"]
         );
       }
       
@@ -334,8 +334,8 @@ const EssencialBotChat: React.FC = () => {
     } else {
       // Resposta genérica inteligente
       addBotMessage(
-        "Entendo! Como EssencialBot, estou aqui para esclarecer qualquer dúvida sobre nossas soluções de IA, contabilidade, consultoria e nosso projeto social EA Social.\n\nPosso ajudar você com informações específicas sobre:\n- Preços e planos\n- Funcionalidades técnicas\n- Casos de sucesso\n- Demonstrações práticas\n- Projeto de inclusão social\n\nO que gostaria de saber?",
-        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo", "EA Social"]
+        "Entendo! Como EssencialBot, estou aqui para esclarecer qualquer dúvida sobre nossas soluções de IA, contabilidade, consultoria e nosso projeto social EDA Social.\n\nPosso ajudar você com informações específicas sobre:\n- Preços e planos\n- Funcionalidades técnicas\n- Casos de sucesso\n- Demonstrações práticas\n- Projeto de inclusão social\n\nO que gostaria de saber?",
+        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo", "EDA Social"]
       );
     }
   };
@@ -621,7 +621,7 @@ const EssencialBotChat: React.FC = () => {
                   <option value="Serviços Contábeis">Serviços Contábeis</option>
                   <option value="Consultoria Empresarial">Consultoria Empresarial</option>
                   <option value="Treinamentos">Treinamentos e Cursos</option>
-                  <option value="EA Social">EA Social - Projeto de Inclusão</option>
+                  <option value="EDA Social">EDA Social - Projeto de Inclusão</option>
                 </select>
               </div>
 
@@ -772,7 +772,7 @@ const EssencialBotChat: React.FC = () => {
                   <option value="Serviços Contábeis">Serviços Contábeis</option>
                   <option value="Consultoria Empresarial">Consultoria Empresarial</option>
                   <option value="Treinamentos">Treinamentos e Cursos</option>
-                  <option value="EA Social">EA Social - Projeto de Inclusão</option>
+                  <option value="EDA Social">EDA Social - Projeto de Inclusão</option>
                 </select>
               </div>
 
