@@ -285,6 +285,10 @@ const App: React.FC = () => {
                       <CheckCircle className="h-5 w-5 text-purple-200" />
                       <span>Multi-plataformas</span>
                     </div>
+                    <div className="flex items-center space-x-3">
+                      <CheckCircle className="h-5 w-5 text-purple-200" />
+                      <span>Site personalizado</span>
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold mb-2">R$ 797</div>
