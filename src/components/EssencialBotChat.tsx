@@ -60,6 +60,17 @@ const EssencialBotChat: React.FC = () => {
   const [currentFlow, setCurrentFlow] = useState<'initial' | 'interested' | 'ready-to-buy'>('initial');
   const [showPreCadastro, setShowPreCadastro] = useState(false);
   const [showCadastroFinal, setShowCadastroFinal] = useState(false);
+  const [conversationState, setConversationState] = useState<{
+    hasShownServices: boolean;
+    hasAskedForInfo: boolean;
+    lastTopic: string;
+    interactionCount: number;
+  }>({
+    hasShownServices: false,
+    hasAskedForInfo: false,
+    lastTopic: '',
+    interactionCount: 0
+  });
   const [isListening, setIsListening] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
@@ -225,6 +236,11 @@ const EssencialBotChat: React.FC = () => {
   const handleOptionClick = (option: string) => {
     addUserMessage(option);
     setInputValue('');
+    setConversationState(prev => ({
+      ...prev,
+      interactionCount: prev.interactionCount + 1,
+      lastTopic: option
+    }));
     
     simulateTyping(() => {
       processUserInput(option);
@@ -236,6 +252,11 @@ const EssencialBotChat: React.FC = () => {
       addUserMessage(inputValue, isListening);
       const userInput = inputValue;
       setInputValue('');
+      setConversationState(prev => ({
+        ...prev,
+        interactionCount: prev.interactionCount + 1,
+        lastTopic: userInput
+      }));
       
       simulateTyping(() => {
         processUserInput(userInput);
@@ -245,98 +266,167 @@ const EssencialBotChat: React.FC = () => {
 
   const processUserInput = (input: string) => {
     const lowerInput = input.toLowerCase();
+    const { hasShownServices, hasAskedForInfo, lastTopic, interactionCount } = conversationState;
 
     // EA Social
     if (lowerInput.includes('eda social') || lowerInput.includes('ea social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
       setCurrentFlow('interested');
+      setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'eda-social' }));
       addBotMessage(
         "🌟 **EDA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\n🌐 **Site oficial:** www.edasocial.org\n📧 **Contato:** contato@edasocial.org\n\nEste é nosso compromisso social com a inclusão! 💝",
-        ["Como acessar os agentes", "Quero ajudar o projeto", "Sou familiar/cuidador", "Voltar ao menu principal"]
+        ["Como acessar os agentes", "Quero ajudar o projeto", "Sou familiar/cuidador", "Conhecer outros serviços"]
+      );
+    }
+    // Respostas específicas para EDA Social
+    else if (lowerInput.includes('como acessar') && lastTopic === 'eda-social') {
+      addBotMessage(
+        "🚀 **ACESSO AOS AGENTES EDA SOCIAL:**\n\n1️⃣ **Acesse:** www.edasocial.org\n2️⃣ **Escolha seu agente** especializado\n3️⃣ **Cadastro gratuito** em 2 minutos\n4️⃣ **Comece a conversar** imediatamente\n\n✅ **100% GRATUITO** - Sem taxas, sem pegadinhas\n✅ **24/7 DISPONÍVEL** - Agentes sempre online\n✅ **PRIVACIDADE TOTAL** - Suas conversas são protegidas\n\nPrecisa de ajuda com o cadastro?",
+        ["Sim, me ajude com cadastro", "Quero falar com humano", "Conhecer automação IA"]
+      );
+    }
+    else if (lowerInput.includes('quero ajudar') && lastTopic === 'eda-social') {
+      addBotMessage(
+        "💝 **COMO VOCÊ PODE AJUDAR O EDA SOCIAL:**\n\n🎯 **FORMAS DE CONTRIBUIR:**\n\n💰 **Doações** - Qualquer valor ajuda a manter os agentes\n📢 **Divulgação** - Compartilhe com quem precisa\n🤝 **Voluntariado** - Ajude na moderação e suporte\n💻 **Desenvolvimento** - Contribua com código\n\n📧 **Contato:** contato@edasocial.org\n📱 **WhatsApp:** (11) 91175-7113\n\nQual forma de ajuda mais combina com você?",
+        ["Quero fazer doação", "Posso ser voluntário", "Divulgar nas redes", "Conhecer automação IA"]
+      );
+    }
+    else if (lowerInput.includes('familiar') || lowerInput.includes('cuidador')) {
+      addBotMessage(
+        "👨‍👩‍👧‍👦 **SUPORTE PARA FAMÍLIAS E CUIDADORES:**\n\n🫂 **AGENTE FAMÍLIA** - Especializado em:\n- Orientação sobre cuidados diários\n- Apoio emocional para cuidadores\n- Dicas de comunicação efetiva\n- Rede de apoio e recursos\n\n💪 **GRUPOS DE APOIO** - Conecte-se com outras famílias\n📚 **MATERIAIS EDUCATIVOS** - Guias práticos gratuitos\n\n🌐 **Acesse:** www.edasocial.org/familias\n\nGostaria de se conectar agora com o Agente Família?",
+        ["Sim, conectar agora", "Quero entrar no grupo", "Preciso de orientação específica", "Voltar ao menu"]
       );
     }
     // Detectar interesse em contratar
     else if (lowerInput.includes('quero contratar') || 
         lowerInput.includes('fechar negócio') || 
         lowerInput.includes('vamos começar') ||
+        lowerInput.includes('vamos fechar') ||
         lowerInput.includes('aceito') ||
         lowerInput.includes('concordo')) {
       setCurrentFlow('ready-to-buy');
+      setConversationState(prev => ({ ...prev, lastTopic: 'contratacao' }));
       addBotMessage(
-        "Excelente! Vou precisar de algumas informações para finalizar sua contratação. Vou abrir nosso formulário completo para você.",
+        "🎉 **EXCELENTE DECISÃO!**\n\nVou abrir nosso formulário de contratação. São apenas alguns dados para personalizar seu EssencialBot e iniciar a implementação.\n\n⚡ **PRÓXIMOS PASSOS:**\n1. Preenchimento do formulário (2 min)\n2. Confirmação por WhatsApp (imediato)\n3. Onboarding agendado (24h)\n4. EssencialBot funcionando (48h)\n\nVamos começar?",
         [],
         'cadastro-final'
       );
       setShowCadastroFinal(true);
     }
-    // Detectar interesse moderado
-    else if (lowerInput.includes('interessante') || 
-        lowerInput.includes('gostaria de saber mais') ||
-        lowerInput.includes('me interessou') ||
-        lowerInput.includes('quero mais informações') ||
-        currentFlow === 'initial') {
-      
-      if (lowerInput.includes('automação') || lowerInput.includes('quero conhecer') || lowerInput.includes('preciso de automação')) {
+    // Automação IA
+    else if (lowerInput.includes('automação') || lowerInput.includes('quero conhecer') || lowerInput.includes('preciso de automação')) {
         setCurrentFlow('interested');
+        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'automacao' }));
         addBotMessage(
-          "Perfeito! Nossa automação IA com EssencialBot é revolucionária. Oferecemos:\n\n🔹 **Nível 2 - Integrado** (R$ 397 setup + R$ 397/mês)\n- EssencialBot personalizado\n- Integração Google Sheets\n- Automação Make/Zapier\n- Relatórios automáticos\n\n🔹 **Nível 3 - Avançado** (R$ 497 setup + R$ 497/mês)\n- Machine Learning avançado\n- Análise preditiva\n- Multi-plataformas\n- Consultoria incluída\n\nQual nível desperta mais seu interesse?",
-          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero mais detalhes", "Gostaria de uma proposta"]
+          "🤖 **AUTOMAÇÃO IA COM ESSENCIALBOT**\n\nTransforme seu negócio com nossa IA personalizada:\n\n⚡ **NÍVEL 2 - INTEGRADO** (R$ 397 setup + R$ 397/mês)\n✅ EssencialBot personalizado\n✅ Integração Google Sheets\n✅ Automação Make/Zapier\n✅ Relatórios automáticos\n\n🚀 **NÍVEL 3 - AVANÇADO** (R$ 497 setup + R$ 497/mês)\n✅ Tudo do Nível 2 +\n✅ Machine Learning avançado\n✅ Análise preditiva\n✅ Multi-plataformas\n✅ Site com link personalizado\n\nQual nível faz mais sentido para seu negócio?",
+          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero ver demonstração", "Preciso de consultoria"]
         );
-      } else if (lowerInput.includes('contábil') || lowerInput.includes('contabilidade')) {
+    }
+    // Serviços Contábeis
+    else if (lowerInput.includes('contábil') || lowerInput.includes('contabilidade') || lowerInput.includes('serviços contábeis')) {
         setCurrentFlow('interested');
+        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'contabilidade' }));
         addBotMessage(
-          "Somos um escritório de contabilidade especializado em empresas! 📊\n\n🏢 **Nossos Serviços Completos:**\n- Abertura de empresas\n- Contabilidade mensal\n- Obrigações fiscais (SPED, ECF, DEFIS)\n- Departamento pessoal\n- Planejamento tributário\n- Relatórios gerenciais\n- Compliance e auditoria\n\n🤖 **Diferencial**: Tudo automatizado com EssencialBot para maior agilidade e precisão!\n\nQual serviço contábil mais interessa sua empresa?",
-          ["Abertura de empresa", "Contabilidade mensal", "Planejamento tributário", "Quero uma proposta"]
+          "📊 **ESCRITÓRIO CONTÁBIL COMPLETO**\n\nSomos especialistas em empresas de todos os portes:\n\n🏢 **SERVIÇOS PRINCIPAIS:**\n✅ Abertura de empresas (MEI, LTDA, SA)\n✅ Contabilidade mensal completa\n✅ Obrigações fiscais (SPED, ECF, DEFIS)\n✅ Departamento pessoal\n✅ Planejamento tributário\n✅ Relatórios gerenciais\n\n🤖 **DIFERENCIAL:** Tudo automatizado com EssencialBot!\n\nQual necessidade contábil posso ajudar primeiro?",
+          ["Abrir minha empresa", "Trocar de contador", "Planejamento tributário", "Quero orçamento completo"]
         );
-      } else if (lowerInput.includes('consultoria')) {
+    }
+    // Consultoria
+    else if (lowerInput.includes('consultoria')) {
         setCurrentFlow('interested');
+        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'consultoria' }));
         addBotMessage(
-          "Nossa consultoria empresarial é completa e vai além da IA! 💼\n\n🎯 **Áreas de Atuação:**\n- Gestão empresarial e planejamento estratégico\n- Fluxo de caixa e controle financeiro\n- Recuperação judicial e reestruturação\n- Busca de crédito em factorings\n- Fusões e aquisições\n- Consultoria com IA e automação\n\n✅ Atendemos desde empresas em crescimento até casos críticos de recuperação.\n\nQual área da consultoria mais se adequa à sua necessidade?",
-          ["Gestão empresarial", "Fluxo de caixa", "Recuperação judicial", "Busca de crédito", "Consultoria com IA"]
+          "💼 **CONSULTORIA EMPRESARIAL ESTRATÉGICA**\n\nSoluções completas para empresas em qualquer situação:\n\n🎯 **ESPECIALIDADES:**\n✅ Gestão empresarial e planejamento estratégico\n✅ Fluxo de caixa e controle financeiro\n✅ Recuperação judicial e reestruturação\n✅ Busca de crédito em factorings\n✅ Fusões e aquisições\n✅ Consultoria com IA e automação\n\n🚨 **CASOS CRÍTICOS:** Especialistas em recuperação empresarial\n\nQual desafio empresarial posso ajudar a resolver?",
+          ["Empresa em crise", "Melhorar gestão", "Buscar crédito", "Planejamento estratégico"]
         );
-      } else if (lowerInput.includes('treinamento') || lowerInput.includes('curso')) {
+    }
+    // Treinamentos
+    else if (lowerInput.includes('treinamento') || lowerInput.includes('curso') || lowerInput.includes('capacitação')) {
         setCurrentFlow('interested');
+        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'treinamentos' }));
         addBotMessage(
-          "Nossos treinamentos são focados em áreas contábeis, financeiras e tecnológicas! 🎓\n\n📚 **Áreas de Capacitação:**\n\n🤖 **IA Empresarial**: Fundamentos de IA, Chatbots, Machine Learning\n📊 **Contabilidade Digital**: Contabilidade 4.0, SPED, Análise de Balanços\n🎯 **Controladoria**: Controles Internos, Auditoria, Compliance\n💰 **Gestão Financeira**: Fluxo de Caixa, Análise Financeira, Orçamento\n\nTodos com certificação e projetos práticos. Qual área mais interessa sua equipe?",
-          ["IA Empresarial", "Contabilidade Digital", "Controladoria", "Gestão Financeira", "Todos os cursos"]
+          "🎓 **TREINAMENTOS ESPECIALIZADOS**\n\nCapacitação profissional em áreas estratégicas:\n\n📚 **CURSOS DISPONÍVEIS:**\n\n🤖 **IA Empresarial** - Fundamentos, Chatbots, Machine Learning\n📊 **Contabilidade Digital** - Contabilidade 4.0, SPED, Análise\n🎯 **Controladoria** - Controles Internos, Auditoria, Compliance\n💰 **Gestão Financeira** - Fluxo de Caixa, Análise, Orçamento\n\n✅ **Certificação inclusa** + **Projetos práticos**\n\nQual capacitação sua equipe mais precisa?",
+          ["IA para empresas", "Contabilidade 4.0", "Controles internos", "Gestão financeira", "Pacote completo"]
+        );
+    }
+    // Respostas específicas para níveis de automação
+    else if (lowerInput.includes('nível 2') || lowerInput.includes('integrado')) {
+      addBotMessage(
+        "💎 **NÍVEL 2 - INTEGRADO - ESCOLHA INTELIGENTE!**\n\n✨ **O QUE VOCÊ RECEBE:**\n✅ EssencialBot 100% personalizado\n✅ Integração automática Google Sheets\n✅ Automações Make/Zapier ilimitadas\n✅ Relatórios automáticos diários\n✅ Suporte prioritário\n✅ Treinamento da equipe incluído\n\n💰 **Investimento:** R$ 397 setup + R$ 397/mês\n\n🎯 **Resolve 90% das necessidades de automação!**\n\nPronto para revolucionar seu atendimento?",
+        ["Sim, quero contratar!", "Quero ver demonstração", "Preciso de mais detalhes", "Comparar com Nível 3"]
+      );
+    }
+    else if (lowerInput.includes('nível 3') || lowerInput.includes('avançado')) {
+      addBotMessage(
+        "🚀 **NÍVEL 3 - AVANÇADO - SOLUÇÃO PREMIUM!**\n\n⚡ **TUDO DO NÍVEL 2 MAIS:**\n✅ Machine Learning avançado\n✅ Análise preditiva de vendas\n✅ Multi-plataformas (WhatsApp, Site, Instagram)\n✅ Site com link personalizado\n✅ API personalizada\n✅ Consultoria empresarial incluída\n✅ Relatórios de BI avançados\n\n💰 **Investimento:** R$ 497 setup + R$ 497/mês\n\n🏆 **Para empresas que querem liderar com IA!**\n\nVamos implementar a solução mais avançada?",
+        ["Vamos fechar negócio!", "Quero demonstração premium", "Comparar investimento", "Falar com especialista"]
+      );
+    }
+    // Demonstrações
+    else if (lowerInput.includes('demonstração') || lowerInput.includes('demo') || lowerInput.includes('ver funcionando')) {
+      addBotMessage(
+        "🎬 **DEMONSTRAÇÃO AO VIVO DO ESSENCIALBOT**\n\n📅 **AGENDE SUA DEMO PERSONALIZADA:**\n\n⏰ **Duração:** 30 minutos\n👨‍💻 **Formato:** Videochamada + tela compartilhada\n🎯 **Foco:** Seu negócio específico\n\n📋 **O QUE VOCÊ VAI VER:**\n✅ EssencialBot funcionando em tempo real\n✅ Integrações com suas ferramentas\n✅ Relatórios automáticos\n✅ ROI calculado para seu caso\n\n📱 **WhatsApp:** (11) 91175-7113\n📧 **E-mail:** sac@exercitodeagentes.com.br\n\nQuer agendar agora via WhatsApp?",
+        ["Sim, agendar agora", "Prefiro e-mail", "Quero mais informações", "Voltar aos planos"]
+      );
+    }
+    // Voltar ao menu ou conhecer outros serviços
+    else if (lowerInput.includes('voltar') || lowerInput.includes('menu') || lowerInput.includes('outros serviços') || lowerInput.includes('conhecer outros')) {
+      if (!hasShownServices) {
+        setConversationState(prev => ({ ...prev, hasShownServices: true }));
+        addBotMessage(
+          "🎯 **NOSSAS SOLUÇÕES COMPLETAS:**\n\n🤖 **Automação IA** - EssencialBot personalizado\n📊 **Escritório Contábil** - Serviços completos\n💼 **Consultoria** - Gestão e recuperação empresarial\n🎓 **Treinamentos** - Capacitação especializada\n🌟 **EDA Social** - Projeto de inclusão social\n\nQual solução faz mais sentido para você?",
+          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "EDA Social"]
         );
       } else {
         addBotMessage(
-          "Vou te apresentar nossas principais soluções:\n\n🤖 **Automação IA**: EssencialBot personalizado para seu negócio\n📊 **Escritório Contábil**: Serviços completos para empresas\n💼 **Consultoria**: Gestão, recuperação judicial, crédito\n🎓 **Treinamentos**: Contabilidade, controladoria e IA\n🌟 **EA Social**: Projeto de inclusão com agentes especializados\n\nQual área desperta mais seu interesse?",
-          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "EDA Social"]
+          "🤔 **POSSO AJUDAR COM MAIS ALGUMA COISA?**\n\nVejo que já conhece nossos serviços. Como posso direcionar melhor nossa conversa?\n\n💡 **OPÇÕES:**\n- Comparar soluções\n- Agendar demonstração\n- Falar com especialista\n- Solicitar proposta personalizada",
+          ["Comparar soluções", "Agendar demo", "Falar com humano", "Quero proposta"]
         );
       }
+    }
+    // Interesse em informações - só oferece pré-cadastro se ainda não ofereceu
+    else if ((lowerInput.includes('interessante') || 
+        lowerInput.includes('gostaria de saber mais') ||
+        lowerInput.includes('me interessou') ||
+        lowerInput.includes('quero mais informações')) && !hasAskedForInfo) {
       
-      // Após mostrar interesse, sugerir pré-cadastro
+      setConversationState(prev => ({ ...prev, hasAskedForInfo: true }));
+      
+      // Sugerir pré-cadastro após mostrar interesse
       setTimeout(() => {
         addBotMessage(
-          "Para personalizar melhor nossa conversa e enviar materiais específicos, posso coletar algumas informações básicas suas?",
-          ["Sim, pode coletar", "Prefiro continuar conversando", "Quero falar com um humano"]
+          "💡 **PERSONALIZAR ATENDIMENTO**\n\nPara enviar materiais específicos e personalizar nossa conversa, posso coletar algumas informações básicas?\n\n📋 **São apenas:**\n- Nome e contato\n- Área de interesse\n- Tipo de negócio\n\n⚡ **2 minutos** e você recebe conteúdo exclusivo!",
+          ["Sim, vamos lá!", "Prefiro continuar conversando", "Quero falar com humano"]
         );
-      }, 3000);
-      
-    } else if (lowerInput.includes('sim, pode coletar') || lowerInput.includes('pode coletar')) {
+      }, 2000);
+    }
+    // Aceitar pré-cadastro
+    else if (lowerInput.includes('sim, vamos lá') || lowerInput.includes('sim, pode coletar') || lowerInput.includes('pode coletar') || lowerInput.includes('vamos lá')) {
       addBotMessage(
-        "Perfeito! Vou abrir um formulário rápido para conhecê-lo melhor e personalizar nosso atendimento.",
+        "🎉 **PERFEITO!**\n\nVou abrir nosso formulário rápido. Com essas informações, posso:\n\n✅ Personalizar recomendações\n✅ Enviar materiais específicos\n✅ Conectar com especialista certo\n✅ Agilizar futuras conversas\n\nVamos começar?",
         [],
         'pre-cadastro'
       );
       setShowPreCadastro(true);
-    } else if (lowerInput.includes('nível 2') || lowerInput.includes('integrado')) {
+    }
+    // Falar com humano
+    else if (lowerInput.includes('falar com humano') || lowerInput.includes('atendente') || lowerInput.includes('pessoa')) {
       addBotMessage(
-        "Excelente escolha! O Nível 2 - Integrado é perfeito para empresas que querem:\n\n✅ EssencialBot personalizado para seu negócio\n✅ Integração automática com Google Sheets\n✅ Automações Make/Zapier\n✅ Relatórios automáticos\n✅ Suporte prioritário\n\n**Investimento: R$ 397 setup + R$ 397/mês**\n\nEste nível já resolve 80% das necessidades de automação. Gostaria de uma demonstração prática?",
-        ["Quero uma demo", "Vamos fechar negócio", "Preciso pensar"]
-      );
-    } else if (lowerInput.includes('nível 3') || lowerInput.includes('avançado')) {
-      addBotMessage(
-        "Perfeita escolha! O Nível 3 - Avançado é nossa solução premium:\n\n🚀 Tudo do Nível 2 MAIS:\n✅ EssencialBot com Machine Learning\n✅ Análise preditiva avançada\n✅ Multi-plataformas\n✅ Consultoria empresarial incluída\n✅ API personalizada\n\n**Investimento: R$ 497 setup + R$ 497/mês**\n\nÉ a solução completa para empresas que querem estar na vanguarda da IA. Pronto para começar?",
-        ["Sim, vamos começar!", "Quero uma proposta", "Preciso de mais detalhes"]
+        "👨‍💼 **FALAR COM NOSSA EQUIPE**\n\nClaro! Nossa equipe especializada está pronta para atender você:\n\n📱 **WhatsApp Direto:** (11) 91175-7113\n📧 **E-mail:** sac@exercitodeagentes.com.br\n\n⏰ **Horário de atendimento:**\nSegunda a Sexta: 8h às 18h\nSábado: 8h às 12h\n\n🚀 **Resposta em até 2 horas!**\n\nPrefere que eu transfira agora via WhatsApp?",
+        ["Sim, transferir agora", "Prefiro e-mail", "Continuar com EssencialBot", "Agendar ligação"]
       );
     } else {
-      // Resposta genérica inteligente
+      // Resposta inteligente baseada no contexto
+      if (interactionCount > 5 && !hasAskedForInfo) {
+        addBotMessage(
+          "🤖 **VEJO QUE ESTÁ EXPLORANDO BASTANTE!**\n\nQue tal conversarmos de forma mais direcionada? Posso:\n\n🎯 **Focar no que mais interessa** você\n📞 **Conectar com especialista** humano\n📋 **Coletar suas necessidades** específicas\n💬 **Agendar conversa** detalhada\n\nO que prefere?",
+          ["Focar em automação IA", "Falar com especialista", "Contar minha necessidade", "Agendar conversa"]
+        );
+      } else {
       addBotMessage(
-        "Entendo! Como EssencialBot, estou aqui para esclarecer qualquer dúvida sobre nossas soluções de IA, contabilidade, consultoria e nosso projeto social EDA Social.\n\nPosso ajudar você com informações específicas sobre:\n- Preços e planos\n- Funcionalidades técnicas\n- Casos de sucesso\n- Demonstrações práticas\n- Projeto de inclusão social\n\nO que gostaria de saber?",
-        ["Ver preços", "Como funciona", "Casos de sucesso", "Quero uma demo", "EDA Social"]
+          "🤖 **ENTENDI SUA MENSAGEM!**\n\nComo EssencialBot, posso ajudar com informações específicas sobre:\n\n💰 **Preços e investimentos**\n⚙️ **Como funcionam as soluções**\n📈 **Casos de sucesso reais**\n🎬 **Demonstrações práticas**\n🌟 **Projeto EDA Social**\n\nSobre o que gostaria de saber mais?",
+          ["Preços e planos", "Como funciona", "Casos de sucesso", "Ver demonstração", "EDA Social"]
       );
+      }
     }
   };
 

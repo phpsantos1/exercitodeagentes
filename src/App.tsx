@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { 
   Bot, 
@@ -29,37 +29,14 @@ import {
   MapIcon,
   Dumbbell,
   Instagram,
-  Heart,
-  ArrowLeft
+  Heart
 } from 'lucide-react';
 import SEOHead from './components/SEOHead';
 import EssencialBotChat from './components/EssencialBotChat';
-import EdaSocialInstitutional from './components/EdaSocialInstitutional';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
 import { config } from './config/environment';
 
-interface PreCadastroData {
-  nome: string;
-  email: string;
-  telefone: string;
-  empresa: string;
-  interesse: string;
-}
-
 function App() {
-  const [showPreCadastro, setShowPreCadastro] = useState(false);
-  const [showCadastroFinal, setShowCadastroFinal] = useState(false);
-  const [showAgentModal, setShowAgentModal] = useState(false);
-  const [showEdaSocial, setShowEdaSocial] = useState(false);
-  
-  const [preCadastroData, setPreCadastroData] = useState<PreCadastroData>({
-    nome: '',
-    email: '',
-    telefone: '',
-    empresa: '',
-    interesse: ''
-  });
-
   useEffect(() => {
     initializeAnalytics();
   }, []);
@@ -74,32 +51,6 @@ function App() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  if (showEdaSocial) {
-    return (
-      <HelmetProvider>
-        <div className="min-h-screen">
-          <SEOHead 
-            title="EDA SOCIAL - Agentes de Inclusão | Exército de Agentes"
-            description="Conheça o projeto social do Exército de Agentes: tecnologia inclusiva, agentes especializados e apoio para pessoas com deficiência, autismo, síndrome de Down e suas famílias."
-            keywords="EDA Social, inclusão digital, agentes de inclusão, autismo, síndrome de Down, tecnologia inclusiva, projeto social, acessibilidade"
-          />
-          
-          {/* Botão de Voltar */}
-          <button
-            onClick={() => setShowEdaSocial(false)}
-            className="fixed top-6 left-6 z-50 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all duration-300 flex items-center space-x-2"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            <span>Voltar</span>
-          </button>
-          
-          <EdaSocialInstitutional />
-          <EssencialBotChat />
-        </div>
-      </HelmetProvider>
-    );
-  }
 
   return (
     <HelmetProvider>
@@ -251,19 +202,15 @@ function App() {
               </a>
 
               {/* EA Social */}
-              <div className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group">
+              <a 
+                href="#social"
+                onClick={() => scrollToSection('social')}
+                className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
                 <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold text-yellow-400 mb-1">EA SOCIAL</h3>
-                  <span className="text-sm text-gray-400">Projeto de Inclusão</span>
-                </div>
-                <button 
-                  onClick={() => setShowEdaSocial(true)}
-                  className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                >
-                  CONHECER PROJETO
-                </button>
-              </div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
+                <p className="text-pink-100 text-sm">Projeto de inclusão com agentes especializados</p>
+              </a>
             </div>
           </div>
         </section>
@@ -869,10 +816,10 @@ function App() {
           <div className="container mx-auto px-6">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
-                EA SOCIAL - PROJETO DE INCLUSÃO
+                EDA SOCIAL - PROJETO DE INCLUSÃO
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down e ansiedade
+                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down e ansiedade. Acesse: <a href="https://www.edasocial.org" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-500 underline">www.edasocial.org</a>
               </p>
             </div>
 

@@ -37,16 +37,25 @@ const EdaSocialInstitutional: React.FC = () => {
           
           <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed">
             Onde a inovação encontra a humanidade. Transformamos vidas através da tecnologia inclusiva, 
-            criando pontes digitais para quem mais precisa de acolhimento e oportunidades.
+            criando pontes digitais para quem mais precisa de acolhimento e oportunidades.<br/>
+            <span className="text-lg text-cyan-300">🌐 www.edasocial.org | 📧 contato@edasocial.org</span>
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold text-white hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <a 
+              href="https://www.edasocial.org" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold text-white hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg inline-block text-center"
+            >
               Conhecer o Projeto
-            </button>
-            <button className="px-8 py-4 border-2 border-white/30 rounded-full font-semibold text-white hover:bg-white/10 transition-all duration-300">
+            </a>
+            <a 
+              href="mailto:contato@edasocial.org"
+              className="px-8 py-4 border-2 border-white/30 rounded-full font-semibold text-white hover:bg-white/10 transition-all duration-300 inline-block text-center"
+            >
               Como Ajudar
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -365,14 +374,22 @@ const EdaSocialInstitutional: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold text-white hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2">
+            <a 
+              href="mailto:contato@edasocial.org"
+              className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full font-semibold text-white hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
+            >
               <HandHeart className="h-5 w-5" />
               <span>Quero Ajudar</span>
-            </button>
-            <button className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full font-semibold text-white hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2">
+            </a>
+            <a 
+              href="https://www.edasocial.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full font-semibold text-white hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center justify-center space-x-2"
+            >
               <Users className="h-5 w-5" />
               <span>Preciso de Apoio</span>
-            </button>
+            </a>
           </div>
         </div>
       </section>
