@@ -36,6 +36,9 @@ import EssencialBotChat from './components/EssencialBotChat';
 import EdaSocialInstitutional from './components/EdaSocialInstitutional';
 import SEOHead from './components/SEOHead';
 import ContactModal from './components/ContactModal';
+import AdminLogin from './components/AdminLogin';
+import AdminPanel from './components/AdminPanel';
+import ContactModal from './components/ContactModal';
 import { config } from './config/environment';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
 
@@ -50,13 +53,56 @@ const App: React.FC = () => {
     isOpen: false,
     type: 'email'
   });
+  const [adminLogin, setAdminLogin] = React.useState(false);
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = React.useState(false);
+  const [contactModal, setContactModal] = React.useState<{
+    isOpen: boolean;
+    type: 'email' | 'whatsapp';
+    emailType?: string;
+    emailAddress?: string;
+  }>({
+    isOpen: false,
+    type: 'email'
+  });
 
   useEffect(() => {
     initializeAnalytics();
+    
+    // Verificar se admin está logado
+    const adminLoggedIn = localStorage.getItem('adminLoggedIn');
+    const loginTime = localStorage.getItem('adminLoginTime');
+    
+    if (adminLoggedIn && loginTime) {
+      const now = Date.now();
+      const timeDiff = now - parseInt(loginTime);
+      const hoursDiff = timeDiff / (1000 * 60 * 60);
+      
+      // Session expira em 8 horas
+      if (hoursDiff < 8) {
+        setIsAdminLoggedIn(true);
+      } else {
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('adminLoginTime');
+      }
+    }
   }, []);
 
-  const handleContactClick = (type: string) => {
+  const handleContactClick = (type: string, emailType?: string, emailAddress?: string) => {
     trackEvent('contact_click', { contact_type: type });
+    
+    if (type === 'whatsapp') {
+      setContactModal({
+        isOpen: true,
+        type: 'whatsapp'
+      });
+    } else {
+      setContactModal({
+        isOpen: true,
+        type: 'email',
+        emailType: emailType || 'sac',
+        emailAddress: emailAddress || config.EMAIL_CONTACT
+      });
+    }
     
     if (type === 'whatsapp') {
       setContactModal({
@@ -86,6 +132,16 @@ const App: React.FC = () => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const handleAdminLogin = (success: boolean) => {
+    if (success) {
+      setIsAdminLoggedIn(true);
+    }
+  };
+
+  if (isAdminLoggedIn) {
+    return <AdminPanel onLogout={() => setIsAdminLoggedIn(false)} />;
+  }
 
   if (currentSection === 'eda-social') {
     return (
@@ -126,6 +182,7 @@ const App: React.FC = () => {
               <button onClick={() => scrollToSection('education')} className="hover:text-yellow-300 transition-colors font-bold">EDUCAÇÃO</button>
               <button onClick={() => setCurrentSection('eda-social')} className="hover:text-yellow-300 transition-colors font-bold">EDA SOCIAL</button>
               <button onClick={() => scrollToSection('contact')} className="hover:text-yellow-300 transition-colors font-bold">CONTATO</button>
+              <button onClick={() => setAdminLogin(true)} className="hover:text-yellow-300 transition-colors font-bold text-xs">ADMIN</button>
             </nav>
           </div>
         </header>
@@ -361,7 +418,12 @@ const App: React.FC = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+              <a 
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 block group"
+              >
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="p-3 bg-emerald-100 rounded-2xl">
                     <Building className="h-8 w-8 text-emerald-600" />
@@ -375,7 +437,7 @@ const App: React.FC = () => {
                     >
                       Abertura de Empresas
                     </a>
-                  </h3>
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Abertura de Empresas</h3>
                 </div>
                 <ul className="space-y-3 text-gray-600">
                   <li className="flex items-center space-x-2">
@@ -1027,8 +1089,11 @@ const App: React.FC = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {/* WhatsApp */}
               <a 
-                href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre os serviços do Exército de Agentes.`}
-                onClick={() => handleContactClick('whatsapp')}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('whatsapp');
+                }}
                 className="bg-emerald-500 hover:bg-emerald-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -1042,6 +1107,9 @@ const App: React.FC = () => {
               <a 
                 href="#"
                 onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_sac', 'sac', config.EMAIL_CONTACT);
+                }}
                   e.preventDefault();
                   handleEmailClick('sac', config.EMAIL_CONTACT);
                 }}
@@ -1059,6 +1127,9 @@ const App: React.FC = () => {
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
+                  handleContactClick('email_financeiro', 'financeiro', 'financeiro@exercitodeagentes.com.br');
+                }}
+                  e.preventDefault();
                   handleEmailClick('financeiro', 'financeiro@exercitodeagentes.com.br');
                 }}
                 className="bg-violet-500 hover:bg-violet-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
@@ -1074,6 +1145,9 @@ const App: React.FC = () => {
               <a 
                 href="#"
                 onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_paulo', 'paulo', 'paulohenrique@exercitodeagentes.com.br');
+                }}
                   e.preventDefault();
                   handleEmailClick('paulo', 'paulohenrique@exercitodeagentes.com.br');
                 }}
@@ -1096,6 +1170,9 @@ const App: React.FC = () => {
               <a 
                 href="#"
                 onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_eda_social', 'eda_social', 'contato@edasocial.org');
+                }}
                   e.preventDefault();
                   handleEmailClick('eda_social', 'contato@edasocial.org');
                 }}
@@ -1140,7 +1217,7 @@ const App: React.FC = () => {
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-white transition-colors">Consultoria Empresarial</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-white transition-colors">Educação Profissional</button></li>
                 </ul>
-              </div>
+              </a>
 
               {/* EDA SOCIAL */}
               <div>
@@ -1184,29 +1261,55 @@ const App: React.FC = () => {
                   <a 
                     href={`mailto:${config.EMAIL_CONTACT}`}
                     className="flex items-center space-x-2 hover:text-white transition-colors"
-                  >
+              <a 
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 block group"
+              >
                     <Mail className="h-4 w-4" />
                     <span>sac@exercitodeagentes.com.br</span>
-                  </a>
+              <a 
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">Departamento Pessoal</h3>
+                rel="noopener noreferrer"
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 block group"
+              >
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4" />
                     <span className="text-sm">Seg-Sex: 8h-18h | Sáb: 8h-12h</span>
-                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Contabilidade Mensal</h3>
                 </div>
-              </div>
+              </a>
             </div>
 
             <div className="border-t border-gray-800 mt-12 pt-8 text-center">
               <p className="text-gray-400">
                 © 2024 Exército de Agentes. Todos os direitos reservados. | 
                 <span className="text-pink-400 ml-2">EDA SOCIAL - Tecnologia que abraça</span>
-              </p>
+              </a>
             </div>
           </div>
         </footer>
 
         {/* EssencialBot Chat */}
         <EssencialBotChat />
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={contactModal.isOpen}
+          onClose={() => setContactModal(prev => ({ ...prev, isOpen: false }))}
+          contactType={contactModal.type}
+          emailType={contactModal.emailType}
+          emailAddress={contactModal.emailAddress}
+        />
+
+        {/* Admin Login */}
+        <AdminLogin
+          isOpen={adminLogin}
+          onClose={() => setAdminLogin(false)}
+          onLogin={handleAdminLogin}
+        />
 
         {/* Contact Modal */}
         <ContactModal
