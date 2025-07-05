@@ -116,7 +116,7 @@ const App: React.FC = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Disponibilizando a você, seu bem mais precioso: O seu tempo! Venha conferir!<br/><br/>
+              <strong className="text-2xl md:text-3xl font-bold text-gray-800">DISPONIBILIZANDO A VOCÊ, SEU BEM MAIS PRECIOSO: O SEU TEMPO! VENHA CONFERIR!</strong><br/>
               EssencialBot + Escritório Contábil + Consultoria Empresarial + Educação Profissional. 
               Tudo integrado em uma solução completa para o sucesso da sua empresa.
             </p>
