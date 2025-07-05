@@ -38,7 +38,6 @@ import SEOHead from './components/SEOHead';
 import ContactModal from './components/ContactModal';
 import AdminLogin from './components/AdminLogin';
 import AdminPanel from './components/AdminPanel';
-import ContactModal from './components/ContactModal';
 import { config } from './config/environment';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
 
@@ -55,15 +54,6 @@ const App: React.FC = () => {
   });
   const [adminLogin, setAdminLogin] = React.useState(false);
   const [isAdminLoggedIn, setIsAdminLoggedIn] = React.useState(false);
-  const [contactModal, setContactModal] = React.useState<{
-    isOpen: boolean;
-    type: 'email' | 'whatsapp';
-    emailType?: string;
-    emailAddress?: string;
-  }>({
-    isOpen: false,
-    type: 'email'
-  });
 
   useEffect(() => {
     initializeAnalytics();
@@ -101,13 +91,6 @@ const App: React.FC = () => {
         type: 'email',
         emailType: emailType || 'sac',
         emailAddress: emailAddress || config.EMAIL_CONTACT
-      });
-    }
-    
-    if (type === 'whatsapp') {
-      setContactModal({
-        isOpen: true,
-        type: 'whatsapp'
       });
     }
   };
@@ -1112,9 +1095,6 @@ const App: React.FC = () => {
                   e.preventDefault();
                   handleContactClick('email_sac', 'sac', config.EMAIL_CONTACT);
                 }}
-                  e.preventDefault();
-                  handleEmailClick('sac', config.EMAIL_CONTACT);
-                }}
                 className="bg-cyan-500 hover:bg-cyan-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -1131,9 +1111,6 @@ const App: React.FC = () => {
                   e.preventDefault();
                   handleContactClick('email_financeiro', 'financeiro', 'financeiro@exercitodeagentes.com.br');
                 }}
-                  e.preventDefault();
-                  handleEmailClick('financeiro', 'financeiro@exercitodeagentes.com.br');
-                }}
                 className="bg-violet-500 hover:bg-violet-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -1149,9 +1126,6 @@ const App: React.FC = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleContactClick('email_paulo', 'paulo', 'paulohenrique@exercitodeagentes.com.br');
-                }}
-                  e.preventDefault();
-                  handleEmailClick('paulo', 'paulohenrique@exercitodeagentes.com.br');
                 }}
                 className="bg-amber-500 hover:bg-amber-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
@@ -1174,9 +1148,6 @@ const App: React.FC = () => {
                 onClick={(e) => {
                   e.preventDefault();
                   handleContactClick('email_eda_social', 'eda_social', 'contato@edasocial.org');
-                }}
-                  e.preventDefault();
-                  handleEmailClick('eda_social', 'contato@edasocial.org');
                 }}
                 className="inline-flex items-center space-x-2 bg-white text-pink-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
               >
@@ -1219,7 +1190,7 @@ const App: React.FC = () => {
                   <li><button onClick={() => scrollToSection('consulting')} className="hover:text-white transition-colors">Consultoria Empresarial</button></li>
                   <li><button onClick={() => scrollToSection('education')} className="hover:text-white transition-colors">Educação Profissional</button></li>
                 </ul>
-              </a>
+              </div>
 
               {/* EDA SOCIAL */}
               <div>
@@ -1240,7 +1211,7 @@ const App: React.FC = () => {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleEmailClick('eda_social', 'contato@edasocial.org');
+                      handleContactClick('email_eda_social', 'eda_social', 'contato@edasocial.org');
                     }}
                     className="block text-pink-400 hover:text-pink-300 transition-colors"
                   >
@@ -1261,35 +1232,29 @@ const App: React.FC = () => {
                     <span>(11) 91175-7113</span>
                   </a>
                   <a 
-                    href={`mailto:${config.EMAIL_CONTACT}`}
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleContactClick('email_sac', 'sac', config.EMAIL_CONTACT);
+                    }}
                     className="flex items-center space-x-2 hover:text-white transition-colors"
-              <a 
-                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 block group"
-              >
+                  >
                     <Mail className="h-4 w-4" />
                     <span>sac@exercitodeagentes.com.br</span>
-              <a 
-                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">Departamento Pessoal</h3>
-                rel="noopener noreferrer"
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 block group"
-              >
+                  </a>
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4" />
                     <span className="text-sm">Seg-Sex: 8h-18h | Sáb: 8h-12h</span>
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">Contabilidade Mensal</h3>
+                  </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div className="border-t border-gray-800 mt-12 pt-8 text-center">
               <p className="text-gray-400">
                 © 2024 Exército de Agentes. Todos os direitos reservados. | 
                 <span className="text-pink-400 ml-2">EDA SOCIAL - Tecnologia que abraça</span>
-              </a>
+              </p>
             </div>
           </div>
         </footer>
@@ -1316,7 +1281,7 @@ const App: React.FC = () => {
         {/* Contact Modal */}
         <ContactModal
           isOpen={contactModal.isOpen}
-          onClose={() => setContactModal({ ...contactModal, isOpen: false })}
+          onClose={() => setContactModal(prev => ({ ...prev, isOpen: false }))}
           contactType={contactModal.type}
           emailType={contactModal.emailType}
           emailAddress={contactModal.emailAddress}
