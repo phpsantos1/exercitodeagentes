@@ -22,27 +22,27 @@ const EssencialBotChat: React.FC = () => {
 
   const gptLinks = [
     {
-      name: "EssencialBot Geral",
-      description: "Atendimento geral e informações sobre nossos serviços",
-      url: "https://chatgpt.com/g/g-essencialbot-geral",
+      name: "EA EssencialBot Concierge",
+      description: "Atendimento geral que direciona para especialistas específicos",
+      url: "https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      name: "EssencialBot Contábil",
+      name: "EA Triagem Contábil",
       description: "Especialista em contabilidade e questões fiscais",
-      url: "https://chatgpt.com/g/g-essencialbot-contabil",
+      url: "https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil",
       color: "from-green-500 to-emerald-500"
     },
     {
-      name: "EssencialBot Consultoria",
+      name: "EA Triagem Consultoria Empresarial",
       description: "Consultoria empresarial e estratégica",
-      url: "https://chatgpt.com/g/g-essencialbot-consultoria",
+      url: "https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial",
       color: "from-orange-500 to-red-500"
     },
     {
-      name: "EssencialBot Educação",
+      name: "EA Triagem Educação Pro",
       description: "Cursos e capacitação profissional",
-      url: "https://chatgpt.com/g/g-essencialbot-educacao",
+      url: "https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro",
       color: "from-purple-500 to-indigo-500"
     },
     {
