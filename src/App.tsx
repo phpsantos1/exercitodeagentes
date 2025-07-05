@@ -961,7 +961,7 @@ const App: React.FC = () => {
                   <Mail className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Paulo Henrique</h3>
-                <p className="text-amber-100 text-sm">paulohenrique@exercitodeagentes.com.br</p>
+                <p className="text-orange-100 text-xs leading-relaxed break-all">paulohenrique@exercitodeagentes.com.br</p>
               </a>
             </div>
 
