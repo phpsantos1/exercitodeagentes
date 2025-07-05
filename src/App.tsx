@@ -112,9 +112,12 @@ const App: React.FC = () => {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Transforme seu
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent"> Negócio</span>
+              EXÉRCITO DE AGENTES
             </h1>
+            
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-700 mb-6 leading-tight">
+              Disponibilizando a você empresário, o seu bem mais precioso: O seu tempo! Venha conferir!
+            </h2>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
               EssencialBot + Escritório Contábil + Consultoria Empresarial + Educação Profissional. 
