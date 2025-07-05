@@ -206,7 +206,14 @@ const App: React.FC = () => {
                       onClick={() => handleServiceClick('agentes_personalizados')}
                       className="w-full py-3 bg-white text-green-600 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                     >
-                      Solicitar Orçamento
+                      <a 
+                        href="https://chatgpt.com/g/g-685717cd-0c74-8191-9dfa-f0d8654ef085-ea-triagem-ia-personal"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        Solicitar Orçamento
+                      </a>
                     </button>
                   </div>
                 </div>
@@ -247,7 +254,14 @@ const App: React.FC = () => {
                       onClick={() => handleServiceClick('intermediario')}
                       className="w-full py-3 bg-white text-blue-600 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                     >
-                      Contratar Agora
+                      <a 
+                        href="https://chatgpt.com/g/g-685716af-22f8-8191-8330-545239763a46-ea-triagem-de-ia-planos-2-e-3"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        Contratar Agora
+                      </a>
                     </button>
                   </div>
                 </div>
@@ -291,7 +305,14 @@ const App: React.FC = () => {
                       onClick={() => handleServiceClick('avancado')}
                       className="w-full py-3 bg-white text-purple-700 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                     >
-                      Contratar Premium
+                      <a 
+                        href="https://chatgpt.com/g/g-685716af-22f8-8191-8330-545239763a46-ea-triagem-de-ia-planos-2-e-3"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block"
+                      >
+                        Contratar Premium
+                      </a>
                     </button>
                   </div>
                 </div>
@@ -348,6 +369,17 @@ const App: React.FC = () => {
                     <span>Consultoria de enquadramento</span>
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571184-fa60-8191-87a1-c1a4c459c153-ea-triagem-contabil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Falar com Especialista</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
@@ -371,6 +403,17 @@ const App: React.FC = () => {
                     <span>Relatórios gerenciais</span>
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571184-fa60-8191-87a1-c1a4c459c153-ea-triagem-contabil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition-colors"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Falar com Especialista</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
@@ -394,6 +437,17 @@ const App: React.FC = () => {
                     <span>Admissões e demissões</span>
                   </li>
                 </ul>
+                <div className="mt-6">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571184-fa60-8191-87a1-c1a4c459c153-ea-triagem-contabil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Falar com Especialista</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -471,7 +525,14 @@ const App: React.FC = () => {
                   onClick={() => handleServiceClick('consultoria')}
                   className="w-full py-3 bg-white text-orange-700 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                 >
-                  Solicitar Consultoria
+                  <a 
+                    href="https://chatgpt.com/g/g-685713a0-a450-8191-81b5-9fee416ebf2f-ea-triagem-consultoria-empresarial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    Solicitar Consultoria
+                  </a>
                 </button>
               </div>
             </div>
@@ -499,6 +560,17 @@ const App: React.FC = () => {
                 <p className="text-gray-600 text-sm mb-4">Fundamentos, Chatbots e Machine Learning aplicados aos negócios</p>
                 <div className="text-2xl font-bold text-cyan-600 mb-2">40h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
@@ -509,6 +581,17 @@ const App: React.FC = () => {
                 <p className="text-gray-600 text-sm mb-4">Contabilidade digital, SPED e análise de dados</p>
                 <div className="text-2xl font-bold text-emerald-600 mb-2">60h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
@@ -519,6 +602,17 @@ const App: React.FC = () => {
                 <p className="text-gray-600 text-sm mb-4">Controles internos, auditoria e compliance</p>
                 <div className="text-2xl font-bold text-violet-600 mb-2">50h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
@@ -529,16 +623,29 @@ const App: React.FC = () => {
                 <p className="text-gray-600 text-sm mb-4">Fluxo de caixa, análise e orçamento empresarial</p>
                 <div className="text-2xl font-bold text-amber-600 mb-2">45h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
               </div>
             </div>
 
             <div className="text-center mt-12">
-              <button 
-                onClick={() => handleServiceClick('educacao')}
+              <a 
+                href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Ver Todos os Cursos
-              </button>
+              </a>
             </div>
           </div>
         </section>
@@ -572,6 +679,17 @@ const App: React.FC = () => {
                 <p className="text-blue-100 leading-relaxed">
                   Especializado em comunicação adaptada, rotinas estruturadas e apoio sensorial para pessoas no espectro autista
                 </p>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-sm"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Conversar</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-gradient-to-br from-violet-400 to-purple-500 rounded-2xl p-6 text-white shadow-lg">
@@ -584,6 +702,17 @@ const App: React.FC = () => {
                 <p className="text-purple-100 leading-relaxed">
                   Focado em desenvolvimento de autonomia, comunicação clara e apoio educacional personalizado
                 </p>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-sm"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Conversar</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl p-6 text-white shadow-lg">
@@ -596,6 +725,17 @@ const App: React.FC = () => {
                 <p className="text-green-100 leading-relaxed">
                   Orientação sobre acessibilidade, adaptações e recursos para pessoas com mobilidade reduzida
                 </p>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-sm"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Conversar</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
@@ -608,6 +748,17 @@ const App: React.FC = () => {
                 <p className="text-orange-100 leading-relaxed">
                   Suporte emocional e orientação prática para familiares e cuidadores
                 </p>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-sm"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Conversar</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-gradient-to-br from-indigo-400 to-blue-500 rounded-2xl p-6 text-white shadow-lg">
@@ -620,6 +771,17 @@ const App: React.FC = () => {
                 <p className="text-indigo-100 leading-relaxed">
                   Apoio emocional especializado para pessoas em processo de luto e perda
                 </p>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-sm"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Conversar</span>
+                  </a>
+                </div>
               </div>
 
               <div className="bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl p-6 text-white shadow-lg">
@@ -632,6 +794,17 @@ const App: React.FC = () => {
                 <p className="text-yellow-100 leading-relaxed">
                   Ferramentas e técnicas para gerenciamento da ansiedade e bem-estar emocional
                 </p>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-67890123-4567-8901-2345-678901234567-eda-social-bot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors text-sm"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    <span>Conversar</span>
+                  </a>
+                </div>
               </div>
             </div>
 
