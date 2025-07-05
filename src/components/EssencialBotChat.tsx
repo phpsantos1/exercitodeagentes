@@ -1,914 +1,1081 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { 
   Bot, 
-  X, 
-  Send, 
-  User, 
+  Shield, 
+  Zap, 
+  Users, 
+  Calculator, 
+  TrendingUp, 
+  BookOpen, 
+  Award, 
   Phone, 
   Mail, 
-  Building, 
-  CreditCard,
+  MapPin, 
+  Clock,
   CheckCircle,
   ArrowRight,
-  MessageCircle,
-  Mic,
-  MicOff,
-  Volume2,
-  VolumeX,
-  Maximize2,
-  Minimize2
+  Star,
+  Target,
+  Briefcase,
+  GraduationCap,
+  Settings,
+  Palette,
+  Search,
+  Lightbulb,
+  Tag,
+  Brain,
+  Wrench,
+  MapIcon,
+  Dumbbell,
+  Instagram,
+  Heart
 } from 'lucide-react';
+import SEOHead from './components/SEOHead';
+import EssencialBotChat from './components/EssencialBotChat';
+import { initializeAnalytics, trackEvent } from './utils/analytics';
+import { config } from './config/environment';
 
-interface Message {
-  id: string;
-  text: string;
-  sender: 'bot' | 'user';
-  timestamp: Date;
-  options?: string[];
-  showForm?: 'pre-cadastro' | 'cadastro-final';
-  isVoice?: boolean;
-}
-
-interface PreCadastroData {
-  nome: string;
-  whatsapp: string;
-  email: string;
-  interesse: string;
-  tipoNegocio: string;
-}
-
-interface CadastroFinalData {
-  nomeCompleto: string;
-  whatsapp: string;
-  email: string;
-  cnpjCpf: string;
-  endereco: string;
-  cidade: string;
-  estado: string;
-  cep: string;
-  produtoEscolhido: string;
-  formaPagamento: string;
-  termoAceite: boolean;
-}
-
-const EssencialBotChat: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [currentFlow, setCurrentFlow] = useState<'initial' | 'interested' | 'ready-to-buy'>('initial');
-  const [showPreCadastro, setShowPreCadastro] = useState(false);
-  const [showCadastroFinal, setShowCadastroFinal] = useState(false);
-  const [conversationState, setConversationState] = useState<{
-    hasShownServices: boolean;
-    hasAskedForInfo: boolean;
-    lastTopic: string;
-    interactionCount: number;
-  }>({
-    hasShownServices: false,
-    hasAskedForInfo: false,
-    lastTopic: '',
-    interactionCount: 0
-  });
-  const [isListening, setIsListening] = useState(false);
-  const [isSpeaking, setIsSpeaking] = useState(false);
-  const [voiceEnabled, setVoiceEnabled] = useState(true);
-  
-  const [preCadastroData, setPreCadastroData] = useState<PreCadastroData>({
-    nome: '',
-    whatsapp: '',
-    email: '',
-    interesse: '',
-    tipoNegocio: ''
-  });
-  
-  const [cadastroFinalData, setCadastroFinalData] = useState<CadastroFinalData>({
-    nomeCompleto: '',
-    whatsapp: '',
-    email: '',
-    cnpjCpf: '',
-    endereco: '',
-    cidade: '',
-    estado: '',
-    cep: '',
-    produtoEscolhido: '',
-    formaPagamento: '',
-    termoAceite: false
-  });
-
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const recognitionRef = useRef<any>(null);
-  const synthRef = useRef<SpeechSynthesis | null>(null);
-
-  // Inicializar APIs de voz
+function App() {
   useEffect(() => {
-    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-      const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
-      recognitionRef.current = new SpeechRecognition();
-      recognitionRef.current.continuous = false;
-      recognitionRef.current.interimResults = false;
-      recognitionRef.current.lang = 'pt-BR';
-
-      recognitionRef.current.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        setInputValue(transcript);
-        setIsListening(false);
-      };
-
-      recognitionRef.current.onerror = () => {
-        setIsListening(false);
-      };
-
-      recognitionRef.current.onend = () => {
-        setIsListening(false);
-      };
-    }
-
-    if ('speechSynthesis' in window) {
-      synthRef.current = window.speechSynthesis;
-    }
+    initializeAnalytics();
   }, []);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const handleContactClick = (method: string) => {
+    trackEvent('contact_click', { method });
   };
 
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  useEffect(() => {
-    if (isOpen && messages.length === 0) {
-      setTimeout(() => {
-        addBotMessage(
-          "Olá! Sou o EssencialBot, seu assistente de automação inteligente do Exército de Agentes. 🤖\n\nEstou aqui para ajudar você a transformar seu negócio com nossas soluções de IA. Como posso ajudá-lo hoje?",
-          [
-            "Quero conhecer os serviços",
-            "Preciso de automação IA",
-            "Serviços contábeis",
-            "Consultoria empresarial",
-            "Treinamentos e cursos",
-            "EDA Social - Projeto de Inclusão"
-          ]
-        );
-      }, 500);
-    }
-  }, [isOpen]);
-
-  const startListening = () => {
-    if (recognitionRef.current && !isListening) {
-      setIsListening(true);
-      recognitionRef.current.start();
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const stopListening = () => {
-    if (recognitionRef.current && isListening) {
-      recognitionRef.current.stop();
-      setIsListening(false);
-    }
-  };
-
-  const speakText = (text: string) => {
-    if (synthRef.current && voiceEnabled) {
-      // Parar qualquer fala anterior
-      synthRef.current.cancel();
-      
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'pt-BR';
-      utterance.rate = 0.9;
-      utterance.pitch = 1;
-      
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
-      
-      synthRef.current.speak(utterance);
-    }
-  };
-
-  const stopSpeaking = () => {
-    if (synthRef.current) {
-      synthRef.current.cancel();
-      setIsSpeaking(false);
-    }
-  };
-
-  const addBotMessage = (text: string, options?: string[], showForm?: 'pre-cadastro' | 'cadastro-final') => {
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      text,
-      sender: 'bot',
-      timestamp: new Date(),
-      options,
-      showForm
-    };
-    setMessages(prev => [...prev, newMessage]);
-    
-    // Falar a mensagem automaticamente se a voz estiver habilitada
-    if (voiceEnabled) {
-      // Remover emojis e formatação para melhor síntese de voz
-      const cleanText = text.replace(/[🤖📊💼🎓⚡✅🔹🎯📋👥💰🚀📞💬🎉]/g, '').replace(/\*\*/g, '');
-      speakText(cleanText);
-    }
-  };
-
-  const addUserMessage = (text: string, isVoice = false) => {
-    const newMessage: Message = {
-      id: Date.now().toString(),
-      text,
-      sender: 'user',
-      timestamp: new Date(),
-      isVoice
-    };
-    setMessages(prev => [...prev, newMessage]);
-  };
-
-  const simulateTyping = (callback: () => void, delay = 1500) => {
-    setIsTyping(true);
-    setTimeout(() => {
-      setIsTyping(false);
-      callback();
-    }, delay);
-  };
-
-  const handleOptionClick = (option: string) => {
-    addUserMessage(option);
-    setInputValue('');
-    setConversationState(prev => ({
-      ...prev,
-      interactionCount: prev.interactionCount + 1,
-      lastTopic: option
-    }));
-    
-    simulateTyping(() => {
-      processUserInput(option);
-    });
-  };
-
-  const handleSendMessage = () => {
-    if (inputValue.trim()) {
-      addUserMessage(inputValue, isListening);
-      const userInput = inputValue;
-      setInputValue('');
-      setConversationState(prev => ({
-        ...prev,
-        interactionCount: prev.interactionCount + 1,
-        lastTopic: userInput
-      }));
-      
-      simulateTyping(() => {
-        processUserInput(userInput);
-      });
-    }
-  };
-
-  const processUserInput = (input: string) => {
-    const lowerInput = input.toLowerCase();
-    const { hasShownServices, hasAskedForInfo, lastTopic, interactionCount } = conversationState;
-
-    // EA Social
-    if (lowerInput.includes('eda social') || lowerInput.includes('projeto de inclusão') || lowerInput.includes('inclusão')) {
-      setCurrentFlow('interested');
-      setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'eda_social' }));
-      addBotMessage(
-        "🌟 **EDA SOCIAL - PROJETO DE INCLUSÃO**\n\nNosso projeto social revolucionário oferece suporte especializado através de agentes de IA para:\n\n🧩 **Autismo** - Agentes especializados para facilitar relacionamento social\n💙 **Síndrome de Down** - Suporte personalizado e orientação\n😰 **Ansiedade** - Ferramentas para gerenciamento emocional\n🦽 **Mobilidade Reduzida** - Orientação sobre acessibilidade\n💔 **Luto** - Apoio emocional especializado\n\n**COMO FUNCIONA:**\n\n1️⃣ **AGENTE ESPECIALIZADO** - Acesso gratuito a agentes treinados para cada condição\n2️⃣ **SUPORTE FAMILIAR** - Agentes específicos para familiares e cuidadores\n3️⃣ **ACOMPANHAMENTO PSICOLÓGICO** - Agente com perfil psicológico para mediar relações\n\n🌐 **Site oficial:** www.edasocial.org\n📧 **Contato:** contato@edasocial.org\n\nEste é nosso compromisso social com a inclusão! 💝",
-        ["Como acessar os agentes", "Quero ajudar o projeto", "Sou familiar/cuidador", "Conhecer outros serviços"]
-      );
-    }
-    // Respostas específicas para EDA Social
-    else if (lowerInput.includes('como acessar') && lastTopic === 'eda_social') {
-      addBotMessage(
-        "🚀 **ACESSO AOS AGENTES EDA SOCIAL:**\n\n1️⃣ **Acesse:** www.edasocial.org\n2️⃣ **Escolha seu agente** especializado\n3️⃣ **Cadastro gratuito** em 2 minutos\n4️⃣ **Comece a conversar** imediatamente\n\n✅ **100% GRATUITO** - Sem taxas, sem pegadinhas\n✅ **24/7 DISPONÍVEL** - Agentes sempre online\n✅ **PRIVACIDADE TOTAL** - Suas conversas são protegidas\n\nPrecisa de ajuda com o cadastro?",
-        ["Sim, me ajude com cadastro", "Quero falar com humano", "Conhecer automação IA"]
-      );
-    }
-    else if (lowerInput.includes('quero ajudar') && lastTopic === 'eda_social') {
-      addBotMessage(
-        "💝 **COMO VOCÊ PODE AJUDAR O EDA SOCIAL:**\n\n🎯 **FORMAS DE CONTRIBUIR:**\n\n💰 **Doações** - Qualquer valor ajuda a manter os agentes\n📢 **Divulgação** - Compartilhe com quem precisa\n🤝 **Voluntariado** - Ajude na moderação e suporte\n💻 **Desenvolvimento** - Contribua com código\n\n📧 **Contato:** contato@edasocial.org\n📱 **WhatsApp:** (11) 91175-7113\n\nQual forma de ajuda mais combina com você?",
-        ["Quero fazer doação", "Posso ser voluntário", "Divulgar nas redes", "Conhecer automação IA"]
-      );
-    }
-    else if (lowerInput.includes('familiar') || lowerInput.includes('cuidador')) {
-      addBotMessage(
-        "👨‍👩‍👧‍👦 **SUPORTE PARA FAMÍLIAS E CUIDADORES:**\n\n🫂 **AGENTE FAMÍLIA** - Especializado em:\n- Orientação sobre cuidados diários\n- Apoio emocional para cuidadores\n- Dicas de comunicação efetiva\n- Rede de apoio e recursos\n\n💪 **GRUPOS DE APOIO** - Conecte-se com outras famílias\n📚 **MATERIAIS EDUCATIVOS** - Guias práticos gratuitos\n\n🌐 **Acesse:** www.edasocial.org/familias\n\nGostaria de se conectar agora com o Agente Família?",
-        ["Sim, conectar agora", "Quero entrar no grupo", "Preciso de orientação específica", "Voltar ao menu"]
-      );
-    }
-    // Detectar interesse em contratar
-    else if (lowerInput.includes('quero contratar') || 
-        lowerInput.includes('fechar negócio') || 
-        lowerInput.includes('vamos começar') ||
-        lowerInput.includes('vamos fechar') ||
-        lowerInput.includes('aceito') ||
-        lowerInput.includes('concordo')) {
-      setCurrentFlow('ready-to-buy');
-      setConversationState(prev => ({ ...prev, lastTopic: 'contratacao' }));
-      addBotMessage(
-        "🎉 **EXCELENTE DECISÃO!**\n\nVou abrir nosso formulário de contratação. São apenas alguns dados para personalizar seu EssencialBot e iniciar a implementação.\n\n⚡ **PRÓXIMOS PASSOS:**\n1. Preenchimento do formulário (2 min)\n2. Confirmação por WhatsApp (imediato)\n3. Onboarding agendado (24h)\n4. EssencialBot funcionando (48h)\n\nVamos começar?",
-        [],
-        'cadastro-final'
-      );
-      setShowCadastroFinal(true);
-    }
-    // Automação IA
-    else if (lowerInput.includes('automação') || lowerInput.includes('quero conhecer') || lowerInput.includes('preciso de automação')) {
-        setCurrentFlow('interested');
-        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'automacao' }));
-        addBotMessage(
-          "🤖 **AUTOMAÇÃO IA COM ESSENCIALBOT**\n\nTransforme seu negócio com nossa IA personalizada:\n\n⚡ **NÍVEL 2 - INTEGRADO** (R$ 397 setup + R$ 397/mês)\n✅ EssencialBot personalizado\n✅ Integração Google Sheets\n✅ Automação Make/Zapier\n✅ Relatórios automáticos\n\n🚀 **NÍVEL 3 - AVANÇADO** (R$ 497 setup + R$ 497/mês)\n✅ Tudo do Nível 2 +\n✅ Machine Learning avançado\n✅ Análise preditiva\n✅ Multi-plataformas\n✅ Site com link personalizado\n\nQual nível faz mais sentido para seu negócio?",
-          ["Nível 2 - Integrado", "Nível 3 - Avançado", "Quero ver demonstração", "Preciso de consultoria"]
-        );
-    }
-    // Serviços Contábeis
-    else if (lowerInput.includes('contábil') || lowerInput.includes('contabilidade') || lowerInput.includes('serviços contábeis')) {
-        setCurrentFlow('interested');
-        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'contabilidade' }));
-        addBotMessage(
-          "📊 **ESCRITÓRIO CONTÁBIL COMPLETO**\n\nSomos especialistas em empresas de todos os portes:\n\n🏢 **SERVIÇOS PRINCIPAIS:**\n✅ Abertura de empresas (MEI, LTDA, SA)\n✅ Contabilidade mensal completa\n✅ Obrigações fiscais (SPED, ECF, DEFIS)\n✅ Departamento pessoal\n✅ Planejamento tributário\n✅ Relatórios gerenciais\n\n🤖 **DIFERENCIAL:** Tudo automatizado com EssencialBot!\n\nQual necessidade contábil posso ajudar primeiro?",
-          ["Abrir minha empresa", "Trocar de contador", "Planejamento tributário", "Quero orçamento completo"]
-        );
-    }
-    // Consultoria
-    else if (lowerInput.includes('consultoria')) {
-        setCurrentFlow('interested');
-        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'consultoria' }));
-        addBotMessage(
-          "💼 **CONSULTORIA EMPRESARIAL ESTRATÉGICA**\n\nSoluções completas para empresas em qualquer situação:\n\n🎯 **ESPECIALIDADES:**\n✅ Gestão empresarial e planejamento estratégico\n✅ Fluxo de caixa e controle financeiro\n✅ Recuperação judicial e reestruturação\n✅ Busca de crédito em factorings\n✅ Fusões e aquisições\n✅ Consultoria com IA e automação\n\n🚨 **CASOS CRÍTICOS:** Especialistas em recuperação empresarial\n\nQual desafio empresarial posso ajudar a resolver?",
-          ["Empresa em crise", "Melhorar gestão", "Buscar crédito", "Planejamento estratégico"]
-        );
-    }
-    // Treinamentos
-    else if (lowerInput.includes('treinamento') || lowerInput.includes('curso') || lowerInput.includes('capacitação')) {
-        setCurrentFlow('interested');
-        setConversationState(prev => ({ ...prev, hasShownServices: true, lastTopic: 'treinamentos' }));
-        addBotMessage(
-          "🎓 **TREINAMENTOS ESPECIALIZADOS**\n\nCapacitação profissional em áreas estratégicas:\n\n📚 **CURSOS DISPONÍVEIS:**\n\n🤖 **IA Empresarial** - Fundamentos, Chatbots, Machine Learning\n📊 **Contabilidade Digital** - Contabilidade 4.0, SPED, Análise\n🎯 **Controladoria** - Controles Internos, Auditoria, Compliance\n💰 **Gestão Financeira** - Fluxo de Caixa, Análise, Orçamento\n\n✅ **Certificação inclusa** + **Projetos práticos**\n\nQual capacitação sua equipe mais precisa?",
-          ["IA para empresas", "Contabilidade 4.0", "Controles internos", "Gestão financeira", "Pacote completo"]
-        );
-    }
-    // Respostas específicas para níveis de automação
-    else if (lowerInput.includes('nível 2') || lowerInput.includes('integrado')) {
-      addBotMessage(
-        "💎 **NÍVEL 2 - INTEGRADO - ESCOLHA INTELIGENTE!**\n\n✨ **O QUE VOCÊ RECEBE:**\n✅ EssencialBot 100% personalizado\n✅ Integração automática Google Sheets\n✅ Automações Make/Zapier ilimitadas\n✅ Relatórios automáticos diários\n✅ Suporte prioritário\n✅ Treinamento da equipe incluído\n\n💰 **Investimento:** R$ 397 setup + R$ 397/mês\n\n🎯 **Resolve 90% das necessidades de automação!**\n\nPronto para revolucionar seu atendimento?",
-        ["Sim, quero contratar!", "Quero ver demonstração", "Preciso de mais detalhes", "Comparar com Nível 3"]
-      );
-    }
-    else if (lowerInput.includes('nível 3') || lowerInput.includes('avançado')) {
-      addBotMessage(
-        "🚀 **NÍVEL 3 - AVANÇADO - SOLUÇÃO PREMIUM!**\n\n⚡ **TUDO DO NÍVEL 2 MAIS:**\n✅ Machine Learning avançado\n✅ Análise preditiva de vendas\n✅ Multi-plataformas (WhatsApp, Site, Instagram)\n✅ Site com link personalizado\n✅ API personalizada\n✅ Consultoria empresarial incluída\n✅ Relatórios de BI avançados\n\n💰 **Investimento:** R$ 497 setup + R$ 497/mês\n\n🏆 **Para empresas que querem liderar com IA!**\n\nVamos implementar a solução mais avançada?",
-        ["Vamos fechar negócio!", "Quero demonstração premium", "Comparar investimento", "Falar com especialista"]
-      );
-    }
-    // Demonstrações
-    else if (lowerInput.includes('demonstração') || lowerInput.includes('demo') || lowerInput.includes('ver funcionando')) {
-      addBotMessage(
-        "🎬 **DEMONSTRAÇÃO AO VIVO DO ESSENCIALBOT**\n\n📅 **AGENDE SUA DEMO PERSONALIZADA:**\n\n⏰ **Duração:** 30 minutos\n👨‍💻 **Formato:** Videochamada + tela compartilhada\n🎯 **Foco:** Seu negócio específico\n\n📋 **O QUE VOCÊ VAI VER:**\n✅ EssencialBot funcionando em tempo real\n✅ Integrações com suas ferramentas\n✅ Relatórios automáticos\n✅ ROI calculado para seu caso\n\n📱 **WhatsApp:** (11) 91175-7113\n📧 **E-mail:** sac@exercitodeagentes.com.br\n\nQuer agendar agora via WhatsApp?",
-        ["Sim, agendar agora", "Prefiro e-mail", "Quero mais informações", "Voltar aos planos"]
-      );
-    }
-    // Voltar ao menu ou conhecer outros serviços
-    else if (lowerInput.includes('voltar') || lowerInput.includes('menu') || lowerInput.includes('outros serviços') || lowerInput.includes('conhecer outros')) {
-      if (!hasShownServices) {
-        setConversationState(prev => ({ ...prev, hasShownServices: true }));
-        addBotMessage(
-          "🎯 **NOSSAS SOLUÇÕES COMPLETAS:**\n\n🤖 **Automação IA** - EssencialBot personalizado\n📊 **Escritório Contábil** - Serviços completos\n💼 **Consultoria** - Gestão e recuperação empresarial\n🎓 **Treinamentos** - Capacitação especializada\n🌟 **EDA Social** - Projeto de inclusão social\n\nQual solução faz mais sentido para você?",
-          ["Automação IA", "Serviços Contábeis", "Consultoria", "Treinamentos", "EDA Social"]
-        );
-      } else {
-        addBotMessage(
-          "🤔 **POSSO AJUDAR COM MAIS ALGUMA COISA?**\n\nVejo que já conhece nossos serviços. Como posso direcionar melhor nossa conversa?\n\n💡 **OPÇÕES:**\n- Comparar soluções\n- Agendar demonstração\n- Falar com especialista\n- Solicitar proposta personalizada",
-          ["Comparar soluções", "Agendar demo", "Falar com humano", "Quero proposta"]
-        );
-      }
-    }
-    // Interesse em informações - só oferece pré-cadastro se ainda não ofereceu
-    else if ((lowerInput.includes('interessante') || 
-        lowerInput.includes('gostaria de saber mais') ||
-        lowerInput.includes('me interessou') ||
-        lowerInput.includes('quero mais informações')) && !hasAskedForInfo) {
-      
-      setConversationState(prev => ({ ...prev, hasAskedForInfo: true }));
-      
-      // Sugerir pré-cadastro após mostrar interesse
-      setTimeout(() => {
-        addBotMessage(
-          "💡 **PERSONALIZAR ATENDIMENTO**\n\nPara enviar materiais específicos e personalizar nossa conversa, posso coletar algumas informações básicas?\n\n📋 **São apenas:**\n- Nome e contato\n- Área de interesse\n- Tipo de negócio\n\n⚡ **2 minutos** e você recebe conteúdo exclusivo!",
-          ["Sim, vamos lá!", "Prefiro continuar conversando", "Quero falar com humano"]
-        );
-      }, 2000);
-    }
-    // Aceitar pré-cadastro
-    else if (lowerInput.includes('sim, vamos lá') || lowerInput.includes('sim, pode coletar') || lowerInput.includes('pode coletar') || lowerInput.includes('vamos lá')) {
-      addBotMessage(
-        "🎉 **PERFEITO!**\n\nVou abrir nosso formulário rápido. Com essas informações, posso:\n\n✅ Personalizar recomendações\n✅ Enviar materiais específicos\n✅ Conectar com especialista certo\n✅ Agilizar futuras conversas\n\nVamos começar?",
-        [],
-        'pre-cadastro'
-      );
-      setShowPreCadastro(true);
-    }
-    // Falar com humano
-    else if (lowerInput.includes('falar com humano') || lowerInput.includes('atendente') || lowerInput.includes('pessoa')) {
-      addBotMessage(
-        "👨‍💼 **FALAR COM NOSSA EQUIPE**\n\nClaro! Nossa equipe especializada está pronta para atender você:\n\n📱 **WhatsApp Direto:** (11) 91175-7113\n📧 **E-mail:** sac@exercitodeagentes.com.br\n\n⏰ **Horário de atendimento:**\nSegunda a Sexta: 8h às 18h\nSábado: 8h às 12h\n\n🚀 **Resposta em até 2 horas!**\n\nPrefere que eu transfira agora via WhatsApp?",
-        ["Sim, transferir agora", "Prefiro e-mail", "Continuar com EssencialBot", "Agendar ligação"]
-      );
-    } else {
-      // Resposta inteligente baseada no contexto
-      if (interactionCount > 5 && !hasAskedForInfo) {
-        addBotMessage(
-          "🤖 **VEJO QUE ESTÁ EXPLORANDO BASTANTE!**\n\nQue tal conversarmos de forma mais direcionada? Posso:\n\n🎯 **Focar no que mais interessa** você\n📞 **Conectar com especialista** humano\n📋 **Coletar suas necessidades** específicas\n💬 **Agendar conversa** detalhada\n\nO que prefere?",
-          ["Focar em automação IA", "Falar com especialista", "Contar minha necessidade", "Agendar conversa"]
-        );
-      } else {
-      addBotMessage(
-          "🤖 **ENTENDI SUA MENSAGEM!**\n\nComo EssencialBot, posso ajudar com informações específicas sobre:\n\n💰 **Preços e investimentos**\n⚙️ **Como funcionam as soluções**\n📈 **Casos de sucesso reais**\n🎬 **Demonstrações práticas**\n🌟 **Projeto EDA Social**\n\nSobre o que gostaria de saber mais?",
-          ["Preços e planos", "Como funciona", "Casos de sucesso", "Ver demonstração", "EDA Social"]
-      );
-      }
-    }
-  };
-
-  const handlePreCadastroSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    console.log('Pré-cadastro enviado:', preCadastroData);
-    
-    setShowPreCadastro(false);
-    addBotMessage(
-      `Obrigado, ${preCadastroData.nome}! 🎉\n\nSuas informações foram registradas com sucesso. Vou enviar materiais personalizados sobre ${preCadastroData.interesse} para seu WhatsApp e email.\n\nEm breve, nossa equipe entrará em contato para uma conversa mais detalhada. Enquanto isso, posso responder mais alguma dúvida?`,
-      ["Quero saber mais sobre preços", "Como é o processo de implementação?", "Tenho outras dúvidas"]
-    );
-  };
-
-  const handleCadastroFinalSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!cadastroFinalData.termoAceite) {
-      alert('Por favor, aceite os termos de serviço para continuar.');
-      return;
-    }
-    
-    console.log('Cadastro final enviado:', cadastroFinalData);
-    
-    setShowCadastroFinal(false);
-    addBotMessage(
-      `🎉 **PARABÉNS, ${cadastroFinalData.nomeCompleto}!**\n\nSeu cadastro foi finalizado com sucesso! Você agora faz parte do Exército de Agentes.\n\n📋 **Próximos passos:**\n1. Você receberá um email de confirmação\n2. Nossa equipe entrará em contato em até 2h\n3. Agendaremos o onboarding do seu EssencialBot\n\n💬 **Grupo VIP**: [Clique aqui para entrar no grupo exclusivo de clientes](https://wa.me/5511911757113)\n\nBem-vindo à revolução da automação inteligente! 🚀`,
-      ["Entrar no grupo VIP", "Quando começa a implementação?"]
-    );
-  };
-
-  const chatSize = isExpanded ? 'w-[95vw] h-[90vh]' : 'w-96 h-[600px]';
 
   return (
-    <>
-      {/* Chat Button */}
-      {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 p-4 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 animate-pulse hover:shadow-blue-400/50"
-        >
-          <MessageCircle className="h-6 w-6 text-white" />
-        </button>
-      )}
-
-      {/* Chat Window */}
-      {isOpen && (
-        <div className={`fixed bottom-6 right-6 z-50 ${chatSize} bg-gray-900/95 backdrop-blur-sm rounded-2xl border border-blue-400/30 shadow-2xl overflow-hidden flex flex-col transition-all duration-300`}>
-          {/* Header */}
-          <div className="p-4 bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-white/20 rounded-full">
-                <Bot className="h-6 w-6 text-white" />
+    <HelmetProvider>
+      <div className="min-h-screen bg-white text-gray-800">
+        <SEOHead />
+        
+        {/* Header */}
+        <header className="bg-black sticky top-0 z-40 shadow-lg">
+          <div className="container mx-auto px-6 py-4">
+            <nav className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <img 
+                  src="/imagem_gerada.png" 
+                  alt="Exército de Agentes Logo" 
+                  className="h-12 w-auto"
+                />
+                <span className="text-2xl font-bold text-yellow-400">EXÉRCITO DE AGENTES</span>
               </div>
-              <div className="flex flex-col">
-                <span className="font-semibold text-white">EssencialBot</span>
-                <span className="text-xs text-blue-100">Exército de Agentes • Online</span>
-              </div>
-            </div>
-            <div className="flex items-center space-x-2">
-              {/* Voice Controls */}
-              <button
-                onClick={() => setVoiceEnabled(!voiceEnabled)}
-                className="text-white hover:text-gray-200 transition-colors p-1"
-                title={voiceEnabled ? "Desativar voz" : "Ativar voz"}
-              >
-                {voiceEnabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}
-              </button>
               
-              {isSpeaking && (
-                <button
-                  onClick={stopSpeaking}
-                  className="text-white hover:text-gray-200 transition-colors p-1"
-                  title="Parar fala"
-                >
-                  <VolumeX className="h-4 w-4" />
+              <div className="hidden md:flex items-center space-x-8">
+                <button onClick={() => scrollToSection('automation')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  AUTOMAÇÃO IA
                 </button>
-              )}
-              
-              {/* Expand/Minimize */}
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="text-white hover:text-gray-200 transition-colors p-1"
-                title={isExpanded ? "Minimizar" : "Expandir"}
-              >
-                {isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
-              </button>
-              
-              {/* Close */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-white hover:text-gray-200 transition-colors p-1"
-              >
-                <X className="h-5 w-5" />
-              </button>
+                <button onClick={() => scrollToSection('accounting')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  CONTABILIDADE
+                </button>
+                <button onClick={() => scrollToSection('consulting')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  CONSULTORIA
+                </button>
+                <button onClick={() => scrollToSection('education')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  EDUCAÇÃO PRÓ
+                </button>
+                <button onClick={() => scrollToSection('agents')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  IA PERSONALIZADA
+                </button>
+                <button onClick={() => scrollToSection('social')} className="text-yellow-400 hover:text-yellow-300 transition-colors font-medium">
+                  EA SOCIAL
+                </button>
+                <button onClick={() => scrollToSection('contact')} className="text-yellow-400 hover:text-yellow-300 transition-colors flex items-center space-x-2 font-medium">
+                  <span>CONTATO</span>
+                  <Phone className="h-4 w-4" />
+                </button>
+              </div>
+            </nav>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">
+                EXÉRCITO DE AGENTES
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
+                Transforme seu negócio com <span className="text-blue-600 font-semibold">EssencialBot</span> - 
+                IA avançada, automação inteligente, contabilidade smart e consultoria especializada
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => scrollToSection('automation')}
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  CONHECER SOLUÇÕES
+                </button>
+                <a 
+                  href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                  onClick={() => handleContactClick('whatsapp')}
+                  className="px-8 py-4 border-2 border-yellow-500 text-yellow-600 rounded-lg font-semibold hover:bg-yellow-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+                >
+                  FALAR COM ESPECIALISTA
+                </a>
+              </div>
             </div>
           </div>
+        </section>
 
-          {/* Messages Area */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
-            {messages.map((message) => (
-              <div key={message.id} className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] p-3 rounded-lg ${
-                  message.sender === 'user' 
-                    ? 'bg-blue-500 text-white' 
-                    : 'bg-gray-800 text-gray-100 border border-gray-700'
-                }`}>
-                  <div className="flex items-start space-x-2">
-                    {message.sender === 'bot' && (
-                      <Bot className="h-4 w-4 text-blue-300 mt-0.5 flex-shrink-0" />
-                    )}
-                    {message.sender === 'user' && (
-                      <div className="flex items-center space-x-1">
-                        <User className="h-4 w-4 text-white mt-0.5 flex-shrink-0" />
-                        {message.isVoice && <Mic className="h-3 w-3 text-blue-200" />}
-                      </div>
-                    )}
-                    <div className="flex-1">
-                      <p className="text-sm whitespace-pre-line">{message.text}</p>
-                      
-                      {/* Options */}
-                      {message.options && (
-                        <div className="mt-3 space-y-2">
-                          {message.options.map((option, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleOptionClick(option)}
-                              className="block w-full text-left px-3 py-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg text-sm transition-colors border border-blue-400/30 hover:border-blue-400/50"
-                            >
-                              {option}
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
+        {/* Services Grid */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+                NOSSOS SERVIÇOS
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Soluções completas em IA, contabilidade, consultoria e educação para transformar seu negócio
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-6 max-w-7xl mx-auto">
+              {/* IA Automação */}
+              <a 
+                href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-8 text-center hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Shield className="h-12 w-12 text-blue-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">IA AUTOMAÇÃO</h3>
+                <p className="text-blue-100 text-sm">Especialista em soluções de automação inteligente</p>
+              </a>
+
+              {/* Contabilidade */}
+              <a 
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-8 text-center hover:from-green-700 hover:to-green-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Calculator className="h-12 w-12 text-green-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">CONTABILIDADE</h3>
+                <p className="text-green-100 text-sm">Expert em serviços contábeis inteligentes</p>
+              </a>
+
+              {/* Consultoria */}
+              <a 
+                href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 text-center hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Briefcase className="h-12 w-12 text-orange-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">CONSULTORIA</h3>
+                <p className="text-orange-100 text-sm">Especialista em gestão e estratégia empresarial</p>
+              </a>
+
+              {/* Educação Pró */}
+              <a 
+                href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-purple-600 to-purple-700 rounded-2xl p-8 text-center hover:from-purple-700 hover:to-purple-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <GraduationCap className="h-12 w-12 text-purple-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EDUCAÇÃO PRÓ</h3>
+                <p className="text-purple-100 text-sm">Expert em treinamentos e capacitação</p>
+              </a>
+
+              {/* IA Personalizada */}
+              <a 
+                href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-red-600 to-red-700 rounded-2xl p-8 text-center hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Settings className="h-12 w-12 text-red-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">IA PERSONALIZADA</h3>
+                <p className="text-red-100 text-sm">Especialista em agentes customizados</p>
+              </a>
+
+              {/* EA Social */}
+              <a 
+                href="#social"
+                onClick={() => scrollToSection('social')}
+                className="bg-gradient-to-br from-pink-600 to-pink-700 rounded-2xl p-8 text-center hover:from-pink-700 hover:to-pink-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl h-64 flex flex-col justify-center items-center group"
+              >
+                <Heart className="h-12 w-12 text-pink-200 mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">EA SOCIAL</h3>
+                <p className="text-pink-100 text-sm">Projeto de inclusão com agentes especializados</p>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Automation Section */}
+        <section id="automation" className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
+                AUTOMAÇÃO INTELIGENTE
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Revolucione seus processos com EssencialBot - IA que aprende, evolui e otimiza seu negócio 24/7
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {/* Nível 2 - Integrado */}
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-blue-500/50">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-white/20 rounded-full mr-4">
+                    <Zap className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-yellow-400 mb-1">NÍVEL 2 - INTEGRADO</h3>
+                    <p className="text-blue-100">Automação Essencial</p>
                   </div>
                 </div>
-              </div>
-            ))}
-            
-            {/* Typing Indicator */}
-            {isTyping && (
-              <div className="flex justify-start">
-                <div className="bg-gray-800 border border-gray-700 p-3 rounded-lg">
-                  <div className="flex items-center space-x-2">
-                    <Bot className="h-4 w-4 text-blue-300" />
-                    <div className="flex space-x-1">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                    </div>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
+                    <span>EssencialBot personalizado</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
+                    <span>Integração Google Sheets</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
+                    <span>Automação Make/Zapier</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
+                    <span>Relatórios automáticos</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-blue-200 mr-3" />
+                    <span>Suporte prioritário</span>
                   </div>
                 </div>
-              </div>
-            )}
-            
-            <div ref={messagesEndRef} />
-          </div>
 
-          {/* Input Area */}
-          <div className="p-4 border-t border-gray-700">
-            <div className="flex space-x-2">
-              <div className="flex-1 relative">
-                <textarea
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                  onKeyPress={(e) => {
-                    if (e.key === 'Enter' && !e.shiftKey) {
-                      e.preventDefault();
-                      handleSendMessage();
-                    }
-                  }}
-                  placeholder="Digite sua mensagem... (Shift+Enter para nova linha)"
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg text-sm focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white placeholder-gray-400 resize-none min-h-[40px] max-h-[120px]"
-                  rows={2}
-                />
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 597</div>
+                  <div className="text-blue-100">Setup + R$ 597/mês</div>
+                </div>
+
+                <a 
+                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 block text-center shadow-lg"
+                >
+                  ESCOLHER INTEGRADO
+                </a>
               </div>
+
+              {/* Nível 3 - Avançado */}
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-purple-500/50 relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    MAIS POPULAR
+                  </span>
+                </div>
+                
+                <div className="flex items-center mb-6">
+                  <div className="p-3 bg-white/20 rounded-full mr-4">
+                    <Bot className="h-8 w-8 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-yellow-400 mb-1">NÍVEL 3 - AVANÇADO</h3>
+                    <p className="text-purple-100">IA Completa com Automação</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Tudo do Nível 2 +</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Machine Learning avançado</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Análise preditiva</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Multi-plataformas</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Automação completa incluída</span>
+                  </div>
+                  <div className="flex items-center text-white">
+                    <CheckCircle className="h-5 w-5 text-purple-200 mr-3" />
+                    <span>Site com link personalizado</span>
+                  </div>
+                </div>
+
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 797</div>
+                  <div className="text-purple-100">Setup + R$ 797/mês</div>
+                </div>
+
+                <a 
+                  href="https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 block text-center shadow-lg"
+                >
+                  ESCOLHER AVANÇADO
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Accounting Section */}
+        <section id="accounting" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">
+                CONTABILIDADE INTELIGENTE
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Escritório contábil completo com tecnologia de ponta e automação total
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <Calculator className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">SERVIÇOS ESSENCIAIS</h3>
+                <ul className="space-y-3 text-white">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Abertura de empresas</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Contabilidade mensal</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Obrigações fiscais</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Departamento pessoal</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <TrendingUp className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO AVANÇADA</h3>
+                <ul className="space-y-3 text-white">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Planejamento tributário</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Relatórios gerenciais</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Compliance e auditoria</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Consultoria fiscal</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 shadow-2xl hover:shadow-green-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">DIFERENCIAL IA</h3>
+                <ul className="space-y-3 text-white">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Automação total</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>EssencialBot integrado</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Relatórios inteligentes</span>
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-200 mr-2" />
+                    <span>Atendimento 24/7</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Detailed Accounting Services */}
+            <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-12 border-4 border-green-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">SERVIÇOS CONTÁBEIS COMPLETOS</h3>
               
-              {/* Voice Button */}
-              <button
-                onClick={isListening ? stopListening : startListening}
-                className={`px-3 py-2 rounded-lg transition-all duration-300 ${
-                  isListening 
-                    ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
-                    : 'bg-green-500 hover:bg-green-600'
-                }`}
-                title={isListening ? "Parar gravação" : "Gravar mensagem"}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">📊 CONTABILIDADE GERAL</h4>
+                  <ul className="space-y-2 text-white">
+                    <li>• Escrituração contábil completa</li>
+                    <li>• Balancetes mensais</li>
+                    <li>• Demonstrações financeiras</li>
+                    <li>• Conciliações bancárias</li>
+                    <li>• Controle de estoque</li>
+                    <li>• Análise de custos</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">🏢 ABERTURA DE EMPRESAS</h4>
+                  <ul className="space-y-2 text-white">
+                    <li>• Consultoria de enquadramento</li>
+                    <li>• Registro na Junta Comercial</li>
+                    <li>• Inscrições municipais e estaduais</li>
+                    <li>• CNPJ e alvará de funcionamento</li>
+                    <li>• Contratos sociais</li>
+                    <li>• Licenças especiais</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">📋 OBRIGAÇÕES FISCAIS</h4>
+                  <ul className="space-y-2 text-white">
+                    <li>• SPED Contábil e Fiscal</li>
+                    <li>• ECF (Escrituração Contábil Fiscal)</li>
+                    <li>• DEFIS (Simples Nacional)</li>
+                    <li>• DCTF e DCTF-Web</li>
+                    <li>• EFD-Contribuições</li>
+                    <li>• Declarações diversas</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">👥 DEPARTAMENTO PESSOAL</h4>
+                  <ul className="space-y-2 text-white">
+                    <li>• Folha de pagamento</li>
+                    <li>• Admissões e demissões</li>
+                    <li>• eSocial e FGTS</li>
+                    <li>• Férias e 13º salário</li>
+                    <li>• CAGED e RAIS</li>
+                    <li>• Benefícios e vale-transporte</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">💰 PLANEJAMENTO TRIBUTÁRIO</h4>
+                  <ul className="space-y-2 text-white">
+                    <li>• Análise de regime tributário</li>
+                    <li>• Elisão fiscal legal</li>
+                    <li>• Recuperação de tributos</li>
+                    <li>• Parcelamentos fiscais</li>
+                    <li>• Consultoria tributária</li>
+                    <li>• Simulações e projeções</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-4">🤖 TECNOLOGIA E IA</h4>
+                  <ul className="space-y-2 text-white">
+                    <li>• EssencialBot contábil</li>
+                    <li>• Automação de processos</li>
+                    <li>• Relatórios inteligentes</li>
+                    <li>• Dashboard em tempo real</li>
+                    <li>• Integração com ERPs</li>
+                    <li>• Atendimento 24/7</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <a 
+                href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg font-semibold hover:from-green-700 hover:to-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
-                {isListening ? <MicOff className="h-4 w-4 text-white" /> : <Mic className="h-4 w-4 text-white" />}
-              </button>
+                SOLICITAR PROPOSTA CONTÁBIL
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Consulting Section */}
+        <section id="consulting" className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-orange-600 to-orange-500 bg-clip-text text-transparent">
+                CONSULTORIA EMPRESARIAL
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Soluções estratégicas completas - da gestão à recuperação judicial
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Briefcase className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO EMPRESARIAL</h3>
+                <p className="text-white">
+                  Planejamento estratégico, otimização de processos e estruturação organizacional para crescimento sustentável.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <TrendingUp className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">FLUXO DE CAIXA</h3>
+                <p className="text-white">
+                  Controle financeiro rigoroso, projeções precisas e estratégias para otimização do capital de giro.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Shield className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">RECUPERAÇÃO JUDICIAL</h3>
+                <p className="text-white">
+                  Reestruturação empresarial, negociação com credores e estratégias para superação de crises financeiras.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Target className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">BUSCA DE CRÉDITO</h3>
+                <p className="text-white">
+                  Conexão com factorings, estruturação de propostas e negociação de condições favoráveis de financiamento.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Users className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">FUSÕES & AQUISIÇÕES</h3>
+                <p className="text-white">
+                  Due diligence, avaliação de empresas, estruturação de operações e acompanhamento de transações.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 border-4 border-orange-400 hover:border-orange-300 transition-all duration-300 shadow-2xl hover:shadow-orange-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">CONSULTORIA COM IA</h3>
+                <p className="text-white">
+                  Integração de inteligência artificial nos processos de consultoria para análises mais precisas e eficientes.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <a 
+                href="https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-orange-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                AGENDAR CONSULTORIA
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Education Section */}
+        <section id="education" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent">
+                EDUCAÇÃO PRÓ
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Capacitação avançada em contabilidade, controladoria, gestão financeira e IA empresarial
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <Bot className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">IA EMPRESARIAL</h3>
+                <ul className="space-y-2 text-white text-sm">
+                  <li>• Fundamentos de IA</li>
+                  <li>• Chatbots empresariais</li>
+                  <li>• Machine Learning</li>
+                  <li>• Automação inteligente</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <Calculator className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">CONTABILIDADE DIGITAL</h3>
+                <ul className="space-y-2 text-white text-sm">
+                  <li>• Contabilidade 4.0</li>
+                  <li>• SPED e obrigações</li>
+                  <li>• Análise de balanços</li>
+                  <li>• Tecnologia contábil</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <Shield className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">CONTROLADORIA</h3>
+                <ul className="space-y-2 text-white text-sm">
+                  <li>• Controles internos</li>
+                  <li>• Auditoria interna</li>
+                  <li>• Compliance</li>
+                  <li>• Gestão de riscos</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 hover:border-purple-300 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50">
+                <TrendingUp className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">GESTÃO FINANCEIRA</h3>
+                <ul className="space-y-2 text-white text-sm">
+                  <li>• Fluxo de caixa</li>
+                  <li>• Análise financeira</li>
+                  <li>• Orçamento empresarial</li>
+                  <li>• Planejamento estratégico</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 max-w-2xl mx-auto shadow-2xl">
+                <Award className="h-16 w-16 text-white mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">CERTIFICAÇÃO PROFISSIONAL</h3>
+                <p className="text-white mb-6">
+                  Todos os cursos incluem certificação reconhecida, projetos práticos e acompanhamento personalizado.
+                </p>
+                <a 
+                  href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-white text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  VER CURSOS DISPONÍVEIS
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Agents Section */}
+        <section id="agents" className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
+                IA PERSONALIZADA
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-4">
+                Configuração e disponibilização de agentes de IA customizados para suas necessidades específicas
+              </p>
+              <p className="text-lg text-red-600 font-semibold">
+                Você não sabe que precisa desses agentes até conhecê-los!
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {/* 1 Agente */}
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Settings className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">1 AGENTE</h3>
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 497</div>
+                  <div className="text-red-100">Setup + R$ 100/manutenção</div>
+                  <div className="text-yellow-300 text-sm mt-2">Preço unitário</div>
+                </div>
+                <a 
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
+                >
+                  CONTRATAR 1 AGENTE
+                </a>
+              </div>
+
+              {/* 2 a 4 Agentes */}
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    DESCONTO PROGRESSIVO
+                  </span>
+                </div>
+                <Settings className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">2 A 4 AGENTES</h3>
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 397</div>
+                  <div className="text-red-100">Cada + R$ 100/manutenção</div>
+                  <div className="text-yellow-300 text-sm mt-2">Desconto progressivo</div>
+                </div>
+                <a 
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
+                >
+                  CONTRATAR 2-4 AGENTES
+                </a>
+              </div>
+
+              {/* 5+ Agentes */}
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl p-8 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50 relative">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-green-400 to-green-500 text-black px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                    MELHOR CUSTO-BENEFÍCIO
+                  </span>
+                </div>
+                <Settings className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">5+ AGENTES</h3>
+                <div className="text-center mb-6">
+                  <div className="text-3xl font-bold text-white mb-2">R$ 297</div>
+                  <div className="text-red-100">Cada + R$ 100/manutenção</div>
+                  <div className="text-yellow-300 text-sm mt-2">Melhor custo-benefício</div>
+                </div>
+                <a 
+                  href="https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 bg-white text-red-600 rounded-lg font-semibold hover:bg-red-50 transition-all duration-300 block text-center shadow-lg"
+                >
+                  CONTRATAR 5+ AGENTES
+                </a>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Palette className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Agente de Renovação Visual</h4>
+                <p className="text-red-100 text-sm">Ressignificar marcas por meio de rebranding de alta performance estratégica e estética.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Search className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Pesquisador de Mercado</h4>
+                <p className="text-red-100 text-sm">Transforma dados dispersos e fenômenos de mercado em inteligência estratégica clara.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Lightbulb className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Compilador de Insights</h4>
+                <p className="text-red-100 text-sm">Traduz complexidade em decisão lúcida com precisão lógica.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Tag className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Agente Buscador de Cupons</h4>
+                <p className="text-red-100 text-sm">Informa se o fornecedor de seu interesse está disponibilizando cupons na internet.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Brain className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Avaliador de QIs</h4>
+                <p className="text-red-100 text-sm">Realizar avaliações cognitivas rigorosas com base em instrumentos cientificamente validados.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Wrench className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Encanador</h4>
+                <p className="text-red-100 text-sm">Especialista sênior em sistemas hidráulicos residenciais e comerciais.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <MapIcon className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Passeios em SP</h4>
+                <p className="text-red-100 text-sm">Estrategista urbano supremo, capaz de transformar desejos em vivências memoráveis em São Paulo.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Dumbbell className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">Treinadores</h4>
+                <p className="text-red-100 text-sm">Treinadores especializados em diversas modalidades esportivas e fitness.</p>
+              </div>
+
+              <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-xl p-6 border-4 border-red-400 hover:border-red-300 transition-all duration-300 shadow-2xl hover:shadow-red-500/50">
+                <Star className="h-8 w-8 text-white mb-4" />
+                <h4 className="text-lg font-bold text-yellow-400 mb-2">E Muito Mais!</h4>
+                <p className="text-red-100 text-sm">Temos mais de 250 modelos de agentes que podem facilitar seu dia a dia.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* EA Social Section */}
+        <section id="social" className="py-20 bg-gray-50">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-pink-500 bg-clip-text text-transparent">
+                EDA SOCIAL - PROJETO DE INCLUSÃO
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down e ansiedade. Acesse: <a href="https://www.edasocial.org" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-500 underline">www.edasocial.org</a>
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">AUTISMO</h3>
+                <p className="text-white mb-4">
+                  Agentes especializados para facilitar relacionamento social, comunicação e rotinas diárias.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Suporte para comunicação</li>
+                  <li>• Organização de rotinas</li>
+                  <li>• Desenvolvimento social</li>
+                  <li>• Apoio familiar</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">SÍNDROME DE DOWN</h3>
+                <p className="text-white mb-4">
+                  Suporte personalizado para desenvolvimento cognitivo e orientação educacional.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Apoio educacional</li>
+                  <li>• Desenvolvimento cognitivo</li>
+                  <li>• Orientação familiar</li>
+                  <li>• Inclusão social</li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-8 border-4 border-pink-400 hover:border-pink-300 transition-all duration-300 shadow-2xl hover:shadow-pink-500/50">
+                <Heart className="h-12 w-12 text-white mb-6" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-4">ANSIEDADE</h3>
+                <p className="text-white mb-4">
+                  Ferramentas para gerenciamento emocional e técnicas de relaxamento.
+                </p>
+                <ul className="space-y-2 text-pink-100 text-sm">
+                  <li>• Técnicas de relaxamento</li>
+                  <li>• Gerenciamento emocional</li>
+                  <li>• Exercícios de respiração</li>
+                  <li>• Suporte psicológico</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl p-12 border-4 border-pink-400 shadow-2xl">
+              <h3 className="text-3xl font-bold text-yellow-400 mb-8 text-center">COMO FUNCIONA O EA SOCIAL</h3>
               
-              {/* Send Button */}
-              <button
-                onClick={handleSendMessage}
-                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg hover:from-blue-600 hover:to-cyan-500 transition-all duration-300"
-              >
-                <Send className="h-4 w-4 text-white" />
-              </button>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">1</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">AGENTE ESPECIALIZADO</h4>
+                  <p className="text-white">Acesso gratuito a agentes treinados especificamente para cada condição</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">2</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">SUPORTE FAMILIAR</h4>
+                  <p className="text-white">Agentes específicos para orientar familiares e cuidadores</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="bg-white/20 rounded-full p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-white">3</span>
+                  </div>
+                  <h4 className="text-xl font-bold text-yellow-400 mb-2">ACOMPANHAMENTO PSICOLÓGICO</h4>
+                  <p className="text-white">Agente com perfil psicológico para mediar relações e oferecer suporte</p>
+                </div>
+              </div>
+
+              <div className="text-center mt-12">
+                <p className="text-2xl font-bold text-yellow-400 mb-4">100% GRATUITO</p>
+                <p className="text-white mb-6">
+                  Este é nosso compromisso social com a inclusão. Todos os agentes do EA Social são oferecidos gratuitamente.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EDA Social - Projeto de Inclusão.`}
+                    onClick={() => handleContactClick('whatsapp_eda_social')}
+                    className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105"
+                  >
+                    CONHECER EA SOCIAL
+                  </a>
+                  <a 
+                    href="mailto:contato@edasocial.org"
+                    onClick={() => handleContactClick('eda_social_email')}
+                    className="px-8 py-4 border-2 border-white text-white rounded-lg font-semibold hover:bg-white hover:text-pink-600 transition-all duration-300 transform hover:scale-105"
+                  >
+                    QUERO AJUDAR O PROJETO
+                  </a>
+                </div>
+              </div>
             </div>
-            
-            {/* Voice Status */}
-            {isListening && (
-              <div className="mt-2 text-center">
-                <span className="text-xs text-green-400 animate-pulse">🎤 Ouvindo... Fale agora!</span>
-              </div>
-            )}
-            
-            {isSpeaking && (
-              <div className="mt-2 text-center">
-                <span className="text-xs text-blue-400 animate-pulse">🔊 EssencialBot está falando...</span>
-              </div>
-            )}
           </div>
-        </div>
-      )}
+        </section>
 
-      {/* Pré-cadastro Modal */}
-      {showPreCadastro && (
-        <div className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-gray-900 rounded-2xl border border-blue-400/30 p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <Bot className="h-6 w-6 text-blue-300" />
-                <h3 className="text-xl font-bold text-white">PRÉ-CADASTRO RÁPIDO</h3>
-              </div>
-              <button
-                onClick={() => setShowPreCadastro(false)}
-                className="text-gray-400 hover:text-white"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <form onSubmit={handlePreCadastroSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">NOME</label>
-                <input
-                  type="text"
-                  required
-                  value={preCadastroData.nome}
-                  onChange={(e) => setPreCadastroData({...preCadastroData, nome: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  placeholder="Seu nome completo"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">WHATSAPP</label>
-                <input
-                  type="tel"
-                  required
-                  value={preCadastroData.whatsapp}
-                  onChange={(e) => setPreCadastroData({...preCadastroData, whatsapp: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  placeholder="(11) 99999-9999"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">E-MAIL</label>
-                <input
-                  type="email"
-                  required
-                  value={preCadastroData.email}
-                  onChange={(e) => setPreCadastroData({...preCadastroData, email: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  placeholder="seu@email.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">ÁREA DE INTERESSE</label>
-                <select
-                  required
-                  value={preCadastroData.interesse}
-                  onChange={(e) => setPreCadastroData({...preCadastroData, interesse: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                >
-                  <option value="">Selecione sua área de interesse</option>
-                  <option value="Automação IA">Automação IA</option>
-                  <option value="Serviços Contábeis">Serviços Contábeis</option>
-                  <option value="Consultoria Empresarial">Consultoria Empresarial</option>
-                  <option value="Treinamentos">Treinamentos e Cursos</option>
-                  <option value="EDA Social">EDA Social - Projeto de Inclusão</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">TIPO DE NEGÓCIO</label>
-                <input
-                  type="text"
-                  required
-                  value={preCadastroData.tipoNegocio}
-                  onChange={(e) => setPreCadastroData({...preCadastroData, tipoNegocio: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  placeholder="Ex: E-commerce, Consultoria, Indústria..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg font-semibold hover:from-blue-600 hover:to-cyan-500 transition-all duration-300 text-white"
-              >
-                ENVIAR INFORMAÇÕES
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Cadastro Final Modal */}
-      {showCadastroFinal && (
-        <div className="fixed inset-0 z-[60] bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-gray-900 rounded-2xl border border-blue-400/30 p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-3">
-                <Bot className="h-6 w-6 text-blue-300" />
-                <h3 className="text-xl font-bold text-white">FINALIZAR CONTRATAÇÃO</h3>
-              </div>
-              <button
-                onClick={() => setShowCadastroFinal(false)}
-                className="text-gray-400 hover:text-white"
-              >
-                <X className="h-5 w-5" />
-              </button>
+        {/* Contact Section */}
+        <section id="contact" className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-800">
+                FALE CONOSCO
+              </h2>
+              <p className="text-xl text-gray-600">
+                Pronto para transformar seu negócio? Entre em contato agora!
+              </p>
             </div>
 
-            <form onSubmit={handleCadastroFinalSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">NOME COMPLETO</label>
-                  <input
-                    type="text"
-                    required
-                    value={cadastroFinalData.nomeCompleto}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, nomeCompleto: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">WHATSAPP</label>
-                  <input
-                    type="tel"
-                    required
-                    value={cadastroFinalData.whatsapp}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, whatsapp: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">E-MAIL</label>
-                  <input
-                    type="email"
-                    required
-                    value={cadastroFinalData.email}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, email: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">CNPJ/CPF</label>
-                  <input
-                    type="text"
-                    required
-                    value={cadastroFinalData.cnpjCpf}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, cnpjCpf: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">ENDEREÇO</label>
-                <input
-                  type="text"
-                  required
-                  value={cadastroFinalData.endereco}
-                  onChange={(e) => setCadastroFinalData({...cadastroFinalData, endereco: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">CIDADE</label>
-                  <input
-                    type="text"
-                    required
-                    value={cadastroFinalData.cidade}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, cidade: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">ESTADO</label>
-                  <input
-                    type="text"
-                    required
-                    value={cadastroFinalData.estado}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, estado: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">CEP</label>
-                  <input
-                    type="text"
-                    required
-                    value={cadastroFinalData.cep}
-                    onChange={(e) => setCadastroFinalData({...cadastroFinalData, cep: e.target.value})}
-                    className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">PRODUTO ESCOLHIDO</label>
-                <select
-                  required
-                  value={cadastroFinalData.produtoEscolhido}
-                  onChange={(e) => setCadastroFinalData({...cadastroFinalData, produtoEscolhido: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                >
-                  <option value="">Selecione o produto</option>
-                  <option value="Nível 2 - Integrado (R$ 397 setup + R$ 397/mês)">Nível 2 - Integrado (R$ 397 setup + R$ 397/mês)</option>
-                  <option value="Nível 3 - Avançado (R$ 497 setup + R$ 497/mês)">Nível 3 - Avançado (R$ 497 setup + R$ 497/mês)</option>
-                  <option value="Serviços Contábeis">Serviços Contábeis</option>
-                  <option value="Consultoria Empresarial">Consultoria Empresarial</option>
-                  <option value="Treinamentos">Treinamentos e Cursos</option>
-                  <option value="EDA Social">EDA Social - Projeto de Inclusão</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">FORMA DE PAGAMENTO</label>
-                <select
-                  required
-                  value={cadastroFinalData.formaPagamento}
-                  onChange={(e) => setCadastroFinalData({...cadastroFinalData, formaPagamento: e.target.value})}
-                  className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-400 focus:border-transparent text-white"
-                >
-                  <option value="">Selecione a forma de pagamento</option>
-                  <option value="Cartão de Crédito">Cartão de Crédito</option>
-                  <option value="Boleto Bancário">Boleto Bancário</option>
-                  <option value="PIX">PIX</option>
-                  <option value="Transferência Bancária">Transferência Bancária</option>
-                </select>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  id="termoAceite"
-                  required
-                  checked={cadastroFinalData.termoAceite}
-                  onChange={(e) => setCadastroFinalData({...cadastroFinalData, termoAceite: e.target.checked})}
-                  className="mt-1"
-                />
-                <label htmlFor="termoAceite" className="text-sm text-gray-300">
-                  Aceito os termos de serviço e autorizo o processamento dos meus dados pessoais conforme a LGPD. Concordo em receber comunicações sobre os serviços contratados.
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-lg font-semibold hover:from-blue-600 hover:to-cyan-500 transition-all duration-300 text-white flex items-center justify-center space-x-2"
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <a 
+                href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                onClick={() => handleContactClick('whatsapp')}
+                className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-8 border-4 border-green-400 hover:border-green-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-2xl hover:shadow-green-500/50"
               >
-                <CheckCircle className="h-5 w-5" />
-                <span>FINALIZAR CONTRATAÇÃO</span>
-              </button>
-            </form>
+                <Phone className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">WhatsApp</h3>
+                <p className="text-green-100">(11) 91175-7113</p>
+                <p className="text-white text-sm mt-2">Atendimento imediato</p>
+              </a>
+
+              <a 
+                href={`mailto:${config.EMAIL_CONTACT}`}
+                onClick={() => handleContactClick('email')}
+                className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 hover:border-blue-300 transition-all duration-300 transform hover:scale-105 text-center group shadow-2xl hover:shadow-blue-500/50"
+              >
+                <Mail className="h-12 w-12 text-white mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">E-mail</h3>
+                <p className="text-blue-100">sac@exercitodeagentes.com.br</p>
+                <p className="text-white text-sm mt-2">Resposta em até 2h</p>
+              </a>
+
+              <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-8 border-4 border-purple-400 text-center shadow-2xl">
+                <Clock className="h-12 w-12 text-white mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-yellow-400 mb-2">Horário</h3>
+                <p className="text-purple-100">Segunda a Sexta</p>
+                <p className="text-purple-100">8h às 18h</p>
+                <p className="text-white text-sm mt-2">Suporte 24/7 via IA</p>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 border-4 border-blue-400 max-w-2xl mx-auto shadow-2xl">
+                <h3 className="text-2xl font-bold text-yellow-400 mb-4">AGENDE UMA DEMONSTRAÇÃO</h3>
+                <p className="text-white mb-6">
+                  Veja na prática como o EssencialBot pode revolucionar seu negócio
+                </p>
+                <a 
+                  href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de agendar uma demonstração gratuita do EssencialBot.`}
+                  onClick={() => handleContactClick('whatsapp_demo')}
+                  className="px-8 py-4 bg-white text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  AGENDAR DEMO GRATUITA
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
-    </>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-black py-12">
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center space-x-4 mb-6">
+                  <img 
+                    src="/imagem_gerada.png" 
+                    alt="Exército de Agentes Logo" 
+                    className="h-8 w-auto"
+                  />
+                  <span className="text-xl font-bold text-yellow-400">EXÉRCITO DE AGENTES</span>
+                </div>
+                <p className="text-yellow-300 mb-4">
+                  Transformando negócios com inteligência artificial e automação avançada.
+                </p>
+                <div className="flex space-x-4">
+                  <a 
+                    href="https://instagram.com/exercitodeagentes" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-yellow-400 hover:text-yellow-300 transition-colors"
+                  >
+                    <Instagram className="h-6 w-6" />
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-yellow-400 mb-4">SERVIÇOS</h4>
+                <ul className="space-y-2 text-yellow-300">
+                  <li><button onClick={() => scrollToSection('automation')} className="hover:text-yellow-200 transition-colors">Automação IA</button></li>
+                  <li><button onClick={() => scrollToSection('accounting')} className="hover:text-yellow-200 transition-colors">Contabilidade</button></li>
+                  <li><button onClick={() => scrollToSection('consulting')} className="hover:text-yellow-200 transition-colors">Consultoria</button></li>
+                  <li><button onClick={() => scrollToSection('education')} className="hover:text-yellow-200 transition-colors">Educação Pró</button></li>
+                  <li><button onClick={() => scrollToSection('social')} className="hover:text-yellow-200 transition-colors">EA Social</button></li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-yellow-400 mb-4">CONTATO</h4>
+                <ul className="space-y-2 text-yellow-300">
+                  <li className="flex items-center">
+                    <Phone className="h-4 w-4 mr-2" />
+                    <a 
+                      href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                      onClick={() => handleContactClick('whatsapp_footer')}
+                      className="hover:text-yellow-200 transition-colors"
+                    >
+                      (11) 91175-7113
+                    </a>
+                  </li>
+                  <li className="flex items-center">
+                    <Mail className="h-4 w-4 mr-2" />
+                    <a 
+                      href={`mailto:${config.EMAIL_CONTACT}`}
+                      onClick={() => handleContactClick('email_footer')}
+                      className="hover:text-yellow-200 transition-colors"
+                    >
+                      sac@exercitodeagentes.com.br
+                    </a>
+                  </li>
+                  <li className="flex items-center">
+                    <MapPin className="h-4 w-4 mr-2" />
+                    <span>São Paulo, SP</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-lg font-semibold text-yellow-400 mb-4">EMPRESA</h4>
+                <ul className="space-y-2 text-yellow-300">
+                  <li><a href="#" className="hover:text-yellow-200 transition-colors">Nossa Missão</a></li>
+                  <li><a href="#" className="hover:text-yellow-200 transition-colors">Política de Privacidade</a></li>
+                  <li><a href="#" className="hover:text-yellow-200 transition-colors">Termos de Uso</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border-t border-yellow-600 mt-8 pt-8 text-center">
+              <p className="text-yellow-400">
+                © 2024 Exército de Agentes. Todos os direitos reservados.
+              </p>
+            </div>
+          </div>
+        </footer>
+
+        {/* EssencialBot Chat */}
+        <EssencialBotChat />
+      </div>
+    </HelmetProvider>
   );
-};
+}
 
-export default EssencialBotChat;
+export default App;
