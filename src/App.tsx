@@ -905,9 +905,9 @@ function App() {
                   <a 
                     href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre o EA Social - Projeto de Inclusão.`}
                     onClick={() => handleContactClick('whatsapp_social')}
-                    className="px-8 py-4 bg-white text-pink-600 rounded-lg font-semibold hover:bg-pink-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  <h3 className="text-xl font-bold mb-3">EDA SOCIAL</h3>
                   >
-                    ACESSAR AGENTES GRATUITOS
+                    EDA SOCIAL - PROJETO DE INCLUSÃO: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down, mobilidade reduzida, luto, ansiedade e outros. Acesse: www.edasocial.org
                   </a>
                   <a 
                     href="mailto:contato@edasocial.org"
