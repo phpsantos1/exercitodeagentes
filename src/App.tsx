@@ -411,15 +411,6 @@ const App: React.FC = () => {
                   <div className="p-3 bg-emerald-100 rounded-2xl">
                     <Building className="h-8 w-8 text-emerald-600" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">
-                    <a 
-                      href="https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-green-600 transition-colors"
-                    >
-                      Abertura de Empresas
-                    </a>
                   <h3 className="text-xl font-bold text-gray-900 group-hover:text-green-600 transition-colors">Abertura de Empresas</h3>
                 </div>
                 <ul className="space-y-3 text-gray-600">
