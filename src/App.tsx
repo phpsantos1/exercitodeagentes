@@ -574,7 +574,9 @@ const App: React.FC = () => {
                     <Target className="h-8 w-8 text-amber-600" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">Planejamento Estratégico</h3>
+                    <h3 className="text-xl font-bold text-gray-900 m
+  )
+}b-3">Planejamento Estratégico</h3>
                     <p className="text-gray-600">Definição de metas, análise de mercado e criação de roadmaps para crescimento sustentável.</p>
                   </div>
                 </div>
