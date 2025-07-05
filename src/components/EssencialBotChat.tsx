@@ -22,46 +22,10 @@ const EssencialBotChat: React.FC = () => {
 
   const gptLinks = [
     {
-      name: "Atendente Geral",
-      description: "Atendimento geral e direcionamento para especialistas",
-      url: "https://chatgpt.com/g/g-68570ffa4eac8191960f0475b576fb77-ea-essencialbot-concierge",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
       name: "Contabilidade",
       description: "Especialista em contabilidade e questões fiscais",
       url: "https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil",
       color: "from-green-500 to-emerald-500"
-    },
-    {
-      name: "Consultoria Empresarial",
-      description: "Consultoria empresarial e estratégica",
-      url: "https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial",
-      color: "from-orange-500 to-red-500"
-    },
-    {
-      name: "Educação Pro",
-      description: "Cursos e capacitação profissional",
-      url: "https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro",
-      color: "from-purple-500 to-indigo-500"
-    },
-    {
-      name: "IA Planos Intermediário e Avançado",
-      description: "Especialista em planos Intermediário e Avançado de IA",
-      url: "https://chatgpt.com/g/g-685716af22f881918330545239763a46-ea-triagem-de-ia-planos-2-e-3",
-      color: "from-violet-500 to-purple-500"
-    },
-    {
-      name: "IA Personal",
-      description: "Atendimento personalizado para soluções de IA customizadas",
-      url: "https://chatgpt.com/g/g-685717cd0c7481919dfaf0d8654ef085-ea-triagem-ia-personal",
-      color: "from-pink-500 to-rose-500"
-    },
-    {
-      name: "EDA SOCIAL Bot",
-      description: "Projeto de inclusão digital e apoio social",
-      url: "https://www.edasocial.org",
-      color: "from-emerald-500 to-teal-500"
     }
   ];
 
@@ -88,7 +52,7 @@ const EssencialBotChat: React.FC = () => {
           <div className="flex-1 p-4 overflow-y-auto">
             <div className="bg-gray-100 rounded-lg p-3 mb-4">
               <p className="text-sm text-gray-700 mb-3">
-                <strong>Olá! Escolha o atendente especializado para sua necessidade:</strong>
+                <strong>Olá! Fale com nosso especialista em contabilidade:</strong>
               </p>
             </div>
 
