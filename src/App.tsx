@@ -172,7 +172,7 @@ const App: React.FC = () => {
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {/* Agentes Personalizados */}
-              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-emerald-400 to-green-500 rounded-3xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300 shadow-xl">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
                 <div className="relative z-10">
                   <div className="flex items-center space-x-3 mb-6">
@@ -213,7 +213,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Intermediário */}
-              <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-3xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-cyan-400 to-blue-500 rounded-3xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300 shadow-xl">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
                 <div className="relative z-10">
                   <div className="flex items-center space-x-3 mb-6">
@@ -254,7 +254,7 @@ const App: React.FC = () => {
               </div>
 
               {/* Avançado */}
-              <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-3xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300">
+              <div className="bg-gradient-to-br from-purple-400 to-pink-500 rounded-3xl p-8 text-white relative overflow-hidden group hover:scale-105 transition-transform duration-300 shadow-xl">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
                 <div className="absolute top-4 right-4 bg-yellow-400 text-purple-900 px-3 py-1 rounded-full text-sm font-bold">
                   PREMIUM
@@ -289,7 +289,7 @@ const App: React.FC = () => {
                     <div className="text-purple-200 mb-4">Setup + R$ 797/mês</div>
                     <button 
                       onClick={() => handleServiceClick('avancado')}
-                      className="w-full py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                      className="w-full py-3 bg-white text-purple-700 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                     >
                       Contratar Premium
                     </button>
@@ -329,22 +329,22 @@ const App: React.FC = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-3 bg-green-100 rounded-2xl">
-                    <Building className="h-8 w-8 text-green-600" />
+                  <div className="p-3 bg-emerald-100 rounded-2xl">
+                    <Building className="h-8 w-8 text-emerald-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Abertura de Empresas</h3>
                 </div>
                 <ul className="space-y-3 text-gray-600">
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-emerald-500" />
                     <span>MEI, LTDA, SA</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-emerald-500" />
                     <span>Processo 100% digital</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-emerald-500" />
                     <span>Consultoria de enquadramento</span>
                   </li>
                 </ul>
@@ -352,22 +352,22 @@ const App: React.FC = () => {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-3 bg-blue-100 rounded-2xl">
-                    <Calculator className="h-8 w-8 text-blue-600" />
+                  <div className="p-3 bg-cyan-100 rounded-2xl">
+                    <Calculator className="h-8 w-8 text-cyan-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Contabilidade Mensal</h3>
                 </div>
                 <ul className="space-y-3 text-gray-600">
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-cyan-500" />
                     <span>Escrituração completa</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-cyan-500" />
                     <span>Obrigações fiscais</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-cyan-500" />
                     <span>Relatórios gerenciais</span>
                   </li>
                 </ul>
@@ -375,22 +375,22 @@ const App: React.FC = () => {
 
               <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="p-3 bg-purple-100 rounded-2xl">
-                    <Users className="h-8 w-8 text-purple-600" />
+                  <div className="p-3 bg-violet-100 rounded-2xl">
+                    <Users className="h-8 w-8 text-violet-600" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">Departamento Pessoal</h3>
                 </div>
                 <ul className="space-y-3 text-gray-600">
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-violet-500" />
                     <span>Folha de pagamento</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-violet-500" />
                     <span>eSocial e FGTS</span>
                   </li>
                   <li className="flex items-center space-x-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-violet-500" />
                     <span>Admissões e demissões</span>
                   </li>
                 </ul>
@@ -414,8 +414,8 @@ const App: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div className="space-y-8">
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-orange-100 rounded-2xl">
-                    <Target className="h-8 w-8 text-orange-600" />
+                  <div className="p-3 bg-amber-100 rounded-2xl">
+                    <Target className="h-8 w-8 text-amber-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Planejamento Estratégico</h3>
@@ -424,8 +424,8 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-red-100 rounded-2xl">
-                    <TrendingUp className="h-8 w-8 text-red-600" />
+                  <div className="p-3 bg-rose-100 rounded-2xl">
+                    <TrendingUp className="h-8 w-8 text-rose-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Recuperação Empresarial</h3>
@@ -434,8 +434,8 @@ const App: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="p-3 bg-green-100 rounded-2xl">
-                    <BarChart3 className="h-8 w-8 text-green-600" />
+                  <div className="p-3 bg-emerald-100 rounded-2xl">
+                    <BarChart3 className="h-8 w-8 text-emerald-600" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Gestão Financeira</h3>
@@ -444,7 +444,7 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-3xl p-8 text-white">
+              <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl p-8 text-white shadow-xl">
                 <h3 className="text-2xl font-bold mb-6">Transformação Digital</h3>
                 <p className="text-lg mb-6 text-orange-100">
                   Implementamos soluções de IA e automação que revolucionam a eficiência operacional da sua empresa.
@@ -469,7 +469,7 @@ const App: React.FC = () => {
                 </ul>
                 <button 
                   onClick={() => handleServiceClick('consultoria')}
-                  className="w-full py-3 bg-white text-orange-600 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                  className="w-full py-3 bg-white text-orange-700 rounded-full font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Solicitar Consultoria
                 </button>
@@ -492,42 +492,42 @@ const App: React.FC = () => {
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="p-3 bg-blue-100 rounded-2xl w-fit mx-auto mb-4">
-                  <Bot className="h-8 w-8 text-blue-600" />
+                <div className="p-3 bg-cyan-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Bot className="h-8 w-8 text-cyan-600" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3">IA Empresarial</h3>
                 <p className="text-gray-600 text-sm mb-4">Fundamentos, Chatbots e Machine Learning aplicados aos negócios</p>
-                <div className="text-2xl font-bold text-blue-600 mb-2">40h</div>
+                <div className="text-2xl font-bold text-cyan-600 mb-2">40h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="p-3 bg-green-100 rounded-2xl w-fit mx-auto mb-4">
-                  <Calculator className="h-8 w-8 text-green-600" />
+                <div className="p-3 bg-emerald-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Calculator className="h-8 w-8 text-emerald-600" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3">Contabilidade 4.0</h3>
                 <p className="text-gray-600 text-sm mb-4">Contabilidade digital, SPED e análise de dados</p>
-                <div className="text-2xl font-bold text-green-600 mb-2">60h</div>
+                <div className="text-2xl font-bold text-emerald-600 mb-2">60h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="p-3 bg-purple-100 rounded-2xl w-fit mx-auto mb-4">
-                  <Shield className="h-8 w-8 text-purple-600" />
+                <div className="p-3 bg-violet-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-violet-600" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3">Controladoria</h3>
                 <p className="text-gray-600 text-sm mb-4">Controles internos, auditoria e compliance</p>
-                <div className="text-2xl font-bold text-purple-600 mb-2">50h</div>
+                <div className="text-2xl font-bold text-violet-600 mb-2">50h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
-                <div className="p-3 bg-orange-100 rounded-2xl w-fit mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8 text-orange-600" />
+                <div className="p-3 bg-amber-100 rounded-2xl w-fit mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-amber-600" />
                 </div>
                 <h3 className="text-lg font-bold text-gray-900 mb-3">Gestão Financeira</h3>
                 <p className="text-gray-600 text-sm mb-4">Fluxo de caixa, análise e orçamento empresarial</p>
-                <div className="text-2xl font-bold text-orange-600 mb-2">45h</div>
+                <div className="text-2xl font-bold text-amber-600 mb-2">45h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
               </div>
             </div>
@@ -562,7 +562,7 @@ const App: React.FC = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-              <div className="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl p-6 text-white shadow-lg">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="p-2 bg-white/20 rounded-xl">
                     <Brain className="h-6 w-6 text-white" />
@@ -574,7 +574,7 @@ const App: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-violet-400 to-purple-500 rounded-2xl p-6 text-white shadow-lg">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="p-2 bg-white/20 rounded-xl">
                     <Heart className="h-6 w-6 text-white" />
@@ -586,7 +586,7 @@ const App: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl p-6 text-white shadow-lg">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="p-2 bg-white/20 rounded-xl">
                     <Accessibility className="h-6 w-6 text-white" />
@@ -598,7 +598,7 @@ const App: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-6 text-white shadow-lg">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="p-2 bg-white/20 rounded-xl">
                     <Users className="h-6 w-6 text-white" />
@@ -610,7 +610,7 @@ const App: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-indigo-500 to-blue-600 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-indigo-400 to-blue-500 rounded-2xl p-6 text-white shadow-lg">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="p-2 bg-white/20 rounded-xl">
                     <HandHeart className="h-6 w-6 text-white" />
@@ -622,7 +622,7 @@ const App: React.FC = () => {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-2xl p-6 text-white">
+              <div className="bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl p-6 text-white shadow-lg">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="p-2 bg-white/20 rounded-xl">
                     <Gift className="h-6 w-6 text-white" />
@@ -736,57 +736,57 @@ const App: React.FC = () => {
               <a 
                 href={`https://wa.me/${config.WHATSAPP_NUMBER}?text=Olá! Gostaria de saber mais sobre os serviços do Exército de Agentes.`}
                 onClick={() => handleContactClick('whatsapp')}
-                className="bg-green-600 hover:bg-green-700 rounded-2xl p-6 text-center transition-colors group"
+                className="bg-emerald-500 hover:bg-emerald-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Phone className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">WhatsApp</h3>
-                <p className="text-green-100">(11) 91175-7113</p>
+                <p className="text-emerald-100">(11) 91175-7113</p>
               </a>
 
               {/* Email Geral */}
               <a 
                 href={`mailto:${config.EMAIL_CONTACT}`}
                 onClick={() => handleContactClick('email')}
-                className="bg-blue-600 hover:bg-blue-700 rounded-2xl p-6 text-center transition-colors group"
+                className="bg-cyan-500 hover:bg-cyan-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Mail className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">E-mail Geral</h3>
-                <p className="text-blue-100 text-sm">sac@exercitodeagentes.com.br</p>
+                <p className="text-cyan-100 text-sm">sac@exercitodeagentes.com.br</p>
               </a>
 
               {/* Email Financeiro */}
               <a 
                 href="mailto:financeiro@exercitodeagentes.com.br"
                 onClick={() => handleContactClick('email_financeiro')}
-                className="bg-purple-600 hover:bg-purple-700 rounded-2xl p-6 text-center transition-colors group"
+                className="bg-violet-500 hover:bg-violet-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Mail className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Financeiro</h3>
-                <p className="text-purple-100 text-sm">financeiro@exercitodeagentes.com.br</p>
+                <p className="text-violet-100 text-sm">financeiro@exercitodeagentes.com.br</p>
               </a>
 
               {/* Email Paulo Henrique */}
               <a 
                 href="mailto:paulohenrique@exercitodeagentes.com.br"
                 onClick={() => handleContactClick('email_paulo')}
-                className="bg-orange-600 hover:bg-orange-700 rounded-2xl p-6 text-center transition-colors group"
+                className="bg-amber-500 hover:bg-amber-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
                   <Mail className="h-8 w-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-3">Paulo Henrique</h3>
-                <p className="text-orange-100 text-sm">paulohenrique@exercitodeagentes.com.br</p>
+                <p className="text-amber-100 text-sm">paulohenrique@exercitodeagentes.com.br</p>
               </a>
             </div>
 
             {/* EDA SOCIAL Contact */}
-            <div className="mt-12 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl p-8 text-center">
+            <div className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-8 text-center shadow-xl">
               <h3 className="text-2xl font-bold mb-4">EDA SOCIAL - Projeto de Inclusão</h3>
               <p className="text-pink-100 mb-6">
                 Para dúvidas, suporte ou colaboração com nosso projeto social
@@ -794,7 +794,7 @@ const App: React.FC = () => {
               <a 
                 href="mailto:contato@edasocial.org"
                 onClick={() => handleContactClick('email_eda_social')}
-                className="inline-flex items-center space-x-2 bg-white text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center space-x-2 bg-white text-pink-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
               >
                 <Mail className="h-5 w-5" />
                 <span>contato@edasocial.org</span>
