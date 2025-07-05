@@ -555,7 +555,35 @@ const App: React.FC = () => {
                   </div>
 
   )
-}                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Consultoria Section */}
+        <section id="consulting" className="py-20 px-4 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Consultoria <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Empresarial</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Estratégias personalizadas para transformar desafios em oportunidades de crescimento
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-8">
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-amber-100 rounded-2xl">
+                    <Target className="h-8 w-8 text-amber-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Planejamento Estratégico</h3>
+                    <p className="text-gray-600">Definição de metas, análise de mercado e criação de roadmaps para crescimento sustentável.</p>
+                  </div>
+                </div>
 
                 <div className="flex items-start space-x-4">
                   <div className="p-3 bg-rose-100 rounded-2xl">
@@ -700,6 +728,737 @@ const App: React.FC = () => {
                     Controladoria
                   </a>
                 </h3>
+                <p className="text-gray-600 text-sm mb-4">Controles internos, auditoria e compliance</p>
+                <div className="text-2xl font-bold text-violet-600 mb-2">50h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-violet-600 text-white px-4 py-2 rounded-lg hover:bg-violet-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-amber-100 rounded-2xl w-fit mx-auto mb-4">
+                  <TrendingUp className="h-8 w-8 text-amber-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  <a 
+                    href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-orange-600 transition-colors"
+                  >
+                    Gestão Financeira
+                  </a>
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">Fluxo de caixa, análise e orçamento empresarial</p>
+                <div className="text-2xl font-bold text-amber-600 mb-2">45h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Segunda linha de cursos */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-cyan-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Briefcase className="h-8 w-8 text-cyan-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Gestão Empresarial</h3>
+                <p className="text-gray-600 text-sm mb-4">Liderança, estratégia e gestão de equipes</p>
+                <div className="text-2xl font-bold text-cyan-600 mb-2">55h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-pink-100 rounded-2xl w-fit mx-auto mb-4">
+                  <BarChart3 className="h-8 w-8 text-pink-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Business Intelligence</h3>
+                <p className="text-gray-600 text-sm mb-4">Análise de dados, dashboards e relatórios</p>
+                <div className="text-2xl font-bold text-pink-600 mb-2">48h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-emerald-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Globe className="h-8 w-8 text-emerald-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Marketing Digital</h3>
+                <p className="text-gray-600 text-sm mb-4">SEO, redes sociais e automação de marketing</p>
+                <div className="text-2xl font-bold text-emerald-600 mb-2">42h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-red-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Award className="h-8 w-8 text-red-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Compliance</h3>
+                <p className="text-gray-600 text-sm mb-4">LGPD, governança corporativa e ética</p>
+                <div className="text-2xl font-bold text-red-600 mb-2">38h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+            </div>
+
+            {/* Terceira linha de cursos */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-violet-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Users className="h-8 w-8 text-violet-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Recursos Humanos</h3>
+                <p className="text-gray-600 text-sm mb-4">Gestão de pessoas e desenvolvimento organizacional</p>
+                <div className="text-2xl font-bold text-violet-600 mb-2">52h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-amber-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Zap className="h-8 w-8 text-amber-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Automação de Processos</h3>
+                <p className="text-gray-600 text-sm mb-4">RPA, workflows e otimização operacional</p>
+                <div className="text-2xl font-bold text-amber-600 mb-2">46h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-teal-100 rounded-2xl w-fit mx-auto mb-4">
+                  <BookOpen className="h-8 w-8 text-teal-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Educação Corporativa</h3>
+                <p className="text-gray-600 text-sm mb-4">Treinamento, capacitação e desenvolvimento</p>
+                <div className="text-2xl font-bold text-teal-600 mb-2">44h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-rose-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Target className="h-8 w-8 text-rose-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Planejamento Estratégico</h3>
+                <p className="text-gray-600 text-sm mb-4">Visão, missão, objetivos e metas empresariais</p>
+                <div className="text-2xl font-bold text-rose-600 mb-2">50h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+            </div>
+
+            <div className="text-center mt-12">
+              <button 
+                onClick={() => handleServiceClick('educacao')}
+                className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                onClick={() => window.open('https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro', '_blank')}
+              >
+                Ver Todos os Cursos
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* EDA SOCIAL Section */}
+        <section className="py-20 px-4 bg-gradient-to-br from-pink-50 to-purple-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center space-x-3 bg-pink-100 rounded-full px-6 py-3 mb-8">
+                <Heart className="h-6 w-6 text-pink-600" />
+                <span className="text-pink-800 font-semibold">COMPROMISSO SOCIAL</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">EDA SOCIAL</span> - Projeto de Inclusão
+              </h2>
+              
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                Nosso compromisso social: agentes de IA especializados para apoiar pessoas com autismo, síndrome de Down, mobilidade reduzida, luto, ansiedade e outros. Acesse: <a href="https://www.edasocial.org" target="_blank" rel="noopener noreferrer" className="text-pink-600 hover:text-pink-700 font-semibold">www.edasocial.org</a>
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              <a 
+                href="https://www.edasocial.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl p-6 text-white hover:scale-105 transition-transform duration-300 block shadow-lg"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <Brain className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">Agente Autismo</h3>
+                </div>
+                <p className="text-blue-100 leading-relaxed">
+                  Especializado em comunicação adaptada, rotinas estruturadas e apoio sensorial para pessoas no espectro autista
+                </p>
+              </a>
+
+              <a 
+                href="https://www.edasocial.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-violet-400 to-purple-500 rounded-2xl p-6 text-white hover:scale-105 transition-transform duration-300 block shadow-lg"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <Heart className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">Agente Síndrome de Down</h3>
+                </div>
+                <p className="text-purple-100 leading-relaxed">
+                  Focado em desenvolvimento de autonomia, comunicação clara e apoio educacional personalizado
+                </p>
+              </a>
+
+              <a 
+                href="https://www.edasocial.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-emerald-400 to-green-500 rounded-2xl p-6 text-white hover:scale-105 transition-transform duration-300 block shadow-lg"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <Accessibility className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">Agente Mobilidade</h3>
+                </div>
+                <p className="text-green-100 leading-relaxed">
+                  Orientação sobre acessibilidade, adaptações e recursos para pessoas com mobilidade reduzida
+                </p>
+              </a>
+
+              <a 
+                href="https://www.edasocial.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl p-6 text-white hover:scale-105 transition-transform duration-300 block shadow-lg"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <Users className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">Agente Famílias</h3>
+                </div>
+                <p className="text-orange-100 leading-relaxed">
+                  Suporte emocional e orientação prática para familiares e cuidadores
+                </p>
+              </a>
+
+              <a 
+                href="https://www.edasocial.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-indigo-400 to-blue-500 rounded-2xl p-6 text-white hover:scale-105 transition-transform duration-300 block shadow-lg"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <HandHeart className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">Agente Luto</h3>
+                </div>
+                <p className="text-indigo-100 leading-relaxed">
+                  Apoio emocional especializado para pessoas em processo de luto e perda
+                </p>
+              </a>
+
+              <a 
+                href="https://www.edasocial.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-br from-yellow-400 to-amber-500 rounded-2xl p-6 text-white hover:scale-105 transition-transform duration-300 block shadow-lg"
+              >
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="p-2 bg-white/20 rounded-xl">
+                    <Gift className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-xl font-bold">Agente Ansiedade</h3>
+                </div>
+                <p className="text-yellow-100 leading-relaxed">
+                  Ferramentas e técnicas para gerenciamento da ansiedade e bem-estar emocional
+                </p>
+              </a>
+            </div>
+
+            <div className="text-center">
+              <button 
+                onClick={() => setCurrentSection('eda-social')}
+                className="px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                onClick={() => window.open('https://www.edasocial.org', '_blank')}
+              >
+                Conhecer o Projeto Completo
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-20 px-4 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                O que nossos <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">Clientes</span> dizem
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-6 italic">
+                  "O EssencialBot revolucionou nosso atendimento. Reduzimos 80% do tempo de resposta e aumentamos a satisfação dos clientes."
+                </p>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">PJ</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Sr. Paulo José</div>
+                    <div className="text-gray-500 text-sm">Essencial Hortifruti</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-6 italic">
+                  "A consultoria empresarial nos ajudou a sair da crise. Hoje somos uma empresa 3x maior e mais eficiente."
+                </p>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">JS</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">João Silva</div>
+                    <div className="text-gray-500 text-sm">Diretor, Indústria ABC</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 rounded-2xl p-8">
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-gray-600 mb-6 italic">
+                  "Os cursos de IA transformaram nossa equipe. Agora somos líderes em inovação no nosso setor."
+                </p>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold">AC</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Ana Costa</div>
+                    <div className="text-gray-500 text-sm">CTO, StartupXYZ</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-20 px-4 bg-gray-900 text-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Entre em <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Contato</span>
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Pronto para transformar seu negócio? Nossa equipe está aqui para ajudar você a dar o próximo passo.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* WhatsApp */}
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('whatsapp');
+                }}
+                className="bg-emerald-500 hover:bg-emerald-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
+              >
+                <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Phone className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">WhatsApp</h3>
+                <p className="text-emerald-100">(11) 91175-7113</p>
+              </a>
+
+              {/* Email Geral */}
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_sac', 'sac', config.EMAIL_CONTACT);
+                }}
+                className="bg-cyan-500 hover:bg-cyan-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
+              >
+                <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Mail className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">E-mail Geral</h3>
+                <p className="text-cyan-100 text-sm">sac@exercitodeagentes.com.br</p>
+              </a>
+
+              {/* Email Financeiro */}
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_financeiro', 'financeiro', 'financeiro@exercitodeagentes.com.br');
+                }}
+                className="bg-violet-500 hover:bg-violet-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
+              >
+                <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Mail className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Financeiro</h3>
+                <p className="text-violet-100 text-sm">financeiro@exercitodeagentes.com.br</p>
+              </a>
+
+              {/* Email Paulo Henrique */}
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_paulo', 'paulo', 'paulohenrique@exercitodeagentes.com.br');
+                }}
+                className="bg-amber-500 hover:bg-amber-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
+              >
+                <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
+                  <Mail className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-3">Paulo Henrique</h3>
+                <p className="text-orange-100 text-xs leading-relaxed break-all">paulohenrique@exercitodeagentes.com.br</p>
+              </a>
+            </div>
+
+            {/* EDA SOCIAL Contact */}
+            <div className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-8 text-center shadow-xl">
+              <h3 className="text-2xl font-bold mb-4">EDA SOCIAL - Projeto de Inclusão</h3>
+              <p className="text-pink-100 mb-6">
+                Para dúvidas, suporte ou colaboração com nosso projeto social
+              </p>
+              <a 
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactClick('email_eda_social', 'eda_social', 'contato@edasocial.org');
+                }}
+                className="inline-flex items-center space-x-2 bg-white text-pink-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+              >
+                <Mail className="h-5 w-5" />
+                <span>contato@edasocial.org</span>
+              </a>
+            </div>
+
+            {/* Horário de Atendimento */}
+            <div className="mt-12 text-center">
+              <div className="inline-flex items-center space-x-3 bg-gray-800 rounded-full px-6 py-3">
+                <Clock className="h-5 w-5 text-gray-400" />
+                <span className="text-gray-300">Segunda a Sexta: 8h às 18h | Sábado: 8h às 12h</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-black text-gray-300 py-12 px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-4 gap-8">
+              {/* Empresa */}
+              <div>
+                <div className="flex items-center space-x-3 mb-6">
+                  <Bot className="h-8 w-8 text-yellow-400" />
+                  <span className="text-xl font-bold text-white">EXÉRCITO DE AGENTES</span>
+                </div>
+                <p className="text-gray-400 leading-relaxed">
+                  Transformando negócios através da automação inteligente, contabilidade especializada e consultoria estratégica.
+                </p>
+              </div>
+
+              {/* Serviços */}
+              <div>
+                <h4 className="text-lg font-bold text-white mb-4">SERVIÇOS</h4>
+                <ul className="space-y-2">
+                  <li><button onClick={() => scrollToSection('automation')} className="hover:text-white transition-colors">EssencialBot - Automação IA</button></li>
+                  <li><button onClick={() => scrollToSection('accounting')} className="hover:text-white transition-colors">Escritório Contábil</button></li>
+                  <li><button onClick={() => scrollToSection('consulting')} className="hover:text-white transition-colors">Consultoria Empresarial</button></li>
+                  <li><button onClick={() => scrollToSection('education')} className="hover:text-white transition-colors">Educação Profissional</button></li>
+                </ul>
+              </div>
+
+              {/* EDA SOCIAL */}
+              <div>
+                <h4 className="text-lg font-bold text-white mb-4">EDA SOCIAL</h4>
+                <p className="text-gray-400 mb-4">
+                  Projeto de inclusão com agentes especializados para autismo, síndrome de Down, mobilidade reduzida, luto e ansiedade.
+                </p>
+                <div className="space-y-2">
+                  <a 
+                    href="https://www.edasocial.org" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block text-pink-400 hover:text-pink-300 transition-colors"
+                  >
+                    www.edasocial.org
+                  </a>
+                  <a 
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleContactClick('email_eda_social', 'eda_social', 'contato@edasocial.org');
+                    }}
+                    className="block text-pink-400 hover:text-pink-300 transition-colors"
+                  >
+                    contato@edasocial.org
+                  </a>
+                </div>
+              </div>
+
+              {/* Contato */}
+              <div>
+                <h4 className="text-lg font-bold text-white mb-4">CONTATO</h4>
+                <div className="space-y-3">
+                  <a 
+                    href={`https://wa.me/${config.WHATSAPP_NUMBER}`}
+                    className="flex items-center space-x-2 hover:text-white transition-colors"
+                  >
+                    <Phone className="h-4 w-4" />
+                    <span>(11) 91175-7113</span>
+                  </a>
+                  <a 
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleContactClick('email_sac', 'sac', config.EMAIL_CONTACT);
+                    }}
+                    className="flex items-center space-x-2 hover:text-white transition-colors"
+                  >
+                    <Mail className="h-4 w-4" />
+                    <span>sac@exercitodeagentes.com.br</span>
+                  </a>
+                  <div className="flex items-center space-x-2">
+                    <Clock className="h-4 w-4" />
+                    <span className="text-sm">Seg-Sex: 8h-18h | Sáb: 8h-12h</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+              <p className="text-gray-400">
+                © 2024 Exército de Agentes. Todos os direitos reservados. | 
+                <span className="text-pink-400 ml-2">EDA SOCIAL - Tecnologia que abraça</span>
+              </p>
+            </div>
+          </div>
+        </footer>
+
+        {/* EssencialBot Chat */}
+        <EssencialBotChat />
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={contactModal.isOpen}
+          onClose={() => setContactModal(prev => ({ ...prev, isOpen: false }))}
+          contactType={contactModal.type}
+          emailType={contactModal.emailType}
+          emailAddress={contactModal.emailAddress}
+        />
+
+        {/* Admin Login */}
+        <AdminLogin
+          isOpen={adminLogin}
+          onClose={() => setAdminLogin(false)}
+          onLogin={handleAdminLogin}
+        />
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={contactModal.isOpen}
+          onClose={() => setContactModal(prev => ({ ...prev, isOpen: false }))}
+          contactType={contactModal.type}
+          emailType={contactModal.emailType}
+          emailAddress={contactModal.emailAddress}
+        />
+      </div>
+    </HelmetProvider>
+  );
+};
+
+export default App;
+
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-rose-100 rounded-2xl">
+                    <TrendingUp className="h-8 w-8 text-rose-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Recuperação Empresarial</h3>
+                    <p className="text-gray-600">Especialistas em reestruturação, recuperação judicial e revitalização de negócios.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="p-3 bg-emerald-100 rounded-2xl">
+                    <BarChart3 className="h-8 w-8 text-emerald-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">Gestão Financeira</h3>
+                    <p className="text-gray-600">Controle de fluxo de caixa, análise de investimentos e otimização de recursos.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl p-8 text-white shadow-xl">
+                <h3 className="text-2xl font-bold mb-6">Transformação Digital</h3>
+                <p className="text-lg mb-6 text-orange-100">
+                  Implementamos soluções de IA e automação que revolucionam a eficiência operacional da sua empresa.
+                </p>
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-orange-200" />
+                    <span>Diagnóstico completo</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-orange-200" />
+                    <span>Implementação gradual</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-orange-200" />
+                    <span>Treinamento da equipe</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <CheckCircle className="h-5 w-5 text-orange-200" />
+                    <span>Suporte contínuo</span>
+                  </li>
+                </ul>
+                <button 
+                  onClick={() => handleServiceClick('consultoria')}
+                  className="w-full py-3 bg-white text-orange-700 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+                  onClick={() => window.open('https://chatgpt.com/g/g-685713a0a450819181b59fee416ebf2f-ea-triagem-consultoria-empresarial', '_blank')}
+                >
+                  Solicitar Consultoria
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Educação Section */}
+        <section id="education" className="py-20 px-4 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Educação <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Profissional</span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Capacitação especializada para profissionais que querem liderar a transformação digital
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-cyan-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Bot className="h-8 w-8 text-cyan-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  <a 
+                    href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-600 transition-colors"
+                  >
+                    IA Empresarial
+                  </a>
+                  </a>
+              </div>
+                <p className="text-gray-600 text-sm mb-4">Fundamentos, Chatbots e Machine Learning aplicados aos negócios</p>
+                <div className="text-2xl font-bold text-cyan-600 mb-2">40h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-emerald-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Calculator className="h-8 w-8 text-emerald-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  <a 
+                    href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-green-600 transition-colors"
+                  >
+                    Contabilidade 4.0
+                  </a>
+                </h3>
+                <p className="text-gray-600 text-sm mb-4">Contabilidade digital, SPED e análise de dados</p>
+                <div className="text-2xl font-bold text-emerald-600 mb-2">60h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+                <div className="mt-4">
+                  <a 
+                    href="https://chatgpt.com/g/g-68571547-89bc-8191-bc1d-7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center space-x-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors text-sm"
+                  >
+                    <BookOpen className="h-4 w-4" />
+                    <span>Saiba Mais</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-violet-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-violet-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">
+                  <a 
+                    href="https://chatgpt.com/g/g-6857154789bc8191bc1d7840adae7382-ea-triagem-educacao-pro"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-purple-600 transition-colors"
+                  >
+                    Controladoria
+                  </a>
+                  </a>
+              </div>
                 <p className="text-gray-600 text-sm mb-4">Controles internos, auditoria e compliance</p>
                 <div className="text-2xl font-bold text-violet-600 mb-2">50h</div>
                 <div className="text-gray-500 text-sm">Certificação inclusa</div>
