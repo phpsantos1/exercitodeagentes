@@ -585,7 +585,7 @@ const App: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
                 <div className="p-3 bg-cyan-100 rounded-2xl w-fit mx-auto mb-4">
                   <Bot className="h-8 w-8 text-cyan-600" />
@@ -704,6 +704,92 @@ const App: React.FC = () => {
                     <span>Saiba Mais</span>
                   </a>
                 </div>
+              </div>
+            </div>
+
+            {/* Segunda linha de cursos */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-cyan-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Briefcase className="h-8 w-8 text-cyan-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Gestão Empresarial</h3>
+                <p className="text-gray-600 text-sm mb-4">Liderança, estratégia e gestão de equipes</p>
+                <div className="text-2xl font-bold text-cyan-600 mb-2">55h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-pink-100 rounded-2xl w-fit mx-auto mb-4">
+                  <BarChart3 className="h-8 w-8 text-pink-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Business Intelligence</h3>
+                <p className="text-gray-600 text-sm mb-4">Análise de dados, dashboards e relatórios</p>
+                <div className="text-2xl font-bold text-pink-600 mb-2">48h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-emerald-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Globe className="h-8 w-8 text-emerald-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Marketing Digital</h3>
+                <p className="text-gray-600 text-sm mb-4">SEO, redes sociais e automação de marketing</p>
+                <div className="text-2xl font-bold text-emerald-600 mb-2">42h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-red-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Award className="h-8 w-8 text-red-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Compliance</h3>
+                <p className="text-gray-600 text-sm mb-4">LGPD, governança corporativa e ética</p>
+                <div className="text-2xl font-bold text-red-600 mb-2">38h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+            </div>
+
+            {/* Terceira linha de cursos */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-violet-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Users className="h-8 w-8 text-violet-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Recursos Humanos</h3>
+                <p className="text-gray-600 text-sm mb-4">Gestão de pessoas e desenvolvimento organizacional</p>
+                <div className="text-2xl font-bold text-violet-600 mb-2">52h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-amber-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Zap className="h-8 w-8 text-amber-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Automação de Processos</h3>
+                <p className="text-gray-600 text-sm mb-4">RPA, workflows e otimização operacional</p>
+                <div className="text-2xl font-bold text-amber-600 mb-2">46h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-teal-100 rounded-2xl w-fit mx-auto mb-4">
+                  <BookOpen className="h-8 w-8 text-teal-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Educação Corporativa</h3>
+                <p className="text-gray-600 text-sm mb-4">Treinamento, capacitação e desenvolvimento</p>
+                <div className="text-2xl font-bold text-teal-600 mb-2">44h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow text-center">
+                <div className="p-3 bg-rose-100 rounded-2xl w-fit mx-auto mb-4">
+                  <Target className="h-8 w-8 text-rose-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Planejamento Estratégico</h3>
+                <p className="text-gray-600 text-sm mb-4">Visão, missão, objetivos e metas empresariais</p>
+                <div className="text-2xl font-bold text-rose-600 mb-2">50h</div>
+                <div className="text-gray-500 text-sm">Certificação inclusa</div>
               </div>
             </div>
 
