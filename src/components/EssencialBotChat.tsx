@@ -22,8 +22,8 @@ const EssencialBotChat: React.FC = () => {
 
   const gptLinks = [
     {
-      name: "Contabilidade",
-      description: "Especialista em contabilidade e questões fiscais",
+      name: "EA Triagem Contábil",
+      description: "Especialista em triagem e orientações contábeis",
       url: "https://chatgpt.com/g/g-68571184fa60819187a1c1a4c459c153-ea-triagem-contabil",
       color: "from-green-500 to-emerald-500"
     }
@@ -52,7 +52,7 @@ const EssencialBotChat: React.FC = () => {
           <div className="flex-1 p-4 overflow-y-auto">
             <div className="bg-gray-100 rounded-lg p-3 mb-4">
               <p className="text-sm text-gray-700 mb-3">
-                <strong>Olá! Fale com nosso especialista em contabilidade:</strong>
+                <strong>Olá! Acesse nosso especialista em triagem contábil:</strong>
               </p>
             </div>
 
@@ -79,8 +79,8 @@ const EssencialBotChat: React.FC = () => {
 
             <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-4 rounded">
               <p className="text-xs text-yellow-800">
-                <strong>💡 Dica:</strong> Cada atendente é especializado em sua área. 
-                Escolha o mais adequado para obter respostas mais precisas!
+                <strong>💡 Dica:</strong> Nosso agente de triagem contábil irá direcioná-lo 
+                para o especialista mais adequado às suas necessidades!
               </p>
             </div>
           </div>
