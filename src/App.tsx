@@ -117,8 +117,10 @@ const App: React.FC = () => {
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
               Disponibilizando a você, seu bem mais precioso: O seu tempo! Venha conferir!<br/><br/>
-              EssencialBot + Escritório Contábil + Consultoria Empresarial + Educação Profissional. 
-              Tudo integrado em uma solução completa para o sucesso da sua empresa.
+              <strong className="text-gray-900 uppercase">Disponibilizando a você, seu bem mais precioso: O seu tempo! Venha conferir!</strong>
+              <br />
+              <span className="text-lg">EssencialBot + Escritório Contábil + Consultoria Empresarial + Educação Profissional. 
+              Tudo integrado em uma solução completa para o sucesso da sua empresa.</span>
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -345,6 +347,11 @@ const App: React.FC = () => {
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Serviços contábeis completos com tecnologia de ponta e atendimento personalizado
               </p>
+              <div className="mt-4">
+                <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                  CRC 1SP263859
+                </span>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -997,6 +1004,9 @@ const App: React.FC = () => {
                 <p className="text-gray-400 leading-relaxed">
                   Transformando negócios através da automação inteligente, contabilidade especializada e consultoria estratégica.
                 </p>
+                <div className="mt-4">
+                  <span className="text-xs text-gray-500">CRC 1SP263859</span>
+                </div>
               </div>
 
               {/* Serviços */}
