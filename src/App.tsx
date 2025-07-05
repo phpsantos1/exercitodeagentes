@@ -35,11 +35,21 @@ import {
 import EssencialBotChat from './components/EssencialBotChat';
 import EdaSocialInstitutional from './components/EdaSocialInstitutional';
 import SEOHead from './components/SEOHead';
+import ContactModal from './components/ContactModal';
 import { config } from './config/environment';
 import { initializeAnalytics, trackEvent } from './utils/analytics';
 
 const App: React.FC = () => {
   const [currentSection, setCurrentSection] = React.useState('home');
+  const [contactModal, setContactModal] = React.useState<{
+    isOpen: boolean;
+    type: 'email' | 'whatsapp';
+    emailType?: string;
+    emailAddress?: string;
+  }>({
+    isOpen: false,
+    type: 'email'
+  });
 
   useEffect(() => {
     initializeAnalytics();
@@ -47,10 +57,27 @@ const App: React.FC = () => {
 
   const handleContactClick = (type: string) => {
     trackEvent('contact_click', { contact_type: type });
+    
+    if (type === 'whatsapp') {
+      setContactModal({
+        isOpen: true,
+        type: 'whatsapp'
+      });
+    }
   };
 
   const handleServiceClick = (service: string) => {
     trackEvent('service_interest', { service_name: service });
+  };
+
+  const handleEmailClick = (emailType: string, emailAddress: string) => {
+    trackEvent('email_click', { email_type: emailType });
+    setContactModal({
+      isOpen: true,
+      type: 'email',
+      emailType,
+      emailAddress
+    });
   };
 
   const scrollToSection = (sectionId: string) => {
@@ -927,8 +954,11 @@ const App: React.FC = () => {
 
               {/* Email Geral */}
               <a 
-                href={`mailto:${config.EMAIL_CONTACT}`}
-                onClick={() => handleContactClick('email')}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleEmailClick('sac', config.EMAIL_CONTACT);
+                }}
                 className="bg-cyan-500 hover:bg-cyan-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -940,8 +970,11 @@ const App: React.FC = () => {
 
               {/* Email Financeiro */}
               <a 
-                href="mailto:financeiro@exercitodeagentes.com.br"
-                onClick={() => handleContactClick('email_financeiro')}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleEmailClick('financeiro', 'financeiro@exercitodeagentes.com.br');
+                }}
                 className="bg-violet-500 hover:bg-violet-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -953,8 +986,11 @@ const App: React.FC = () => {
 
               {/* Email Paulo Henrique */}
               <a 
-                href="mailto:paulohenrique@exercitodeagentes.com.br"
-                onClick={() => handleContactClick('email_paulo')}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleEmailClick('paulo', 'paulohenrique@exercitodeagentes.com.br');
+                }}
                 className="bg-amber-500 hover:bg-amber-600 rounded-2xl p-6 text-center transition-colors group shadow-lg"
               >
                 <div className="p-3 bg-white/20 rounded-2xl w-fit mx-auto mb-4 group-hover:scale-110 transition-transform">
@@ -972,8 +1008,11 @@ const App: React.FC = () => {
                 Para dúvidas, suporte ou colaboração com nosso projeto social
               </p>
               <a 
-                href="mailto:contato@edasocial.org"
-                onClick={() => handleContactClick('email_eda_social')}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleEmailClick('eda_social', 'contato@edasocial.org');
+                }}
                 className="inline-flex items-center space-x-2 bg-white text-pink-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
               >
                 <Mail className="h-5 w-5" />
@@ -1033,7 +1072,11 @@ const App: React.FC = () => {
                     www.edasocial.org
                   </a>
                   <a 
-                    href="mailto:contato@edasocial.org"
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleEmailClick('eda_social', 'contato@edasocial.org');
+                    }}
                     className="block text-pink-400 hover:text-pink-300 transition-colors"
                   >
                     contato@edasocial.org
@@ -1078,6 +1121,15 @@ const App: React.FC = () => {
 
         {/* EssencialBot Chat */}
         <EssencialBotChat />
+
+        {/* Contact Modal */}
+        <ContactModal
+          isOpen={contactModal.isOpen}
+          onClose={() => setContactModal({ ...contactModal, isOpen: false })}
+          contactType={contactModal.type}
+          emailType={contactModal.emailType}
+          emailAddress={contactModal.emailAddress}
+        />
       </div>
     </HelmetProvider>
   );
